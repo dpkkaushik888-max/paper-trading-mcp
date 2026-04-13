@@ -4,3 +4,4 @@ pandas-ta>=0.3.14b1
 mcp>=1.0.0
 httpx>=0.27.0
 uvicorn>=0.30.0
+pytest>=8.0.0
