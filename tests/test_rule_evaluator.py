@@ -94,7 +94,7 @@ class TestEvaluateEntryRules:
             "symbol": "SPY",
             "price": 500.0,
             "rsi_14": 25.0,
-            "ema_50": 490.0,
+            "ema_20": 490.0,
             "macd_histogram": 2.0,
             "bb_lower": 480.0,
         }
@@ -107,7 +107,7 @@ class TestEvaluateEntryRules:
             "symbol": "SPY",
             "price": 500.0,
             "rsi_14": 60.0,
-            "ema_50": 510.0,
+            "ema_20": 510.0,
             "macd_histogram": -1.0,
             "bb_lower": 480.0,
         }
@@ -120,13 +120,13 @@ class TestEvaluateEntryRules:
             "symbol": "QQQ",
             "price": 400.0,
             "rsi_14": 60.0,
-            "ema_50": 390.0,
+            "ema_20": 390.0,
             "macd_histogram": 1.5,
             "bb_lower": 380.0,
         }
         signal = evaluate_entry_rules(rules, indicators)
-        assert signal.strength == pytest.approx(0.7, abs=0.01)
-        assert signal.action == "buy"
+        assert signal.strength == pytest.approx(0.55, abs=0.01)
+        assert signal.action == "hold"
 
 
 class TestEvaluateExitRules:
@@ -139,7 +139,7 @@ class TestEvaluateExitRules:
             "symbol": "SPY",
             "price": 520.0,
             "rsi_14": 75.0,
-            "ema_50": 500.0,
+            "ema_200": 500.0,
             "macd_histogram": 1.0,
         }
         position = {"symbol": "SPY", "entry_price": 500.0}
@@ -151,7 +151,7 @@ class TestEvaluateExitRules:
             "symbol": "SPY",
             "price": 489.0,
             "rsi_14": 40.0,
-            "ema_50": 480.0,
+            "ema_200": 480.0,
             "macd_histogram": 1.0,
         }
         position = {"symbol": "SPY", "entry_price": 500.0}
@@ -162,9 +162,9 @@ class TestEvaluateExitRules:
     def test_take_profit_exit(self, rules):
         indicators = {
             "symbol": "SPY",
-            "price": 516.0,
+            "price": 526.0,
             "rsi_14": 65.0,
-            "ema_50": 500.0,
+            "ema_200": 490.0,
             "macd_histogram": 1.0,
         }
         position = {"symbol": "SPY", "entry_price": 500.0}
@@ -177,7 +177,7 @@ class TestEvaluateExitRules:
             "symbol": "SPY",
             "price": 505.0,
             "rsi_14": 55.0,
-            "ema_50": 500.0,
+            "ema_200": 500.0,
             "macd_histogram": 1.0,
         }
         position = {"symbol": "SPY", "entry_price": 500.0}

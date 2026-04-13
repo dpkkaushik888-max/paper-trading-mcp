@@ -20,6 +20,7 @@ def run_backtest(
     initial_capital: float = 1000.0,
     broker: str = "etoro",
     account_currency: str = "EUR",
+    cached_history: Optional[dict[str, pd.DataFrame]] = None,
 ) -> dict:
     """Run a backtest of the strategy against historical data.
 
@@ -31,11 +32,14 @@ def run_backtest(
     rules = load_rules(rules_path)
     cost_engine = CostEngine(broker)
 
-    history_data = {}
-    for symbol in symbols:
-        df = get_history(symbol, days=days + 60)
-        if not df.empty:
-            history_data[symbol] = df
+    if cached_history is not None:
+        history_data = cached_history
+    else:
+        history_data = {}
+        for symbol in symbols:
+            df = get_history(symbol, days=days + 60)
+            if not df.empty:
+                history_data[symbol] = df
 
     if not history_data:
         return {"error": "No historical data available"}

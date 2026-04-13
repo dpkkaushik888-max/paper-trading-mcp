@@ -5,57 +5,62 @@
     "description": "Combines RSI oversold/overbought with EMA trend confirmation and MACD momentum. Designed for daily ETF trading targeting small consistent gains.",
     "timeframe": "1d"
   },
-
-  "watchlist": ["SPY", "QQQ", "IWM", "DIA", "XLF", "XLK", "GLD", "TLT"],
-
+  "watchlist": [
+    "SPY",
+    "QQQ",
+    "IWM",
+    "DIA",
+    "XLF",
+    "XLK",
+    "GLD",
+    "TLT"
+  ],
   "entry_rules": {
     "long": [
       {
         "condition": "rsi_14 < 35",
         "weight": 0.3,
-        "description": "RSI(14) oversold — mean reversion setup"
+        "description": "RSI(14) oversold \u2014 mean reversion setup"
       },
       {
-        "condition": "price > ema_50",
-        "weight": 0.3,
-        "description": "Price above 50 EMA — uptrend intact, not catching a falling knife"
+        "condition": "price > ema_20",
+        "weight": 0.15,
+        "description": "Price above 50 EMA \u2014 uptrend intact, not catching a falling knife"
       },
       {
         "condition": "macd_histogram > 0",
         "weight": 0.2,
-        "description": "MACD histogram positive — momentum turning bullish"
+        "description": "MACD histogram positive \u2014 momentum turning bullish"
       },
       {
         "condition": "price > bb_lower",
         "weight": 0.2,
-        "description": "Price above lower Bollinger Band — not in free-fall"
+        "description": "Price above lower Bollinger Band \u2014 not in free-fall"
       }
     ],
     "min_score": 0.6,
     "note": "Score = sum of weights for matched conditions. Must reach min_score to trigger."
   },
-
   "exit_rules": [
     {
       "condition": "rsi_14 > 70",
-      "description": "RSI(14) overbought — take profit"
+      "description": "RSI(14) overbought \u2014 take profit"
     },
     {
-      "condition": "price < ema_50",
-      "description": "Price dropped below 50 EMA — trend broken, cut losses"
+      "condition": "price < ema_200",
+      "description": "Price dropped below 50 EMA \u2014 trend broken, cut losses"
     },
     {
       "condition": "macd_histogram < 0",
-      "description": "MACD histogram turned negative — momentum fading"
+      "description": "MACD histogram turned negative \u2014 momentum fading"
     }
   ],
   "exit_note": "Exit when ANY exit condition is met (OR logic).",
-
   "risk_rules": {
-    "max_position_pct": 0.10,
+    "max_position_pct": 0.1,
     "max_daily_loss_pct": 0.02,
     "stop_loss_pct": 0.02,
-    "take_profit_pct": 0.03,
+    "take_profit_pct": 0.05,
     "note": "2% stop loss, 3% take profit = 1.5:1 reward/risk ratio"
   }
 }

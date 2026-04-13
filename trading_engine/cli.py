@@ -339,6 +339,19 @@ def cmd_backtest(args):
             )
 
 
+def cmd_optimize(args):
+    """Run strategy autoresearch optimization."""
+    from .strategy_optimizer import run_optimization
+
+    run_optimization(
+        iterations=args.iterations,
+        backtest_days=args.days,
+        initial_capital=args.capital,
+        broker=args.broker,
+        account_currency=args.currency,
+    )
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="Paper Trading Engine — AI Coffee Money",
@@ -373,6 +386,11 @@ def main():
     bt_p.add_argument("--days", type=int, default=30, help="Backtest period in days")
     bt_p.add_argument("--verbose", "-v", action="store_true", help="Show daily breakdown")
 
+    opt_p = sub.add_parser("optimize", help="Autoresearch: optimize rules.json via backtest")
+    opt_p.add_argument("--iterations", type=int, default=20, help="Optimization iterations")
+    opt_p.add_argument("--days", type=int, default=90, help="Backtest period")
+    opt_p.add_argument("--currency", default="EUR", help="Account currency")
+
     args = parser.parse_args()
 
     commands = {
@@ -383,6 +401,7 @@ def main():
         "history": cmd_history,
         "costs": cmd_costs,
         "backtest": cmd_backtest,
+        "optimize": cmd_optimize,
     }
 
     if args.command in commands:
