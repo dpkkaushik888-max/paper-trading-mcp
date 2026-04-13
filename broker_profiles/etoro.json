@@ -1,0 +1,64 @@
+{
+  "broker_name": "eToro",
+  "last_updated": "2026-04-13",
+  "sources": [
+    "https://www.etoro.com/trading/fees/",
+    "https://www.matchmybroker.com/articles/etoro-fees-explained"
+  ],
+
+  "etf_commission": 0.0,
+  "stock_commission_usd": 1.0,
+
+  "spread": {
+    "liquid_etfs": 0.0003,
+    "liquid_etf_symbols": ["SPY", "QQQ", "IWM", "DIA"],
+    "standard_etfs": 0.0008,
+    "note": "eToro does not add spread markup on ETFs. These are natural market spread estimates."
+  },
+
+  "slippage": {
+    "default_pct": 0.0002,
+    "note": "Market order fill deviation from quoted mid-price."
+  },
+
+  "fx_conversion": {
+    "eur_to_usd_pct": 0.015,
+    "gbp_to_usd_pct": 0.005,
+    "club_discount": {
+      "silver": 0.0,
+      "gold": 0.0,
+      "platinum": 0.50,
+      "platinum_plus": 0.50,
+      "diamond": 1.0
+    },
+    "note": "Applied on deposit/withdrawal for non-USD accounts. 1.5% for EUR (default EU user)."
+  },
+
+  "overnight_fee": {
+    "non_leveraged_etf": 0.0,
+    "cfd_etf_open_close_pct": 0.0015,
+    "note": "Non-leveraged long ETF buys = $0 overnight. CFD positions incur 0.15% open+close spread."
+  },
+
+  "withdrawal_fee": {
+    "usd_account": 5.0,
+    "eur_account": 0.0,
+    "gbp_account": 0.0,
+    "min_withdrawal_usd": 30.0
+  },
+
+  "inactivity_fee": {
+    "monthly_usd": 10.0,
+    "after_months_inactive": 12,
+    "note": "Not simulated — active trader won't hit this."
+  },
+
+  "tax": {
+    "us_dividend_withholding_pct": 0.30,
+    "us_dividend_withholding_w8ben_pct": 0.15,
+    "german_capital_gains_pct": 0.26375,
+    "german_capital_gains_breakdown": "25% Abgeltungsteuer + 5.5% Solidaritätszuschlag",
+    "german_sparerpauschbetrag_eur": 1000,
+    "note": "Tax shown separately. Not deducted from paper P&L, displayed as after-tax P&L."
+  }
+}
