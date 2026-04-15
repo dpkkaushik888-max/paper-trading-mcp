@@ -193,7 +193,7 @@ def main():
     if args.market in ("india", "both"):
         markets.append(("india", INDIA_WATCHLIST, 100_000, 0.80, 0.05, 0.08, period))
     if args.market == "crypto":
-        markets.append(("crypto", CRYPTO_WATCHLIST, 10_000, 0.80, 0.05, 0.08, period))
+        markets.append(("crypto", CRYPTO_WATCHLIST, 10_000, 0.85, 0.10, 0.15, period))
 
     for market, watchlist, capital, conf, sl, tp, period in markets:
         print(f"\n  Downloading {market.upper()} data ({period})...")

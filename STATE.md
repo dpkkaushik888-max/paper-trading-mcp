@@ -101,6 +101,16 @@ All 4 proposed improvements tested individually and combined. None beat baseline
 
 **Winner: Crypto market.** Higher volatility = more signal. Best calibration error (0.253) and first >50% WR result.
 
+### S10: Autoresearch Crypto Optimizer (2026-04-15)
+
+| Config | Return | Win Rate | Max DD | Trades | Cal Error |
+|--------|--------|----------|--------|--------|-----------|
+| S09 Baseline | +2.47% | 54.2% | 6.68% | 96 | 0.253 |
+| Round 1 (balanced) | +12.42% | 39.5% | 9.23% | 84 | 0.079 |
+| **Round 2 (winrate)** | **+9.50%** | **67.7%** | **5.14%** | **62** | **0.056** |
+
+**Applied config:** conf=0.85, tw=150, rt=10, SL=10%, TP=15%, lr=0.02, depth=2, n=100, mc=15. Key: higher confidence + wider stops + faster retrain = fewer but much better trades. Best calibration ever (0.056).
+
 ### Cost Insights
 - **Zerodha:** ~0.16% round-trip (STT dominated). 10x cheaper than eToro.
 - **eToro:** ~1.6% round-trip (FX dominated). FX fee kills small accounts.

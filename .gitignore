@@ -7,3 +7,4 @@ dist/
 build/
 *.db
 .DS_Store
+autoresearch/data_cache/
