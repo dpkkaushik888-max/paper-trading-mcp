@@ -10,7 +10,10 @@ import pandas as pd
 from .config import WATCHLIST
 from .cost_engine import CostEngine
 from .price_engine import get_history, calculate_indicators
-from .rule_evaluator import evaluate_entry_rules, evaluate_exit_rules, load_rules
+from .rule_evaluator import (
+    evaluate_entry_rules, evaluate_exit_rules,
+    evaluate_short_entry_rules, evaluate_short_exit_rules, load_rules,
+)
 
 
 def run_backtest(
@@ -53,8 +56,11 @@ def run_backtest(
         return {"error": "Insufficient historical data for backtest"}
     sorted_dates = sorted_dates[-days:]
 
+    has_short_rules = bool(rules.get("entry_rules", {}).get("short"))
+
     cash = initial_capital
-    positions = {}
+    long_positions = {}
+    short_positions = {}
     trades = []
     daily_results = []
     total_costs = 0.0
@@ -79,8 +85,9 @@ def run_backtest(
             if price <= 0:
                 continue
 
-            if symbol in positions:
-                pos = positions[symbol]
+            # --- Check long exit ---
+            if symbol in long_positions:
+                pos = long_positions[symbol]
                 signal = evaluate_exit_rules(rules, indicators, pos)
                 if signal.action == "sell":
                     costs = cost_engine.calculate_trade_cost(
@@ -96,6 +103,7 @@ def run_backtest(
                     day_trades.append({
                         "symbol": symbol,
                         "action": "sell",
+                        "side": "long",
                         "price": round(price, 4),
                         "shares": pos["shares"],
                         "gross_pnl": round(gross_pnl, 4),
@@ -105,9 +113,50 @@ def run_backtest(
                     })
 
                     cash += costs.net_value
-                    del positions[symbol]
+                    del long_positions[symbol]
 
+            # --- Check short exit (cover) ---
+            elif symbol in short_positions:
+                pos = short_positions[symbol]
+                signal = evaluate_short_exit_rules(rules, indicators, pos)
+                if signal.action == "cover":
+                    costs = cost_engine.calculate_trade_cost(
+                        symbol, price, pos["shares"], "buy", account_currency
+                    )
+                    holding_days = max(1, (
+                        datetime.strptime(day_str, "%Y-%m-%d")
+                        - datetime.strptime(pos["entry_date"], "%Y-%m-%d")
+                    ).days)
+                    overnight_cost = cost_engine.calculate_overnight_cost(
+                        pos["entry_price"], pos["shares"], holding_days
+                    )
+                    gross_pnl = (pos["entry_price"] - price) * pos["shares"]
+                    net_pnl = gross_pnl - pos["entry_costs"] - costs.total_cost - overnight_cost
+
+                    day_pnl_gross += gross_pnl
+                    day_pnl_net += net_pnl
+                    day_costs += costs.total_cost + overnight_cost
+
+                    day_trades.append({
+                        "symbol": symbol,
+                        "action": "cover",
+                        "side": "short",
+                        "price": round(price, 4),
+                        "shares": pos["shares"],
+                        "gross_pnl": round(gross_pnl, 4),
+                        "net_pnl": round(net_pnl, 4),
+                        "overnight_cost": round(overnight_cost, 4),
+                        "holding_days": holding_days,
+                        "costs": costs.to_dict(),
+                        "reason": "; ".join(signal.reasons),
+                    })
+
+                    cash += pos["entry_value"] + pos["entry_costs"] + gross_pnl - costs.total_cost - overnight_cost
+                    del short_positions[symbol]
+
+            # --- Check entries (no existing position) ---
             else:
+                # Long entry
                 signal = evaluate_entry_rules(rules, indicators)
                 if signal.action == "buy":
                     max_position = cash * 0.10
@@ -122,7 +171,7 @@ def run_backtest(
                     if costs.net_value > cash:
                         continue
 
-                    positions[symbol] = {
+                    long_positions[symbol] = {
                         "symbol": symbol,
                         "shares": shares,
                         "entry_price": price,
@@ -136,19 +185,66 @@ def run_backtest(
                     day_trades.append({
                         "symbol": symbol,
                         "action": "buy",
+                        "side": "long",
                         "price": round(price, 4),
                         "shares": shares,
                         "costs": costs.to_dict(),
                         "reason": "; ".join(signal.reasons),
                     })
 
+                # Short entry (only if no long was triggered and short rules exist)
+                elif has_short_rules:
+                    short_signal = evaluate_short_entry_rules(rules, indicators)
+                    if short_signal.action == "short":
+                        max_position = cash * 0.10
+                        shares = int(max_position / price) if price > 0 else 0
+                        if shares <= 0:
+                            continue
+
+                        costs = cost_engine.calculate_trade_cost(
+                            symbol, price, shares, "sell", account_currency
+                        )
+
+                        entry_value = price * shares
+                        margin_required = entry_value + costs.total_cost
+
+                        if margin_required > cash:
+                            continue
+
+                        short_positions[symbol] = {
+                            "symbol": symbol,
+                            "shares": shares,
+                            "entry_price": price,
+                            "entry_value": entry_value,
+                            "entry_costs": costs.total_cost,
+                            "entry_date": day_str,
+                        }
+
+                        day_costs += costs.total_cost
+                        cash -= margin_required
+
+                        day_trades.append({
+                            "symbol": symbol,
+                            "action": "short",
+                            "side": "short",
+                            "price": round(price, 4),
+                            "shares": shares,
+                            "costs": costs.to_dict(),
+                            "reason": "; ".join(short_signal.reasons),
+                        })
+
         total_costs += day_costs
         trades.extend(day_trades)
 
-        positions_value = sum(
+        long_value = sum(
             _get_price_on_date(history_data.get(s), day) * p["shares"]
-            for s, p in positions.items()
+            for s, p in long_positions.items()
         )
+        short_value = sum(
+            (p["entry_price"] - _get_price_on_date(history_data.get(s), day)) * p["shares"]
+            for s, p in short_positions.items()
+        )
+        positions_value = long_value + short_value
 
         daily_results.append({
             "date": day_str,
@@ -162,17 +258,21 @@ def run_backtest(
         })
 
     final_value = cash
-    for symbol, pos in positions.items():
+    for symbol, pos in long_positions.items():
         last_price = _get_last_price(history_data.get(symbol))
         if last_price:
             final_value += last_price * pos["shares"]
+    for symbol, pos in short_positions.items():
+        last_price = _get_last_price(history_data.get(symbol))
+        if last_price:
+            final_value += (pos["entry_price"] - last_price) * pos["shares"]
 
     total_pnl_gross = final_value - initial_capital + total_costs
     total_pnl_net = final_value - initial_capital
 
     wins = sum(1 for t in trades if t.get("net_pnl", 0) > 0)
     losses = sum(1 for t in trades if t.get("net_pnl", 0) < 0)
-    sell_trades = [t for t in trades if t["action"] == "sell"]
+    sell_trades = [t for t in trades if t["action"] in ("sell", "cover")]
 
     tax_info = cost_engine.calculate_tax_on_gain(max(total_pnl_net, 0))
 
@@ -195,7 +295,7 @@ def run_backtest(
         "avg_daily_pnl": round(total_pnl_net / days, 2) if days > 0 else 0,
         "return_pct": round(total_pnl_net / initial_capital * 100, 2),
         "tax_estimate": tax_info,
-        "open_positions": len(positions),
+        "open_positions": len(long_positions) + len(short_positions),
         "daily_results": daily_results,
     }
 

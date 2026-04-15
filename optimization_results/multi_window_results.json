@@ -1,0 +1,98 @@
+[
+  {
+    "window": "Last 1 day",
+    "days": 1,
+    "trades": 2,
+    "wins": 0,
+    "losses": 0,
+    "win_rate": 0,
+    "net_pnl": -0.14,
+    "return_pct": -0.01,
+    "cost_drag": 0,
+    "open_pos": 2
+  },
+  {
+    "window": "Last 15 days",
+    "days": 15,
+    "trades": 16,
+    "wins": 2,
+    "losses": 5,
+    "win_rate": 28.6,
+    "net_pnl": -0.02,
+    "return_pct": -0.0,
+    "cost_drag": 101.58,
+    "open_pos": 2
+  },
+  {
+    "window": "Last 30 days",
+    "days": 30,
+    "trades": 36,
+    "wins": 10,
+    "losses": 7,
+    "win_rate": 58.8,
+    "net_pnl": 5.13,
+    "return_pct": 0.51,
+    "cost_drag": 38.8,
+    "open_pos": 2
+  },
+  {
+    "window": "Last 60 days",
+    "days": 60,
+    "trades": 84,
+    "wins": 20,
+    "losses": 21,
+    "win_rate": 48.8,
+    "net_pnl": 3.45,
+    "return_pct": 0.35,
+    "cost_drag": 66.05,
+    "open_pos": 2
+  },
+  {
+    "window": "Last 90 days",
+    "days": 90,
+    "trades": 116,
+    "wins": 28,
+    "losses": 29,
+    "win_rate": 49.1,
+    "net_pnl": 4.87,
+    "return_pct": 0.49,
+    "cost_drag": 65.48,
+    "open_pos": 2
+  },
+  {
+    "window": "Random 30d #1 (Jul 04 - Aug 03)",
+    "days": 30,
+    "trades": 31,
+    "wins": 6,
+    "losses": 9,
+    "win_rate": 40.0,
+    "net_pnl": -52.74,
+    "return_pct": -5.27,
+    "cost_drag": 0,
+    "open_pos": 1
+  },
+  {
+    "window": "Random 30d #2 (Nov 16 - Dec 16)",
+    "days": 30,
+    "trades": 24,
+    "wins": 4,
+    "losses": 7,
+    "win_rate": 36.4,
+    "net_pnl": -89.12,
+    "return_pct": -8.91,
+    "cost_drag": 0,
+    "open_pos": 2
+  },
+  {
+    "window": "Random 30d #3 (Dec 08 - Jan 07)",
+    "days": 30,
+    "trades": 36,
+    "wins": 8,
+    "losses": 9,
+    "win_rate": 47.1,
+    "net_pnl": -0.83,
+    "return_pct": -0.08,
+    "cost_drag": 140.91,
+    "open_pos": 2
+  }
+]

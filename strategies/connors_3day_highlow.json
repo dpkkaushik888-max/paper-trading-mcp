@@ -1,0 +1,49 @@
+{
+  "strategy": {
+    "name": "Connors 3-Day High/Low",
+    "version": "1.0",
+    "description": "Larry Connors' 3-Day High/Low Method. Buy after 3 consecutive lower highs and lower lows in an uptrend. Exit at SMA(5).",
+    "source": "High Probability ETF Trading (2009)",
+    "timeframe": "1d"
+  },
+  "watchlist": ["SPY", "QQQ", "IWM", "DIA", "XLF", "XLK", "GLD", "TLT"],
+  "entry_rules": {
+    "long": [
+      {
+        "condition": "price > sma_200",
+        "weight": 0.25,
+        "description": "Above 200-day SMA — long-term uptrend"
+      },
+      {
+        "condition": "price < sma_5",
+        "weight": 0.25,
+        "description": "Below 5-day SMA — short-term weakness"
+      },
+      {
+        "condition": "consecutive_lower_highs >= 3",
+        "weight": 0.25,
+        "description": "3+ consecutive lower highs — selling exhaustion"
+      },
+      {
+        "condition": "consecutive_lower_lows >= 3",
+        "weight": 0.25,
+        "description": "3+ consecutive lower lows — panic complete"
+      }
+    ],
+    "min_score": 0.95,
+    "note": "All 4 conditions must pass (0.25×4 = 1.0 > 0.95). Long only — no short side."
+  },
+  "exit_rules": [
+    {
+      "condition": "price > sma_5",
+      "description": "Close above 5-day SMA — mean reversion complete"
+    }
+  ],
+  "risk_rules": {
+    "max_position_pct": 0.10,
+    "max_daily_loss_pct": 0.02,
+    "stop_loss_pct": 0.03,
+    "take_profit_pct": 0.05,
+    "note": "Long-only strategy. 3% safety stop."
+  }
+}

@@ -1,0 +1,478 @@
+{
+  "timestamp": "2026-04-13T15:43:47.034174",
+  "mode": "walk_forward",
+  "iterations": 40,
+  "kept": 5,
+  "discarded": 35,
+  "train_days": 60,
+  "val_days": 30,
+  "n_val_windows": 4,
+  "baseline": {
+    "train": 36.57,
+    "val_avg": 42.417500000000004
+  },
+  "final": {
+    "train": 47.44,
+    "val_avg": 44.65
+  },
+  "val_details": [
+    {
+      "window": "Val #1 (ends 60d ago)",
+      "composite": 46.37,
+      "return_pct": -5.34,
+      "win_rate": 36.4,
+      "trades": 46,
+      "net_pnl": -53.44
+    },
+    {
+      "window": "Val #2 (ends 90d ago)",
+      "composite": 46.08,
+      "return_pct": 0.11,
+      "win_rate": 50.0,
+      "trades": 34,
+      "net_pnl": 1.06
+    },
+    {
+      "window": "Val #3 (ends 120d ago)",
+      "composite": 43.16,
+      "return_pct": -8.88,
+      "win_rate": 40.0,
+      "trades": 22,
+      "net_pnl": -88.81
+    },
+    {
+      "window": "Val #4 (ends 150d ago)",
+      "composite": 42.99,
+      "return_pct": -9.15,
+      "win_rate": 42.9,
+      "trades": 29,
+      "net_pnl": -91.54
+    }
+  ],
+  "oos_results": [
+    {
+      "window": "Sep 15 \u2013 Oct 15",
+      "net_pnl": -57.09,
+      "return_pct": -5.71,
+      "win_rate": 33.3,
+      "trades": 26
+    },
+    {
+      "window": "Jun 17 \u2013 Jul 17",
+      "net_pnl": -84.2,
+      "return_pct": -8.42,
+      "win_rate": 46.7,
+      "trades": 31
+    },
+    {
+      "window": "Apr 18 \u2013 May 18",
+      "net_pnl": 0,
+      "return_pct": 0,
+      "win_rate": 0,
+      "trades": 0
+    }
+  ],
+  "profitable_pct": 14.285714285714285,
+  "log": [
+    {
+      "iteration": 1,
+      "status": "discard",
+      "mutation": "entry_macd_weight",
+      "description": "MACD rule weight: 0.2 \u2192 0.05",
+      "train_composite": 41.73,
+      "val_avg_composite": 41.085,
+      "train_delta": 5.16,
+      "val_delta": -1.33
+    },
+    {
+      "iteration": 2,
+      "status": "neutral",
+      "mutation": "short_ema_period",
+      "description": "Short EMA trend period: price < ema_20 \u2192 price < ema_50",
+      "train_composite": 36.57,
+      "val_avg_composite": 42.417500000000004,
+      "train_delta": 0.0,
+      "val_delta": 0.0
+    },
+    {
+      "iteration": 3,
+      "status": "discard",
+      "mutation": "entry_bb_weight",
+      "description": "Bollinger Band rule weight: 0.25 \u2192 0.15",
+      "train_composite": 43.62,
+      "val_avg_composite": 42.7825,
+      "train_delta": 7.05,
+      "val_delta": 0.36
+    },
+    {
+      "iteration": 4,
+      "status": "neutral",
+      "mutation": "entry_bb_weight",
+      "description": "Bollinger Band rule weight: 0.25 \u2192 0.35",
+      "train_composite": 36.57,
+      "val_avg_composite": 42.417500000000004,
+      "train_delta": 0.0,
+      "val_delta": 0.0
+    },
+    {
+      "iteration": 5,
+      "status": "keep",
+      "mutation": "entry_ema_weight",
+      "description": "EMA rule weight: 0.2 \u2192 0.1",
+      "train_composite": 37.96,
+      "val_avg_composite": 43.455,
+      "train_delta": 1.39,
+      "val_delta": 1.04
+    },
+    {
+      "iteration": 6,
+      "status": "discard",
+      "mutation": "short_stop_loss_pct",
+      "description": "Short stop loss percentage: 0.0075 \u2192 0.005",
+      "train_composite": 36.99,
+      "val_avg_composite": 42.8525,
+      "train_delta": -0.97,
+      "val_delta": -0.6
+    },
+    {
+      "iteration": 7,
+      "status": "keep",
+      "mutation": "short_take_profit_pct",
+      "description": "Short take profit percentage: 0.04 \u2192 0.01",
+      "train_composite": 41.6,
+      "val_avg_composite": 43.1025,
+      "train_delta": 3.64,
+      "val_delta": -0.35
+    },
+    {
+      "iteration": 8,
+      "status": "neutral",
+      "mutation": "short_rsi_indicator",
+      "description": "Short RSI overbought threshold: rsi_3 > 85 \u2192 rsi_14 > 65",
+      "train_composite": 41.6,
+      "val_avg_composite": 43.1025,
+      "train_delta": 0.0,
+      "val_delta": 0.0
+    },
+    {
+      "iteration": 9,
+      "status": "neutral",
+      "mutation": "short_ema_period",
+      "description": "Short EMA trend period: price < ema_20 \u2192 price < ema_8",
+      "train_composite": 41.6,
+      "val_avg_composite": 43.1025,
+      "train_delta": 0.0,
+      "val_delta": 0.0
+    },
+    {
+      "iteration": 10,
+      "status": "neutral",
+      "mutation": "short_rsi_weight",
+      "description": "Short RSI rule weight: 0.35 \u2192 0.3",
+      "train_composite": 41.6,
+      "val_avg_composite": 43.1025,
+      "train_delta": 0.0,
+      "val_delta": 0.0
+    },
+    {
+      "iteration": 11,
+      "status": "neutral",
+      "mutation": "short_ema_weight",
+      "description": "Short EMA rule weight: 0.2 \u2192 0.1",
+      "train_composite": 41.6,
+      "val_avg_composite": 43.1025,
+      "train_delta": 0.0,
+      "val_delta": 0.0
+    },
+    {
+      "iteration": 12,
+      "status": "keep",
+      "mutation": "short_min_score",
+      "description": "Short minimum score to trigger entry: 0.45 \u2192 0.5",
+      "train_composite": 43.47,
+      "val_avg_composite": 42.305,
+      "train_delta": 1.87,
+      "val_delta": -0.8
+    },
+    {
+      "iteration": 13,
+      "status": "neutral",
+      "mutation": "entry_macd_weight",
+      "description": "MACD rule weight: 0.2 \u2192 0.25",
+      "train_composite": 43.47,
+      "val_avg_composite": 42.305,
+      "train_delta": 0.0,
+      "val_delta": 0.0
+    },
+    {
+      "iteration": 14,
+      "status": "keep",
+      "mutation": "short_take_profit_pct",
+      "description": "Short take profit percentage: 0.01 \u2192 0.02",
+      "train_composite": 45.64,
+      "val_avg_composite": 44.65,
+      "train_delta": 2.17,
+      "val_delta": 2.34
+    },
+    {
+      "iteration": 15,
+      "status": "keep",
+      "mutation": "short_exit_rsi",
+      "description": "Short exit RSI oversold threshold: rsi_14 < 30 \u2192 rsi_14 < 35",
+      "train_composite": 47.44,
+      "val_avg_composite": 44.65,
+      "train_delta": 1.8,
+      "val_delta": 0.0
+    },
+    {
+      "iteration": 16,
+      "status": "discard",
+      "mutation": "entry_rsi_indicator",
+      "description": "RSI entry threshold (indicator + value): rsi_3 < 15 \u2192 rsi_3 < 25",
+      "train_composite": 38.75,
+      "val_avg_composite": 50.0975,
+      "train_delta": -8.69,
+      "val_delta": 5.45
+    },
+    {
+      "iteration": 17,
+      "status": "neutral",
+      "mutation": "stop_loss_pct",
+      "description": "Stop loss percentage: 0.03 \u2192 0.025",
+      "train_composite": 47.44,
+      "val_avg_composite": 44.65,
+      "train_delta": 0.0,
+      "val_delta": 0.0
+    },
+    {
+      "iteration": 18,
+      "status": "discard",
+      "mutation": "entry_macd_weight",
+      "description": "MACD rule weight: 0.2 \u2192 0.1",
+      "train_composite": 41.95,
+      "val_avg_composite": 43.405,
+      "train_delta": -5.49,
+      "val_delta": -1.24
+    },
+    {
+      "iteration": 19,
+      "status": "discard",
+      "mutation": "short_exit_ema",
+      "description": "Short exit EMA period: price > ema_200 \u2192 price > ema_20",
+      "train_composite": 48.95,
+      "val_avg_composite": 42.1025,
+      "train_delta": 1.51,
+      "val_delta": -2.55
+    },
+    {
+      "iteration": 20,
+      "status": "neutral",
+      "mutation": "short_rsi_weight",
+      "description": "Short RSI rule weight: 0.35 \u2192 0.3",
+      "train_composite": 47.44,
+      "val_avg_composite": 44.65,
+      "train_delta": 0.0,
+      "val_delta": 0.0
+    },
+    {
+      "iteration": 21,
+      "status": "discard",
+      "mutation": "exit_ema_period",
+      "description": "EMA exit period: price < ema_8 \u2192 price < ema_20",
+      "train_composite": 39.76,
+      "val_avg_composite": 41.19,
+      "train_delta": -7.68,
+      "val_delta": -3.46
+    },
+    {
+      "iteration": 22,
+      "status": "neutral",
+      "mutation": "entry_ema_weight",
+      "description": "EMA rule weight: 0.1 \u2192 0.15",
+      "train_composite": 47.44,
+      "val_avg_composite": 44.65,
+      "train_delta": 0.0,
+      "val_delta": 0.0
+    },
+    {
+      "iteration": 23,
+      "status": "discard",
+      "mutation": "exit_ema_period",
+      "description": "EMA exit period: price < ema_8 \u2192 price < ema_50",
+      "train_composite": 40.95,
+      "val_avg_composite": 42.05,
+      "train_delta": -6.49,
+      "val_delta": -2.6
+    },
+    {
+      "iteration": 24,
+      "status": "neutral",
+      "mutation": "short_rsi_indicator",
+      "description": "Short RSI overbought threshold: rsi_3 > 85 \u2192 rsi_14 > 65",
+      "train_composite": 47.44,
+      "val_avg_composite": 44.65,
+      "train_delta": 0.0,
+      "val_delta": 0.0
+    },
+    {
+      "iteration": 25,
+      "status": "discard",
+      "mutation": "entry_ema_weight",
+      "description": "EMA rule weight: 0.1 \u2192 0.3",
+      "train_composite": 43.87,
+      "val_avg_composite": 42.730000000000004,
+      "train_delta": -3.57,
+      "val_delta": -1.92
+    },
+    {
+      "iteration": 26,
+      "status": "neutral",
+      "mutation": "short_rsi_indicator",
+      "description": "Short RSI overbought threshold: rsi_3 > 85 \u2192 rsi_3 > 90",
+      "train_composite": 47.44,
+      "val_avg_composite": 44.65,
+      "train_delta": 0.0,
+      "val_delta": 0.0
+    },
+    {
+      "iteration": 27,
+      "status": "discard",
+      "mutation": "take_profit_pct",
+      "description": "Take profit percentage: 0.02 \u2192 0.005",
+      "train_composite": 38.73,
+      "val_avg_composite": 46.2,
+      "train_delta": -8.71,
+      "val_delta": 1.55
+    },
+    {
+      "iteration": 28,
+      "status": "neutral",
+      "mutation": "entry_bb_weight",
+      "description": "Bollinger Band rule weight: 0.25 \u2192 0.35",
+      "train_composite": 47.44,
+      "val_avg_composite": 44.65,
+      "train_delta": 0.0,
+      "val_delta": 0.0
+    },
+    {
+      "iteration": 29,
+      "status": "neutral",
+      "mutation": "short_rsi_weight",
+      "description": "Short RSI rule weight: 0.35 \u2192 0.4",
+      "train_composite": 47.44,
+      "val_avg_composite": 44.65,
+      "train_delta": 0.0,
+      "val_delta": 0.0
+    },
+    {
+      "iteration": 30,
+      "status": "neutral",
+      "mutation": "short_rsi_weight",
+      "description": "Short RSI rule weight: 0.35 \u2192 0.45",
+      "train_composite": 47.44,
+      "val_avg_composite": 44.65,
+      "train_delta": 0.0,
+      "val_delta": 0.0
+    },
+    {
+      "iteration": 31,
+      "status": "discard",
+      "mutation": "entry_macd_weight",
+      "description": "MACD rule weight: 0.2 \u2192 0.1",
+      "train_composite": 41.95,
+      "val_avg_composite": 43.405,
+      "train_delta": -5.49,
+      "val_delta": -1.24
+    },
+    {
+      "iteration": 32,
+      "status": "discard",
+      "mutation": "stop_loss_pct",
+      "description": "Stop loss percentage: 0.03 \u2192 0.015",
+      "train_composite": 46.88,
+      "val_avg_composite": 44.65,
+      "train_delta": -0.56,
+      "val_delta": 0.0
+    },
+    {
+      "iteration": 33,
+      "status": "discard",
+      "mutation": "entry_bb_weight",
+      "description": "Bollinger Band rule weight: 0.25 \u2192 0.15",
+      "train_composite": 45.6,
+      "val_avg_composite": 43.975,
+      "train_delta": -1.84,
+      "val_delta": -0.67
+    },
+    {
+      "iteration": 34,
+      "status": "discard",
+      "mutation": "short_take_profit_pct",
+      "description": "Short take profit percentage: 0.02 \u2192 0.025",
+      "train_composite": 47.26,
+      "val_avg_composite": 44.65,
+      "train_delta": -0.18,
+      "val_delta": 0.0
+    },
+    {
+      "iteration": 35,
+      "status": "discard",
+      "mutation": "entry_rsi_indicator",
+      "description": "RSI entry threshold (indicator + value): rsi_3 < 15 \u2192 rsi_3 < 35",
+      "train_composite": 37.66,
+      "val_avg_composite": 43.057500000000005,
+      "train_delta": -9.78,
+      "val_delta": -1.59
+    },
+    {
+      "iteration": 36,
+      "status": "discard",
+      "mutation": "stop_loss_pct",
+      "description": "Stop loss percentage: 0.03 \u2192 0.0075",
+      "train_composite": 47.23,
+      "val_avg_composite": 44.8125,
+      "train_delta": -0.21,
+      "val_delta": 0.16
+    },
+    {
+      "iteration": 37,
+      "status": "discard",
+      "mutation": "short_take_profit_pct",
+      "description": "Short take profit percentage: 0.02 \u2192 0.01",
+      "train_composite": 47.46,
+      "val_avg_composite": 42.305,
+      "train_delta": 0.02,
+      "val_delta": -2.34
+    },
+    {
+      "iteration": 38,
+      "status": "discard",
+      "mutation": "exit_ema_period",
+      "description": "EMA exit period: price < ema_8 \u2192 price < ema_50",
+      "train_composite": 40.95,
+      "val_avg_composite": 42.05,
+      "train_delta": -6.49,
+      "val_delta": -2.6
+    },
+    {
+      "iteration": 39,
+      "status": "discard",
+      "mutation": "entry_ema_weight",
+      "description": "EMA rule weight: 0.1 \u2192 0.3",
+      "train_composite": 43.87,
+      "val_avg_composite": 42.730000000000004,
+      "train_delta": -3.57,
+      "val_delta": -1.92
+    },
+    {
+      "iteration": 40,
+      "status": "discard",
+      "mutation": "entry_rsi_weight",
+      "description": "RSI rule weight: 0.35 \u2192 0.2",
+      "train_composite": 44.68,
+      "val_avg_composite": 44.125,
+      "train_delta": -2.76,
+      "val_delta": -0.52
+    }
+  ]
+}

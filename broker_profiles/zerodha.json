@@ -1,0 +1,104 @@
+{
+  "broker_name": "Zerodha",
+  "last_updated": "2026-04-14",
+  "market": "india",
+  "currency": "INR",
+  "sources": [
+    "https://zerodha.com/charges",
+    "https://zerodha.com/brokerage-calculator"
+  ],
+
+  "etf_commission": 0.0,
+  "equity_delivery_brokerage": 0.0,
+  "equity_intraday_brokerage_pct": 0.0003,
+  "equity_intraday_brokerage_max_per_order": 20.0,
+
+  "spread": {
+    "liquid_etfs": 0.0002,
+    "liquid_etf_symbols": [
+      "NIFTYBEES.NS", "BANKBEES.NS", "JUNIORBEES.NS",
+      "SETFNIF50.NS", "NETFIT.NS"
+    ],
+    "standard_etfs": 0.0005,
+    "large_cap_stocks": 0.0002,
+    "large_cap_symbols": [
+      "RELIANCE.NS", "TCS.NS", "HDFCBANK.NS", "INFY.NS", "ICICIBANK.NS",
+      "HINDUNILVR.NS", "SBIN.NS", "BHARTIARTL.NS", "ITC.NS", "KOTAKBANK.NS",
+      "LT.NS", "AXISBANK.NS", "ASIANPAINT.NS", "BAJFINANCE.NS", "MARUTI.NS",
+      "TITAN.NS", "SUNPHARMA.NS", "HCLTECH.NS", "WIPRO.NS", "TATAMOTORS.NS"
+    ],
+    "mid_cap_stocks": 0.0008,
+    "note": "Indian markets are highly liquid for top 50 stocks. Spreads are tight during market hours."
+  },
+
+  "slippage": {
+    "default_pct": 0.0002,
+    "note": "Market order fill deviation. NSE is very liquid for large caps."
+  },
+
+  "fx_conversion": {
+    "eur_to_usd_pct": 0.0,
+    "gbp_to_usd_pct": 0.0,
+    "note": "No FX conversion needed — trading in INR on NSE."
+  },
+
+  "statutory_charges": {
+    "stt_delivery_buy_pct": 0.001,
+    "stt_delivery_sell_pct": 0.001,
+    "stt_intraday_sell_pct": 0.00025,
+    "transaction_charge_nse_pct": 0.0000297,
+    "stamp_duty_buy_pct": 0.00015,
+    "stamp_duty_sell_pct": 0.0,
+    "gst_pct": 0.18,
+    "gst_applied_on": "brokerage + transaction_charges",
+    "sebi_turnover_pct": 0.000001,
+    "note": "STT (Securities Transaction Tax) is the largest statutory cost. GST is on brokerage + exchange charges."
+  },
+
+  "dp_charges": {
+    "per_scrip_per_day": 15.93,
+    "note": "₹15.93 per scrip per day when selling delivery holdings. Charged by CDSL via Zerodha."
+  },
+
+  "overnight_fee": {
+    "non_leveraged_etf": 0.0,
+    "note": "No overnight fee for delivery positions in India."
+  },
+
+  "cfd": {
+    "overnight_fee_daily_pct": 0.0,
+    "note": "India does not have CFD trading. Short selling is intraday only (BTST via SLB is separate)."
+  },
+
+  "withdrawal_fee": {
+    "inr_account": 0.0,
+    "min_withdrawal_inr": 0.0,
+    "note": "No withdrawal fees on Zerodha."
+  },
+
+  "inactivity_fee": {
+    "monthly_inr": 0.0,
+    "note": "No inactivity fee on Zerodha. Annual AMC of ₹300 for demat account."
+  },
+
+  "tax": {
+    "stcg_pct": 0.20,
+    "stcg_note": "Short-term capital gains (held < 1 year) taxed at 20% (Budget 2024)",
+    "ltcg_pct": 0.125,
+    "ltcg_exemption_inr": 125000,
+    "ltcg_note": "Long-term capital gains (held > 1 year) taxed at 12.5% above ₹1.25 lakh exemption (Budget 2024)",
+    "dividend_tax": "taxed_at_slab_rate",
+    "tds_on_dividend_pct": 0.10,
+    "tds_threshold_inr": 5000,
+    "note": "Capital gains tax rates as per Union Budget 2024. STT paid qualifies the transaction for special CG rates."
+  },
+
+  "market_hours": {
+    "pre_open": "09:00",
+    "open": "09:15",
+    "close": "15:30",
+    "post_close": "15:40",
+    "timezone": "Asia/Kolkata",
+    "note": "NSE trading hours. Pre-open session 9:00-9:15."
+  }
+}

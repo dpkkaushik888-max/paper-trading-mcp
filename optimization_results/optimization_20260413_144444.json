@@ -1,0 +1,1367 @@
+{
+  "timestamp": "2026-04-13T14:44:44.785332",
+  "iterations": 30,
+  "kept": 0,
+  "discarded": 30,
+  "backtest_days": 90,
+  "initial_capital": 1000.0,
+  "broker": "etoro",
+  "baseline_scores": {
+    "composite": 73.57,
+    "net_return_pct": 53.3,
+    "win_rate": 100,
+    "cost_efficiency": 97.08,
+    "sharpe_proxy": 52.65,
+    "raw": {
+      "return_pct": 0.66,
+      "win_rate": 100.0,
+      "cost_drag_pct": 2.92,
+      "total_trades": 2,
+      "net_pnl": 6.58
+    }
+  },
+  "final_scores": {
+    "composite": 73.57,
+    "net_return_pct": 53.3,
+    "win_rate": 100,
+    "cost_efficiency": 97.08,
+    "sharpe_proxy": 52.65,
+    "raw": {
+      "return_pct": 0.66,
+      "win_rate": 100.0,
+      "cost_drag_pct": 2.92,
+      "total_trades": 2,
+      "net_pnl": 6.58
+    }
+  },
+  "improvement": 0.0,
+  "final_backtest": {
+    "return_pct": 0.66,
+    "net_pnl": 6.58,
+    "win_rate": 100.0,
+    "total_trades": 2,
+    "cost_drag_pct": 2.92
+  },
+  "log": [
+    {
+      "iteration": 0,
+      "status": "baseline",
+      "mutation": "none",
+      "description": "Initial baseline",
+      "scores": {
+        "composite": 73.57,
+        "net_return_pct": 53.3,
+        "win_rate": 100,
+        "cost_efficiency": 97.08,
+        "sharpe_proxy": 52.65,
+        "raw": {
+          "return_pct": 0.66,
+          "win_rate": 100.0,
+          "cost_drag_pct": 2.92,
+          "total_trades": 2,
+          "net_pnl": 6.58
+        }
+      },
+      "rules_snapshot": {
+        "entry_conditions": [
+          "rsi_14 < 35",
+          "price > ema_20",
+          "macd_histogram > 0",
+          "price > bb_lower"
+        ],
+        "entry_weights": [
+          0.3,
+          0.15,
+          0.2,
+          0.2
+        ],
+        "min_score": 0.6,
+        "exit_conditions": [
+          "rsi_14 > 70",
+          "price < ema_200",
+          "macd_histogram < 0"
+        ],
+        "stop_loss": 0.02,
+        "take_profit": 0.05
+      }
+    },
+    {
+      "iteration": 1,
+      "status": "discard",
+      "mutation": "exit_ema_period",
+      "description": "EMA exit period: price < ema_200 \u2192 price < ema_50",
+      "scores": {
+        "composite": 69.8,
+        "net_return_pct": 50.45,
+        "win_rate": 100,
+        "cost_efficiency": 82.51,
+        "sharpe_proxy": 52.65,
+        "raw": {
+          "return_pct": 0.09,
+          "win_rate": 100.0,
+          "cost_drag_pct": 17.49,
+          "total_trades": 2,
+          "net_pnl": 0.91
+        }
+      },
+      "delta": -3.77,
+      "rules_snapshot": {
+        "entry_conditions": [
+          "rsi_14 < 35",
+          "price > ema_20",
+          "macd_histogram > 0",
+          "price > bb_lower"
+        ],
+        "entry_weights": [
+          0.3,
+          0.15,
+          0.2,
+          0.2
+        ],
+        "min_score": 0.6,
+        "exit_conditions": [
+          "rsi_14 > 70",
+          "price < ema_200",
+          "macd_histogram < 0"
+        ],
+        "stop_loss": 0.02,
+        "take_profit": 0.05
+      }
+    },
+    {
+      "iteration": 2,
+      "status": "discard",
+      "mutation": "entry_rsi_weight",
+      "description": "RSI rule weight: 0.3 \u2192 0.15",
+      "scores": {
+        "composite": 5,
+        "net_return_pct": 50.0,
+        "win_rate": 0,
+        "cost_efficiency": 100,
+        "sharpe_proxy": 50,
+        "note": "No trades generated \u2014 rules too restrictive"
+      },
+      "delta": -68.57,
+      "rules_snapshot": {
+        "entry_conditions": [
+          "rsi_14 < 35",
+          "price > ema_20",
+          "macd_histogram > 0",
+          "price > bb_lower"
+        ],
+        "entry_weights": [
+          0.3,
+          0.15,
+          0.2,
+          0.2
+        ],
+        "min_score": 0.6,
+        "exit_conditions": [
+          "rsi_14 > 70",
+          "price < ema_200",
+          "macd_histogram < 0"
+        ],
+        "stop_loss": 0.02,
+        "take_profit": 0.05
+      }
+    },
+    {
+      "iteration": 3,
+      "status": "neutral",
+      "mutation": "entry_ema_period",
+      "description": "EMA trend period: price > ema_20 \u2192 price > ema_50",
+      "scores": {
+        "composite": 73.57,
+        "net_return_pct": 53.3,
+        "win_rate": 100,
+        "cost_efficiency": 97.08,
+        "sharpe_proxy": 52.65,
+        "raw": {
+          "return_pct": 0.66,
+          "win_rate": 100.0,
+          "cost_drag_pct": 2.92,
+          "total_trades": 2,
+          "net_pnl": 6.58
+        }
+      },
+      "delta": 0.0,
+      "rules_snapshot": {
+        "entry_conditions": [
+          "rsi_14 < 35",
+          "price > ema_20",
+          "macd_histogram > 0",
+          "price > bb_lower"
+        ],
+        "entry_weights": [
+          0.3,
+          0.15,
+          0.2,
+          0.2
+        ],
+        "min_score": 0.6,
+        "exit_conditions": [
+          "rsi_14 > 70",
+          "price < ema_200",
+          "macd_histogram < 0"
+        ],
+        "stop_loss": 0.02,
+        "take_profit": 0.05
+      }
+    },
+    {
+      "iteration": 4,
+      "status": "discard",
+      "mutation": "entry_bb_weight",
+      "description": "Bollinger Band rule weight: 0.2 \u2192 0.3",
+      "scores": {
+        "composite": 32.23,
+        "net_return_pct": 49.15,
+        "win_rate": 22.2,
+        "cost_efficiency": 0,
+        "sharpe_proxy": 47.76,
+        "raw": {
+          "return_pct": -0.17,
+          "win_rate": 22.2,
+          "cost_drag_pct": 2091.61,
+          "total_trades": 20,
+          "net_pnl": -1.69
+        }
+      },
+      "delta": -41.34,
+      "rules_snapshot": {
+        "entry_conditions": [
+          "rsi_14 < 35",
+          "price > ema_20",
+          "macd_histogram > 0",
+          "price > bb_lower"
+        ],
+        "entry_weights": [
+          0.3,
+          0.15,
+          0.2,
+          0.2
+        ],
+        "min_score": 0.6,
+        "exit_conditions": [
+          "rsi_14 > 70",
+          "price < ema_200",
+          "macd_histogram < 0"
+        ],
+        "stop_loss": 0.02,
+        "take_profit": 0.05
+      }
+    },
+    {
+      "iteration": 5,
+      "status": "neutral",
+      "mutation": "entry_ema_period",
+      "description": "EMA trend period: price > ema_20 \u2192 price > ema_200",
+      "scores": {
+        "composite": 73.57,
+        "net_return_pct": 53.3,
+        "win_rate": 100,
+        "cost_efficiency": 97.08,
+        "sharpe_proxy": 52.65,
+        "raw": {
+          "return_pct": 0.66,
+          "win_rate": 100.0,
+          "cost_drag_pct": 2.92,
+          "total_trades": 2,
+          "net_pnl": 6.58
+        }
+      },
+      "delta": 0.0,
+      "rules_snapshot": {
+        "entry_conditions": [
+          "rsi_14 < 35",
+          "price > ema_20",
+          "macd_histogram > 0",
+          "price > bb_lower"
+        ],
+        "entry_weights": [
+          0.3,
+          0.15,
+          0.2,
+          0.2
+        ],
+        "min_score": 0.6,
+        "exit_conditions": [
+          "rsi_14 > 70",
+          "price < ema_200",
+          "macd_histogram < 0"
+        ],
+        "stop_loss": 0.02,
+        "take_profit": 0.05
+      }
+    },
+    {
+      "iteration": 6,
+      "status": "neutral",
+      "mutation": "exit_rsi_threshold",
+      "description": "RSI overbought exit threshold: rsi_14 > 70 \u2192 rsi_14 > 65",
+      "scores": {
+        "composite": 73.57,
+        "net_return_pct": 53.3,
+        "win_rate": 100,
+        "cost_efficiency": 97.08,
+        "sharpe_proxy": 52.65,
+        "raw": {
+          "return_pct": 0.66,
+          "win_rate": 100.0,
+          "cost_drag_pct": 2.92,
+          "total_trades": 2,
+          "net_pnl": 6.58
+        }
+      },
+      "delta": 0.0,
+      "rules_snapshot": {
+        "entry_conditions": [
+          "rsi_14 < 35",
+          "price > ema_20",
+          "macd_histogram > 0",
+          "price > bb_lower"
+        ],
+        "entry_weights": [
+          0.3,
+          0.15,
+          0.2,
+          0.2
+        ],
+        "min_score": 0.6,
+        "exit_conditions": [
+          "rsi_14 > 70",
+          "price < ema_200",
+          "macd_histogram < 0"
+        ],
+        "stop_loss": 0.02,
+        "take_profit": 0.05
+      }
+    },
+    {
+      "iteration": 7,
+      "status": "discard",
+      "mutation": "entry_ema_weight",
+      "description": "EMA rule weight: 0.15 \u2192 0.4",
+      "scores": {
+        "composite": 45.13,
+        "net_return_pct": 51.05,
+        "win_rate": 22.2,
+        "cost_efficiency": 57.52,
+        "sharpe_proxy": 51.05,
+        "raw": {
+          "return_pct": 0.21,
+          "win_rate": 22.2,
+          "cost_drag_pct": 42.48,
+          "total_trades": 20,
+          "net_pnl": 2.08
+        }
+      },
+      "delta": -28.44,
+      "rules_snapshot": {
+        "entry_conditions": [
+          "rsi_14 < 35",
+          "price > ema_20",
+          "macd_histogram > 0",
+          "price > bb_lower"
+        ],
+        "entry_weights": [
+          0.3,
+          0.15,
+          0.2,
+          0.2
+        ],
+        "min_score": 0.6,
+        "exit_conditions": [
+          "rsi_14 > 70",
+          "price < ema_200",
+          "macd_histogram < 0"
+        ],
+        "stop_loss": 0.02,
+        "take_profit": 0.05
+      }
+    },
+    {
+      "iteration": 8,
+      "status": "discard",
+      "mutation": "entry_macd_weight",
+      "description": "MACD rule weight: 0.2 \u2192 0.3",
+      "scores": {
+        "composite": 52.94,
+        "net_return_pct": 52.25,
+        "win_rate": 33.3,
+        "cost_efficiency": 79.79,
+        "sharpe_proxy": 51.92,
+        "raw": {
+          "return_pct": 0.45,
+          "win_rate": 33.3,
+          "cost_drag_pct": 20.21,
+          "total_trades": 14,
+          "net_pnl": 4.52
+        }
+      },
+      "delta": -20.63,
+      "rules_snapshot": {
+        "entry_conditions": [
+          "rsi_14 < 35",
+          "price > ema_20",
+          "macd_histogram > 0",
+          "price > bb_lower"
+        ],
+        "entry_weights": [
+          0.3,
+          0.15,
+          0.2,
+          0.2
+        ],
+        "min_score": 0.6,
+        "exit_conditions": [
+          "rsi_14 > 70",
+          "price < ema_200",
+          "macd_histogram < 0"
+        ],
+        "stop_loss": 0.02,
+        "take_profit": 0.05
+      }
+    },
+    {
+      "iteration": 9,
+      "status": "discard",
+      "mutation": "entry_rsi_threshold",
+      "description": "RSI oversold threshold: rsi_14 < 35 \u2192 rsi_14 < 40",
+      "scores": {
+        "composite": 57.76,
+        "net_return_pct": 51.2,
+        "win_rate": 50.0,
+        "cost_efficiency": 85.75,
+        "sharpe_proxy": 50.99,
+        "raw": {
+          "return_pct": 0.24,
+          "win_rate": 50.0,
+          "cost_drag_pct": 14.25,
+          "total_trades": 4,
+          "net_pnl": 2.37
+        }
+      },
+      "delta": -15.81,
+      "rules_snapshot": {
+        "entry_conditions": [
+          "rsi_14 < 35",
+          "price > ema_20",
+          "macd_histogram > 0",
+          "price > bb_lower"
+        ],
+        "entry_weights": [
+          0.3,
+          0.15,
+          0.2,
+          0.2
+        ],
+        "min_score": 0.6,
+        "exit_conditions": [
+          "rsi_14 > 70",
+          "price < ema_200",
+          "macd_histogram < 0"
+        ],
+        "stop_loss": 0.02,
+        "take_profit": 0.05
+      }
+    },
+    {
+      "iteration": 10,
+      "status": "neutral",
+      "mutation": "entry_min_score",
+      "description": "Minimum score to trigger entry: 0.6 \u2192 0.7",
+      "scores": {
+        "composite": 73.57,
+        "net_return_pct": 53.3,
+        "win_rate": 100,
+        "cost_efficiency": 97.08,
+        "sharpe_proxy": 52.65,
+        "raw": {
+          "return_pct": 0.66,
+          "win_rate": 100.0,
+          "cost_drag_pct": 2.92,
+          "total_trades": 2,
+          "net_pnl": 6.58
+        }
+      },
+      "delta": 0.0,
+      "rules_snapshot": {
+        "entry_conditions": [
+          "rsi_14 < 35",
+          "price > ema_20",
+          "macd_histogram > 0",
+          "price > bb_lower"
+        ],
+        "entry_weights": [
+          0.3,
+          0.15,
+          0.2,
+          0.2
+        ],
+        "min_score": 0.6,
+        "exit_conditions": [
+          "rsi_14 > 70",
+          "price < ema_200",
+          "macd_histogram < 0"
+        ],
+        "stop_loss": 0.02,
+        "take_profit": 0.05
+      }
+    },
+    {
+      "iteration": 11,
+      "status": "discard",
+      "mutation": "entry_rsi_weight",
+      "description": "RSI rule weight: 0.3 \u2192 0.4",
+      "scores": {
+        "composite": 52.6,
+        "net_return_pct": 48.6,
+        "win_rate": 25.0,
+        "cost_efficiency": 100,
+        "sharpe_proxy": 47.07,
+        "raw": {
+          "return_pct": -0.28,
+          "win_rate": 25.0,
+          "cost_drag_pct": 0,
+          "total_trades": 8,
+          "net_pnl": -2.8
+        }
+      },
+      "delta": -20.97,
+      "rules_snapshot": {
+        "entry_conditions": [
+          "rsi_14 < 35",
+          "price > ema_20",
+          "macd_histogram > 0",
+          "price > bb_lower"
+        ],
+        "entry_weights": [
+          0.3,
+          0.15,
+          0.2,
+          0.2
+        ],
+        "min_score": 0.6,
+        "exit_conditions": [
+          "rsi_14 > 70",
+          "price < ema_200",
+          "macd_histogram < 0"
+        ],
+        "stop_loss": 0.02,
+        "take_profit": 0.05
+      }
+    },
+    {
+      "iteration": 12,
+      "status": "neutral",
+      "mutation": "take_profit_pct",
+      "description": "Take profit percentage: 0.05 \u2192 0.07",
+      "scores": {
+        "composite": 73.57,
+        "net_return_pct": 53.3,
+        "win_rate": 100,
+        "cost_efficiency": 97.08,
+        "sharpe_proxy": 52.65,
+        "raw": {
+          "return_pct": 0.66,
+          "win_rate": 100.0,
+          "cost_drag_pct": 2.92,
+          "total_trades": 2,
+          "net_pnl": 6.58
+        }
+      },
+      "delta": 0.0,
+      "rules_snapshot": {
+        "entry_conditions": [
+          "rsi_14 < 35",
+          "price > ema_20",
+          "macd_histogram > 0",
+          "price > bb_lower"
+        ],
+        "entry_weights": [
+          0.3,
+          0.15,
+          0.2,
+          0.2
+        ],
+        "min_score": 0.6,
+        "exit_conditions": [
+          "rsi_14 > 70",
+          "price < ema_200",
+          "macd_histogram < 0"
+        ],
+        "stop_loss": 0.02,
+        "take_profit": 0.05
+      }
+    },
+    {
+      "iteration": 13,
+      "status": "discard",
+      "mutation": "entry_ema_weight",
+      "description": "EMA rule weight: 0.15 \u2192 0.3",
+      "scores": {
+        "composite": 52.94,
+        "net_return_pct": 52.25,
+        "win_rate": 33.3,
+        "cost_efficiency": 79.79,
+        "sharpe_proxy": 51.92,
+        "raw": {
+          "return_pct": 0.45,
+          "win_rate": 33.3,
+          "cost_drag_pct": 20.21,
+          "total_trades": 14,
+          "net_pnl": 4.52
+        }
+      },
+      "delta": -20.63,
+      "rules_snapshot": {
+        "entry_conditions": [
+          "rsi_14 < 35",
+          "price > ema_20",
+          "macd_histogram > 0",
+          "price > bb_lower"
+        ],
+        "entry_weights": [
+          0.3,
+          0.15,
+          0.2,
+          0.2
+        ],
+        "min_score": 0.6,
+        "exit_conditions": [
+          "rsi_14 > 70",
+          "price < ema_200",
+          "macd_histogram < 0"
+        ],
+        "stop_loss": 0.02,
+        "take_profit": 0.05
+      }
+    },
+    {
+      "iteration": 14,
+      "status": "neutral",
+      "mutation": "entry_ema_period",
+      "description": "EMA trend period: price > ema_20 \u2192 price > ema_200",
+      "scores": {
+        "composite": 73.57,
+        "net_return_pct": 53.3,
+        "win_rate": 100,
+        "cost_efficiency": 97.08,
+        "sharpe_proxy": 52.65,
+        "raw": {
+          "return_pct": 0.66,
+          "win_rate": 100.0,
+          "cost_drag_pct": 2.92,
+          "total_trades": 2,
+          "net_pnl": 6.58
+        }
+      },
+      "delta": 0.0,
+      "rules_snapshot": {
+        "entry_conditions": [
+          "rsi_14 < 35",
+          "price > ema_20",
+          "macd_histogram > 0",
+          "price > bb_lower"
+        ],
+        "entry_weights": [
+          0.3,
+          0.15,
+          0.2,
+          0.2
+        ],
+        "min_score": 0.6,
+        "exit_conditions": [
+          "rsi_14 > 70",
+          "price < ema_200",
+          "macd_histogram < 0"
+        ],
+        "stop_loss": 0.02,
+        "take_profit": 0.05
+      }
+    },
+    {
+      "iteration": 15,
+      "status": "discard",
+      "mutation": "entry_rsi_threshold",
+      "description": "RSI oversold threshold: rsi_14 < 35 \u2192 rsi_14 < 25",
+      "scores": {
+        "composite": 5,
+        "net_return_pct": 50.0,
+        "win_rate": 0,
+        "cost_efficiency": 100,
+        "sharpe_proxy": 50,
+        "note": "No trades generated \u2014 rules too restrictive"
+      },
+      "delta": -68.57,
+      "rules_snapshot": {
+        "entry_conditions": [
+          "rsi_14 < 35",
+          "price > ema_20",
+          "macd_histogram > 0",
+          "price > bb_lower"
+        ],
+        "entry_weights": [
+          0.3,
+          0.15,
+          0.2,
+          0.2
+        ],
+        "min_score": 0.6,
+        "exit_conditions": [
+          "rsi_14 > 70",
+          "price < ema_200",
+          "macd_histogram < 0"
+        ],
+        "stop_loss": 0.02,
+        "take_profit": 0.05
+      }
+    },
+    {
+      "iteration": 16,
+      "status": "neutral",
+      "mutation": "entry_ema_period",
+      "description": "EMA trend period: price > ema_20 \u2192 price > ema_200",
+      "scores": {
+        "composite": 73.57,
+        "net_return_pct": 53.3,
+        "win_rate": 100,
+        "cost_efficiency": 97.08,
+        "sharpe_proxy": 52.65,
+        "raw": {
+          "return_pct": 0.66,
+          "win_rate": 100.0,
+          "cost_drag_pct": 2.92,
+          "total_trades": 2,
+          "net_pnl": 6.58
+        }
+      },
+      "delta": 0.0,
+      "rules_snapshot": {
+        "entry_conditions": [
+          "rsi_14 < 35",
+          "price > ema_20",
+          "macd_histogram > 0",
+          "price > bb_lower"
+        ],
+        "entry_weights": [
+          0.3,
+          0.15,
+          0.2,
+          0.2
+        ],
+        "min_score": 0.6,
+        "exit_conditions": [
+          "rsi_14 > 70",
+          "price < ema_200",
+          "macd_histogram < 0"
+        ],
+        "stop_loss": 0.02,
+        "take_profit": 0.05
+      }
+    },
+    {
+      "iteration": 17,
+      "status": "neutral",
+      "mutation": "entry_ema_period",
+      "description": "EMA trend period: price > ema_20 \u2192 price > ema_200",
+      "scores": {
+        "composite": 73.57,
+        "net_return_pct": 53.3,
+        "win_rate": 100,
+        "cost_efficiency": 97.08,
+        "sharpe_proxy": 52.65,
+        "raw": {
+          "return_pct": 0.66,
+          "win_rate": 100.0,
+          "cost_drag_pct": 2.92,
+          "total_trades": 2,
+          "net_pnl": 6.58
+        }
+      },
+      "delta": 0.0,
+      "rules_snapshot": {
+        "entry_conditions": [
+          "rsi_14 < 35",
+          "price > ema_20",
+          "macd_histogram > 0",
+          "price > bb_lower"
+        ],
+        "entry_weights": [
+          0.3,
+          0.15,
+          0.2,
+          0.2
+        ],
+        "min_score": 0.6,
+        "exit_conditions": [
+          "rsi_14 > 70",
+          "price < ema_200",
+          "macd_histogram < 0"
+        ],
+        "stop_loss": 0.02,
+        "take_profit": 0.05
+      }
+    },
+    {
+      "iteration": 18,
+      "status": "neutral",
+      "mutation": "exit_rsi_threshold",
+      "description": "RSI overbought exit threshold: rsi_14 > 70 \u2192 rsi_14 > 80",
+      "scores": {
+        "composite": 73.57,
+        "net_return_pct": 53.3,
+        "win_rate": 100,
+        "cost_efficiency": 97.08,
+        "sharpe_proxy": 52.65,
+        "raw": {
+          "return_pct": 0.66,
+          "win_rate": 100.0,
+          "cost_drag_pct": 2.92,
+          "total_trades": 2,
+          "net_pnl": 6.58
+        }
+      },
+      "delta": 0.0,
+      "rules_snapshot": {
+        "entry_conditions": [
+          "rsi_14 < 35",
+          "price > ema_20",
+          "macd_histogram > 0",
+          "price > bb_lower"
+        ],
+        "entry_weights": [
+          0.3,
+          0.15,
+          0.2,
+          0.2
+        ],
+        "min_score": 0.6,
+        "exit_conditions": [
+          "rsi_14 > 70",
+          "price < ema_200",
+          "macd_histogram < 0"
+        ],
+        "stop_loss": 0.02,
+        "take_profit": 0.05
+      }
+    },
+    {
+      "iteration": 19,
+      "status": "neutral",
+      "mutation": "entry_rsi_weight",
+      "description": "RSI rule weight: 0.3 \u2192 0.35",
+      "scores": {
+        "composite": 73.57,
+        "net_return_pct": 53.3,
+        "win_rate": 100,
+        "cost_efficiency": 97.08,
+        "sharpe_proxy": 52.65,
+        "raw": {
+          "return_pct": 0.66,
+          "win_rate": 100.0,
+          "cost_drag_pct": 2.92,
+          "total_trades": 2,
+          "net_pnl": 6.58
+        }
+      },
+      "delta": 0.0,
+      "rules_snapshot": {
+        "entry_conditions": [
+          "rsi_14 < 35",
+          "price > ema_20",
+          "macd_histogram > 0",
+          "price > bb_lower"
+        ],
+        "entry_weights": [
+          0.3,
+          0.15,
+          0.2,
+          0.2
+        ],
+        "min_score": 0.6,
+        "exit_conditions": [
+          "rsi_14 > 70",
+          "price < ema_200",
+          "macd_histogram < 0"
+        ],
+        "stop_loss": 0.02,
+        "take_profit": 0.05
+      }
+    },
+    {
+      "iteration": 20,
+      "status": "neutral",
+      "mutation": "entry_rsi_threshold",
+      "description": "RSI oversold threshold: rsi_14 < 35 \u2192 rsi_14 < 30",
+      "scores": {
+        "composite": 73.57,
+        "net_return_pct": 53.3,
+        "win_rate": 100,
+        "cost_efficiency": 97.08,
+        "sharpe_proxy": 52.65,
+        "raw": {
+          "return_pct": 0.66,
+          "win_rate": 100.0,
+          "cost_drag_pct": 2.92,
+          "total_trades": 2,
+          "net_pnl": 6.58
+        }
+      },
+      "delta": 0.0,
+      "rules_snapshot": {
+        "entry_conditions": [
+          "rsi_14 < 35",
+          "price > ema_20",
+          "macd_histogram > 0",
+          "price > bb_lower"
+        ],
+        "entry_weights": [
+          0.3,
+          0.15,
+          0.2,
+          0.2
+        ],
+        "min_score": 0.6,
+        "exit_conditions": [
+          "rsi_14 > 70",
+          "price < ema_200",
+          "macd_histogram < 0"
+        ],
+        "stop_loss": 0.02,
+        "take_profit": 0.05
+      }
+    },
+    {
+      "iteration": 21,
+      "status": "discard",
+      "mutation": "take_profit_pct",
+      "description": "Take profit percentage: 0.05 \u2192 0.04",
+      "scores": {
+        "composite": 72.8,
+        "net_return_pct": 51.95,
+        "win_rate": 100,
+        "cost_efficiency": 95.28,
+        "sharpe_proxy": 52.65,
+        "raw": {
+          "return_pct": 0.39,
+          "win_rate": 100.0,
+          "cost_drag_pct": 4.72,
+          "total_trades": 2,
+          "net_pnl": 3.94
+        }
+      },
+      "delta": -0.77,
+      "rules_snapshot": {
+        "entry_conditions": [
+          "rsi_14 < 35",
+          "price > ema_20",
+          "macd_histogram > 0",
+          "price > bb_lower"
+        ],
+        "entry_weights": [
+          0.3,
+          0.15,
+          0.2,
+          0.2
+        ],
+        "min_score": 0.6,
+        "exit_conditions": [
+          "rsi_14 > 70",
+          "price < ema_200",
+          "macd_histogram < 0"
+        ],
+        "stop_loss": 0.02,
+        "take_profit": 0.05
+      }
+    },
+    {
+      "iteration": 22,
+      "status": "neutral",
+      "mutation": "exit_rsi_threshold",
+      "description": "RSI overbought exit threshold: rsi_14 > 70 \u2192 rsi_14 > 60",
+      "scores": {
+        "composite": 73.57,
+        "net_return_pct": 53.3,
+        "win_rate": 100,
+        "cost_efficiency": 97.08,
+        "sharpe_proxy": 52.65,
+        "raw": {
+          "return_pct": 0.66,
+          "win_rate": 100.0,
+          "cost_drag_pct": 2.92,
+          "total_trades": 2,
+          "net_pnl": 6.58
+        }
+      },
+      "delta": 0.0,
+      "rules_snapshot": {
+        "entry_conditions": [
+          "rsi_14 < 35",
+          "price > ema_20",
+          "macd_histogram > 0",
+          "price > bb_lower"
+        ],
+        "entry_weights": [
+          0.3,
+          0.15,
+          0.2,
+          0.2
+        ],
+        "min_score": 0.6,
+        "exit_conditions": [
+          "rsi_14 > 70",
+          "price < ema_200",
+          "macd_histogram < 0"
+        ],
+        "stop_loss": 0.02,
+        "take_profit": 0.05
+      }
+    },
+    {
+      "iteration": 23,
+      "status": "neutral",
+      "mutation": "take_profit_pct",
+      "description": "Take profit percentage: 0.05 \u2192 0.07",
+      "scores": {
+        "composite": 73.57,
+        "net_return_pct": 53.3,
+        "win_rate": 100,
+        "cost_efficiency": 97.08,
+        "sharpe_proxy": 52.65,
+        "raw": {
+          "return_pct": 0.66,
+          "win_rate": 100.0,
+          "cost_drag_pct": 2.92,
+          "total_trades": 2,
+          "net_pnl": 6.58
+        }
+      },
+      "delta": 0.0,
+      "rules_snapshot": {
+        "entry_conditions": [
+          "rsi_14 < 35",
+          "price > ema_20",
+          "macd_histogram > 0",
+          "price > bb_lower"
+        ],
+        "entry_weights": [
+          0.3,
+          0.15,
+          0.2,
+          0.2
+        ],
+        "min_score": 0.6,
+        "exit_conditions": [
+          "rsi_14 > 70",
+          "price < ema_200",
+          "macd_histogram < 0"
+        ],
+        "stop_loss": 0.02,
+        "take_profit": 0.05
+      }
+    },
+    {
+      "iteration": 24,
+      "status": "discard",
+      "mutation": "entry_min_score",
+      "description": "Minimum score to trigger entry: 0.6 \u2192 0.5",
+      "scores": {
+        "composite": 32.23,
+        "net_return_pct": 49.15,
+        "win_rate": 22.2,
+        "cost_efficiency": 0,
+        "sharpe_proxy": 47.76,
+        "raw": {
+          "return_pct": -0.17,
+          "win_rate": 22.2,
+          "cost_drag_pct": 2091.61,
+          "total_trades": 20,
+          "net_pnl": -1.69
+        }
+      },
+      "delta": -41.34,
+      "rules_snapshot": {
+        "entry_conditions": [
+          "rsi_14 < 35",
+          "price > ema_20",
+          "macd_histogram > 0",
+          "price > bb_lower"
+        ],
+        "entry_weights": [
+          0.3,
+          0.15,
+          0.2,
+          0.2
+        ],
+        "min_score": 0.6,
+        "exit_conditions": [
+          "rsi_14 > 70",
+          "price < ema_200",
+          "macd_histogram < 0"
+        ],
+        "stop_loss": 0.02,
+        "take_profit": 0.05
+      }
+    },
+    {
+      "iteration": 25,
+      "status": "neutral",
+      "mutation": "stop_loss_pct",
+      "description": "Stop loss percentage: 0.02 \u2192 0.01",
+      "scores": {
+        "composite": 73.57,
+        "net_return_pct": 53.3,
+        "win_rate": 100,
+        "cost_efficiency": 97.08,
+        "sharpe_proxy": 52.65,
+        "raw": {
+          "return_pct": 0.66,
+          "win_rate": 100.0,
+          "cost_drag_pct": 2.92,
+          "total_trades": 2,
+          "net_pnl": 6.58
+        }
+      },
+      "delta": 0.0,
+      "rules_snapshot": {
+        "entry_conditions": [
+          "rsi_14 < 35",
+          "price > ema_20",
+          "macd_histogram > 0",
+          "price > bb_lower"
+        ],
+        "entry_weights": [
+          0.3,
+          0.15,
+          0.2,
+          0.2
+        ],
+        "min_score": 0.6,
+        "exit_conditions": [
+          "rsi_14 > 70",
+          "price < ema_200",
+          "macd_histogram < 0"
+        ],
+        "stop_loss": 0.02,
+        "take_profit": 0.05
+      }
+    },
+    {
+      "iteration": 26,
+      "status": "discard",
+      "mutation": "exit_ema_period",
+      "description": "EMA exit period: price < ema_200 \u2192 price < ema_50",
+      "scores": {
+        "composite": 69.8,
+        "net_return_pct": 50.45,
+        "win_rate": 100,
+        "cost_efficiency": 82.51,
+        "sharpe_proxy": 52.65,
+        "raw": {
+          "return_pct": 0.09,
+          "win_rate": 100.0,
+          "cost_drag_pct": 17.49,
+          "total_trades": 2,
+          "net_pnl": 0.91
+        }
+      },
+      "delta": -3.77,
+      "rules_snapshot": {
+        "entry_conditions": [
+          "rsi_14 < 35",
+          "price > ema_20",
+          "macd_histogram > 0",
+          "price > bb_lower"
+        ],
+        "entry_weights": [
+          0.3,
+          0.15,
+          0.2,
+          0.2
+        ],
+        "min_score": 0.6,
+        "exit_conditions": [
+          "rsi_14 > 70",
+          "price < ema_200",
+          "macd_histogram < 0"
+        ],
+        "stop_loss": 0.02,
+        "take_profit": 0.05
+      }
+    },
+    {
+      "iteration": 27,
+      "status": "neutral",
+      "mutation": "entry_macd_weight",
+      "description": "MACD rule weight: 0.2 \u2192 0.1",
+      "scores": {
+        "composite": 73.57,
+        "net_return_pct": 53.3,
+        "win_rate": 100,
+        "cost_efficiency": 97.08,
+        "sharpe_proxy": 52.65,
+        "raw": {
+          "return_pct": 0.66,
+          "win_rate": 100.0,
+          "cost_drag_pct": 2.92,
+          "total_trades": 2,
+          "net_pnl": 6.58
+        }
+      },
+      "delta": 0.0,
+      "rules_snapshot": {
+        "entry_conditions": [
+          "rsi_14 < 35",
+          "price > ema_20",
+          "macd_histogram > 0",
+          "price > bb_lower"
+        ],
+        "entry_weights": [
+          0.3,
+          0.15,
+          0.2,
+          0.2
+        ],
+        "min_score": 0.6,
+        "exit_conditions": [
+          "rsi_14 > 70",
+          "price < ema_200",
+          "macd_histogram < 0"
+        ],
+        "stop_loss": 0.02,
+        "take_profit": 0.05
+      }
+    },
+    {
+      "iteration": 28,
+      "status": "neutral",
+      "mutation": "entry_rsi_weight",
+      "description": "RSI rule weight: 0.3 \u2192 0.25",
+      "scores": {
+        "composite": 73.57,
+        "net_return_pct": 53.3,
+        "win_rate": 100,
+        "cost_efficiency": 97.08,
+        "sharpe_proxy": 52.65,
+        "raw": {
+          "return_pct": 0.66,
+          "win_rate": 100.0,
+          "cost_drag_pct": 2.92,
+          "total_trades": 2,
+          "net_pnl": 6.58
+        }
+      },
+      "delta": 0.0,
+      "rules_snapshot": {
+        "entry_conditions": [
+          "rsi_14 < 35",
+          "price > ema_20",
+          "macd_histogram > 0",
+          "price > bb_lower"
+        ],
+        "entry_weights": [
+          0.3,
+          0.15,
+          0.2,
+          0.2
+        ],
+        "min_score": 0.6,
+        "exit_conditions": [
+          "rsi_14 > 70",
+          "price < ema_200",
+          "macd_histogram < 0"
+        ],
+        "stop_loss": 0.02,
+        "take_profit": 0.05
+      }
+    },
+    {
+      "iteration": 29,
+      "status": "neutral",
+      "mutation": "entry_ema_period",
+      "description": "EMA trend period: price > ema_20 \u2192 price > ema_50",
+      "scores": {
+        "composite": 73.57,
+        "net_return_pct": 53.3,
+        "win_rate": 100,
+        "cost_efficiency": 97.08,
+        "sharpe_proxy": 52.65,
+        "raw": {
+          "return_pct": 0.66,
+          "win_rate": 100.0,
+          "cost_drag_pct": 2.92,
+          "total_trades": 2,
+          "net_pnl": 6.58
+        }
+      },
+      "delta": 0.0,
+      "rules_snapshot": {
+        "entry_conditions": [
+          "rsi_14 < 35",
+          "price > ema_20",
+          "macd_histogram > 0",
+          "price > bb_lower"
+        ],
+        "entry_weights": [
+          0.3,
+          0.15,
+          0.2,
+          0.2
+        ],
+        "min_score": 0.6,
+        "exit_conditions": [
+          "rsi_14 > 70",
+          "price < ema_200",
+          "macd_histogram < 0"
+        ],
+        "stop_loss": 0.02,
+        "take_profit": 0.05
+      }
+    },
+    {
+      "iteration": 30,
+      "status": "neutral",
+      "mutation": "entry_bb_weight",
+      "description": "Bollinger Band rule weight: 0.2 \u2192 0.1",
+      "scores": {
+        "composite": 73.57,
+        "net_return_pct": 53.3,
+        "win_rate": 100,
+        "cost_efficiency": 97.08,
+        "sharpe_proxy": 52.65,
+        "raw": {
+          "return_pct": 0.66,
+          "win_rate": 100.0,
+          "cost_drag_pct": 2.92,
+          "total_trades": 2,
+          "net_pnl": 6.58
+        }
+      },
+      "delta": 0.0,
+      "rules_snapshot": {
+        "entry_conditions": [
+          "rsi_14 < 35",
+          "price > ema_20",
+          "macd_histogram > 0",
+          "price > bb_lower"
+        ],
+        "entry_weights": [
+          0.3,
+          0.15,
+          0.2,
+          0.2
+        ],
+        "min_score": 0.6,
+        "exit_conditions": [
+          "rsi_14 > 70",
+          "price < ema_200",
+          "macd_histogram < 0"
+        ],
+        "stop_loss": 0.02,
+        "take_profit": 0.05
+      }
+    }
+  ]
+}

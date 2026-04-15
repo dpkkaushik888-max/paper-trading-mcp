@@ -82,6 +82,16 @@ def calculate_indicators(df: pd.DataFrame) -> dict:
     if rsi_3 is not None and not rsi_3.empty:
         indicators["rsi_3"] = round(float(rsi_3.iloc[-1]), 2)
 
+    rsi_2 = ta.rsi(close, length=INDICATOR_PERIODS["rsi_2"])
+    if rsi_2 is not None and not rsi_2.empty:
+        indicators["rsi_2"] = round(float(rsi_2.iloc[-1]), 2)
+
+    for period_key in ["sma_5", "sma_200"]:
+        length = INDICATOR_PERIODS[period_key]
+        sma = ta.sma(close, length=length)
+        if sma is not None and not sma.empty:
+            indicators[period_key] = round(float(sma.iloc[-1]), 4)
+
     for period_key in ["ema_8", "ema_20", "ema_50", "ema_200"]:
         length = INDICATOR_PERIODS[period_key]
         ema = ta.ema(close, length=length)
@@ -120,6 +130,45 @@ def calculate_indicators(df: pd.DataFrame) -> dict:
         if not avg_vol.empty:
             indicators["volume"] = int(volume.iloc[-1])
             indicators["avg_volume_20"] = int(avg_vol.iloc[-1])
+
+    h_val = float(high.iloc[-1])
+    l_val = float(low.iloc[-1])
+    if h_val > l_val:
+        indicators["ibs"] = round((float(close.iloc[-1]) - l_val) / (h_val - l_val), 4)
+    else:
+        indicators["ibs"] = 0.5
+
+    indicators["day_of_week"] = int(df.index[-1].weekday())
+
+    if len(close) >= 2:
+        indicators["prev_close_1"] = round(float(close.iloc[-2]), 4)
+    if len(high) >= 2:
+        indicators["prev_high_1"] = round(float(high.iloc[-2]), 4)
+    if len(low) >= 2:
+        indicators["prev_low_1"] = round(float(low.iloc[-2]), 4)
+    if len(high) >= 3:
+        indicators["prev_high_2"] = round(float(high.iloc[-3]), 4)
+    if len(low) >= 3:
+        indicators["prev_low_2"] = round(float(low.iloc[-3]), 4)
+    if len(high) >= 4:
+        indicators["prev_high_3"] = round(float(high.iloc[-4]), 4)
+    if len(low) >= 4:
+        indicators["prev_low_3"] = round(float(low.iloc[-4]), 4)
+
+    n_lower_highs = 0
+    n_lower_lows = 0
+    for i in range(1, min(5, len(high))):
+        if float(high.iloc[-i]) < float(high.iloc[-i - 1]):
+            n_lower_highs += 1
+        else:
+            break
+    for i in range(1, min(5, len(low))):
+        if float(low.iloc[-i]) < float(low.iloc[-i - 1]):
+            n_lower_lows += 1
+        else:
+            break
+    indicators["consecutive_lower_highs"] = n_lower_highs
+    indicators["consecutive_lower_lows"] = n_lower_lows
 
     return indicators
 

@@ -341,15 +341,26 @@ def cmd_backtest(args):
 
 def cmd_optimize(args):
     """Run strategy autoresearch optimization."""
-    from .strategy_optimizer import run_optimization
-
-    run_optimization(
-        iterations=args.iterations,
-        backtest_days=args.days,
-        initial_capital=args.capital,
-        broker=args.broker,
-        account_currency=args.currency,
-    )
+    if args.walk_forward:
+        from .strategy_optimizer import run_walk_forward
+        run_walk_forward(
+            iterations=args.iterations,
+            train_days=args.train_days,
+            val_days=args.val_days,
+            n_val_windows=args.val_windows,
+            initial_capital=args.capital,
+            broker=args.broker,
+            account_currency=args.currency,
+        )
+    else:
+        from .strategy_optimizer import run_optimization
+        run_optimization(
+            iterations=args.iterations,
+            backtest_days=args.days,
+            initial_capital=args.capital,
+            broker=args.broker,
+            account_currency=args.currency,
+        )
 
 
 def main():
@@ -390,6 +401,10 @@ def main():
     opt_p.add_argument("--iterations", type=int, default=20, help="Optimization iterations")
     opt_p.add_argument("--days", type=int, default=90, help="Backtest period")
     opt_p.add_argument("--currency", default="EUR", help="Account currency")
+    opt_p.add_argument("--walk-forward", action="store_true", help="Use walk-forward optimization")
+    opt_p.add_argument("--train-days", type=int, default=60, help="Train window (walk-forward)")
+    opt_p.add_argument("--val-days", type=int, default=30, help="Validation window (walk-forward)")
+    opt_p.add_argument("--val-windows", type=int, default=4, help="Number of validation windows")
 
     args = parser.parse_args()
 

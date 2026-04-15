@@ -1,0 +1,39 @@
+{
+  "strategy": {
+    "name": "IBS Mean Reversion",
+    "version": "1.0",
+    "description": "Internal Bar Strength mean reversion. Buy when close is near the daily low in an uptrend. Pure price-action — no lagging oscillators.",
+    "source": "Pagonidis (NAAIM), QuantifiedStrategies",
+    "timeframe": "1d"
+  },
+  "watchlist": ["SPY", "QQQ", "IWM", "DIA", "XLF", "XLK", "GLD", "TLT"],
+  "entry_rules": {
+    "long": [
+      {
+        "condition": "price > sma_200",
+        "weight": 0.50,
+        "description": "Above 200-day SMA — uptrend filter"
+      },
+      {
+        "condition": "ibs < 0.2",
+        "weight": 0.50,
+        "description": "IBS < 0.2 — closed near the daily low"
+      }
+    ],
+    "min_score": 0.95,
+    "note": "Both conditions required. Long only — buy panic, sell recovery."
+  },
+  "exit_rules": [
+    {
+      "condition": "ibs > 0.8",
+      "description": "IBS > 0.8 — closed near the daily high, mean reversion done"
+    }
+  ],
+  "risk_rules": {
+    "max_position_pct": 0.10,
+    "max_daily_loss_pct": 0.02,
+    "stop_loss_pct": 0.03,
+    "take_profit_pct": 0.05,
+    "note": "Long-only. Capital efficient — trades infrequently."
+  }
+}

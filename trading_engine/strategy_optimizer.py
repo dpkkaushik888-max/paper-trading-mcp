@@ -14,7 +14,7 @@ from __future__ import annotations
 import copy
 import json
 import random
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Optional
 
@@ -35,64 +35,118 @@ METRIC_WEIGHTS = {
 }
 
 MUTATION_SPACE = {
-    "entry_rsi_threshold": {
+    "entry_rsi_indicator": {
         "path": ["entry_rules", "long", 0, "condition"],
-        "template": "rsi_14 < {value}",
-        "values": [25, 30, 35, 40, 45, 50],
-        "description": "RSI oversold threshold",
+        "template": "{value}",
+        "values": ["rsi_3 < 15", "rsi_3 < 20", "rsi_3 < 25", "rsi_3 < 30",
+                   "rsi_3 < 35", "rsi_3 < 40",
+                   "rsi_14 < 35", "rsi_14 < 40", "rsi_14 < 45"],
+        "description": "RSI entry threshold (indicator + value)",
     },
     "entry_rsi_weight": {
         "path": ["entry_rules", "long", 0, "weight"],
-        "values": [0.15, 0.20, 0.25, 0.30, 0.35, 0.40],
+        "values": [0.20, 0.25, 0.30, 0.35, 0.40, 0.45],
         "description": "RSI rule weight",
     },
     "entry_ema_period": {
         "path": ["entry_rules", "long", 1, "condition"],
         "template": "price > ema_{value}",
-        "values": [20, 50, 200],
+        "values": [8, 20, 50],
         "description": "EMA trend period",
     },
     "entry_ema_weight": {
         "path": ["entry_rules", "long", 1, "weight"],
-        "values": [0.15, 0.20, 0.25, 0.30, 0.35, 0.40],
+        "values": [0.10, 0.15, 0.20, 0.25, 0.30],
         "description": "EMA rule weight",
     },
     "entry_macd_weight": {
         "path": ["entry_rules", "long", 2, "weight"],
-        "values": [0.10, 0.15, 0.20, 0.25, 0.30],
+        "values": [0.05, 0.10, 0.15, 0.20, 0.25],
         "description": "MACD rule weight",
     },
     "entry_bb_weight": {
         "path": ["entry_rules", "long", 3, "weight"],
-        "values": [0.10, 0.15, 0.20, 0.25, 0.30],
+        "values": [0.15, 0.20, 0.25, 0.30, 0.35],
         "description": "Bollinger Band rule weight",
     },
     "entry_min_score": {
         "path": ["entry_rules", "min_score"],
-        "values": [0.3, 0.4, 0.5, 0.6, 0.7, 0.8],
+        "values": [0.25, 0.30, 0.35, 0.40, 0.45, 0.50, 0.55, 0.60],
         "description": "Minimum score to trigger entry",
     },
-    "exit_rsi_threshold": {
+    "exit_rsi_indicator": {
         "path": ["exit_rules", 0, "condition"],
-        "template": "rsi_14 > {value}",
-        "values": [60, 65, 70, 75, 80],
-        "description": "RSI overbought exit threshold",
+        "template": "{value}",
+        "values": ["rsi_3 > 70", "rsi_3 > 75", "rsi_3 > 80", "rsi_3 > 85",
+                   "rsi_14 > 65", "rsi_14 > 70", "rsi_14 > 75"],
+        "description": "RSI exit threshold",
     },
     "exit_ema_period": {
         "path": ["exit_rules", 1, "condition"],
         "template": "price < ema_{value}",
-        "values": [20, 50, 200],
+        "values": [8, 20, 50, 200],
         "description": "EMA exit period",
     },
     "stop_loss_pct": {
         "path": ["risk_rules", "stop_loss_pct"],
-        "values": [0.01, 0.015, 0.02, 0.025, 0.03, 0.04, 0.05],
+        "values": [0.005, 0.0075, 0.01, 0.015, 0.02, 0.025, 0.03],
         "description": "Stop loss percentage",
     },
     "take_profit_pct": {
         "path": ["risk_rules", "take_profit_pct"],
-        "values": [0.01, 0.015, 0.02, 0.03, 0.04, 0.05, 0.07, 0.10],
+        "values": [0.005, 0.0075, 0.01, 0.015, 0.02, 0.025, 0.03, 0.04, 0.05],
         "description": "Take profit percentage",
+    },
+    "short_rsi_indicator": {
+        "path": ["entry_rules", "short", 0, "condition"],
+        "template": "{value}",
+        "values": ["rsi_3 > 80", "rsi_3 > 85", "rsi_3 > 90",
+                   "rsi_14 > 65", "rsi_14 > 70", "rsi_14 > 75"],
+        "description": "Short RSI overbought threshold",
+    },
+    "short_rsi_weight": {
+        "path": ["entry_rules", "short", 0, "weight"],
+        "values": [0.20, 0.25, 0.30, 0.35, 0.40, 0.45],
+        "description": "Short RSI rule weight",
+    },
+    "short_ema_period": {
+        "path": ["entry_rules", "short", 1, "condition"],
+        "template": "price < ema_{value}",
+        "values": [8, 20, 50],
+        "description": "Short EMA trend period",
+    },
+    "short_ema_weight": {
+        "path": ["entry_rules", "short", 1, "weight"],
+        "values": [0.10, 0.15, 0.20, 0.25, 0.30],
+        "description": "Short EMA rule weight",
+    },
+    "short_min_score": {
+        "path": ["entry_rules", "short_min_score"],
+        "values": [0.25, 0.30, 0.35, 0.40, 0.45, 0.50, 0.55, 0.60],
+        "description": "Short minimum score to trigger entry",
+    },
+    "short_exit_rsi": {
+        "path": ["short_exit_rules", 0, "condition"],
+        "template": "{value}",
+        "values": ["rsi_3 < 15", "rsi_3 < 20", "rsi_3 < 25", "rsi_3 < 30",
+                   "rsi_14 < 30", "rsi_14 < 35"],
+        "description": "Short exit RSI oversold threshold",
+    },
+    "short_exit_ema": {
+        "path": ["short_exit_rules", 1, "condition"],
+        "template": "price > ema_{value}",
+        "values": [8, 20, 50, 200],
+        "description": "Short exit EMA period",
+    },
+    "short_stop_loss_pct": {
+        "path": ["risk_rules", "short_stop_loss_pct"],
+        "values": [0.005, 0.0075, 0.01, 0.015, 0.02, 0.025, 0.03],
+        "description": "Short stop loss percentage",
+    },
+    "short_take_profit_pct": {
+        "path": ["risk_rules", "short_take_profit_pct"],
+        "values": [0.005, 0.0075, 0.01, 0.015, 0.02, 0.025, 0.03, 0.04, 0.05],
+        "description": "Short take profit percentage",
     },
 }
 
@@ -428,6 +482,227 @@ def _rules_fingerprint(rules: dict) -> dict:
     }
 
 
+def _slice_history(cached: dict, end_days_ago: int) -> dict:
+    """Slice cached history to end N days ago."""
+    cutoff = datetime.now() - timedelta(days=end_days_ago)
+    cutoff_str = cutoff.strftime("%Y-%m-%d")
+    sliced = {}
+    for sym, df in cached.items():
+        s = df[df.index <= cutoff_str]
+        if not s.empty:
+            sliced[sym] = s
+    return sliced
+
+
+def run_walk_forward(
+    iterations: int = 30,
+    train_days: int = 60,
+    val_days: int = 30,
+    n_val_windows: int = 4,
+    initial_capital: float = 1000.0,
+    broker: str = "etoro",
+    account_currency: str = "USD",
+    rules_path: Optional[str] = None,
+) -> dict:
+    """Walk-forward optimization: train on one window, validate on multiple OOS windows.
+
+    Keeps a mutation only if:
+      1. It improves train composite
+      2. It doesn't degrade average validation composite by >2 pts
+      3. Guard rails pass on train
+    """
+    RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+    rules_file = Path(rules_path) if rules_path else PROJECT_ROOT / "rules.json"
+    with open(rules_file) as f:
+        current_rules = json.load(f)
+
+    print("=" * 90)
+    print("  WALK-FORWARD OPTIMIZATION")
+    print(f"  Train: {train_days}d (recent) | Validation: {n_val_windows} × {val_days}d windows")
+    print(f"  Iterations: {iterations} | Capital: ${initial_capital:,.0f} | Currency: {account_currency}")
+    print("=" * 90)
+
+    print("\n📊 Downloading 1 year of data...")
+    cached_full = {}
+    symbols = current_rules.get("watchlist", WATCHLIST)
+    for symbol in symbols:
+        df = get_history(symbol, days=400)
+        if not df.empty:
+            cached_full[symbol] = df
+            print(f"  {symbol}: {len(df)} days")
+
+    # Build validation windows: evenly spaced 30d windows going back
+    val_windows = []
+    for i in range(n_val_windows):
+        offset = train_days + i * val_days
+        sliced = _slice_history(cached_full, offset)
+        label = f"Val #{i+1} (ends {offset}d ago)"
+        val_windows.append((label, sliced))
+
+    temp_rules_path = RESULTS_DIR / "temp_wf_rules.json"
+
+    def _score_on_windows(rules: dict) -> tuple[dict, float, list]:
+        """Score rules on train + all validation windows. Returns (train_scores, avg_val_composite, val_details)."""
+        with open(temp_rules_path, "w") as f:
+            json.dump(rules, f, indent=2)
+
+        train_result = run_backtest(
+            days=train_days, rules_path=str(temp_rules_path),
+            initial_capital=initial_capital, broker=broker,
+            account_currency=account_currency, cached_history=cached_full,
+        )
+        train_scores = score_backtest(train_result)
+
+        val_composites = []
+        val_details = []
+        for label, vhist in val_windows:
+            vr = run_backtest(
+                days=val_days, rules_path=str(temp_rules_path),
+                initial_capital=initial_capital, broker=broker,
+                account_currency=account_currency, cached_history=vhist,
+            )
+            vs = score_backtest(vr)
+            val_composites.append(vs["composite"])
+            val_details.append({
+                "window": label,
+                "composite": vs["composite"],
+                "return_pct": vr.get("return_pct", 0),
+                "win_rate": vr.get("win_rate", 0),
+                "trades": vr.get("total_trades", 0),
+                "net_pnl": vr.get("total_pnl_net", 0),
+            })
+
+        avg_val = sum(val_composites) / len(val_composites) if val_composites else 0
+        return train_scores, avg_val, val_details
+
+    print("\n📊 Measuring baseline...")
+    base_train, base_avg_val, base_val_details = _score_on_windows(current_rules)
+    print(f"  Train composite: {base_train['composite']:.1f}")
+    print(f"  Avg validation composite: {base_avg_val:.1f}")
+    for vd in base_val_details:
+        icon = "🟢" if vd["net_pnl"] > 0 else "🔴"
+        print(f"    {vd['window']}: {vd['composite']:.1f} | {icon} ${vd['net_pnl']:+.2f} | {vd['trades']} trades")
+
+    best_rules = copy.deepcopy(current_rules)
+    best_train = base_train
+    best_avg_val = base_avg_val
+    kept = 0
+    discarded = 0
+    log = []
+    VAL_MAX_DROP = 2.0
+
+    for i in range(1, iterations + 1):
+        mutated_rules, mutation_key, description = mutate_rules(current_rules)
+        new_train, new_avg_val, new_val_details = _score_on_windows(mutated_rules)
+
+        train_delta = new_train["composite"] - best_train["composite"]
+        val_delta = new_avg_val - best_avg_val
+        guard = check_guard_rails(best_train, new_train)
+
+        if not guard["passed"]:
+            status, icon = "discard", "✗"
+            reason = f"Guard rail: {guard['violations'][0]}"
+            discarded += 1
+        elif train_delta <= 0:
+            status, icon = "discard" if train_delta < 0 else "neutral", "✗" if train_delta < 0 else "—"
+            reason = f"Train: {best_train['composite']:.1f} → {new_train['composite']:.1f} ({train_delta:+.1f})" if train_delta < 0 else "No train improvement"
+            discarded += 1
+        elif val_delta < -VAL_MAX_DROP:
+            status, icon = "discard", "✗"
+            reason = f"Val degraded: {best_avg_val:.1f} → {new_avg_val:.1f} ({val_delta:+.1f}, max drop {VAL_MAX_DROP})"
+            discarded += 1
+        else:
+            status, icon = "keep", "✓"
+            reason = f"Train: {train_delta:+.1f} | Val: {val_delta:+.1f} (avg {new_avg_val:.1f})"
+            current_rules = mutated_rules
+            best_rules = copy.deepcopy(mutated_rules)
+            best_train = new_train
+            best_avg_val = new_avg_val
+            kept += 1
+
+        print(f"  [{i:2d}/{iterations}] {icon} {mutation_key}: {description}")
+        print(f"         {reason}")
+
+        log.append({
+            "iteration": i, "status": status, "mutation": mutation_key,
+            "description": description, "train_composite": new_train["composite"],
+            "val_avg_composite": new_avg_val, "train_delta": round(train_delta, 2),
+            "val_delta": round(val_delta, 2),
+        })
+
+    # Save best rules
+    with open(rules_file, "w") as f:
+        json.dump(best_rules, f, indent=2)
+        f.write("\n")
+
+    # Final evaluation on ALL windows
+    print(f"\n{'=' * 90}")
+    print("  FINAL EVALUATION")
+    final_train, final_avg_val, final_val_details = _score_on_windows(best_rules)
+
+    # Also test on fresh OOS windows not used during training
+    oos_offsets = [180, 270, 330]
+    print(f"\n  Out-of-sample windows (not seen during optimization):")
+    oos_results = []
+    for off in oos_offsets:
+        sliced = _slice_history(cached_full, off)
+        with open(temp_rules_path, "w") as f:
+            json.dump(best_rules, f, indent=2)
+        r = run_backtest(
+            days=val_days, rules_path=str(temp_rules_path),
+            initial_capital=initial_capital, broker=broker,
+            account_currency=account_currency, cached_history=sliced,
+        )
+        end_d = datetime.now() - timedelta(days=off)
+        start_d = end_d - timedelta(days=val_days)
+        label = f"{start_d.strftime('%b %d')} – {end_d.strftime('%b %d')}"
+        icon = "🟢" if r.get("total_pnl_net", 0) > 0 else "🔴"
+        print(f"    {label}: {icon} ${r.get('total_pnl_net', 0):+.2f} | "
+              f"{r.get('win_rate', 0):.0f}% wins | {r.get('total_trades', 0)} trades")
+        oos_results.append({
+            "window": label, "net_pnl": r.get("total_pnl_net", 0),
+            "return_pct": r.get("return_pct", 0), "win_rate": r.get("win_rate", 0),
+            "trades": r.get("total_trades", 0),
+        })
+
+    print(f"\n  Validation windows (used as guard):")
+    for vd in final_val_details:
+        icon = "🟢" if vd["net_pnl"] > 0 else "🔴"
+        print(f"    {vd['window']}: {icon} ${vd['net_pnl']:+.2f} | {vd['win_rate']:.0f}% wins | {vd['trades']} trades")
+
+    # Summary
+    all_pnls = [vd["net_pnl"] for vd in final_val_details] + [r["net_pnl"] for r in oos_results]
+    profitable = sum(1 for p in all_pnls if p > 0)
+    total_windows = len(all_pnls)
+
+    print(f"\n{'=' * 90}")
+    print(f"  WALK-FORWARD COMPLETE")
+    print(f"  Iterations: {iterations} ({kept} kept, {discarded} discarded)")
+    print(f"  Train: {base_train['composite']:.1f} → {final_train['composite']:.1f} ({final_train['composite'] - base_train['composite']:+.1f})")
+    print(f"  Validation avg: {base_avg_val:.1f} → {final_avg_val:.1f} ({final_avg_val - base_avg_val:+.1f})")
+    print(f"  Profitable windows: {profitable}/{total_windows} ({profitable/total_windows*100:.0f}%)")
+    print(f"  Total P&L across all OOS: ${sum(r['net_pnl'] for r in oos_results):+.2f}")
+    print(f"  Rules saved to: {rules_file}")
+    print(f"{'=' * 90}")
+
+    summary = {
+        "timestamp": datetime.now().isoformat(), "mode": "walk_forward",
+        "iterations": iterations, "kept": kept, "discarded": discarded,
+        "train_days": train_days, "val_days": val_days, "n_val_windows": n_val_windows,
+        "baseline": {"train": base_train["composite"], "val_avg": base_avg_val},
+        "final": {"train": final_train["composite"], "val_avg": final_avg_val},
+        "val_details": final_val_details, "oos_results": oos_results,
+        "profitable_pct": profitable / total_windows * 100,
+        "log": log,
+    }
+    log_path = RESULTS_DIR / f"walkforward_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+    with open(log_path, "w") as f:
+        json.dump(summary, f, indent=2)
+
+    temp_rules_path.unlink(missing_ok=True)
+    return summary
+
+
 def main():
     import argparse
     parser = argparse.ArgumentParser(description="Strategy Autoresearch Optimizer")
@@ -436,15 +711,30 @@ def main():
     parser.add_argument("--capital", type=float, default=1000.0, help="Initial capital")
     parser.add_argument("--broker", default="etoro", help="Broker profile")
     parser.add_argument("--currency", default="EUR", help="Account currency")
+    parser.add_argument("--walk-forward", action="store_true", help="Use walk-forward optimization")
+    parser.add_argument("--train-days", type=int, default=60, help="Train window days (walk-forward)")
+    parser.add_argument("--val-days", type=int, default=30, help="Validation window days (walk-forward)")
+    parser.add_argument("--val-windows", type=int, default=4, help="Number of validation windows")
     args = parser.parse_args()
 
-    run_optimization(
-        iterations=args.iterations,
-        backtest_days=args.days,
-        initial_capital=args.capital,
-        broker=args.broker,
-        account_currency=args.currency,
-    )
+    if args.walk_forward:
+        run_walk_forward(
+            iterations=args.iterations,
+            train_days=args.train_days,
+            val_days=args.val_days,
+            n_val_windows=args.val_windows,
+            initial_capital=args.capital,
+            broker=args.broker,
+            account_currency=args.currency,
+        )
+    else:
+        run_optimization(
+            iterations=args.iterations,
+            backtest_days=args.days,
+            initial_capital=args.capital,
+            broker=args.broker,
+            account_currency=args.currency,
+        )
 
 
 if __name__ == "__main__":

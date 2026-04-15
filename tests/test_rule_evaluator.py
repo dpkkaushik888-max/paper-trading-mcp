@@ -6,6 +6,8 @@ from trading_engine.rule_evaluator import (
     evaluate_condition,
     evaluate_entry_rules,
     evaluate_exit_rules,
+    evaluate_short_entry_rules,
+    evaluate_short_exit_rules,
     load_rules,
     parse_condition,
 )
@@ -93,7 +95,7 @@ class TestEvaluateEntryRules:
         indicators = {
             "symbol": "SPY",
             "price": 500.0,
-            "rsi_14": 25.0,
+            "rsi_3": 10.0,
             "ema_20": 490.0,
             "macd_histogram": 2.0,
             "bb_lower": 480.0,
@@ -106,7 +108,7 @@ class TestEvaluateEntryRules:
         indicators = {
             "symbol": "SPY",
             "price": 500.0,
-            "rsi_14": 60.0,
+            "rsi_3": 60.0,
             "ema_20": 510.0,
             "macd_histogram": -1.0,
             "bb_lower": 480.0,
@@ -119,14 +121,14 @@ class TestEvaluateEntryRules:
         indicators = {
             "symbol": "QQQ",
             "price": 400.0,
-            "rsi_14": 60.0,
+            "rsi_3": 60.0,
             "ema_20": 390.0,
             "macd_histogram": 1.5,
             "bb_lower": 380.0,
         }
         signal = evaluate_entry_rules(rules, indicators)
         assert signal.strength == pytest.approx(0.55, abs=0.01)
-        assert signal.action == "hold"
+        assert signal.action == "buy"
 
 
 class TestEvaluateExitRules:
@@ -138,7 +140,7 @@ class TestEvaluateExitRules:
         indicators = {
             "symbol": "SPY",
             "price": 520.0,
-            "rsi_14": 75.0,
+            "rsi_3": 85.0,
             "ema_200": 500.0,
             "macd_histogram": 1.0,
         }
@@ -149,8 +151,8 @@ class TestEvaluateExitRules:
     def test_stop_loss_exit(self, rules):
         indicators = {
             "symbol": "SPY",
-            "price": 489.0,
-            "rsi_14": 40.0,
+            "price": 484.0,
+            "rsi_3": 40.0,
             "ema_200": 480.0,
             "macd_histogram": 1.0,
         }
@@ -162,8 +164,8 @@ class TestEvaluateExitRules:
     def test_take_profit_exit(self, rules):
         indicators = {
             "symbol": "SPY",
-            "price": 526.0,
-            "rsi_14": 65.0,
+            "price": 511.0,
+            "rsi_3": 65.0,
             "ema_200": 490.0,
             "macd_histogram": 1.0,
         }
@@ -176,10 +178,97 @@ class TestEvaluateExitRules:
         indicators = {
             "symbol": "SPY",
             "price": 505.0,
-            "rsi_14": 55.0,
+            "rsi_3": 55.0,
             "ema_200": 500.0,
             "macd_histogram": 1.0,
         }
         position = {"symbol": "SPY", "entry_price": 500.0}
         signal = evaluate_exit_rules(rules, indicators, position)
+        assert signal.action == "hold"
+
+
+class TestShortEntryRules:
+    @pytest.fixture
+    def rules(self):
+        return load_rules()
+
+    def test_strong_short_signal(self, rules):
+        indicators = {
+            "symbol": "SPY",
+            "price": 500.0,
+            "rsi_3": 90.0,
+            "ema_20": 510.0,
+            "macd_histogram": -2.0,
+            "bb_upper": 520.0,
+        }
+        signal = evaluate_short_entry_rules(rules, indicators)
+        assert signal.action == "short"
+        assert signal.strength >= 0.45
+
+    def test_no_short_when_not_overbought(self, rules):
+        indicators = {
+            "symbol": "SPY",
+            "price": 500.0,
+            "rsi_3": 50.0,
+            "ema_20": 490.0,
+            "macd_histogram": 1.0,
+            "bb_upper": 520.0,
+        }
+        signal = evaluate_short_entry_rules(rules, indicators)
+        assert signal.action == "hold"
+
+
+class TestShortExitRules:
+    @pytest.fixture
+    def rules(self):
+        return load_rules()
+
+    def test_cover_on_oversold(self, rules):
+        indicators = {
+            "symbol": "SPY",
+            "price": 490.0,
+            "rsi_3": 15.0,
+            "ema_200": 480.0,
+            "macd_histogram": -1.0,
+        }
+        position = {"symbol": "SPY", "entry_price": 500.0}
+        signal = evaluate_short_exit_rules(rules, indicators, position)
+        assert signal.action == "cover"
+
+    def test_short_stop_loss(self, rules):
+        indicators = {
+            "symbol": "SPY",
+            "price": 516.0,
+            "rsi_3": 50.0,
+            "ema_200": 520.0,
+            "macd_histogram": -1.0,
+        }
+        position = {"symbol": "SPY", "entry_price": 500.0}
+        signal = evaluate_short_exit_rules(rules, indicators, position)
+        assert signal.action == "cover"
+        assert "SHORT STOP LOSS" in signal.reasons[0]
+
+    def test_short_take_profit(self, rules):
+        indicators = {
+            "symbol": "SPY",
+            "price": 489.0,
+            "rsi_3": 50.0,
+            "ema_200": 500.0,
+            "macd_histogram": -1.0,
+        }
+        position = {"symbol": "SPY", "entry_price": 500.0}
+        signal = evaluate_short_exit_rules(rules, indicators, position)
+        assert signal.action == "cover"
+        assert "SHORT TAKE PROFIT" in signal.reasons[0]
+
+    def test_short_hold(self, rules):
+        indicators = {
+            "symbol": "SPY",
+            "price": 498.0,
+            "rsi_3": 50.0,
+            "ema_200": 510.0,
+            "macd_histogram": -1.0,
+        }
+        position = {"symbol": "SPY", "entry_price": 500.0}
+        signal = evaluate_short_exit_rules(rules, indicators, position)
         assert signal.action == "hold"

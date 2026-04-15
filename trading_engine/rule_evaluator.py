@@ -139,6 +139,131 @@ def evaluate_entry_rules(rules: dict, indicators: dict) -> Signal:
     )
 
 
+def evaluate_short_entry_rules(rules: dict, indicators: dict) -> Signal:
+    """Evaluate short entry rules and return a Signal."""
+    entry_rules = rules.get("entry_rules", {})
+    short_rules = entry_rules.get("short", [])
+    if not short_rules:
+        return Signal(
+            symbol=indicators.get("symbol", ""),
+            action="hold",
+            strength=0.0,
+            reasons=["No short rules defined"],
+            indicators=indicators,
+            price=indicators.get("price", 0),
+        )
+
+    min_score = entry_rules.get("short_min_score", entry_rules.get("min_score", 0.6))
+
+    score = 0.0
+    reasons = []
+
+    for rule in short_rules:
+        condition = rule.get("condition", "")
+        weight = rule.get("weight", 0.25)
+        description = rule.get("description", "")
+
+        passed, detail = evaluate_condition(condition, indicators)
+
+        if passed:
+            score += weight
+            reasons.append(f"\u2713 {description} ({condition})")
+        else:
+            reasons.append(f"\u2717 {description} ({condition})")
+
+    price = indicators.get("price", 0)
+    symbol = indicators.get("symbol", "")
+
+    if score >= min_score:
+        return Signal(
+            symbol=symbol,
+            action="short",
+            strength=score,
+            reasons=reasons,
+            indicators=indicators,
+            price=price,
+        )
+
+    return Signal(
+        symbol=symbol,
+        action="hold",
+        strength=score,
+        reasons=reasons,
+        indicators=indicators,
+        price=price,
+    )
+
+
+def evaluate_short_exit_rules(rules: dict, indicators: dict, position: dict) -> Signal:
+    """Evaluate exit rules for an open short position."""
+    exit_rules = rules.get("short_exit_rules", [])
+    risk_rules = rules.get("risk_rules", {})
+    reasons = []
+
+    price = indicators.get("price", 0)
+    symbol = indicators.get("symbol", position.get("symbol", ""))
+    entry_price = position.get("entry_price", 0)
+
+    for rule in exit_rules:
+        condition = rule.get("condition", "")
+        description = rule.get("description", "")
+        passed, detail = evaluate_condition(condition, indicators)
+        if passed:
+            reasons.append(f"SHORT EXIT: {description} ({condition})")
+            return Signal(
+                symbol=symbol,
+                action="cover",
+                strength=1.0,
+                reasons=reasons,
+                indicators=indicators,
+                price=price,
+            )
+
+    if entry_price > 0 and price > 0:
+        stop_loss_pct = risk_rules.get("short_stop_loss_pct",
+                                       risk_rules.get("stop_loss_pct", 0.02))
+        take_profit_pct = risk_rules.get("short_take_profit_pct",
+                                          risk_rules.get("take_profit_pct", 0.03))
+        change_pct = (entry_price - price) / entry_price
+
+        if change_pct <= -stop_loss_pct:
+            reasons.append(
+                f"SHORT STOP LOSS: price rose {-change_pct:.2%} from entry "
+                f"(limit: +{stop_loss_pct:.0%})"
+            )
+            return Signal(
+                symbol=symbol,
+                action="cover",
+                strength=1.0,
+                reasons=reasons,
+                indicators=indicators,
+                price=price,
+            )
+
+        if change_pct >= take_profit_pct:
+            reasons.append(
+                f"SHORT TAKE PROFIT: price down {change_pct:.2%} from entry "
+                f"(target: -{take_profit_pct:.0%})"
+            )
+            return Signal(
+                symbol=symbol,
+                action="cover",
+                strength=1.0,
+                reasons=reasons,
+                indicators=indicators,
+                price=price,
+            )
+
+    return Signal(
+        symbol=symbol,
+        action="hold",
+        strength=0.0,
+        reasons=["No short exit conditions met"],
+        indicators=indicators,
+        price=price,
+    )
+
+
 def evaluate_exit_rules(rules: dict, indicators: dict, position: dict) -> Signal:
     """Evaluate exit rules for an open position."""
     exit_rules = rules.get("exit_rules", [])

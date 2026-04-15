@@ -40,6 +40,11 @@
     "note": "Non-leveraged long ETF buys = $0 overnight. CFD positions incur 0.15% open+close spread."
   },
 
+  "cfd": {
+    "overnight_fee_daily_pct": 0.0002,
+    "note": "~0.02% per day (~7.3% annualized) for holding short CFD positions overnight. Based on LIBOR + eToro markup."
+  },
+
   "withdrawal_fee": {
     "usd_account": 5.0,
     "eur_account": 0.0,

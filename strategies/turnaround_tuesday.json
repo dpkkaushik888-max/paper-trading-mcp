@@ -1,0 +1,45 @@
+{
+  "strategy": {
+    "name": "Turnaround Tuesday",
+    "version": "1.0",
+    "description": "Buy Monday weakness, sell when price recovers. 69% win rate, 7% CAGR historically. Uses IBS filter for quality.",
+    "source": "QuantifiedStrategies.com, Enlightened Stock Trading",
+    "timeframe": "1d"
+  },
+  "watchlist": ["SPY", "QQQ", "IWM", "DIA"],
+  "entry_rules": {
+    "long": [
+      {
+        "condition": "day_of_week == 0",
+        "weight": 0.34,
+        "description": "Today is Monday"
+      },
+      {
+        "condition": "price < prev_close_1",
+        "weight": 0.33,
+        "description": "Monday close < Friday close — weekend gap down"
+      },
+      {
+        "condition": "ibs < 0.5",
+        "weight": 0.33,
+        "description": "IBS < 0.5 — closed in lower half of range"
+      }
+    ],
+    "min_score": 0.95,
+    "note": "All 3 conditions must pass. Long only — calendar anomaly."
+  },
+  "exit_rules": [
+    {
+      "condition": "price > prev_high_1",
+      "description": "Close > yesterday's high — momentum confirmed"
+    }
+  ],
+  "risk_rules": {
+    "max_position_pct": 0.15,
+    "max_daily_loss_pct": 0.02,
+    "stop_loss_pct": 0.02,
+    "take_profit_pct": 0.03,
+    "max_holding_days": 4,
+    "note": "Exit after 4 trading days if no exit signal. Larger position since edge is strong."
+  }
+}

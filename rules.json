@@ -1,8 +1,8 @@
 {
   "strategy": {
-    "name": "ETF Mean Reversion + Trend Following",
-    "version": "1.0",
-    "description": "Combines RSI oversold/overbought with EMA trend confirmation and MACD momentum. Designed for daily ETF trading targeting small consistent gains.",
+    "name": "ETF Long/Short Scalping",
+    "version": "3.0",
+    "description": "Bi-directional scalping: RSI(3) mean reversion for both long (oversold) and short (overbought) entries. Shorts via CFD with overnight fees.",
     "timeframe": "1d"
   },
   "watchlist": [
@@ -18,49 +18,87 @@
   "entry_rules": {
     "long": [
       {
-        "condition": "rsi_14 < 35",
-        "weight": 0.3,
-        "description": "RSI(14) oversold \u2014 mean reversion setup"
+        "condition": "rsi_3 < 15",
+        "weight": 0.35,
+        "description": "RSI(3) oversold \u2014 long mean reversion"
       },
       {
         "condition": "price > ema_20",
-        "weight": 0.15,
-        "description": "Price above 50 EMA \u2014 uptrend intact, not catching a falling knife"
+        "weight": 0.1,
+        "description": "Price above EMA(20) \u2014 uptrend intact"
       },
       {
         "condition": "macd_histogram > 0",
         "weight": 0.2,
-        "description": "MACD histogram positive \u2014 momentum turning bullish"
+        "description": "MACD positive \u2014 bullish momentum"
       },
       {
         "condition": "price > bb_lower",
-        "weight": 0.2,
-        "description": "Price above lower Bollinger Band \u2014 not in free-fall"
+        "weight": 0.25,
+        "description": "Above lower BB \u2014 not in freefall"
       }
     ],
-    "min_score": 0.6,
-    "note": "Score = sum of weights for matched conditions. Must reach min_score to trigger."
+    "short": [
+      {
+        "condition": "rsi_3 > 85",
+        "weight": 0.35,
+        "description": "RSI(3) overbought \u2014 short mean reversion"
+      },
+      {
+        "condition": "price < ema_20",
+        "weight": 0.2,
+        "description": "Price below EMA(20) \u2014 downtrend"
+      },
+      {
+        "condition": "macd_histogram < 0",
+        "weight": 0.2,
+        "description": "MACD negative \u2014 bearish momentum"
+      },
+      {
+        "condition": "price < bb_upper",
+        "weight": 0.25,
+        "description": "Below upper BB \u2014 not in melt-up"
+      }
+    ],
+    "min_score": 0.45,
+    "short_min_score": 0.5,
+    "note": "Long buys dips in uptrend, short sells rallies in downtrend."
   },
   "exit_rules": [
     {
-      "condition": "rsi_14 > 70",
-      "description": "RSI(14) overbought \u2014 take profit"
+      "condition": "rsi_3 > 85",
+      "description": "RSI(3) overbought \u2014 take long profit"
     },
     {
-      "condition": "price < ema_200",
-      "description": "Price dropped below 50 EMA \u2014 trend broken, cut losses"
+      "condition": "price < ema_8",
+      "description": "Below EMA(200) \u2014 trend broken"
     },
     {
       "condition": "macd_histogram < 0",
-      "description": "MACD histogram turned negative \u2014 momentum fading"
+      "description": "MACD negative \u2014 momentum fading"
     }
   ],
-  "exit_note": "Exit when ANY exit condition is met (OR logic).",
+  "short_exit_rules": [
+    {
+      "condition": "rsi_14 < 35",
+      "description": "RSI(3) oversold \u2014 cover short, mean reversion done"
+    },
+    {
+      "condition": "price > ema_200",
+      "description": "Above EMA(200) \u2014 uptrend resuming, cover"
+    },
+    {
+      "condition": "macd_histogram > 0",
+      "description": "MACD positive \u2014 bullish shift, cover"
+    }
+  ],
   "risk_rules": {
     "max_position_pct": 0.1,
     "max_daily_loss_pct": 0.02,
-    "stop_loss_pct": 0.02,
-    "take_profit_pct": 0.05,
-    "note": "2% stop loss, 3% take profit = 1.5:1 reward/risk ratio"
+    "stop_loss_pct": 0.03,
+    "take_profit_pct": 0.02,
+    "short_stop_loss_pct": 0.0075,
+    "short_take_profit_pct": 0.02,
+    "note": "3% SL / 2% TP for both sides. Shorts have additional overnight CFD cost."
   }
 }
