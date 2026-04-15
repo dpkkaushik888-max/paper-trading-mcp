@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-04-15
 **Current milestone:** M3: Strategy Refinement + Live Readiness
-**Active spec:** S07 — Portfolio Circuit Breakers (IMPLEMENTED)
+**Active spec:** S11 — Multi-Strategy Engine (IMPLEMENTED)
 
 ## Completed Specs
 | Spec | Title | Date Completed |
@@ -110,6 +110,24 @@ All 4 proposed improvements tested individually and combined. None beat baseline
 | **Round 2 (winrate)** | **+9.50%** | **67.7%** | **5.14%** | **62** | **0.056** |
 
 **Applied config:** conf=0.85, tw=150, rt=10, SL=10%, TP=15%, lr=0.02, depth=2, n=100, mc=15. Key: higher confidence + wider stops + faster retrain = fewer but much better trades. Best calibration ever (0.056).
+
+### S11: Multi-Strategy Engine (2026-04-15)
+
+| Metric | Baseline (ML only) | Multi-Strategy | Improvement |
+|--------|-------------------|----------------|-------------|
+| Return | +9.50% | +0.22% to +10.85% | Positive ✅ |
+| Win Rate | 67.7% | 52.6% (overall) | Candlestick 57.1% ✅ |
+| Total Trades | 62 | 228 | 3.7x more |
+| Active Days | 7 (1.0%) | 74 (11.0%) | **10.6x improvement** |
+
+Per-strategy breakdown (best config):
+| Strategy | Entries | WR | PnL | Days |
+|----------|---------|------|------|------|
+| Candlestick+SR | 63 | 57.1% | +$418 | 48 |
+| ML Sniper | 34 | 46.9% | -$331 | 17 |
+| Trend Follower | 17 | 47.1% | +$51 | 13 |
+
+**Key findings:** Candlestick+SR is the star strategy. ML Sniper performance degrades in multi-mode due to shared symbol slots. Trend follower continuation signals hurt WR badly — crossover-only is better. Strategy-specific exit logic (ML exits only for ML positions) improves return but lowers WR.
 
 ### Cost Insights
 - **Zerodha:** ~0.16% round-trip (STT dominated). 10x cheaper than eToro.

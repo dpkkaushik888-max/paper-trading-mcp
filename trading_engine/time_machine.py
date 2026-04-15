@@ -34,6 +34,15 @@ from .ml_model import (
     add_vix_features,
     build_features_for_market,
 )
+from .strategies import (
+    BaseStrategy,
+    DEFAULT_STRATEGY_CONFIGS,
+    StrategyConfig,
+    StrategySignal,
+)
+from .strategies.candlestick_sr import CandlestickSRStrategy
+from .strategies.ml_sniper import MLSniperStrategy
+from .strategies.trend_follower import TrendFollowerStrategy
 from .trade_journal import TradeJournal
 
 warnings.filterwarnings("ignore", category=UserWarning)
@@ -77,6 +86,7 @@ class TimeMachineBacktest:
         dynamic_sl: bool = False,
         journal_db_path: str | None = None,
         simplified_features: list[str] | None = None,
+        multi_strategy: bool = False,
     ):
         self.market = market
         self.initial_capital = initial_capital
@@ -86,6 +96,7 @@ class TimeMachineBacktest:
         self.dynamic_sl = dynamic_sl
         self.session_id = session_id
         self.enable_learning = enable_learning
+        self.multi_strategy = multi_strategy
         cfg = MARKET_CONFIGS.get(market, MARKET_CONFIGS["us"])
         self.train_window = cfg["train_window"]
         self.min_train = cfg["min_train"]
@@ -121,6 +132,52 @@ class TimeMachineBacktest:
         self._days_in_week = 0
         self._halted = False
         self._circuit_breaker_log: list[dict] = []
+
+        self.strategies: list[BaseStrategy] = []
+        if multi_strategy:
+            self._init_strategies()
+
+    def _init_strategies(self):
+        """Initialize the multi-strategy registry."""
+        ml_config = StrategyConfig(
+            name="ml_sniper", capital_pct=0.55,
+            max_position_pct=0.10, max_concurrent=3,
+        )
+        cs_config = StrategyConfig(
+            name="candlestick_sr", capital_pct=0.40,
+            max_position_pct=0.05, max_concurrent=3,
+        )
+
+        self.strategies = [
+            MLSniperStrategy(
+                config=ml_config,
+                market=self.market,
+                confidence_threshold=self.base_confidence,
+                sl_pct=self.stop_loss_pct,
+                tp_pct=self.take_profit_pct,
+            ),
+            CandlestickSRStrategy(
+                config=cs_config,
+                sr_proximity_pct=0.04,
+                sl_pct=0.03,
+                tp_pct=0.05,
+            ),
+        ]
+
+    def _get_strategy_budget(self, strategy: BaseStrategy) -> float:
+        """Get available cash for a strategy based on its capital allocation."""
+        return self.cash * strategy.config.capital_pct
+
+    def _count_strategy_positions(self, strategy_name: str) -> int:
+        """Count open positions for a specific strategy."""
+        count = 0
+        for pos in self.long_positions.values():
+            if pos.get("strategy") == strategy_name:
+                count += 1
+        for pos in self.short_positions.values():
+            if pos.get("strategy") == strategy_name:
+                count += 1
+        return count
 
     def run(
         self,
@@ -175,6 +232,9 @@ class TimeMachineBacktest:
         daily_results = []
         all_trades = []
 
+        for strat in self.strategies:
+            strat.open_positions = 0
+
         for day_idx, day in enumerate(all_dates):
             if day_idx < self.min_train:
                 continue
@@ -204,7 +264,7 @@ class TimeMachineBacktest:
 
         self.journal.close()
 
-        return {
+        result_dict = {
             "initial_capital": self.initial_capital,
             "final_value": round(final_value, 2),
             "total_pnl_net": round(total_pnl, 2),
@@ -223,6 +283,13 @@ class TimeMachineBacktest:
             "daily_results": daily_results,
             "circuit_breaker_log": self._circuit_breaker_log,
         }
+
+        if self.multi_strategy:
+            result_dict["strategy_metrics"] = self._compute_strategy_metrics(
+                all_trades
+            )
+
+        return result_dict
 
     def _process_day(
         self,
@@ -267,12 +334,23 @@ class TimeMachineBacktest:
             self.days_since_retrain = 0
         self.days_since_retrain += 1
 
-        if self.model is None or self.feature_cols is None:
+        ml_ready = self.model is not None and self.feature_cols is not None
+
+        if not ml_ready and not self.multi_strategy:
             snapshot = self._build_snapshot(day_str, day_pnl, 0, effective_threshold)
             return {"snapshot": snapshot, "trades": []}
 
         allow_new_positions = cb_action not in ("no_new_positions",)
         position_size_mult = 0.5 if cb_action == "halve_size" else 1.0
+
+        cross_asset_data = None
+        if self.cross_asset_symbol in history_data:
+            cross_asset_data = {
+                "symbol": self.cross_asset_symbol,
+                "features": self.cross_asset_features,
+                "prefix": self.cross_asset_prefix,
+                "df": history_data[self.cross_asset_symbol],
+            }
 
         for symbol, df in history_data.items():
             if symbol.startswith("^"):
@@ -288,70 +366,90 @@ class TimeMachineBacktest:
             if len(temporal_df) < 30:
                 continue
 
-            feat = build_features_for_market(temporal_df, self.market)
+            up_prob = 0.5
+            down_prob = 0.5
+            if ml_ready:
+                feat = build_features_for_market(temporal_df, self.market)
 
-            if self.cross_asset_symbol in history_data and symbol != self.cross_asset_symbol:
-                ca_df = history_data[self.cross_asset_symbol]
-                ca_temporal = ca_df[ca_df.index <= day]
-                if len(ca_temporal) > 30:
-                    ca_feat = build_features_for_market(ca_temporal, self.market)
-                    avail_ca = [c for c in self.cross_asset_features if c in ca_feat.columns]
-                    cross = ca_feat[avail_ca].copy()
-                    cross.columns = [f"{self.cross_asset_prefix}_{c}" for c in cross.columns]
-                    feat = feat.join(cross, how="left")
-                    feat = _add_relative_strength(feat, ca_feat, self.cross_asset_prefix)
+                if self.cross_asset_symbol in history_data and symbol != self.cross_asset_symbol:
+                    ca_df = history_data[self.cross_asset_symbol]
+                    ca_temporal = ca_df[ca_df.index <= day]
+                    if len(ca_temporal) > 30:
+                        ca_feat = build_features_for_market(ca_temporal, self.market)
+                        avail_ca = [c for c in self.cross_asset_features if c in ca_feat.columns]
+                        cross = ca_feat[avail_ca].copy()
+                        cross.columns = [f"{self.cross_asset_prefix}_{c}" for c in cross.columns]
+                        feat = feat.join(cross, how="left")
+                        feat = _add_relative_strength(feat, ca_feat, self.cross_asset_prefix)
 
-            if day not in feat.index:
-                continue
-
-            row = feat.loc[day]
-            row_feats = row.reindex(self.feature_cols, fill_value=0).fillna(0)
-            if row_feats.isna().any():
-                continue
-
-            X_pred = row_feats.values.reshape(1, -1)
-            proba = self.model.predict_proba(X_pred)[0]
-            up_prob = float(proba[1]) if len(proba) > 1 else float(proba[0])
-            down_prob = 1.0 - up_prob
+                if day in feat.index:
+                    row = feat.loc[day]
+                    row_feats = row.reindex(self.feature_cols, fill_value=0).fillna(0)
+                    if not row_feats.isna().any():
+                        X_pred = row_feats.values.reshape(1, -1)
+                        proba = self.model.predict_proba(X_pred)[0]
+                        up_prob = float(proba[1]) if len(proba) > 1 else float(proba[0])
+                        down_prob = 1.0 - up_prob
 
             self._track_price(symbol, price)
 
             if symbol in self.long_positions:
+                strat_name = self.long_positions[symbol].get("strategy")
                 trade = self._check_long_exit(
                     symbol, price, day_str, down_prob, effective_threshold
                 )
                 if trade:
+                    trade["strategy"] = strat_name
                     day_pnl += trade.get("net_pnl", 0)
                     day_trades.append(trade)
+                    self._update_strategy_position_count(strat_name, -1)
 
             elif symbol in self.short_positions:
+                strat_name = self.short_positions[symbol].get("strategy")
                 trade = self._check_short_exit(
                     symbol, price, day_str, up_prob, effective_threshold
                 )
                 if trade:
+                    trade["strategy"] = strat_name
                     day_pnl += trade.get("net_pnl", 0)
                     day_trades.append(trade)
+                    self._update_strategy_position_count(strat_name, -1)
 
             elif allow_new_positions:
-                total_open = len(self.long_positions) + len(self.short_positions)
-                atr_pct = self._compute_atr_pct(symbol, history_data, day) if self.dynamic_sl else 0.0
-                if up_prob > effective_threshold and total_open < 8:
-                    trade = self._open_long(
-                        symbol, price, day_str, up_prob,
-                        size_mult=position_size_mult,
-                        atr_pct=atr_pct,
+                if self.multi_strategy and symbol not in self.long_positions and symbol not in self.short_positions:
+                    signals = self._get_all_strategy_signals(
+                        symbol, temporal_df, day, cross_asset_data,
                     )
-                    if trade:
-                        day_trades.append(trade)
+                    for sig in signals:
+                        if symbol in self.long_positions or symbol in self.short_positions:
+                            break
+                        trade = self._execute_strategy_signal(
+                            sig, symbol, price, day_str,
+                            position_size_mult,
+                        )
+                        if trade:
+                            day_trades.append(trade)
+                            break
+                elif not self.multi_strategy:
+                    total_open = len(self.long_positions) + len(self.short_positions)
+                    atr_pct = self._compute_atr_pct(symbol, history_data, day) if self.dynamic_sl else 0.0
+                    if up_prob > effective_threshold and total_open < 8:
+                        trade = self._open_long(
+                            symbol, price, day_str, up_prob,
+                            size_mult=position_size_mult,
+                            atr_pct=atr_pct,
+                        )
+                        if trade:
+                            day_trades.append(trade)
 
-                elif down_prob > effective_threshold and total_open < 8:
-                    trade = self._open_short(
-                        symbol, price, day_str, down_prob,
-                        size_mult=position_size_mult,
-                        atr_pct=atr_pct,
-                    )
-                    if trade:
-                        day_trades.append(trade)
+                    elif down_prob > effective_threshold and total_open < 8:
+                        trade = self._open_short(
+                            symbol, price, day_str, down_prob,
+                            size_mult=position_size_mult,
+                            atr_pct=atr_pct,
+                        )
+                        if trade:
+                            day_trades.append(trade)
 
         self._update_circuit_breaker_tracking(day, current_value)
 
@@ -366,6 +464,135 @@ class TimeMachineBacktest:
                   f"Threshold: {effective_threshold:.0%}")
 
         return {"snapshot": snapshot, "trades": day_trades}
+
+    def _get_all_strategy_signals(
+        self,
+        symbol: str,
+        temporal_df: pd.DataFrame,
+        current_day: pd.Timestamp,
+        cross_asset_data: dict | None,
+    ) -> list[StrategySignal]:
+        """Query all strategies for signals, return all sorted by priority.
+
+        Priority: ML sniper always first (highest conviction), then by confidence.
+        """
+        signals = []
+        for strat in self.strategies:
+            if not strat.config.enabled:
+                continue
+            strat_pos_count = self._count_strategy_positions(strat.name)
+            strat.open_positions = strat_pos_count
+            if not strat.can_open():
+                continue
+            try:
+                signal = strat.evaluate(
+                    symbol=symbol,
+                    df=temporal_df,
+                    current_day=current_day,
+                    model=self.model,
+                    feature_cols=self.feature_cols,
+                    cross_asset_data=cross_asset_data,
+                )
+                if signal and signal.direction != "none":
+                    signals.append(signal)
+            except Exception:
+                continue
+
+        signals.sort(
+            key=lambda s: (s.strategy == "ml_sniper", s.confidence),
+            reverse=True,
+        )
+        return signals
+
+    def _execute_strategy_signal(
+        self,
+        signal: StrategySignal,
+        symbol: str,
+        price: float,
+        day_str: str,
+        position_size_mult: float,
+    ) -> Optional[dict]:
+        """Execute a strategy signal by opening a position."""
+        if signal.direction == "long":
+            trade = self._open_long(
+                symbol, price, day_str, signal.confidence,
+                size_mult=position_size_mult * signal.size_pct / self.max_position_pct,
+                strategy_name=signal.strategy,
+                custom_sl=signal.sl_pct,
+                custom_tp=signal.tp_pct,
+            )
+            if trade:
+                trade["strategy"] = signal.strategy
+                trade["reason"] = signal.reason
+                self._update_strategy_position_count(signal.strategy, 1)
+                return trade
+        elif signal.direction == "short":
+            trade = self._open_short(
+                symbol, price, day_str, signal.confidence,
+                size_mult=position_size_mult * signal.size_pct / self.max_position_pct,
+                strategy_name=signal.strategy,
+                custom_sl=signal.sl_pct,
+                custom_tp=signal.tp_pct,
+            )
+            if trade:
+                trade["strategy"] = signal.strategy
+                trade["reason"] = signal.reason
+                self._update_strategy_position_count(signal.strategy, 1)
+                return trade
+        return None
+
+    def _update_strategy_position_count(self, strategy_name: str | None, delta: int):
+        """Update the open_positions count for a strategy."""
+        if strategy_name is None:
+            return
+        for strat in self.strategies:
+            if strat.name == strategy_name:
+                strat.open_positions = max(0, strat.open_positions + delta)
+                break
+
+    def _compute_strategy_metrics(self, all_trades: list[dict]) -> dict:
+        """Compute per-strategy performance metrics."""
+        from collections import defaultdict
+
+        metrics = defaultdict(lambda: {
+            "entries": 0, "exits": 0, "wins": 0, "losses": 0,
+            "total_pnl": 0.0, "long_entries": 0, "short_entries": 0,
+            "active_days": set(),
+        })
+
+        for t in all_trades:
+            strat = t.get("strategy", "unknown")
+            if t["action"] in ("buy", "short"):
+                metrics[strat]["entries"] += 1
+                metrics[strat]["active_days"].add(t["date"])
+                if t.get("side") == "long":
+                    metrics[strat]["long_entries"] += 1
+                else:
+                    metrics[strat]["short_entries"] += 1
+            elif t["action"] in ("sell", "cover"):
+                metrics[strat]["exits"] += 1
+                pnl = t.get("net_pnl", 0)
+                metrics[strat]["total_pnl"] += pnl
+                if pnl > 0:
+                    metrics[strat]["wins"] += 1
+                else:
+                    metrics[strat]["losses"] += 1
+
+        result = {}
+        for strat_name, m in metrics.items():
+            closed = m["wins"] + m["losses"]
+            result[strat_name] = {
+                "entries": m["entries"],
+                "exits": m["exits"],
+                "wins": m["wins"],
+                "losses": m["losses"],
+                "win_rate": round(m["wins"] / closed * 100, 1) if closed else 0,
+                "total_pnl": round(m["total_pnl"], 2),
+                "long_entries": m["long_entries"],
+                "short_entries": m["short_entries"],
+                "active_days": len(m["active_days"]),
+            }
+        return result
 
     def _retrain_model(self, current_day: pd.Timestamp, history_data: dict):
         """Retrain the model using ONLY data before current_day."""
@@ -480,7 +707,7 @@ class TimeMachineBacktest:
         tp = max(0.02, min(0.08, 3.0 * atr_pct))
         return sl, tp
 
-    def _open_long(self, symbol: str, price: float, day_str: str, confidence: float, size_mult: float = 1.0, atr_pct: float = 0.0) -> Optional[dict]:
+    def _open_long(self, symbol: str, price: float, day_str: str, confidence: float, size_mult: float = 1.0, atr_pct: float = 0.0, strategy_name: str | None = None, custom_sl: float | None = None, custom_tp: float | None = None) -> Optional[dict]:
         """Open a long position."""
         max_value = self.cash * self.max_position_pct * size_mult
         shares = int(max_value / price)
@@ -505,7 +732,9 @@ class TimeMachineBacktest:
             entry_confidence=confidence, shares=shares, entry_cost=cost,
         )
 
-        if self.dynamic_sl and atr_pct > 0:
+        if custom_sl is not None and custom_tp is not None:
+            sl, tp = custom_sl, custom_tp
+        elif self.dynamic_sl and atr_pct > 0:
             sl, tp = self._get_dynamic_sl_tp(atr_pct)
         else:
             sl, tp = self.stop_loss_pct, self.take_profit_pct
@@ -513,7 +742,7 @@ class TimeMachineBacktest:
         self.long_positions[symbol] = {
             "symbol": symbol, "shares": shares, "entry_price": price,
             "entry_cost": cost, "entry_date": day_str, "trade_id": trade_id,
-            "sl_pct": sl, "tp_pct": tp,
+            "sl_pct": sl, "tp_pct": tp, "strategy": strategy_name,
         }
         self._max_price_tracker[symbol] = {"max": price, "min": price}
 
@@ -524,7 +753,7 @@ class TimeMachineBacktest:
             "reason": f"ML long ({confidence:.0%} up)",
         }
 
-    def _open_short(self, symbol: str, price: float, day_str: str, confidence: float, size_mult: float = 1.0, atr_pct: float = 0.0) -> Optional[dict]:
+    def _open_short(self, symbol: str, price: float, day_str: str, confidence: float, size_mult: float = 1.0, atr_pct: float = 0.0, strategy_name: str | None = None, custom_sl: float | None = None, custom_tp: float | None = None) -> Optional[dict]:
         """Open a short position (reserve entry value as margin)."""
         max_value = self.cash * self.max_position_pct * size_mult
         shares = int(max_value / price)
@@ -551,7 +780,9 @@ class TimeMachineBacktest:
             entry_confidence=confidence, shares=shares, entry_cost=cost,
         )
 
-        if self.dynamic_sl and atr_pct > 0:
+        if custom_sl is not None and custom_tp is not None:
+            sl, tp = custom_sl, custom_tp
+        elif self.dynamic_sl and atr_pct > 0:
             sl, tp = self._get_dynamic_sl_tp(atr_pct)
         else:
             sl, tp = self.stop_loss_pct, self.take_profit_pct
@@ -559,7 +790,7 @@ class TimeMachineBacktest:
         self.short_positions[symbol] = {
             "symbol": symbol, "shares": shares, "entry_price": price,
             "entry_cost": cost, "entry_date": day_str, "trade_id": trade_id,
-            "sl_pct": sl, "tp_pct": tp,
+            "sl_pct": sl, "tp_pct": tp, "strategy": strategy_name,
         }
         self._max_price_tracker[symbol] = {"max": price, "min": price}
 
@@ -811,18 +1042,22 @@ class TimeMachineBacktest:
 
         for symbol in list(self.long_positions.keys()):
             if symbol in history_data and day in history_data[symbol].index:
+                strat_name = self.long_positions[symbol].get("strategy")
                 price = float(history_data[symbol].loc[day, "Close"])
                 trade = self._check_long_exit(symbol, price, day_str, 1.0, 0.0)
                 if trade:
+                    trade["strategy"] = strat_name
                     total_pnl += trade.get("net_pnl", 0)
                     trade["reason"] = "Circuit breaker CRITICAL: force close"
                     trades.append(trade)
 
         for symbol in list(self.short_positions.keys()):
             if symbol in history_data and day in history_data[symbol].index:
+                strat_name = self.short_positions[symbol].get("strategy")
                 price = float(history_data[symbol].loc[day, "Close"])
                 trade = self._check_short_exit(symbol, price, day_str, 1.0, 0.0)
                 if trade:
+                    trade["strategy"] = strat_name
                     total_pnl += trade.get("net_pnl", 0)
                     trade["reason"] = "Circuit breaker CRITICAL: force close"
                     trades.append(trade)

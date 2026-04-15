@@ -346,6 +346,146 @@ def calculate_chart_features(df: pd.DataFrame) -> dict:
     return features
 
 
+def detect_candlestick_patterns(
+    open_: pd.Series, high: pd.Series, low: pd.Series, close: pd.Series,
+) -> pd.DataFrame:
+    """Detect 10 candlestick patterns from OHLC data.
+
+    Returns DataFrame with columns per pattern (1=bullish, -1=bearish, 0=none).
+    Patterns detected:
+      Bullish: hammer, bullish_engulfing, morning_star, dragonfly_doji, piercing_line
+      Bearish: hanging_man, bearish_engulfing, evening_star, shooting_star, dark_cloud_cover
+    """
+    body = close - open_
+    body_abs = body.abs()
+    upper_shadow = high - pd.concat([close, open_], axis=1).max(axis=1)
+    lower_shadow = pd.concat([close, open_], axis=1).min(axis=1) - low
+    candle_range = high - low
+    avg_body = body_abs.rolling(20).mean()
+
+    result = pd.DataFrame(index=open_.index)
+
+    # — Hammer (bullish): small body at top, long lower shadow, at bottom of move —
+    small_body = body_abs < candle_range * 0.35
+    long_lower = lower_shadow > body_abs * 2.0
+    short_upper = upper_shadow < body_abs * 0.5
+    prior_down = close.shift(1) < close.shift(3)
+    result["hammer"] = ((small_body & long_lower & short_upper & prior_down)
+                        .astype(int))
+
+    # — Hanging Man (bearish): same shape as hammer but at top of move —
+    prior_up = close.shift(1) > close.shift(3)
+    result["hanging_man"] = -((small_body & long_lower & short_upper & prior_up)
+                              .astype(int))
+
+    # — Bullish Engulfing: bearish candle followed by larger bullish candle —
+    prev_bearish = body.shift(1) < 0
+    curr_bullish = body > 0
+    engulfs_body = (close > open_.shift(1)) & (open_ < close.shift(1))
+    result["bullish_engulfing"] = ((prev_bearish & curr_bullish & engulfs_body
+                                    & prior_down)
+                                   .astype(int))
+
+    # — Bearish Engulfing: bullish candle followed by larger bearish candle —
+    prev_bullish = body.shift(1) > 0
+    curr_bearish = body < 0
+    engulfs_body_bear = (open_ > close.shift(1)) & (close < open_.shift(1))
+    result["bearish_engulfing"] = -((prev_bullish & curr_bearish
+                                     & engulfs_body_bear & prior_up)
+                                    .astype(int))
+
+    # — Morning Star (bullish): bearish candle, small body (any), bullish candle —
+    first_bearish = body.shift(2) < 0
+    first_big = body_abs.shift(2) > avg_body.shift(2) * 0.8
+    mid_small = body_abs.shift(1) < avg_body.shift(1) * 0.5
+    third_bullish = body > 0
+    third_big = body_abs > avg_body * 0.8
+    third_closes_into = close > (open_.shift(2) + close.shift(2)) / 2
+    result["morning_star"] = ((first_bearish & first_big & mid_small
+                               & third_bullish & third_big & third_closes_into)
+                              .astype(int))
+
+    # — Evening Star (bearish): bullish candle, small body, bearish candle —
+    first_bullish = body.shift(2) > 0
+    first_big_bull = body_abs.shift(2) > avg_body.shift(2) * 0.8
+    third_bearish = body < 0
+    third_big_bear = body_abs > avg_body * 0.8
+    third_closes_into_bear = close < (open_.shift(2) + close.shift(2)) / 2
+    result["evening_star"] = -((first_bullish & first_big_bull & mid_small
+                                & third_bearish & third_big_bear
+                                & third_closes_into_bear)
+                               .astype(int))
+
+    # — Dragonfly Doji (bullish): open ≈ close ≈ high, long lower shadow —
+    doji_body = body_abs < candle_range * 0.10
+    doji_long_lower = lower_shadow > candle_range * 0.60
+    doji_short_upper = upper_shadow < candle_range * 0.10
+    result["dragonfly_doji"] = ((doji_body & doji_long_lower & doji_short_upper
+                                 & prior_down)
+                                .astype(int))
+
+    # — Shooting Star (bearish): small body at bottom, long upper shadow —
+    long_upper = upper_shadow > body_abs * 2.0
+    short_lower = lower_shadow < body_abs * 0.5
+    result["shooting_star"] = -((small_body & long_upper & short_lower
+                                 & prior_up)
+                                .astype(int))
+
+    # — Piercing Line (bullish): bearish candle, then bullish opens below and closes >50% —
+    opens_below = open_ < low.shift(1)
+    closes_above_mid = close > (open_.shift(1) + close.shift(1)) / 2
+    doesnt_fully_engulf = close < open_.shift(1)
+    result["piercing_line"] = ((prev_bearish & curr_bullish & opens_below
+                                & closes_above_mid & doesnt_fully_engulf)
+                               .astype(int))
+
+    # — Dark Cloud Cover (bearish): bullish candle, then bearish opens above and closes <50% —
+    opens_above = open_ > high.shift(1)
+    closes_below_mid = close < (open_.shift(1) + close.shift(1)) / 2
+    doesnt_fully_engulf_bear = close > open_.shift(1)
+    result["dark_cloud_cover"] = -((prev_bullish & curr_bearish & opens_above
+                                    & closes_below_mid
+                                    & doesnt_fully_engulf_bear)
+                                   .astype(int))
+
+    return result.fillna(0).astype(int)
+
+
+def get_candlestick_signal(
+    open_: pd.Series, high: pd.Series, low: pd.Series, close: pd.Series,
+) -> dict:
+    """Get the candlestick signal for the most recent bar.
+
+    Returns:
+        {"pattern": str|None, "direction": "bullish"|"bearish"|None, "strength": int}
+        strength: number of confirming patterns on same bar.
+    """
+    patterns = detect_candlestick_patterns(open_, high, low, close)
+    if patterns.empty:
+        return {"pattern": None, "direction": None, "strength": 0}
+
+    last = patterns.iloc[-1]
+    bullish = [col for col in patterns.columns if last[col] > 0]
+    bearish = [col for col in patterns.columns if last[col] < 0]
+
+    if bullish:
+        return {
+            "pattern": bullish[0],
+            "direction": "bullish",
+            "strength": len(bullish),
+            "patterns": bullish,
+        }
+    elif bearish:
+        return {
+            "pattern": bearish[0],
+            "direction": "bearish",
+            "strength": len(bearish),
+            "patterns": bearish,
+        }
+
+    return {"pattern": None, "direction": None, "strength": 0}
+
+
 def build_chart_features_series(df: pd.DataFrame, min_bars: int = 60) -> pd.DataFrame:
     """Build chart pattern features for every bar in DataFrame.
 
