@@ -29,6 +29,9 @@ from .learning_loop import LearningLoop
 from .ml_model import (
     MARKET_CONFIGS,
     _SmartLGBM,
+    _SmartLGBMEnsemble,
+    add_sector_relative_features,
+    add_vix_features,
     build_features_for_market,
 )
 from .trade_journal import TradeJournal
@@ -270,6 +273,8 @@ class TimeMachineBacktest:
         position_size_mult = 0.5 if cb_action == "halve_size" else 1.0
 
         for symbol, df in history_data.items():
+            if symbol.startswith("^"):
+                continue
             if day not in df.index:
                 continue
 
@@ -366,6 +371,8 @@ class TimeMachineBacktest:
         train_y_list = []
 
         for symbol, df in history_data.items():
+            if symbol.startswith("^"):
+                continue
             temporal_df = df[df.index < current_day]
             if len(temporal_df) < self.min_train:
                 continue

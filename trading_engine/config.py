@@ -80,6 +80,22 @@ CIRCUIT_BREAKER_TIERS = {
     "halt":     {"peak_dd_pct": 0.08, "action": "halt"},
 }
 
+VIX_SYMBOL = "^VIX"
+
+SECTOR_MAP = {
+    "XLF": ["JPM", "BAC", "GS"],
+    "XLE": ["XOM", "CVX"],
+    "XLK": ["AAPL", "MSFT", "GOOGL", "AMZN", "NVDA", "META", "TSLA", "AMD", "AVGO", "NFLX", "CRM"],
+    "XLV": ["UNH", "JNJ", "PFE"],
+    "XLY": ["WMT", "HD", "KO"],
+    "XLI": ["CAT", "BA"],
+}
+
+STOCK_TO_SECTOR = {}
+for _etf, _stocks in SECTOR_MAP.items():
+    for _s in _stocks:
+        STOCK_TO_SECTOR[_s] = _etf
+
 MARKET_OPEN_HOUR_ET = 9
 MARKET_OPEN_MIN_ET = 30
 MARKET_CLOSE_HOUR_ET = 16

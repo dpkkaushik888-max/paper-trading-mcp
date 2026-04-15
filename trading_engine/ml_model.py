@@ -363,6 +363,35 @@ def build_features_for_market(df: pd.DataFrame, market: str = "us") -> pd.DataFr
     return build_feature_matrix(df)
 
 
+def add_vix_features(feat: pd.DataFrame, vix_df: pd.DataFrame) -> pd.DataFrame:
+    """Add VIX level and VIX change as features."""
+    if vix_df is None or vix_df.empty:
+        return feat
+    vix_close = vix_df["Close"].reindex(feat.index)
+    feat["vix_level"] = vix_close
+    feat["vix_5d_change"] = vix_close.pct_change(5)
+    feat["vix_above_25"] = (vix_close > 25).astype(float)
+    return feat
+
+
+def add_sector_relative_features(
+    feat: pd.DataFrame, symbol: str, sector_data: dict[str, pd.DataFrame],
+) -> pd.DataFrame:
+    """Add sector-relative return: stock return minus sector ETF return."""
+    from .config import STOCK_TO_SECTOR
+    sector_etf = STOCK_TO_SECTOR.get(symbol)
+    if sector_etf is None or sector_etf not in sector_data:
+        return feat
+    sector_close = sector_data[sector_etf]["Close"].reindex(feat.index)
+    for p in [1, 5, 10]:
+        stock_ret = feat.get(f"return_{p}d")
+        if stock_ret is None:
+            continue
+        sector_ret = sector_close.pct_change(p)
+        feat[f"sector_rel_{p}d"] = stock_ret - sector_ret
+    return feat
+
+
 def _streak(cond: pd.Series) -> pd.Series:
     """Count consecutive True values."""
     groups = (~cond).cumsum()
@@ -390,9 +419,10 @@ class _SmartLGBM:
         if params:
             defaults.update(params)
 
+        defaults.setdefault("random_state", 42)
         self._lgbm_params = defaults
         self.model = lgb.LGBMClassifier(
-            **defaults, verbose=-1, random_state=42,
+            **defaults, verbose=-1,
         )
         self._calibrator = None
         self._calibrate = calibrate
@@ -501,6 +531,58 @@ class _SmartLGBM:
             instance.model = data
             instance._calibrator = None
         instance._raw_model = instance.model
+        return instance
+
+
+class _SmartLGBMEnsemble:
+    """Ensemble of 3 _SmartLGBM models with different random seeds.
+
+    Averages calibrated probabilities across models. Reduces variance
+    and overconfident single-model predictions.
+    """
+
+    SEEDS = [42, 123, 777]
+
+    def __init__(self, params: dict | None = None, calibrate: bool = True):
+        self._base_params = params or {}
+        self._calibrate = calibrate
+        self._models: list[_SmartLGBM] = []
+
+    def fit(self, X, y, sample_weight=None):
+        self._models = []
+        for seed in self.SEEDS:
+            p = dict(self._base_params)
+            p["random_state"] = seed
+            m = _SmartLGBM(params=p, calibrate=self._calibrate)
+            m.fit(X, y, sample_weight=sample_weight)
+            self._models.append(m)
+        return self
+
+    def predict_proba(self, X):
+        probas = [m.predict_proba(X) for m in self._models]
+        return np.mean(probas, axis=0)
+
+    @property
+    def feature_importances_(self):
+        imps = [m.feature_importances_ for m in self._models]
+        return np.mean(imps, axis=0)
+
+    @property
+    def is_calibrated(self) -> bool:
+        return any(m.is_calibrated for m in self._models)
+
+    def save(self, path: str):
+        import pickle
+        with open(path, "wb") as f:
+            pickle.dump({"models": self._models}, f)
+
+    @classmethod
+    def load(cls, path: str) -> "_SmartLGBMEnsemble":
+        import pickle
+        instance = cls.__new__(cls)
+        with open(path, "rb") as f:
+            data = pickle.load(f)
+        instance._models = data["models"]
         return instance
 
 

@@ -77,6 +77,19 @@
 
 **Conclusion:** ATR-based dynamic SL/TP does NOT improve performance on daily bars. Both variants underperform fixed 3%/5%. The ML model's signals are calibrated around fixed thresholds. Dynamic SL code kept (opt-in `--dynamic-sl`) but not the default.
 
+### S08: Strategy Accuracy Experiments (2026-04-15)
+
+All 4 proposed improvements tested individually and combined. None beat baseline:
+
+| Variant | Return | Win Rate | Max DD | Trades |
+|---------|--------|----------|--------|--------|
+| **S07 Baseline** | **+0.23%** | **44.1%** | **4.21%** | **68** |
+| +5-day target +all | -62.65% | 37.7% | 8.06% | 220 |
+| +VIX +sector only | -56.63% | 46.1% | 7.09% | 364 |
+| +Ensemble only | -3.22% | 35.3% | 6.33% | 102 |
+
+**Root cause:** Curse of dimensionality. 300-day × 31-stock training is insufficient for more features. Code kept but not wired into active path.
+
 ### Cost Insights
 - **Zerodha:** ~0.16% round-trip (STT dominated). 10x cheaper than eToro.
 - **eToro:** ~1.6% round-trip (FX dominated). FX fee kills small accounts.

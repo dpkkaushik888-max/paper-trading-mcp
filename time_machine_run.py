@@ -203,6 +203,13 @@ def main():
                 df = get_history(sym, days=days_map.get(period, 1500))
                 if not df.empty:
                     data[sym] = df
+            try:
+                vix = yf.Ticker("^VIX").history(period=period, interval="1d")
+                if not vix.empty:
+                    vix.index = vix.index.tz_localize(None) if vix.index.tz else vix.index
+                    data["^VIX"] = vix
+            except Exception:
+                pass
             print(f"  US: {len(data)} stocks, ~{max(len(df) for df in data.values()) if data else 0} days")
         else:
             data = fetch_data(watchlist, period=period, label="India")
