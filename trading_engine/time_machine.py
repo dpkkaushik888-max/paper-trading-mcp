@@ -76,6 +76,7 @@ class TimeMachineBacktest:
         enable_learning: bool = True,
         dynamic_sl: bool = False,
         journal_db_path: str | None = None,
+        simplified_features: list[str] | None = None,
     ):
         self.market = market
         self.initial_capital = initial_capital
@@ -102,6 +103,7 @@ class TimeMachineBacktest:
         )
         self.learning = LearningLoop(base_threshold=self.base_confidence)
 
+        self._simplified_features = simplified_features
         self.model: Optional[_SmartLGBM] = None
         self.feature_cols: Optional[list[str]] = None
         self.cash = initial_capital
@@ -392,7 +394,10 @@ class TimeMachineBacktest:
 
             if self.feature_cols is None and symbol != self.cross_asset_symbol:
                 exclude = {"target", "target_dir"}
-                self.feature_cols = [c for c in feat.columns if c not in exclude]
+                cols = [c for c in feat.columns if c not in exclude]
+                if self._simplified_features:
+                    cols = [c for c in self._simplified_features if c in cols]
+                self.feature_cols = cols
 
             train_slice = feat.tail(self.train_window)
             valid = train_slice.dropna(subset=["target_dir"])
@@ -401,7 +406,10 @@ class TimeMachineBacktest:
 
             if self.feature_cols is None:
                 exclude = {"target", "target_dir"}
-                self.feature_cols = [c for c in feat.columns if c not in exclude]
+                cols = [c for c in feat.columns if c not in exclude]
+                if self._simplified_features:
+                    cols = [c for c in self._simplified_features if c in cols]
+                self.feature_cols = cols
 
             train_X_list.append(
                 valid.reindex(columns=self.feature_cols, fill_value=0)

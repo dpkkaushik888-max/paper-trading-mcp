@@ -96,6 +96,12 @@ for _etf, _stocks in SECTOR_MAP.items():
     for _s in _stocks:
         STOCK_TO_SECTOR[_s] = _etf
 
+CRYPTO_WATCHLIST = [
+    "BTC-USD", "ETH-USD", "SOL-USD", "BNB-USD",
+    "XRP-USD", "ADA-USD", "AVAX-USD", "DOT-USD",
+    "MATIC-USD", "LINK-USD", "UNI-USD", "ATOM-USD",
+]
+
 MARKET_OPEN_HOUR_ET = 9
 MARKET_OPEN_MIN_ET = 30
 MARKET_CLOSE_HOUR_ET = 16

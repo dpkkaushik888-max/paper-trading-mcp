@@ -41,6 +41,21 @@ MARKET_CONFIGS = {
             "reg_alpha": 0.1, "reg_lambda": 1.0,
         },
     },
+    "crypto": {
+        "train_window": 200,
+        "min_train": 60,
+        "retrain_every": 14,
+        "default_confidence": 0.80,
+        "cross_asset_symbol": "BTC-USD",
+        "cross_asset_features": ["rsi_2", "rsi_14", "ibs", "return_1d",
+                                  "return_5d", "volatility_5d"],
+        "cross_asset_prefix": "btc",
+        "lgbm_params": {
+            "n_estimators": 150, "max_depth": 3, "learning_rate": 0.03,
+            "subsample": 0.7, "colsample_bytree": 0.7, "min_child_samples": 15,
+            "reg_alpha": 0.1, "reg_lambda": 1.0,
+        },
+    },
     "india": {
         "train_window": 200,
         "min_train": 80,
@@ -360,7 +375,7 @@ def build_features_for_market(df: pd.DataFrame, market: str = "us") -> pd.DataFr
     """Dispatch to the right feature builder based on market."""
     if market == "india":
         return build_feature_matrix_india(df)
-    return build_feature_matrix(df)
+    return build_feature_matrix(df)  # 'us' and 'crypto' share same features
 
 
 def add_vix_features(feat: pd.DataFrame, vix_df: pd.DataFrame) -> pd.DataFrame:
@@ -390,6 +405,42 @@ def add_sector_relative_features(
         sector_ret = sector_close.pct_change(p)
         feat[f"sector_rel_{p}d"] = stock_ret - sector_ret
     return feat
+
+
+def add_earnings_features(
+    feat: pd.DataFrame, symbol: str, earnings_cache: dict[str, pd.DataFrame],
+) -> pd.DataFrame:
+    """Add days-to-next-earnings and post-earnings-drift features."""
+    if symbol not in earnings_cache or earnings_cache[symbol] is None:
+        return feat
+    edates = earnings_cache[symbol]
+    if edates.empty:
+        return feat
+
+    earnings_dates = sorted(edates.index.tz_localize(None) if edates.index.tz else edates.index)
+    days_to_earn = pd.Series(np.nan, index=feat.index)
+    days_since_earn = pd.Series(np.nan, index=feat.index)
+
+    for i, day in enumerate(feat.index):
+        future = [e for e in earnings_dates if e > day]
+        past = [e for e in earnings_dates if e <= day]
+        if future:
+            days_to_earn.iloc[i] = (future[0] - day).days
+        if past:
+            days_since_earn.iloc[i] = (day - past[-1]).days
+
+    feat["days_to_earnings"] = days_to_earn.clip(upper=90)
+    feat["days_since_earnings"] = days_since_earn.clip(upper=90)
+    feat["near_earnings"] = (days_to_earn <= 5).astype(float)
+    return feat
+
+
+SIMPLIFIED_FEATURES = [
+    "volume_trend", "volume_ratio", "ibs", "close_vs_sma_100",
+    "atr_pct", "return_1d", "return_2d", "return_3d",
+    "volatility_5d", "dist_from_20d_high", "efficiency_ratio_20",
+    "rsi_2", "rsi_14", "bb_pct", "day_of_week",
+]
 
 
 def _streak(cond: pd.Series) -> pd.Series:

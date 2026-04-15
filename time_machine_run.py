@@ -20,7 +20,7 @@ import time
 import yfinance as yf
 import pandas as pd
 
-from trading_engine.config import WATCHLIST
+from trading_engine.config import WATCHLIST, CRYPTO_WATCHLIST
 from trading_engine.ml_model import MLSignalGenerator
 from trading_engine.price_engine import get_history
 from trading_engine.time_machine import TimeMachineBacktest
@@ -174,7 +174,7 @@ def run_comparison(
 
 def main():
     parser = argparse.ArgumentParser(description="Time-Machine Backtest Runner")
-    parser.add_argument("--market", choices=["us", "india", "both"], default="both")
+    parser.add_argument("--market", choices=["us", "india", "crypto", "both"], default="both")
     parser.add_argument("--no-learning", action="store_true", help="Disable learning loop")
     parser.add_argument("--dynamic-sl", action="store_true", help="ATR-based dynamic SL/TP (1.5x/2.5x ATR)")
     parser.add_argument("--verbose", action="store_true", help="Day-by-day output")
@@ -192,6 +192,8 @@ def main():
         markets.append(("us", WATCHLIST, 10_000, 0.80, 0.03, 0.05, period))
     if args.market in ("india", "both"):
         markets.append(("india", INDIA_WATCHLIST, 100_000, 0.80, 0.05, 0.08, period))
+    if args.market == "crypto":
+        markets.append(("crypto", CRYPTO_WATCHLIST, 10_000, 0.80, 0.05, 0.08, period))
 
     for market, watchlist, capital, conf, sl, tp, period in markets:
         print(f"\n  Downloading {market.upper()} data ({period})...")
@@ -211,6 +213,8 @@ def main():
             except Exception:
                 pass
             print(f"  US: {len(data)} stocks, ~{max(len(df) for df in data.values()) if data else 0} days")
+        elif market == "crypto":
+            data = fetch_data(watchlist, period=period, label="Crypto")
         else:
             data = fetch_data(watchlist, period=period, label="India")
         print(f"  Download time: {time.time() - t0:.0f}s")

@@ -90,6 +90,17 @@ All 4 proposed improvements tested individually and combined. None beat baseline
 
 **Root cause:** Curse of dimensionality. 300-day × 31-stock training is insufficient for more features. Code kept but not wired into active path.
 
+### S09: Crypto + Simplified + Earnings (2026-04-15)
+
+| Experiment | Return | Win Rate | Max DD | Trades | Cal Error |
+|-----------|--------|----------|--------|--------|-----------|
+| US Baseline (S07) | +0.23% | 44.1% | 4.21% | 68 | 0.390 |
+| **Crypto 2y** | **+2.47%** | **54.2%** | **6.68%** | **96** | **0.253** |
+| US Simplified (15 feat) | -3.62% | 0.0% | N/A | 10 | 0.819 |
+| Earnings feature | DEFERRED | — | — | — | — |
+
+**Winner: Crypto market.** Higher volatility = more signal. Best calibration error (0.253) and first >50% WR result.
+
 ### Cost Insights
 - **Zerodha:** ~0.16% round-trip (STT dominated). 10x cheaper than eToro.
 - **eToro:** ~1.6% round-trip (FX dominated). FX fee kills small accounts.
