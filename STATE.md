@@ -1,8 +1,8 @@
 # Project State
 
 **Last updated:** 2026-04-21
-**Current milestone:** M5: Rule-Based Deployment (config frozen for paper-forward)
-**Active spec:** S18 — Paper-Forward Validation (next, not yet drafted)
+**Current milestone:** M5: Rule-Based Deployment → Paper-Forward Running
+**Active spec:** S18 — Paper-Forward Validation (Day 1/90, autonomous cron live)
 
 ## Completed Specs
 | Spec | Title | Date Completed |
@@ -29,7 +29,7 @@
 | Spec | Title | Status | Notes |
 |------|-------|--------|-------|
 | S14 | Live Paper Trading Simulation | **RETIRED** | Strategy pivoted — S14 was ML-on-1min. Workflow renamed to .disabled. |
-| S18 | Paper-Forward Validation (S20 config) | **IN PROGRESS** | Day 1/90 started 2026-04-21. Verdict date: 2026-07-20. Dashboard: https://dpkkaushik888-max.github.io/paper-trading-mcp/ · Issue: #1 |
+| S18 | Paper-Forward Validation (S20 config) | **IN PROGRESS** | Day 1/90 started 2026-04-21. Verdict date: **2026-07-20**. Three portfolios tracked: Connors (active) + BH_BTC + BH_Basket. Dashboard: https://dpkkaushik888-max.github.io/paper-trading-mcp/ · Issue: #1. **Do nothing until day 90.** |
 | S17.1 | Rolling-Window Robustness Test | NOT STARTED | Optional; 10× rolling 1-yr holdouts to confirm no regime luck |
 
 ## ⚠️ 2026-04-20 Honest-Cost Reckoning
