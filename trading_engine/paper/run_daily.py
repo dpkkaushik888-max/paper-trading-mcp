@@ -52,6 +52,10 @@ from .data import fetch_universe
 from .journal import (
     Journal, OpenPosition, ClosedTrade, Decision, DaySnapshot, Fill,
 )
+from .benchmarks import (
+    init_bh_btc, init_bh_basket, mark_benchmark,
+    serialize as bench_serialize, deserialize as bench_deserialize,
+)
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger("s18.run_daily")
@@ -208,6 +212,27 @@ def run(dry_run: bool = False) -> int:
         else:
             portfolio += pos.entry_price * pos.shares  # stale fallback
 
+    # ── 3b. Initialize benchmarks on first day, then mark ───────────────
+    bh_btc_data = journal.get_benchmark("bh_btc")
+    bh_basket_data = journal.get_benchmark("bh_basket")
+    if not bh_btc_data.get("initialized"):
+        try:
+            bh = init_bh_btc(todays_closes, today)
+            journal.set_benchmark("bh_btc", bench_serialize(bh))
+            log.info("Initialized BH_BTC at $%.2f (%.6f BTC)",
+                     bh.positions[0].entry_price, bh.positions[0].shares)
+        except ValueError as e:
+            log.warning("BH_BTC init deferred: %s", e)
+    if not bh_basket_data.get("initialized"):
+        bh = init_bh_basket(todays_closes, today)
+        journal.set_benchmark("bh_basket", bench_serialize(bh))
+        log.info("Initialized BH_BASKET with %d coins", len(bh.positions))
+
+    bh_btc = bench_deserialize(journal.get_benchmark("bh_btc"))
+    bh_basket = bench_deserialize(journal.get_benchmark("bh_basket"))
+    bh_btc_value = mark_benchmark(bh_btc, todays_closes)
+    bh_basket_value = mark_benchmark(bh_basket, todays_closes)
+
     snap = DaySnapshot(
         date=today,
         portfolio_value=portfolio,
@@ -217,11 +242,15 @@ def run(dry_run: bool = False) -> int:
         decisions=[d.__dict__ for d in decisions],
         fills=[f.__dict__ for f in fills],
         skipped=False,
+        bh_btc_value=bh_btc_value,
+        bh_basket_value=bh_basket_value,
     )
     journal.append_day(snap)
 
-    log.info("Portfolio: $%.2f (%.2f%% vs start)",
-             portfolio, (portfolio / journal.starting_capital - 1) * 100)
+    log.info("Portfolio: $%.2f (%+.2f%%) | BH_BTC: $%.2f (%+.2f%%) | BH_BASKET: $%.2f (%+.2f%%)",
+             portfolio, (portfolio / journal.starting_capital - 1) * 100,
+             bh_btc_value, (bh_btc_value / journal.starting_capital - 1) * 100,
+             bh_basket_value, (bh_basket_value / journal.starting_capital - 1) * 100)
 
     # ── 4. Early-termination checks ─────────────────────────────────────
     halt_reason = _check_halt(journal)

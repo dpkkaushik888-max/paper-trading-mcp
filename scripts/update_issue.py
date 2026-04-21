@@ -64,6 +64,16 @@ def build_body(j: Journal) -> str:
     open_str = ", ".join(p.symbol for p in j.open_positions) or "_none_"
     halt = _check_halt_msg(j)
 
+    # Benchmarks (from last day snapshot)
+    bh_btc = last_day.get("bh_btc_value", start) if last_day else start
+    bh_basket = last_day.get("bh_basket_value", start) if last_day else start
+    bh_btc_ret = (bh_btc / start - 1) * 100
+    bh_basket_ret = (bh_basket / start - 1) * 100
+
+    # Alpha vs benchmarks
+    alpha_btc = total_ret - bh_btc_ret
+    alpha_basket = total_ret - bh_basket_ret
+
     body = f"""## S18 Paper-Forward — Day {n} of {TEST_DAYS}
 
 **Last update:** {datetime.now(timezone.utc).isoformat(timespec="seconds")}
@@ -78,6 +88,13 @@ def build_body(j: Journal) -> str:
 | Win rate | {wr:.1f}% ({len(wins)}W / {len(closed) - len(wins)}L) |
 | Profit factor | {pf_str} |
 | Max drawdown | {j.max_drawdown() * 100:.2f}% |
+
+### Active vs Passive
+| Strategy | Value | Return | Connors Alpha |
+|----------|-------|--------|---------------|
+| **Connors (active)** | ${port:.2f} | {total_ret:+.2f}% | — |
+| BH BTC (100% BTC) | ${bh_btc:.2f} | {bh_btc_ret:+.2f}% | {alpha_btc:+.2f}pp |
+| BH Basket (eq-wt 20) | ${bh_basket:.2f} | {bh_basket_ret:+.2f}% | {alpha_basket:+.2f}pp |
 
 ### Today's decisions
 - **Entered:** {", ".join(enters) if enters else "_none_"}

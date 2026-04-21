@@ -268,6 +268,34 @@ jobs:
 - [ ] Daily behavior criteria (days 1-90)
 - [ ] Day-90 verdict criteria
 
+## Addendum (2026-04-21): Passive Benchmarks
+
+Added same-day as test launch (before any trade fires — no data snooping).
+
+Two phantom portfolios tracked alongside Connors:
+- **BH_BTC:** $10,000 → 100% BTC at the first-day snapshot close, held to day 90.
+  One-time 20 bps entry cost. No rebalance, no exit.
+- **BH_BASKET:** $10,000 → equal-weight ($500) across all 20 universe coins at
+  the first-day snapshot closes. One-time 20 bps entry cost per symbol. No
+  rebalance, no exit.
+
+Both benchmarks pay the same 20 bps/side cost as Connors for entry realism.
+They exit at simulated day-90 close (one-time exit cost at verdict) or if a
+halt triggers.
+
+### Why
+Answer the "did I beat doing nothing" question at day 90. Without this,
+"+8% CAGR" on Connors means nothing — it could be the whole market.
+
+### Journal schema bump (v1 → v2)
+`benchmarks` key added; v1 journals auto-migrate on load.
+
+### Day-90 success gate tightening
+- **PASS** now also requires: **Connors CAGR > BH_BTC CAGR** AND
+  **Connors Sharpe > BH_BTC Sharpe**. Beating buy-and-hold BTC is the minimum
+  bar for active management to be worth the effort.
+- **FAIL** if Connors underperforms BOTH benchmarks — the active work adds no value.
+
 ## Notes & Risks
 
 - **Data snooping:** S17→S19→S20 used the same holdout 3 times. S18 is the

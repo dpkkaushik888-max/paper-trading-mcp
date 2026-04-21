@@ -27,7 +27,7 @@ from .config import (
 
 log = logging.getLogger(__name__)
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2  # v2 adds 'benchmarks' key (BH_BTC + BH_BASKET)
 
 
 @dataclass
@@ -80,6 +80,8 @@ class DaySnapshot:
     decisions: list[dict]
     fills: list[dict]
     skipped: bool = False    # True if cron failed / bars unavailable
+    bh_btc_value: float = 0.0       # Buy-and-hold BTC phantom portfolio
+    bh_basket_value: float = 0.0    # Equal-weight 20-coin phantom portfolio
 
 
 class Journal:
@@ -96,7 +98,29 @@ class Journal:
             log.info("No journal at %s — initializing fresh", p)
             return cls.init_fresh()
         with p.open() as f:
-            return cls(json.load(f))
+            data = json.load(f)
+        data = cls._migrate(data)
+        return cls(data)
+
+    @staticmethod
+    def _migrate(data: dict[str, Any]) -> dict[str, Any]:
+        """Forward-compatible schema migration. Idempotent."""
+        v = data.get("version", 1)
+        if v < 2:
+            # v1 → v2: add empty benchmarks scaffold.
+            data.setdefault("benchmarks", {
+                "bh_btc": {"name": "bh_btc", "initialized": False, "init_date": None,
+                           "starting_capital": STARTING_CAPITAL, "positions": []},
+                "bh_basket": {"name": "bh_basket", "initialized": False, "init_date": None,
+                              "starting_capital": STARTING_CAPITAL, "positions": []},
+            })
+            # Back-fill day snapshots missing bh_* fields (value=starting_capital).
+            for d in data.get("days", []):
+                d.setdefault("bh_btc_value", STARTING_CAPITAL)
+                d.setdefault("bh_basket_value", STARTING_CAPITAL)
+            data["version"] = 2
+            log.info("Migrated journal v1 → v2 (added benchmarks scaffold)")
+        return data
 
     def save(self, path: str | Path = JOURNAL_PATH) -> None:
         p = Path(path)
@@ -120,7 +144,20 @@ class Journal:
             "days": [],
             "open_positions": [],
             "closed_trades": [],
+            "benchmarks": {
+                "bh_btc": {"name": "bh_btc", "initialized": False, "init_date": None,
+                           "starting_capital": STARTING_CAPITAL, "positions": []},
+                "bh_basket": {"name": "bh_basket", "initialized": False, "init_date": None,
+                              "starting_capital": STARTING_CAPITAL, "positions": []},
+            },
         })
+
+    # ── Benchmark accessors ──────────────────────────────────────────────
+    def get_benchmark(self, name: str) -> dict[str, Any]:
+        return self._data.setdefault("benchmarks", {}).get(name, {})
+
+    def set_benchmark(self, name: str, data: dict[str, Any]) -> None:
+        self._data.setdefault("benchmarks", {})[name] = data
 
     # ── Accessors ────────────────────────────────────────────────────────
     @property

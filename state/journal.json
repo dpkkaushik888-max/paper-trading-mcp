@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "start_date": "2026-04-21",
   "starting_capital": 10000.0,
   "cash": 10000.0,
@@ -37,26 +37,26 @@
       "cash": 10000.0,
       "n_open": 0,
       "closes": {
-        "BTCUSDT": 75853.48,
-        "ETHUSDT": 2313.97,
-        "SOLUSDT": 85.35,
-        "AVAXUSDT": 9.28,
-        "LINKUSDT": 9.3,
-        "MATICUSDT": 0.4492,
-        "DOGEUSDT": 0.09515,
-        "XRPUSDT": 1.4248,
-        "ADAUSDT": 0.248,
-        "DOTUSDT": 1.279,
-        "ATOMUSDT": 1.83,
-        "NEARUSDT": 1.371,
-        "LTCUSDT": 55.28,
-        "TRXUSDT": 0.3301,
+        "BTCUSDT": 75840.97,
+        "ETHUSDT": 2313.85,
+        "SOLUSDT": 85.28,
+        "AVAXUSDT": 9.27,
+        "LINKUSDT": 9.29,
+        "MATICUSDT": 0.3794,
+        "DOGEUSDT": 0.09521,
+        "XRPUSDT": 1.4243,
+        "ADAUSDT": 0.2479,
+        "DOTUSDT": 1.281,
+        "ATOMUSDT": 1.8,
+        "NEARUSDT": 1.362,
+        "LTCUSDT": 55.03,
+        "TRXUSDT": 0.3287,
         "BCHUSDT": 443.6,
-        "APTUSDT": 0.953,
-        "UNIUSDT": 3.183,
-        "ARBUSDT": 0.1295,
-        "OPUSDT": 0.125,
-        "SUIUSDT": 0.9472
+        "APTUSDT": 0.936,
+        "UNIUSDT": 3.233,
+        "ARBUSDT": 0.127,
+        "OPUSDT": 0.124,
+        "SUIUSDT": 0.9441
       },
       "decisions": [
         {
@@ -161,9 +161,155 @@
         }
       ],
       "fills": [],
-      "skipped": false
+      "skipped": false,
+      "bh_btc_value": 9980.0,
+      "bh_basket_value": 9980.0
     }
   ],
   "open_positions": [],
-  "closed_trades": []
+  "closed_trades": [],
+  "benchmarks": {
+    "bh_btc": {
+      "name": "bh_btc",
+      "initialized": true,
+      "init_date": "2026-04-21",
+      "starting_capital": 10000.0,
+      "positions": [
+        {
+          "symbol": "BTCUSDT",
+          "shares": 0.13159114394238364,
+          "entry_price": 75840.97,
+          "allocated": 10000.0
+        }
+      ]
+    },
+    "bh_basket": {
+      "name": "bh_basket",
+      "initialized": true,
+      "init_date": "2026-04-21",
+      "starting_capital": 10000.0,
+      "positions": [
+        {
+          "symbol": "BTCUSDT",
+          "shares": 0.006579557197119183,
+          "entry_price": 75840.97,
+          "allocated": 500.0
+        },
+        {
+          "symbol": "ETHUSDT",
+          "shares": 0.21565788620697107,
+          "entry_price": 2313.85,
+          "allocated": 500.0
+        },
+        {
+          "symbol": "SOLUSDT",
+          "shares": 5.851313320825516,
+          "entry_price": 85.28,
+          "allocated": 500.0
+        },
+        {
+          "symbol": "AVAXUSDT",
+          "shares": 53.829557713052864,
+          "entry_price": 9.27,
+          "allocated": 500.0
+        },
+        {
+          "symbol": "LINKUSDT",
+          "shares": 53.713670613562975,
+          "entry_price": 9.29,
+          "allocated": 500.0
+        },
+        {
+          "symbol": "MATICUSDT",
+          "shares": 1315.2345809172377,
+          "entry_price": 0.3794,
+          "allocated": 500.0
+        },
+        {
+          "symbol": "DOGEUSDT",
+          "shares": 5241.046108602038,
+          "entry_price": 0.09521,
+          "allocated": 500.0
+        },
+        {
+          "symbol": "XRPUSDT",
+          "shares": 350.3475391420347,
+          "entry_price": 1.4243,
+          "allocated": 500.0
+        },
+        {
+          "symbol": "ADAUSDT",
+          "shares": 2012.9084308188785,
+          "entry_price": 0.2479,
+          "allocated": 500.0
+        },
+        {
+          "symbol": "DOTUSDT",
+          "shares": 389.5394223263076,
+          "entry_price": 1.281,
+          "allocated": 500.0
+        },
+        {
+          "symbol": "ATOMUSDT",
+          "shares": 277.22222222222223,
+          "entry_price": 1.8,
+          "allocated": 500.0
+        },
+        {
+          "symbol": "NEARUSDT",
+          "shares": 366.37298091042584,
+          "entry_price": 1.362,
+          "allocated": 500.0
+        },
+        {
+          "symbol": "LTCUSDT",
+          "shares": 9.067781210248954,
+          "entry_price": 55.03,
+          "allocated": 500.0
+        },
+        {
+          "symbol": "TRXUSDT",
+          "shares": 1518.1016124125342,
+          "entry_price": 0.3287,
+          "allocated": 500.0
+        },
+        {
+          "symbol": "BCHUSDT",
+          "shares": 1.1248872858431018,
+          "entry_price": 443.6,
+          "allocated": 500.0
+        },
+        {
+          "symbol": "APTUSDT",
+          "shares": 533.1196581196581,
+          "entry_price": 0.936,
+          "allocated": 500.0
+        },
+        {
+          "symbol": "UNIUSDT",
+          "shares": 154.3458088462728,
+          "entry_price": 3.233,
+          "allocated": 500.0
+        },
+        {
+          "symbol": "ARBUSDT",
+          "shares": 3929.1338582677163,
+          "entry_price": 0.127,
+          "allocated": 500.0
+        },
+        {
+          "symbol": "OPUSDT",
+          "shares": 4024.1935483870966,
+          "entry_price": 0.124,
+          "allocated": 500.0
+        },
+        {
+          "symbol": "SUIUSDT",
+          "shares": 528.5457049041415,
+          "entry_price": 0.9441,
+          "allocated": 500.0
+        }
+      ]
+    }
+  }
 }

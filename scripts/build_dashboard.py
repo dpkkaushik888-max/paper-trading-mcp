@@ -35,6 +35,41 @@ BACKTEST_BASELINE = {
 }
 
 
+def compute_benchmark_metrics(j: Journal, key: str) -> dict:
+    """Compute days-elapsed metrics for a benchmark (bh_btc_value / bh_basket_value)."""
+    days = j.days
+    starting = j.starting_capital
+    if not days:
+        return {"value": starting, "total_return_pct": 0.0, "cagr_pct": 0.0, "sharpe": 0.0, "max_dd_pct": 0.0}
+    vals = [d.get(key, starting) for d in days]
+    current = vals[-1]
+    n_days = len(days)
+    total_ret = (current / starting - 1.0)
+    cagr = ((current / starting) ** (365 / max(n_days, 1)) - 1.0)
+    rets = [(vals[i] / vals[i - 1] - 1.0) for i in range(1, len(vals)) if vals[i - 1] > 0]
+    if len(rets) >= 2:
+        import statistics
+        m = statistics.mean(rets)
+        s = statistics.pstdev(rets)
+        sharpe = (m / s * (365 ** 0.5)) if s > 0 else 0.0
+    else:
+        sharpe = 0.0
+    # Max DD
+    peak = vals[0]
+    max_dd = 0.0
+    for v in vals:
+        peak = max(peak, v)
+        dd = (peak - v) / peak if peak > 0 else 0.0
+        max_dd = max(max_dd, dd)
+    return {
+        "value": current,
+        "total_return_pct": total_ret * 100,
+        "cagr_pct": cagr * 100,
+        "sharpe": sharpe,
+        "max_dd_pct": max_dd * 100,
+    }
+
+
 def compute_live_metrics(j: Journal) -> dict:
     days = j.days
     closed = j.closed_trades
@@ -84,13 +119,24 @@ def compute_live_metrics(j: Journal) -> dict:
 
 def build_data_json(j: Journal) -> dict:
     metrics = compute_live_metrics(j)
+    bh_btc_metrics = compute_benchmark_metrics(j, "bh_btc_value")
+    bh_basket_metrics = compute_benchmark_metrics(j, "bh_basket_value")
+
     equity_curve = [
-        {"date": d["date"], "value": d["portfolio_value"]}
+        {
+            "date": d["date"],
+            "connors": d["portfolio_value"],
+            "bh_btc": d.get("bh_btc_value", STARTING_CAPITAL),
+            "bh_basket": d.get("bh_basket_value", STARTING_CAPITAL),
+        }
         for d in j.days
     ]
     # Prepend day-0 (before first run).
     if j.days:
-        equity_curve.insert(0, {"date": j.start_date, "value": STARTING_CAPITAL})
+        equity_curve.insert(0, {
+            "date": j.start_date, "connors": STARTING_CAPITAL,
+            "bh_btc": STARTING_CAPITAL, "bh_basket": STARTING_CAPITAL,
+        })
 
     open_positions = []
     latest_closes = j.days[-1]["closes"] if j.days else {}
@@ -132,6 +178,8 @@ def build_data_json(j: Journal) -> dict:
         "starting_capital": j.starting_capital,
         "test_days": TEST_DAYS,
         "metrics": metrics,
+        "bh_btc_metrics": bh_btc_metrics,
+        "bh_basket_metrics": bh_basket_metrics,
         "backtest_baseline": BACKTEST_BASELINE,
         "equity_curve": equity_curve,
         "open_positions": open_positions,
@@ -188,12 +236,26 @@ INDEX_HTML = r"""<!doctype html>
 <div class="kpi-grid" id="kpis"></div>
 
 <div class="card">
-  <h2>Equity Curve</h2>
+  <h2>Equity Curve — Connors vs Buy &amp; Hold</h2>
   <canvas id="equity"></canvas>
+  <div class="muted" style="margin-top:0.5rem;font-size:0.8rem">
+    Blue = Connors active strategy · Orange = 100% BTC · Green = equal-weight 20-coin basket
+  </div>
 </div>
 
 <div class="card">
-  <h2>Backtest vs Live</h2>
+  <h2>Active (Connors) vs Passive (Buy &amp; Hold)</h2>
+  <table id="vsbh">
+    <thead><tr><th>Metric</th><th class="num">Connors</th><th class="num">BH BTC</th><th class="num">BH Basket</th><th>Verdict</th></tr></thead>
+    <tbody></tbody>
+  </table>
+  <div class="muted" style="margin-top:0.5rem;font-size:0.8rem">
+    S18 PASS gate: Connors must beat <em>both</em> benchmarks on CAGR and Sharpe to justify active management.
+  </div>
+</div>
+
+<div class="card">
+  <h2>S20 Backtest vs S18 Live</h2>
   <table id="compare">
     <thead><tr><th>Metric</th><th class="num">S20 Backtest</th><th class="num">S18 Live</th><th class="num">Delta</th></tr></thead>
     <tbody></tbody>
@@ -258,17 +320,32 @@ INDEX_HTML = r"""<!doctype html>
     `<div class="kpi"><div class="kpi-label">${l}</div><div class="kpi-value ${c}">${v}</div></div>`
   ).join('');
 
-  // Equity curve
+  // Equity curve — 3 lines
   if (d.equity_curve.length) {
     new Chart(document.getElementById('equity'), {
       type: 'line',
       data: {
         labels: d.equity_curve.map(p => p.date),
-        datasets: [{
-          label: 'Portfolio', data: d.equity_curve.map(p => p.value),
-          borderColor: '#58a6ff', backgroundColor: 'rgba(88,166,255,0.1)',
-          fill: true, tension: 0.1,
-        }],
+        datasets: [
+          {
+            label: 'Connors (active)',
+            data: d.equity_curve.map(p => p.connors),
+            borderColor: '#58a6ff', backgroundColor: 'rgba(88,166,255,0.08)',
+            fill: false, tension: 0.1, borderWidth: 2,
+          },
+          {
+            label: 'BH BTC (100% BTC)',
+            data: d.equity_curve.map(p => p.bh_btc),
+            borderColor: '#f78166', backgroundColor: 'rgba(247,129,102,0.08)',
+            fill: false, tension: 0.1, borderWidth: 2, borderDash: [4, 4],
+          },
+          {
+            label: 'BH Basket (eq-wt 20)',
+            data: d.equity_curve.map(p => p.bh_basket),
+            borderColor: '#3fb950', backgroundColor: 'rgba(63,185,80,0.08)',
+            fill: false, tension: 0.1, borderWidth: 2, borderDash: [2, 2],
+          },
+        ],
       },
       options: {
         scales: {
@@ -279,6 +356,25 @@ INDEX_HTML = r"""<!doctype html>
       },
     });
   }
+
+  // Connors vs Buy & Hold table
+  const cn = m, bh1 = d.bh_btc_metrics, bh2 = d.bh_basket_metrics;
+  const verdictOf = (cnv, b1v, b2v) =>
+    cnv > b1v && cnv > b2v ? '<span class="pos">Beats both</span>' :
+    cnv > b1v || cnv > b2v ? '<span class="muted">Beats one</span>' :
+    '<span class="neg">Trails both</span>';
+  const vsRows = [
+    ['Total Return', cn.total_return_pct, bh1.total_return_pct, bh2.total_return_pct, '%'],
+    ['CAGR (ann.)', cn.cagr_pct, bh1.cagr_pct, bh2.cagr_pct, '%'],
+    ['Sharpe',      cn.sharpe,   bh1.sharpe,   bh2.sharpe,   ''],
+    ['Max DD',      cn.max_dd_pct, bh1.max_dd_pct, bh2.max_dd_pct, '%'],
+  ];
+  document.querySelector('#vsbh tbody').innerHTML = vsRows.map(([lab, cv, b1v, b2v, suf]) => {
+    const verdict = lab === 'Max DD'
+      ? (cv < b1v && cv < b2v ? '<span class="pos">Lower DD</span>' : '<span class="muted">—</span>')
+      : verdictOf(cv, b1v, b2v);
+    return `<tr><td>${lab}</td><td class="num ${cls(cv)}">${fmt(cv, suf)}</td><td class="num ${cls(b1v)}">${fmt(b1v, suf)}</td><td class="num ${cls(b2v)}">${fmt(b2v, suf)}</td><td>${verdict}</td></tr>`;
+  }).join('');
 
   // Comparison table
   const cmpRows = [
