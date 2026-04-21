@@ -28,8 +28,8 @@
 ## In Progress
 | Spec | Title | Status | Notes |
 |------|-------|--------|-------|
-| S14 | Live Paper Trading Simulation | **SUSPENDED** | Strategy pivoted — S14 was ML-on-1min (not viable). Replaced by S18. |
-| S18 | Paper-Forward Validation (S20 config) | NOT STARTED | 90-day paper test; config frozen (see S20 spec) |
+| S14 | Live Paper Trading Simulation | **RETIRED** | Strategy pivoted — S14 was ML-on-1min. Workflow renamed to .disabled. |
+| S18 | Paper-Forward Validation (S20 config) | **IN PROGRESS** | Day 1/90 started 2026-04-21. Verdict date: 2026-07-20. Dashboard: https://dpkkaushik888-max.github.io/paper-trading-mcp/ · Issue: #1 |
 | S17.1 | Rolling-Window Robustness Test | NOT STARTED | Optional; 10× rolling 1-yr holdouts to confirm no regime luck |
 
 ## ⚠️ 2026-04-20 Honest-Cost Reckoning
