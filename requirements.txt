@@ -1,7 +1,12 @@
 yfinance>=0.2.36
 pandas>=2.0.0
 pandas-ta>=0.3.14b1
+scikit-learn>=1.4.0
+lightgbm>=4.0.0
+xgboost>=2.0.0
 mcp>=1.0.0
 httpx>=0.27.0
 uvicorn>=0.30.0
 pytest>=8.0.0
+requests>=2.31.0
+

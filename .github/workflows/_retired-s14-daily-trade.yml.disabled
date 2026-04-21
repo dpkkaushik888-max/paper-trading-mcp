@@ -1,0 +1,46 @@
+name: Daily Paper Trading
+
+on:
+  schedule:
+    # Run daily at 00:30 UTC (crypto trades 24/7)
+    - cron: '30 0 * * *'
+  workflow_dispatch:  # Allow manual trigger from GitHub UI
+
+permissions:
+  contents: write
+
+jobs:
+  trade:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run paper trader
+        run: python scripts/live_paper_trader.py --verbose
+
+      - name: Commit results
+        run: |
+          git config user.name "Paper Trading Bot"
+          git config user.email "bot@paper-trading.local"
+          git add paper_trading/portfolio_state.json paper_trading/trade_log.csv
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            DATE=$(date -u +"%Y-%m-%d")
+            # Read portfolio value from state file
+            VALUE=$(python3 -c "import json; s=json.load(open('paper_trading/portfolio_state.json')); print(f\"\${s['cash']:.0f} cash + {len(s['positions'])} pos\")")
+            git commit -m "📊 paper trade ${DATE}: ${VALUE}"
+            git push
+          fi

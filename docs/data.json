@@ -1,0 +1,43 @@
+{
+  "generated_at": "2026-04-21T12:03:01+00:00",
+  "start_date": "2026-04-21",
+  "starting_capital": 10000.0,
+  "test_days": 90,
+  "metrics": {
+    "days_elapsed": 1,
+    "total_return_pct": 0.0,
+    "cagr_pct": 0.0,
+    "sharpe": 0.0,
+    "max_dd_pct": 0.0,
+    "win_rate_pct": 0.0,
+    "profit_factor": 0.0,
+    "trades": 0,
+    "wins": 0,
+    "losses": 0,
+    "portfolio_value": 10000.0,
+    "cash": 10000.0,
+    "n_open": 0
+  },
+  "backtest_baseline": {
+    "cagr_pct": 13.39,
+    "sharpe": 1.064,
+    "max_dd_pct": 7.68,
+    "win_rate_pct": 70.5,
+    "profit_factor": 2.4,
+    "trades": 44,
+    "holdout_days": 326
+  },
+  "equity_curve": [
+    {
+      "date": "2026-04-21",
+      "value": 10000.0
+    },
+    {
+      "date": "2026-04-21",
+      "value": 10000.0
+    }
+  ],
+  "open_positions": [],
+  "closed_trades": [],
+  "per_symbol": {}
+}

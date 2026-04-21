@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>S18 Paper-Forward Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    margin: 0; padding: 1rem; background: #0d1117; color: #e6edf3;
+    max-width: 1200px; margin-left: auto; margin-right: auto;
+  }
+  h1, h2 { margin: 1rem 0 0.5rem; }
+  h1 { font-size: 1.5rem; border-bottom: 1px solid #30363d; padding-bottom: 0.5rem; }
+  .muted { color: #7d8590; font-size: 0.9rem; }
+  .kpi-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.75rem; margin: 1rem 0;
+  }
+  .kpi {
+    background: #161b22; border: 1px solid #30363d; border-radius: 6px;
+    padding: 0.75rem;
+  }
+  .kpi-label { font-size: 0.75rem; text-transform: uppercase; color: #7d8590; }
+  .kpi-value { font-size: 1.3rem; font-weight: 600; margin-top: 0.25rem; }
+  .pos { color: #3fb950; }
+  .neg { color: #f85149; }
+  table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; }
+  th, td { padding: 0.4rem 0.6rem; text-align: left; border-bottom: 1px solid #30363d; }
+  th { background: #161b22; font-size: 0.8rem; text-transform: uppercase; color: #7d8590; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .card { background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 1rem; margin-top: 1rem; }
+  canvas { max-height: 300px; }
+  .progress { background: #30363d; border-radius: 4px; height: 8px; overflow: hidden; margin-top: 0.5rem; }
+  .progress > div { height: 100%; background: linear-gradient(90deg, #1f6feb, #3fb950); }
+  footer { color: #7d8590; font-size: 0.8rem; margin-top: 2rem; text-align: center; }
+  a { color: #58a6ff; }
+</style>
+</head>
+<body>
+<h1>📊 S18 Paper-Forward Dashboard</h1>
+<div class="muted" id="subtitle">Loading…</div>
+<div class="progress"><div id="progress-bar"></div></div>
+
+<div class="kpi-grid" id="kpis"></div>
+
+<div class="card">
+  <h2>Equity Curve</h2>
+  <canvas id="equity"></canvas>
+</div>
+
+<div class="card">
+  <h2>Backtest vs Live</h2>
+  <table id="compare">
+    <thead><tr><th>Metric</th><th class="num">S20 Backtest</th><th class="num">S18 Live</th><th class="num">Delta</th></tr></thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<div class="card">
+  <h2>Open Positions</h2>
+  <table id="open">
+    <thead><tr><th>Symbol</th><th>Entry Date</th><th class="num">Entry</th><th class="num">Current</th><th class="num">Unrealized</th><th class="num">%</th></tr></thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<div class="card">
+  <h2>Closed Trades</h2>
+  <table id="trades">
+    <thead><tr><th>Symbol</th><th>Entry</th><th>Exit</th><th class="num">Entry $</th><th class="num">Exit $</th><th class="num">P&L</th><th class="num">%</th><th>Hold</th><th>Reason</th></tr></thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<div class="card">
+  <h2>Per-Symbol Attribution</h2>
+  <table id="symtab">
+    <thead><tr><th>Symbol</th><th class="num">Trades</th><th class="num">Wins</th><th class="num">WR</th><th class="num">Total P&L</th></tr></thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<footer>
+  Generated <span id="gen"></span> · Read-only · No real orders ·
+  <a href="https://github.com/dpkkaushik888-max/paper-trading-mcp">Source</a>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+(async () => {
+  const d = await fetch('data.json', {cache: 'no-store'}).then(r => r.json());
+  const m = d.metrics, b = d.backtest_baseline;
+
+  document.getElementById('subtitle').textContent =
+    `Day ${m.days_elapsed} of ${d.test_days} · Started ${d.start_date} · Starting capital $${d.starting_capital.toFixed(0)}`;
+  document.getElementById('progress-bar').style.width =
+    Math.min(100, (m.days_elapsed / d.test_days) * 100) + '%';
+
+  const fmt = (v, suf='', dp=2) => v == null ? '—' :
+    (typeof v === 'number' ? v.toFixed(dp) + suf : v);
+  const cls = v => v > 0 ? 'pos' : v < 0 ? 'neg' : '';
+
+  const kpis = [
+    ['Portfolio', `$${m.portfolio_value.toFixed(2)}`, cls(m.portfolio_value - d.starting_capital)],
+    ['Total Return', fmt(m.total_return_pct, '%'), cls(m.total_return_pct)],
+    ['CAGR (ann.)', fmt(m.cagr_pct, '%'), cls(m.cagr_pct)],
+    ['Sharpe', fmt(m.sharpe, '', 2), cls(m.sharpe)],
+    ['Max DD', fmt(m.max_dd_pct, '%'), m.max_dd_pct > 10 ? 'neg' : ''],
+    ['Win Rate', fmt(m.win_rate_pct, '%'), cls(m.win_rate_pct - 50)],
+    ['Trades', m.trades, ''],
+    ['Open', m.n_open + ' / 6', ''],
+  ];
+  document.getElementById('kpis').innerHTML = kpis.map(([l, v, c]) =>
+    `<div class="kpi"><div class="kpi-label">${l}</div><div class="kpi-value ${c}">${v}</div></div>`
+  ).join('');
+
+  // Equity curve
+  if (d.equity_curve.length) {
+    new Chart(document.getElementById('equity'), {
+      type: 'line',
+      data: {
+        labels: d.equity_curve.map(p => p.date),
+        datasets: [{
+          label: 'Portfolio', data: d.equity_curve.map(p => p.value),
+          borderColor: '#58a6ff', backgroundColor: 'rgba(88,166,255,0.1)',
+          fill: true, tension: 0.1,
+        }],
+      },
+      options: {
+        scales: {
+          x: {ticks: {color: '#7d8590'}, grid: {color: '#30363d'}},
+          y: {ticks: {color: '#7d8590'}, grid: {color: '#30363d'}},
+        },
+        plugins: {legend: {labels: {color: '#e6edf3'}}},
+      },
+    });
+  }
+
+  // Comparison table
+  const cmpRows = [
+    ['CAGR', b.cagr_pct, m.cagr_pct, '%'],
+    ['Sharpe', b.sharpe, m.sharpe, ''],
+    ['MaxDD', b.max_dd_pct, m.max_dd_pct, '%'],
+    ['Win Rate', b.win_rate_pct, m.win_rate_pct, '%'],
+    ['Trades (90d est)', Math.round(b.trades * 90 / b.holdout_days), m.trades, ''],
+  ];
+  document.querySelector('#compare tbody').innerHTML = cmpRows.map(([lab, bv, lv, suf]) => {
+    const delta = lv - bv;
+    return `<tr><td>${lab}</td><td class="num">${fmt(bv, suf)}</td><td class="num">${fmt(lv, suf)}</td><td class="num ${cls(delta)}">${delta >= 0 ? '+' : ''}${fmt(delta, suf)}</td></tr>`;
+  }).join('');
+
+  // Open positions
+  const openRows = d.open_positions.map(p =>
+    `<tr><td>${p.symbol}</td><td>${p.entry_date}</td><td class="num">$${p.entry_price.toFixed(2)}</td><td class="num">$${p.current_price.toFixed(2)}</td><td class="num ${cls(p.unrealized_pnl)}">$${p.unrealized_pnl.toFixed(2)}</td><td class="num ${cls(p.unrealized_pct)}">${p.unrealized_pct >= 0 ? '+' : ''}${p.unrealized_pct.toFixed(2)}%</td></tr>`
+  ).join('') || '<tr><td colspan="6" class="muted">No open positions.</td></tr>';
+  document.querySelector('#open tbody').innerHTML = openRows;
+
+  // Closed trades
+  const tradeRows = d.closed_trades.slice().reverse().map(t =>
+    `<tr><td>${t.symbol}</td><td>${t.entry_date}</td><td>${t.exit_date}</td><td class="num">$${t.entry_price.toFixed(2)}</td><td class="num">$${t.exit_price.toFixed(2)}</td><td class="num ${cls(t.pnl)}">$${t.pnl.toFixed(2)}</td><td class="num ${cls(t.pnl_pct)}">${t.pnl_pct >= 0 ? '+' : ''}${t.pnl_pct.toFixed(2)}%</td><td class="num">${t.hold_days}d</td><td>${t.reason}</td></tr>`
+  ).join('') || '<tr><td colspan="9" class="muted">No closed trades yet.</td></tr>';
+  document.querySelector('#trades tbody').innerHTML = tradeRows;
+
+  // Per-symbol
+  const syms = Object.entries(d.per_symbol).sort((a, b) => b[1].pnl - a[1].pnl);
+  const symRows = syms.map(([sym, s]) =>
+    `<tr><td>${sym}</td><td class="num">${s.trades}</td><td class="num">${s.wins}</td><td class="num">${(s.wins / s.trades * 100).toFixed(0)}%</td><td class="num ${cls(s.pnl)}">$${s.pnl.toFixed(2)}</td></tr>`
+  ).join('') || '<tr><td colspan="5" class="muted">No trades yet.</td></tr>';
+  document.querySelector('#symtab tbody').innerHTML = symRows;
+
+  document.getElementById('gen').textContent = d.generated_at;
+})();
+</script>
+</body>
+</html>
