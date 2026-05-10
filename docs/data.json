@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-05-09T04:03:11+00:00",
+  "generated_at": "2026-05-10T04:31:42+00:00",
   "start_date": "2026-04-21",
   "starting_capital": 10000.0,
   "test_days": 90,
   "metrics": {
-    "days_elapsed": 19,
+    "days_elapsed": 20,
     "total_return_pct": 0.0,
     "cagr_pct": 0.0,
     "sharpe": 0.0,
@@ -19,17 +19,17 @@
     "n_open": 0
   },
   "bh_btc_metrics": {
-    "value": 10554.329547736532,
-    "total_return_pct": 5.543295477365318,
-    "cagr_pct": 181.91301534318578,
-    "sharpe": 4.915781294204147,
+    "value": 10619.113183810807,
+    "total_return_pct": 6.191131838108066,
+    "cagr_pct": 199.30264719563388,
+    "sharpe": 5.28974190637179,
     "max_dd_pct": 3.603571635699882
   },
   "bh_basket_metrics": {
-    "value": 10973.179777397494,
-    "total_return_pct": 9.731797773974948,
-    "cagr_pct": 495.3994732660207,
-    "sharpe": 6.417221039891051,
+    "value": 11104.355368876326,
+    "total_return_pct": 11.043553688763264,
+    "cagr_pct": 576.4779923067649,
+    "sharpe": 7.081402913854644,
     "max_dd_pct": 3.05858257395887
   },
   "backtest_baseline": {
@@ -161,6 +161,12 @@
       "connors": 10000.0,
       "bh_btc": 10554.329547736532,
       "bh_basket": 10973.179777397494
+    },
+    {
+      "date": "2026-05-10",
+      "connors": 10000.0,
+      "bh_btc": 10619.113183810807,
+      "bh_basket": 11104.355368876326
     }
   ],
   "open_positions": [],
