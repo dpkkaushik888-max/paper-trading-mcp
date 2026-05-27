@@ -1,9 +1,11 @@
 # S18: Paper-Forward Validation of S20 Config
 
-**Status:** APPROVED
+**Status:** FAIL — terminated day 29/90 (2026-05-27)
 **Branch:** `feature/s18-paper-forward`
 **Priority:** P1 (gate before real capital)
 **Depends on:** S20 (VERIFIED)
+**Verdict:** Active strategy produced 0 trades vs 2 passive benchmarks both
+positive. Regime mismatch (broad crypto downtrend) — not a bug. See UAT below.
 
 ## Overview
 
@@ -262,11 +264,68 @@ jobs:
 - **Binance public API reachable from GitHub Actions runners** (verified
   in infra setup)
 
-## UAT
-(Filled in during Phase 4 after implementation)
-- [ ] Infrastructure criteria (days 0-1)
-- [ ] Daily behavior criteria (days 1-90)
-- [ ] Day-90 verdict criteria
+## UAT — closed FAIL on day 29/90 (2026-05-27)
+
+Test terminated early. D10 early-termination trigger
+(`MAX_NO_SIGNAL_DAYS = 30`) fired automatically starting day 30 (2026-05-20)
+and every cron run since exited with code 2. Disabled the workflow on
+2026-05-27 to stop polluting the Actions tab.
+
+### Live results (days 1-29: 2026-04-21 → 2026-05-19)
+| Portfolio | Final value | Return | Trades |
+|-----------|------------:|------:|------:|
+| **Connors (S20 active)** | **$10,000.00** | **+0.00%** | **0** |
+| BH_BTC (passive) | $10,133.36 | +1.33% | 1 entry |
+| BH_BASKET (passive) | $10,264.93 | +2.65% | 20 entries |
+
+### Acceptance criteria walkthrough
+- [x] Infrastructure (days 0-1) — all built and ran for 29 days, success rate 100% before halt
+- [~] Daily behavior (days 1-90) — ran 29/90 then auto-halted; 580 decisions logged, all `no_entry_signal`
+- [ ] **Day-90 verdict (FAIL)** — early-termination D10 triggered; addendum gate
+      (Connors > BH_BTC on both CAGR and Sharpe) also fails since Connors == 0%
+
+### Root-cause analysis (2026-05-27 backtest replay)
+
+Replayed Connors `long_entry` against the same 20-symbol universe over the
+identical 36-day window using fresh Binance data. Result: **1 backtest
+signal** (TRX 2026-04-24) vs **0 live** — functionally identical given
+RSI(2) tick-level sensitivity across binance.com vs binance.us closes.
+
+Filter pass-rate audit over 684 symbol-days:
+
+| Filter | Pass rate | Verdict |
+|---|---:|---|
+| F1: Close > SMA(200) | **8.0%** | 🔴 Binding constraint — 17/20 symbols never closed above their 200-day SMA |
+| F2: RSI(2) < 10 | 13.3% | Normal sparsity |
+| F3: Close < SMA(5) | 51.2% | Healthy |
+| F4: ADX(14) ≥ 20 | 55.3% | Healthy |
+
+**Diagnosis:** The 36-day window was a broad crypto downtrend. S20 is by
+design a "buy oversold pullbacks **in uptrends**" strategy — it correctly
+refused to trade because there were no uptrends to trade. Dropping F1
+would have produced 56 signals over the same window, but those signals
+are buying dips in a downtrend — exactly what blows up retail mean-revert
+traders.
+
+### Lessons preserved for S21
+1. **Single-regime strategies have multi-month idle stretches.** S20 alone
+   is unsuitable as a personal-compounder primary engine.
+2. **The honest-cost + pre-committed methodology held up.** The "+13.39%
+   backtest CAGR" was an upper bound (data-snooped across 3 holdout passes);
+   the actual live regime delivered 0 trades. Backtest replay confirmed
+   live code was not buggy — the regime simply did not match.
+3. **Passive BH_BTC beat the active strategy** on the same window. Active
+   management must demonstrably beat doing nothing or it's pure overhead.
+4. **Next strategy must cover non-uptrend regimes** (range, downtrend) —
+   see S21.
+
+### Bugs fixed alongside closure
+- `binance.com` swapped from primary to fallback in `paper/config.py`
+  (geoblocks GH Actions runners with 451; .us was the de-facto source).
+- Cron workflow renamed to `.disabled` (was failing daily on the D10 halt).
+- Initial "benchmarks broken" alarm in audit was a diagnostic-script error
+  — `bh_btc_value` / `bh_basket_value` were always present on per-day
+  records. No fix required.
 
 ## Addendum (2026-04-21): Passive Benchmarks
 

@@ -1,8 +1,8 @@
 # Project State
 
-**Last updated:** 2026-04-21
-**Current milestone:** M5: Rule-Based Deployment → Paper-Forward Running
-**Active spec:** S18 — Paper-Forward Validation (Day 1/90, autonomous cron live)
+**Last updated:** 2026-05-27
+**Current milestone:** M6: Regime-Stacked Engine (single-regime strategies don't fit personal-compounder use case)
+**Active spec:** S21 — Regime-Stacked Swing Engine (DRAFT)
 
 ## Completed Specs
 | Spec | Title | Date Completed |
@@ -24,13 +24,47 @@
 | S17 | Rule-Based Connors Swing (Crypto Daily) | 2026-04-20 (**PASSED 4/4 gates**) |
 | S19 | Expanded-Universe Test (20 crypto) | 2026-04-21 (3/4 gates; triggered S20) |
 | S20 | Raise Position Cap 4→6 | 2026-04-21 (**PASSED 4/4 + S20.1**) |
+| S18 | Paper-Forward Validation (S20 config) | 2026-05-27 (**FAIL** — closed day 29/90; see below) |
 
 ## In Progress
 | Spec | Title | Status | Notes |
 |------|-------|--------|-------|
 | S14 | Live Paper Trading Simulation | **RETIRED** | Strategy pivoted — S14 was ML-on-1min. Workflow renamed to .disabled. |
-| S18 | Paper-Forward Validation (S20 config) | **IN PROGRESS** | Day 1/90 started 2026-04-21. Verdict date: **2026-07-20**. Three portfolios tracked: Connors (active) + BH_BTC + BH_Basket. Dashboard: https://dpkkaushik888-max.github.io/paper-trading-mcp/ · Issue: #1. **Do nothing until day 90.** |
-| S17.1 | Rolling-Window Robustness Test | NOT STARTED | Optional; 10× rolling 1-yr holdouts to confirm no regime luck |
+| S21 | Regime-Stacked Swing Engine | **DRAFT** | 3 strategies (uptrend pullback / range fade / downtrend continuation) to cover all 3 regimes. Personal-compounder primary engine. |
+| S17.1 | Rolling-Window Robustness Test | NOT STARTED | Optional; deferred — S18 already invalidated S20 as standalone |
+
+## 2026-05-27 S18 FAIL — single-strategy regime mismatch
+
+S18 paper-forward was terminated on day 29/90 by D10 early-termination
+trigger (`MAX_NO_SIGNAL_DAYS = 30`). Active strategy produced **0 trades
+in 29 days**, both passive benchmarks beat it.
+
+| Portfolio | Final value | Return | Trades |
+|-----------|------------:|------:|------:|
+| **Connors (S20 active)** | **$10,000.00** | **+0.00%** | **0** |
+| BH_BTC (passive) | $10,133.36 | +1.33% | — |
+| BH_BASKET (passive) | $10,264.93 | +2.65% | — |
+
+### Root cause (backtest replay against actual market data, 36-day window)
+| Filter | Pass rate | Verdict |
+|---|---:|---|
+| F1 Close > SMA(200) | **8.0%** | 🔴 Binding — broad crypto downtrend, 17/20 symbols never above SMA(200) |
+| F2 RSI(2) < 10 | 13.3% | Normal |
+| F3 Close < SMA(5) | 51.2% | Healthy |
+| F4 ADX(14) ≥ 20 | 55.3% | Healthy |
+
+S20 is a "buy pullbacks in uptrends" rule. The 36-day window was a
+broad downtrend → rule correctly stayed out. Backtest replay confirms
+0 signals (live) ≈ 1 signal (backtest, TRX) — not a code bug. The
+strategy is fundamentally single-regime and unsuitable as a personal-
+compounder primary engine.
+
+### Decisions taken on close
+- S18 cron workflow disabled (was failing daily on D10 halt)
+- `binance.com` swapped from primary to fallback (geoblocks GH Actions IPs)
+- S21 drafted as the next active spec — regime-stacked engine
+
+## ⚠️ 2026-04-20 Honest-Cost Reckoning
 
 ## ⚠️ 2026-04-20 Honest-Cost Reckoning
 
@@ -121,16 +155,14 @@ universe, pre-committed). 7 symbols produced 0 trades.
 | **Deployment** | GitHub Actions daily cron @ 00:30 UTC |
 
 ## Next Actions
-- **Commit S16 / S17 / S19 / S20 as 4 atomic pairs:**
-  - `feat(S16): honest-cost sim + daily-swing ML (all gates fail)`
-  - `feat(S17): rule-based Connors swing (all gates pass, 4/4)`
-  - `feat(S19): expanded 20-crypto universe + per-symbol audit`
-  - `feat(S20): raise position cap 4→6, unblock 19pp of signals`
-- **Draft S18 (paper-forward)** — 90-day live paper run on S20 frozen config
-- **(Optional) Draft S17.1 (robustness)** — rolling 10× 1-year holdouts
-- **Do not push old S14 ML cron live** — strategy retired in favour of S20 rules
+- **Refine and approve S21** — regime-stacked engine (uptrend pullback + range fade + downtrend continuation) as the personal-compounder primary engine
+- **Pre-commit S21 universe + rules + gates** before any backtest runs (avoid S17→S19→S20 holdout-snooping repeat)
+- **Backtest each of the 3 S21 strategies in isolation** against honest costs, then evaluate the combined portfolio
+- **Do not relaunch S18 / S20 standalone** — single-regime active strategy lost to passive BH_BTC over 29 days
+- **(Optional, deferred)** S17.1 rolling-window robustness — S18 already provided harsher evidence
 
 ## Blockers
+- **Single-strategy regime mismatch confirmed.** S20 alone is unsuitable as a personal-compounder primary engine (0 trades in 29 days, lost to passive BH_BTC). Must stack regimes — see S21.
 - **Honest-cost audit reveals all prior "profitable" strategies were cost-inflation artifacts.**
   Pipeline must be re-validated before any further live deployment.
 - **India model** not profitable even after calibration — deferred.
