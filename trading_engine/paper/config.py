@@ -35,8 +35,11 @@ MAX_NO_SIGNAL_DAYS = 30           # 30 days no trades → halt
 MAX_SKIPPED_DAYS = 5              # >5 cron failures → halt
 
 # ── Data source ─────────────────────────────────────────────────────────────
-BINANCE_KLINES_URL = "https://api.binance.com/api/v3/klines"
-BINANCE_FALLBACK_URL = "https://api.binance.us/api/v3/klines"
+# api.binance.com geoblocks GitHub Actions runner IP ranges (HTTP 451). The
+# .us endpoint serves identical kline data and was the de-facto source from
+# day 1. Order swapped after S18 audit on 2026-05-27.
+BINANCE_KLINES_URL = "https://api.binance.us/api/v3/klines"
+BINANCE_FALLBACK_URL = "https://api.binance.com/api/v3/klines"
 KLINE_INTERVAL = "1d"
 KLINE_LIMIT = 300  # Need ≥200 for SMA(200) + ≥14 for ADX + buffer
 
