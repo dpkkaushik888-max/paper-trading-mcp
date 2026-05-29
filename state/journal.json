@@ -2,7 +2,7 @@
   "version": 2,
   "start_date": "2026-04-21",
   "starting_capital": 10000.0,
-  "cash": 10000.0,
+  "cash": 8497.0,
   "config": {
     "max_concurrent": 6,
     "pos_size_pct": 0.15,
@@ -3916,9 +3916,160 @@
       "skipped": false,
       "bh_btc_value": 10133.36289870765,
       "bh_basket_value": 10264.92654252619
+    },
+    {
+      "date": "2026-05-29",
+      "portfolio_value": 9996.250374812593,
+      "cash": 8497.0,
+      "n_open": 1,
+      "closes": {
+        "BTCUSDT": 73622.27,
+        "ETHUSDT": 2010.21,
+        "SOLUSDT": 82.03,
+        "AVAXUSDT": 8.911,
+        "LINKUSDT": 8.998,
+        "MATICUSDT": 0.4492,
+        "DOGEUSDT": 0.09979,
+        "XRPUSDT": 1.3142,
+        "ADAUSDT": 0.23472,
+        "DOTUSDT": 1.213,
+        "ATOMUSDT": 2.07,
+        "NEARUSDT": 2.433,
+        "LTCUSDT": 51.67,
+        "TRXUSDT": 0.3546,
+        "BCHUSDT": 299.0,
+        "APTUSDT": 0.921,
+        "UNIUSDT": 3.061,
+        "ARBUSDT": 0.1057,
+        "OPUSDT": 0.119,
+        "SUIUSDT": 0.9313
+      },
+      "decisions": [
+        {
+          "symbol": "BTCUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "ETHUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "SOLUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "AVAXUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "LINKUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "MATICUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "DOGEUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "XRPUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "ADAUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "DOTUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "ATOMUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "NEARUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "LTCUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "BCHUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "APTUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "UNIUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "ARBUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "OPUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "SUIUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "TRXUSDT",
+          "action": "enter",
+          "reason": "connors_signal"
+        }
+      ],
+      "fills": [
+        {
+          "symbol": "TRXUSDT",
+          "side": "BUY",
+          "modeled_price": 0.3546,
+          "fill_price": 0.3547773,
+          "shares": 4228.004441095864,
+          "cost": 3.0
+        }
+      ],
+      "skipped": false,
+      "bh_btc_value": 9688.038728935033,
+      "bh_basket_value": 10038.415561555577
     }
   ],
-  "open_positions": [],
+  "open_positions": [
+    {
+      "symbol": "TRXUSDT",
+      "entry_date": "2026-05-29",
+      "entry_price": 0.3547773,
+      "shares": 4228.004441095864,
+      "entry_cost": 3.0
+    }
+  ],
   "closed_trades": [],
   "benchmarks": {
     "bh_btc": {
