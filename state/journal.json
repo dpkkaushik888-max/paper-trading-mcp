@@ -2,7 +2,7 @@
   "version": 2,
   "start_date": "2026-04-21",
   "starting_capital": 10000.0,
-  "cash": 8497.0,
+  "cash": 8299.255280143347,
   "config": {
     "max_concurrent": 6,
     "pos_size_pct": 0.15,
@@ -4059,18 +4059,187 @@
       "skipped": false,
       "bh_btc_value": 9688.038728935033,
       "bh_basket_value": 10038.415561555577
+    },
+    {
+      "date": "2026-05-30",
+      "portfolio_value": 9798.505654955941,
+      "cash": 8299.255280143347,
+      "n_open": 1,
+      "closes": {
+        "BTCUSDT": 73481.41,
+        "ETHUSDT": 2015.3,
+        "SOLUSDT": 82.02,
+        "AVAXUSDT": 8.806,
+        "LINKUSDT": 9.02,
+        "MATICUSDT": 0.4492,
+        "DOGEUSDT": 0.09951,
+        "XRPUSDT": 1.3296,
+        "ADAUSDT": 0.233,
+        "DOTUSDT": 1.191,
+        "ATOMUSDT": 2.0,
+        "NEARUSDT": 2.369,
+        "LTCUSDT": 51.92,
+        "TRXUSDT": 0.3098,
+        "BCHUSDT": 302.4,
+        "APTUSDT": 0.926,
+        "UNIUSDT": 3.036,
+        "ARBUSDT": 0.1051,
+        "OPUSDT": 0.118,
+        "SUIUSDT": 0.9043
+      },
+      "decisions": [
+        {
+          "symbol": "TRXUSDT",
+          "action": "exit",
+          "reason": "SL"
+        },
+        {
+          "symbol": "BTCUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "ETHUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "SOLUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "AVAXUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "LINKUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "MATICUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "DOGEUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "XRPUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "ADAUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "DOTUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "ATOMUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "NEARUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "LTCUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "BCHUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "APTUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "UNIUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "ARBUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "OPUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "SUIUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "TRXUSDT",
+          "action": "enter",
+          "reason": "connors_signal"
+        }
+      ],
+      "fills": [
+        {
+          "symbol": "TRXUSDT",
+          "side": "SELL",
+          "modeled_price": 0.3098,
+          "fill_price": 0.30933530000000004,
+          "shares": 4228.004441095864,
+          "cost": 2.6157420443754438
+        },
+        {
+          "symbol": "TRXUSDT",
+          "side": "BUY",
+          "modeled_price": 0.3098,
+          "fill_price": 0.3099549,
+          "shares": 4839.413734062601,
+          "cost": 3.0
+        }
+      ],
+      "skipped": false,
+      "bh_btc_value": 9669.502800399308,
+      "bh_basket_value": 9899.3350659084
     }
   ],
   "open_positions": [
     {
       "symbol": "TRXUSDT",
-      "entry_date": "2026-05-29",
-      "entry_price": 0.3547773,
-      "shares": 4228.004441095864,
+      "entry_date": "2026-05-30",
+      "entry_price": 0.3099549,
+      "shares": 4839.413734062601,
       "entry_cost": 3.0
     }
   ],
-  "closed_trades": [],
+  "closed_trades": [
+    {
+      "symbol": "TRXUSDT",
+      "entry_date": "2026-05-29",
+      "exit_date": "2026-05-30",
+      "entry_price": 0.3547773,
+      "exit_price": 0.30933530000000004,
+      "shares": 4228.004441095864,
+      "pnl": -197.74471985665355,
+      "pnl_pct": -0.13182981323776904,
+      "hold_days": 1,
+      "reason": "SL"
+    }
+  ],
   "benchmarks": {
     "bh_btc": {
       "name": "bh_btc",
