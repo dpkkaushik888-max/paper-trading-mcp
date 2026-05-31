@@ -1,35 +1,35 @@
 {
-  "generated_at": "2026-05-30T04:33:52+00:00",
+  "generated_at": "2026-05-31T04:59:57+00:00",
   "start_date": "2026-04-21",
   "starting_capital": 10000.0,
   "test_days": 90,
   "metrics": {
-    "days_elapsed": 31,
-    "total_return_pct": -2.014943450440587,
-    "cagr_pct": -21.31094411369738,
-    "sharpe": -3.61666522439419,
+    "days_elapsed": 32,
+    "total_return_pct": -0.11183479495553428,
+    "cagr_pct": -1.26821891132326,
+    "sharpe": -0.09089387786384091,
     "max_dd_pct": 2.014943450440587,
     "win_rate_pct": 0.0,
     "profit_factor": 0.0,
     "trades": 1,
     "wins": 0,
     "losses": 1,
-    "portfolio_value": 9798.505654955941,
-    "cash": 8299.255280143347,
-    "n_open": 1
+    "portfolio_value": 9988.816520504446,
+    "cash": 6796.255280143347,
+    "n_open": 2
   },
   "bh_btc_metrics": {
-    "value": 9669.502800399308,
-    "total_return_pct": -3.3049719960069113,
-    "cagr_pct": -32.67977470260468,
-    "sharpe": -1.175602438836998,
+    "value": 9718.012559702229,
+    "total_return_pct": -2.8198744029777068,
+    "cagr_pct": -27.838532317478226,
+    "sharpe": -0.9486297378550351,
     "max_dd_pct": 10.55693912924931
   },
   "bh_basket_metrics": {
-    "value": 9899.3350659084,
-    "total_return_pct": -1.0066493409159882,
-    "cagr_pct": -11.230355934103164,
-    "sharpe": -0.6137957781650242,
+    "value": 9987.576259750787,
+    "total_return_pct": -0.12423740249212223,
+    "cagr_pct": -1.4079581161712929,
+    "sharpe": -0.2727176478240679,
     "max_dd_pct": 13.609206526293733
   },
   "backtest_baseline": {
@@ -233,6 +233,12 @@
       "connors": 9798.505654955941,
       "bh_btc": 9669.502800399308,
       "bh_basket": 9899.3350659084
+    },
+    {
+      "date": "2026-05-31",
+      "connors": 9988.816520504446,
+      "bh_btc": 9718.012559702229,
+      "bh_basket": 9987.576259750787
     }
   ],
   "open_positions": [
@@ -240,10 +246,19 @@
       "symbol": "TRXUSDT",
       "entry_date": "2026-05-30",
       "entry_price": 0.3099549,
-      "current_price": 0.3098,
+      "current_price": 0.3499,
       "shares": 4839.413734062601,
-      "unrealized_pnl": -0.749625187406093,
-      "unrealized_pct": -0.04997501249374148
+      "unrealized_pnl": 193.31086554850407,
+      "unrealized_pct": 12.887391036566932
+    },
+    {
+      "symbol": "NEARUSDT",
+      "entry_date": "2026-05-31",
+      "entry_price": 2.2451220000000003,
+      "current_price": 2.244,
+      "shares": 668.1151402908171,
+      "unrealized_pnl": -0.7496251874063418,
+      "unrealized_pct": -0.04997501249375258
     }
   ],
   "closed_trades": [
