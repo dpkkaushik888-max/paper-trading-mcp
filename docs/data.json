@@ -1,35 +1,35 @@
 {
-  "generated_at": "2026-06-07T05:06:31+00:00",
+  "generated_at": "2026-06-08T05:12:26+00:00",
   "start_date": "2026-04-21",
   "starting_capital": 10000.0,
   "test_days": 90,
   "metrics": {
-    "days_elapsed": 39,
-    "total_return_pct": 2.891509787949653,
-    "cagr_pct": 30.574928521591627,
-    "sharpe": 2.5851686270352636,
+    "days_elapsed": 40,
+    "total_return_pct": 4.59571338083582,
+    "cagr_pct": 50.68298421588724,
+    "sharpe": 3.655143853668818,
     "max_dd_pct": 2.014943450440587,
-    "win_rate_pct": 66.66666666666666,
-    "profit_factor": 2.3118752800417153,
-    "trades": 3,
-    "wins": 2,
+    "win_rate_pct": 75.0,
+    "profit_factor": 2.606815332016653,
+    "trades": 4,
+    "wins": 3,
     "losses": 1,
-    "portfolio_value": 10289.150978794965,
-    "cash": 7253.416409738718,
-    "n_open": 2
+    "portfolio_value": 10459.571338083582,
+    "cash": 8814.73924769101,
+    "n_open": 1
   },
   "bh_btc_metrics": {
-    "value": 8015.012611257476,
-    "total_return_pct": -19.84987388742524,
-    "cagr_pct": -87.392122929666,
-    "sharpe": -5.433581742923048,
+    "value": 8330.178664645244,
+    "total_return_pct": -16.698213353547565,
+    "cagr_pct": -81.1213630243927,
+    "sharpe": -4.097911941879702,
     "max_dd_pct": 25.861000749807676
   },
   "bh_basket_metrics": {
-    "value": 7996.945864954317,
-    "total_return_pct": -20.030541350456833,
-    "cagr_pct": -87.65560909427093,
-    "sharpe": -4.500622395378426,
+    "value": 8365.001332041162,
+    "total_return_pct": -16.34998667958838,
+    "cagr_pct": -80.38888068756872,
+    "sharpe": -3.3358513144914963,
     "max_dd_pct": 30.211221860861265
   },
   "backtest_baseline": {
@@ -281,26 +281,23 @@
       "connors": 10289.150978794965,
       "bh_btc": 8015.012611257476,
       "bh_basket": 7996.945864954317
+    },
+    {
+      "date": "2026-06-08",
+      "connors": 10459.571338083582,
+      "bh_btc": 8330.178664645244,
+      "bh_basket": 8365.001332041162
     }
   ],
   "open_positions": [
     {
-      "symbol": "TRXUSDT",
-      "entry_date": "2026-06-06",
-      "entry_price": 0.31825905,
-      "current_price": 0.326,
-      "shares": 4713.1417001339005,
-      "unrealized_pnl": 36.48419424365163,
-      "unrealized_pct": 2.432279616243438
-    },
-    {
       "symbol": "NEARUSDT",
       "entry_date": "2026-06-07",
       "entry_price": 1.864932,
-      "current_price": 1.864,
+      "current_price": 2.045,
       "shares": 804.3188706076146,
-      "unrealized_pnl": -0.7496251874062428,
-      "unrealized_pct": -0.04997501249375258
+      "unrealized_pnl": 144.83209039257187,
+      "unrealized_pct": 9.65547269283813
     }
   ],
   "closed_trades": [
@@ -336,13 +333,24 @@
       "pnl_pct": 17.138841319090897,
       "hold_days": 2,
       "reason": "MR_EXIT"
+    },
+    {
+      "symbol": "TRXUSDT",
+      "entry_date": "2026-06-06",
+      "exit_date": "2026-06-08",
+      "entry_price": 0.31825905,
+      "exit_price": 0.33193395000000003,
+      "pnl": 58.32283795229091,
+      "pnl_pct": 3.8881891968193942,
+      "hold_days": 2,
+      "reason": "MR_EXIT"
     }
   ],
   "per_symbol": {
     "TRXUSDT": {
-      "trades": 2,
-      "wins": 1,
-      "pnl": 2.3337899523544365
+      "trades": 3,
+      "wins": 2,
+      "pnl": 60.65662790464535
     },
     "NEARUSDT": {
       "trades": 1,
