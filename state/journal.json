@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "start_date": "2026-04-21",
   "starting_capital": 10000.0,
   "cash": 10535.691790464687,
@@ -163,7 +163,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 9981.646205210718,
-      "bh_basket_value": 10105.51708485189
+      "bh_basket_value": 10105.51708485189,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-04-22",
@@ -297,7 +298,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 10041.099084043886,
-      "bh_basket_value": 10123.974333038108
+      "bh_basket_value": 10123.974333038108,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-04-23",
@@ -431,7 +433,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 10291.597301564048,
-      "bh_basket_value": 10183.264457055682
+      "bh_basket_value": 10183.264457055682,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-04-24",
@@ -565,7 +568,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 10297.578119056228,
-      "bh_basket_value": 10193.448040394891
+      "bh_basket_value": 10193.448040394891,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-04-25",
@@ -699,7 +703,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 10190.230011562353,
-      "bh_basket_value": 10242.460191589025
+      "bh_basket_value": 10242.460191589025,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-04-26",
@@ -833,7 +838,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 10212.878163346273,
-      "bh_basket_value": 10237.608586989341
+      "bh_basket_value": 10237.608586989341,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-04-27",
@@ -967,7 +973,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 10346.506338196887,
-      "bh_basket_value": 10325.003041606384
+      "bh_basket_value": 10325.003041606384,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-04-28",
@@ -1101,7 +1108,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 10181.693694054808,
-      "bh_basket_value": 10126.789497863327
+      "bh_basket_value": 10126.789497863327,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-04-29",
@@ -1235,7 +1243,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 10044.65730857609,
-      "bh_basket_value": 10088.55397353348
+      "bh_basket_value": 10088.55397353348,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-04-30",
@@ -1369,7 +1378,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 9973.662570507733,
-      "bh_basket_value": 10009.204297815088
+      "bh_basket_value": 10009.204297815088,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-05-01",
@@ -1503,7 +1513,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 10043.984877830544,
-      "bh_basket_value": 10020.59445455218
+      "bh_basket_value": 10020.59445455218,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-05-02",
@@ -1637,7 +1648,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 10295.044989535338,
-      "bh_basket_value": 10080.051860411364
+      "bh_basket_value": 10080.051860411364,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-05-03",
@@ -1771,7 +1783,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 10352.921406464078,
-      "bh_basket_value": 10146.358342630067
+      "bh_basket_value": 10146.358342630067,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-05-04",
@@ -1905,7 +1918,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 10338.554285368447,
-      "bh_basket_value": 10106.212374828163
+      "bh_basket_value": 10106.212374828163,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-05-05",
@@ -2039,7 +2053,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 10508.70031857451,
-      "bh_basket_value": 10157.647771779604
+      "bh_basket_value": 10157.647771779604,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-05-06",
@@ -2173,7 +2188,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 10650.07921180333,
-      "bh_basket_value": 10385.93683810756
+      "bh_basket_value": 10385.93683810756,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-05-07",
@@ -2307,7 +2323,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 10717.418347892964,
-      "bh_basket_value": 10668.103253877078
+      "bh_basket_value": 10668.103253877078,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-05-08",
@@ -2441,7 +2458,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 10531.890625871476,
-      "bh_basket_value": 10529.076198006043
+      "bh_basket_value": 10529.076198006043,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-05-09",
@@ -2575,7 +2593,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 10554.329547736532,
-      "bh_basket_value": 10973.179777397494
+      "bh_basket_value": 10973.179777397494,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-05-10",
@@ -2709,7 +2728,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 10619.113183810807,
-      "bh_basket_value": 11104.355368876326
+      "bh_basket_value": 11104.355368876326,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-05-11",
@@ -2843,7 +2863,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 10810.791475900161,
-      "bh_basket_value": 11458.784747614736
+      "bh_basket_value": 11458.784747614736,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-05-12",
@@ -2977,7 +2998,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 10760.740784301677,
-      "bh_basket_value": 11381.776260415603
+      "bh_basket_value": 11381.776260415603,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-05-13",
@@ -3111,7 +3133,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 10590.87635614365,
-      "bh_basket_value": 11081.643923434138
+      "bh_basket_value": 11081.643923434138,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-05-14",
@@ -3245,7 +3268,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 10439.087287517552,
-      "bh_basket_value": 10891.949460371854
+      "bh_basket_value": 10891.949460371854,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-05-15",
@@ -3379,7 +3403,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 10669.096763925882,
-      "bh_basket_value": 11028.29653254148
+      "bh_basket_value": 11028.29653254148,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-05-16",
@@ -3513,7 +3538,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 10410.47147735584,
-      "bh_basket_value": 10699.472332900468
+      "bh_basket_value": 10699.472332900468,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-05-17",
@@ -3647,7 +3673,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 10284.501907082675,
-      "bh_basket_value": 10473.20999154192
+      "bh_basket_value": 10473.20999154192,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-05-18",
@@ -3781,7 +3808,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 10190.006306617648,
-      "bh_basket_value": 10276.546636412748
+      "bh_basket_value": 10276.546636412748,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-05-19",
@@ -3915,7 +3943,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 10133.36289870765,
-      "bh_basket_value": 10264.92654252619
+      "bh_basket_value": 10264.92654252619,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-05-29",
@@ -4058,7 +4087,8 @@
       ],
       "skipped": false,
       "bh_btc_value": 9688.038728935033,
-      "bh_basket_value": 10038.415561555577
+      "bh_basket_value": 10038.415561555577,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-05-30",
@@ -4214,7 +4244,8 @@
       ],
       "skipped": false,
       "bh_btc_value": 9669.502800399308,
-      "bh_basket_value": 9899.3350659084
+      "bh_basket_value": 9899.3350659084,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-05-31",
@@ -4357,7 +4388,8 @@
       ],
       "skipped": false,
       "bh_btc_value": 9718.012559702229,
-      "bh_basket_value": 9987.576259750787
+      "bh_basket_value": 9987.576259750787,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-06-01",
@@ -4505,7 +4537,8 @@
       ],
       "skipped": false,
       "bh_btc_value": 9694.607758840637,
-      "bh_basket_value": 9942.467376945055
+      "bh_basket_value": 9942.467376945055,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-06-02",
@@ -4653,7 +4686,8 @@
       ],
       "skipped": false,
       "bh_btc_value": 9398.180284350266,
-      "bh_basket_value": 9983.555758554627
+      "bh_basket_value": 9983.555758554627,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-06-03",
@@ -4787,7 +4821,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 8785.657722995895,
-      "bh_basket_value": 9328.901442562898
+      "bh_basket_value": 9328.901442562898,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-06-04",
@@ -4921,7 +4956,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 8441.811379785886,
-      "bh_basket_value": 9383.217665693506
+      "bh_basket_value": 9383.217665693506,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-06-05",
@@ -5055,7 +5091,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 8407.7490121764,
-      "bh_basket_value": 8792.745321652783
+      "bh_basket_value": 8792.745321652783,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-06-06",
@@ -5198,7 +5235,8 @@
       ],
       "skipped": false,
       "bh_btc_value": 8041.124241949963,
-      "bh_basket_value": 8032.2093818452595
+      "bh_basket_value": 8032.2093818452595,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-06-07",
@@ -5341,7 +5379,8 @@
       ],
       "skipped": false,
       "bh_btc_value": 8015.012611257476,
-      "bh_basket_value": 7996.945864954317
+      "bh_basket_value": 7996.945864954317,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-06-08",
@@ -5489,7 +5528,8 @@
       ],
       "skipped": false,
       "bh_btc_value": 8330.178664645244,
-      "bh_basket_value": 8365.001332041162
+      "bh_basket_value": 8365.001332041162,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-06-09",
@@ -5637,7 +5677,8 @@
       ],
       "skipped": false,
       "bh_btc_value": 8304.434173244355,
-      "bh_basket_value": 8392.997177772944
+      "bh_basket_value": 8392.997177772944,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-06-10",
@@ -5771,7 +5812,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 8120.8658433561695,
-      "bh_basket_value": 8280.257840490789
+      "bh_basket_value": 8280.257840490789,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-06-11",
@@ -5905,7 +5947,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 8095.395061534682,
-      "bh_basket_value": 7997.700000193613
+      "bh_basket_value": 7997.700000193613,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-06-12",
@@ -6039,7 +6082,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 8369.712592019854,
-      "bh_basket_value": 8365.364734671854
+      "bh_basket_value": 8365.364734671854,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-06-13",
@@ -6173,7 +6217,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 8367.441328875408,
-      "bh_basket_value": 8339.559631611875
+      "bh_basket_value": 8339.559631611875,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-06-14",
@@ -6307,7 +6352,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 8479.854379499628,
-      "bh_basket_value": 8509.879283485341
+      "bh_basket_value": 8509.879283485341,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-06-15",
@@ -6441,7 +6487,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 8653.392832396527,
-      "bh_basket_value": 8707.911041836413
+      "bh_basket_value": 8707.911041836413,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-06-16",
@@ -6575,7 +6622,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 8727.901054008142,
-      "bh_basket_value": 8838.474259656552
+      "bh_basket_value": 8838.474259656552,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-06-17",
@@ -6709,7 +6757,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 8641.950982430737,
-      "bh_basket_value": 8872.398758335015
+      "bh_basket_value": 8872.398758335015,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-06-18",
@@ -6843,7 +6892,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 8481.466371012923,
-      "bh_basket_value": 8711.652656933218
+      "bh_basket_value": 8711.652656933218,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-06-19",
@@ -6977,7 +7027,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 8288.210301107698,
-      "bh_basket_value": 8504.454853722873
+      "bh_basket_value": 8504.454853722873,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-06-20",
@@ -7111,7 +7162,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 8360.760446497454,
-      "bh_basket_value": 8420.055182850316
+      "bh_basket_value": 8420.055182850316,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-06-21",
@@ -7245,7 +7297,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 8462.99492213773,
-      "bh_basket_value": 8489.001142095056
+      "bh_basket_value": 8489.001142095056,
+      "trend_timed_value": 10000.0
     },
     {
       "date": "2026-06-22",
@@ -7379,7 +7432,8 @@
       "fills": [],
       "skipped": false,
       "bh_btc_value": 8330.881361353895,
-      "bh_basket_value": 8339.973910895735
+      "bh_basket_value": 8339.973910895735,
+      "trend_timed_value": 10000.0
     }
   ],
   "open_positions": [],
@@ -7587,6 +7641,17 @@
           "allocated": 500.0
         }
       ]
+    },
+    "trend_timed_btc": {
+      "name": "trend_timed_btc",
+      "initialized": true,
+      "init_date": "2026-04-21",
+      "invested": false,
+      "shares": 0.0,
+      "cash": 10000.0,
+      "ma_window": 200,
+      "n_switches": 0,
+      "starting_capital": 10000.0
     }
   }
 }
