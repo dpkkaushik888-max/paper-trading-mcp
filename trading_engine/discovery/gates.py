@@ -100,14 +100,21 @@ def _subperiod_bounds(data: dict, start, end, n: int) -> list[tuple]:
 def subperiod_alphas(
     spec: CandidateSpec, data: dict, feats: dict, start, end,
     n: int = 3, capital: float = 10_000.0, benchmark: Optional[str] = None,
+    alpha_mode: str = "raw_cagr",
 ) -> list[float]:
-    """Per-slice alpha (candidate CAGR − buy-and-hold CAGR) over n holdout slices."""
+    """Per-slice excess over buy-and-hold across n holdout slices.
+
+    raw_cagr     → candidate CAGR − BH CAGR.
+    risk_adjusted→ candidate Sharpe − BH Sharpe (S26 D2).
+    """
     alphas = []
     for a, b in _subperiod_bounds(data, start, end, n):
         res, days = run_candidate_window(spec, data, feats, a, b, capital=capital)
-        c = cagr_of(res.final_value, days, capital)
         bh = buy_hold(data, a, b, capital=capital, symbol=benchmark)
-        alphas.append(c - bh["cagr"])
+        if alpha_mode == "risk_adjusted":
+            alphas.append(res.sharpe - bh["sharpe"])
+        else:
+            alphas.append(cagr_of(res.final_value, days, capital) - bh["cagr"])
     return alphas
 
 
@@ -120,7 +127,9 @@ class HoldoutVerdict:
     max_dd: float
     n_trades: int
     bh_cagr: float
+    bh_sharpe: float
     alpha: float
+    alpha_mode: str
     deflated_threshold: float
     sharpe_pass: bool
     subperiod_alphas: list
@@ -134,7 +143,8 @@ class HoldoutVerdict:
         return {
             "candidate_id": self.candidate_id, "return_pct": self.return_pct,
             "cagr": self.cagr, "sharpe": self.sharpe, "max_dd": self.max_dd,
-            "n_trades": self.n_trades, "bh_cagr": self.bh_cagr, "alpha": self.alpha,
+            "n_trades": self.n_trades, "bh_cagr": self.bh_cagr,
+            "bh_sharpe": self.bh_sharpe, "alpha": self.alpha, "alpha_mode": self.alpha_mode,
             "deflated_threshold": self.deflated_threshold, "sharpe_pass": self.sharpe_pass,
             "subperiod_alphas": self.subperiod_alphas,
             "n_subperiods_positive": self.n_subperiods_positive,
@@ -147,11 +157,14 @@ def evaluate_holdout(
     spec: CandidateSpec, data: dict, feats: dict, ho_start, ho_end,
     *, n_trials: int, base_sharpe: float = 1.0, capital: float = 10_000.0,
     periods_per_year: int = 365, n_subperiods: int = 3, min_positive: int = 2,
-    benchmark: Optional[str] = None,
+    benchmark: Optional[str] = None, alpha_mode: str = "raw_cagr",
 ) -> HoldoutVerdict:
     """Judge one candidate on the locked holdout (read once). Promotes only if it
     clears the deflated-Sharpe bar, beats buy-and-hold overall, AND is robust across
     sub-periods. ``n_trials`` = candidates that reached the holdout this run (D4).
+
+    ``alpha_mode`` (S26): "raw_cagr" → beat BH on CAGR; "risk_adjusted" → beat BH on
+    Sharpe AND stay profitable (CAGR ≥ 0). The deflated-Sharpe bar is unchanged.
     """
     res, days = run_candidate_window(spec, data, feats, ho_start, ho_end, capital=capital)
     c = cagr_of(res.final_value, days, capital)
@@ -162,17 +175,25 @@ def evaluate_holdout(
     sharpe_pass = res.sharpe >= threshold
 
     alphas = subperiod_alphas(spec, data, feats, ho_start, ho_end,
-                              n=n_subperiods, capital=capital, benchmark=benchmark)
+                              n=n_subperiods, capital=capital, benchmark=benchmark,
+                              alpha_mode=alpha_mode)
     n_pos = sum(1 for a in alphas if a >= 0.0)
     robustness_pass = n_pos >= min_positive
-    alpha_pass = alpha >= 0.0
+    if alpha_mode == "risk_adjusted":
+        alpha_pass = (res.sharpe >= bh["sharpe"]) and (c >= 0.0)
+    else:
+        alpha_pass = alpha >= 0.0
 
     promoted = sharpe_pass and robustness_pass and alpha_pass
     reasons = []
     if not sharpe_pass:
         reasons.append(f"sharpe {res.sharpe:.2f} < deflated bar {threshold:.2f}")
     if not alpha_pass:
-        reasons.append(f"alpha {alpha*100:+.1f}% < 0 (lost to buy-and-hold)")
+        if alpha_mode == "risk_adjusted":
+            reasons.append(f"risk-adj: Sharpe {res.sharpe:.2f} < BH {bh['sharpe']:.2f} "
+                           f"or CAGR {c*100:+.1f}% < 0")
+        else:
+            reasons.append(f"alpha {alpha*100:+.1f}% < 0 (lost to buy-and-hold)")
     if not robustness_pass:
         reasons.append(f"robustness {n_pos}/{n_subperiods} positive < {min_positive}")
     if promoted:
@@ -180,7 +201,8 @@ def evaluate_holdout(
 
     return HoldoutVerdict(
         candidate_id=spec.id, return_pct=res.return_pct, cagr=c, sharpe=res.sharpe,
-        max_dd=res.max_dd, n_trades=res.n_trades, bh_cagr=bh["cagr"], alpha=alpha,
+        max_dd=res.max_dd, n_trades=res.n_trades, bh_cagr=bh["cagr"], bh_sharpe=bh["sharpe"],
+        alpha=alpha, alpha_mode=alpha_mode,
         deflated_threshold=threshold, sharpe_pass=sharpe_pass, subperiod_alphas=alphas,
         n_subperiods_positive=n_pos, robustness_pass=robustness_pass, alpha_pass=alpha_pass,
         promoted=promoted, reasons=reasons,

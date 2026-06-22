@@ -38,6 +38,10 @@ def main(argv=None) -> int:
     p.add_argument("--manifest", default="state/discovery/registry.json")
     p.add_argument("--state-base", default=None, help="LoopState base dir (optional)")
     p.add_argument("--use-agent", action="store_true", help="let the bounded agent propose")
+    p.add_argument("--alpha-mode", choices=["raw_cagr", "risk_adjusted"], default="raw_cagr",
+                   help="G2/G9 benchmark: beat BH on CAGR (raw) or Sharpe (risk-adjusted, S26)")
+    p.add_argument("--reused-holdout", action="store_true",
+                   help="mark promotions clean_oos=false (the 5y holdout was already observed)")
     args = p.parse_args(argv)
 
     print(f"Fetching {args.years}y daily bars for {len(oracle.UNIVERSE)} symbols...")
@@ -48,9 +52,14 @@ def main(argv=None) -> int:
     agent = AgentClient(state=state) if args.use_agent else None
     manifest = RegistryManifest(args.manifest)
 
+    clean_oos = not args.reused_holdout
+    if not clean_oos:
+        print("⚠️  --reused-holdout: promotions marked clean_oos=FALSE — methodology")
+        print("    demo on an already-observed holdout, NOT eligible for live capital.\n")
     loop = StrategyDiscoveryLoop(
         bars=bars, seed=args.seed, n_candidates=args.n_candidates,
         manifest=manifest, state=state, agent=agent,
+        alpha_mode=args.alpha_mode, clean_oos=clean_oos,
     )
     loop.set_mandate(Mandate(
         loop_id="L_research", issued_by="owner", period=args.period,
@@ -67,12 +76,12 @@ def main(argv=None) -> int:
     print(f"  reached holdout: {d['n_reached_holdout']} (trial budget {d['trial_budget']})")
     print(f"  PROMOTED:        {d['n_promoted']}  {d['promoted_ids']}\n")
 
-    print("── Survivors on the LOCKED HOLDOUT ──")
+    print(f"── Survivors on the LOCKED HOLDOUT (alpha_mode={args.alpha_mode}) ──")
     for s in d["survivors"]:
         mark = "PROMOTED" if s["promoted"] else "rejected"
-        print(f"  [{mark:>8}] {s['id']:<14} holdout Sharpe {s['holdout_sharpe']:+.2f} "
-              f"vs deflated bar {s['deflated_threshold']:.2f} | alpha {s['alpha']*100:+.1f}% "
-              f"| {';'.join(s['reasons'])}")
+        print(f"  [{mark:>8}] {s['id']:<14} Sharpe {s['holdout_sharpe']:+.2f} "
+              f"(deflated bar {s['deflated_threshold']:.2f}, BH {s['bh_sharpe']:+.2f}) | "
+              f"alpha {s['alpha']*100:+.1f}% | {';'.join(s['reasons'])}")
 
     print(f"\nManifest: {args.manifest} ({len(manifest.active_entries())} active strategies)")
     return 0
