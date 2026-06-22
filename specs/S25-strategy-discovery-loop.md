@@ -163,8 +163,33 @@ the candidate codegen path, and keeps the dependency arrow discovery → engine
   correctly rejected.
 - Re-run with same seed → identical promotions (determinism).
 
-## UAT
-<Filled during Phase 4.>
+## UAT — 2026-06-22 (live 5y × 20-symbol crypto)
+
+`python scripts/run_discovery.py --trial-budget 10 --seed 0 --n-candidates 20 --years 5`
+WF span 2021-06-24→2025-06-23 | LOCKED HOLDOUT 2025-06-23→2026-06-22.
+
+**Machinery — VERIFIED (all 10 acceptance criteria):**
+- [x] Pipeline runs end-to-end: 20 proposed → 0 passed WF → 0 reached holdout → 0 promoted.
+- [x] ALL 20 candidates logged with metrics + reject reason (no silent multiple testing).
+- [x] Trial budget + deflated bar + sub-period robustness wired; holdout untouched (no survivors to test).
+- [x] Gates discriminate correctly — candidates traded 167–2006 times (no entry-misfire bug);
+      rejections are real metric failures, not zero-trade artifacts.
+- [x] Determinism: same seed → identical candidate list + verdicts (re-run confirmed).
+- [x] Manifest reversible; Report carries the full log up; Mandate carries trial budget down.
+
+**Outcome — 0 promotions, and that is the HONEST result, not a defect:**
+Every candidate failed **G2 (alpha vs buy-and-hold)** — BTC returned **+32% CAGR** over the
+5y WF span, and long-only de-risking strategies cannot beat raw HODL on a bull-dominated
+window. This reproduces S23's holdout REJECTION exactly. The walk-forward standout is
+`tmpl_breakout` (the breakout template): **Sharpe 0.86 ✓, maxDD 16.3% ✓, 167 trades ✓ — passes
+3/4, fails only raw-CAGR alpha** (+13.8% < +32% BH).
+
+**Deliberate non-action:** the verification example ("a known-good template is rediscovered
+AND promoted") was NOT forced to pass. Lowering the G2 bar or swapping in a risk-adjusted
+benchmark to manufacture a promotion would be tune-to-target — the exact overfitting trap D4
+forbids. The disciplined verdict stands: **the discovery machinery is correct; nothing earned
+promotion on this window.** A genuine promotion requires either a strategy that beats BH on raw
+CAGR, or a deliberate, spec'd change to the alpha benchmark (a new spec, fresh holdout).
 
 ## Notes & Risks
 - **Multiple-testing is the existential risk.** D4 is non-negotiable; without the
