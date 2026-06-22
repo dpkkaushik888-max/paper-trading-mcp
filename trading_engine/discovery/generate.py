@@ -7,9 +7,9 @@ grammar — so every candidate compiles to a backtestable ``GeneratedStrategy`` 
 no LLM in its hot path.
 
 Determinism: ``propose_candidates(seed, n)`` is a pure function of (seed, n). The
-first two candidates are always the known-good Connors and breakout templates (so
-the verification "a known-good template is rediscovered and promoted" has a path);
-the rest are sampled from the bounded condition pools below.
+first three candidates are always known templates (Connors, breakout, and the S27
+bullish-engulfing reversal) so the verification "a known-good template is
+rediscovered" has a path; the rest are sampled from the bounded condition pools below.
 """
 
 from __future__ import annotations
@@ -37,6 +37,17 @@ ENTRY_POOL = [
     lambda: Condition("volume", ">", "vol_sma_20", 1.5),
     lambda: Condition("macd", ">", "macd_signal"),
     lambda: Condition("roc_20", ">", 0.0),
+    # S27 — patterns, sequences, longer-horizon S/R
+    lambda: Condition("bullish_engulfing", ">", 0),
+    lambda: Condition("hammer", ">", 0),
+    lambda: Condition("morning_star", ">", 0),
+    lambda: Condition("dragonfly_doji", ">", 0),
+    lambda: Condition("piercing_line", ">", 0),
+    lambda: Condition("up_streak", ">=", 3),
+    lambda: Condition("down_streak", ">=", 3),       # buy after a down-run (dip)
+    lambda: Condition("close", ">", "prior_high_55"),
+    lambda: Condition("roc_5", ">", 0.0),
+    lambda: Condition("sma20_slope", ">", 0.0),
 ]
 
 EXIT_POOL = [
@@ -46,6 +57,12 @@ EXIT_POOL = [
     lambda: Condition("close", ">", "sma_5"),
     lambda: Condition("close", "<", "sma_10"),
     lambda: Condition("close", ">", "bb_upper"),
+    # S27 — bearish patterns / sequences / breakdown
+    lambda: Condition("bearish_engulfing", "<", 0),
+    lambda: Condition("shooting_star", "<", 0),
+    lambda: Condition("evening_star", "<", 0),
+    lambda: Condition("up_streak", ">=", 4),
+    lambda: Condition("close", "<", "prior_low_55"),
 ]
 
 SL_CHOICES = [0.05, 0.07, 0.08, 0.10]
@@ -74,6 +91,19 @@ def _breakout_template() -> CandidateSpec:
     )
 
 
+def _pattern_reversal_template() -> CandidateSpec:
+    """Price-action reversal: bullish engulfing in an established uptrend (S27)."""
+    return CandidateSpec(
+        id="tmpl_engulfing", name="tmpl_engulfing",
+        entry=[Condition("bullish_engulfing", ">", 0),
+               Condition("close", ">", "sma_50"),
+               Condition("rsi_14", "<", 50)],
+        exit=ExitSpec(sl_pct=0.07, max_hold_days=10,
+                      exit_conditions=[Condition("close", ">", "bb_upper"),
+                                       Condition("bearish_engulfing", "<", 0)]),
+    )
+
+
 def _invent(rng: random.Random, idx: int) -> CandidateSpec:
     n_entry = rng.randint(1, 3)
     entry = [f() for f in rng.sample(ENTRY_POOL, n_entry)]
@@ -95,13 +125,13 @@ def _invent(rng: random.Random, idx: int) -> CandidateSpec:
 def propose_candidates(seed: int, n: int) -> list[CandidateSpec]:
     """Return ``n`` deterministic candidate specs for the given seed.
 
-    Candidates 0 and 1 are the known-good templates; the remainder are invented
-    from the bounded grammar. Pure function of (seed, n).
+    Candidates 0–2 are the known templates (Connors, breakout, engulfing reversal);
+    the remainder are invented from the bounded grammar. Pure function of (seed, n).
     """
     if n <= 0:
         return []
     rng = random.Random(seed)
-    known = [_connors_template(), _breakout_template()]
+    known = [_connors_template(), _breakout_template(), _pattern_reversal_template()]
     out = known[:n]
     for i in range(len(out), n):
         out.append(_invent(rng, i))
