@@ -7650,6 +7650,7 @@
       "shares": 0.0,
       "cash": 10000.0,
       "ma_window": 200,
+      "band_pct": 0.02,
       "n_switches": 0,
       "starting_capital": 10000.0
     }
