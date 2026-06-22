@@ -29,9 +29,12 @@ from trading_engine.engine.orchestrator import StrategyOrchestrator
 @dataclass(frozen=True)
 class WFGateConfig:
     min_sharpe: float = 0.8       # G1
-    min_alpha: float = 0.0        # G2: CAGR − BH_CAGR ≥ this
+    min_alpha: float = 0.0        # G2 (raw_cagr): CAGR − BH_CAGR ≥ this
     max_dd: float = 0.25          # G3
     min_trades: int = 10          # G4
+    # G2 benchmark mode (S26): "raw_cagr" = beat BH on CAGR (S25 default);
+    # "risk_adjusted" = beat BH on Sharpe AND stay profitable (CAGR ≥ 0).
+    alpha_mode: str = "raw_cagr"
 
 
 @dataclass
@@ -163,9 +166,14 @@ def gate_candidate(
     c = cagr_of(res.final_value, days, capital)
     bh = buy_hold(data, wf_start, wf_end, capital=capital, symbol=benchmark)
     alpha = c - bh["cagr"]
+    if gate_cfg.alpha_mode == "risk_adjusted":
+        # beat BH on Sharpe AND make money (S26 D2)
+        g2 = (res.sharpe >= bh["sharpe"]) and (c >= 0.0)
+    else:
+        g2 = alpha >= gate_cfg.min_alpha
     gates = {
         "G1_sharpe": res.sharpe >= gate_cfg.min_sharpe,
-        "G2_alpha": alpha >= gate_cfg.min_alpha,
+        "G2_alpha": g2,
         "G3_maxdd": res.max_dd < gate_cfg.max_dd,
         "G4_trades": res.n_trades >= gate_cfg.min_trades,
     }

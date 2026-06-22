@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-06-22
 **Current milestone:** M7: Loop-Engineering Redesign — recursive loop+agent hierarchy (personal finance ⊃ investment ⊃ {equity, crypto}); crypto engine becomes the first L2 leaf
-**Active spec:** S25 (Strategy Discovery Loop) — IMPLEMENTED, awaiting UAT. S18 paper-forward REOPENED and running to day 90.
+**Active spec:** S26 (Risk-Adjusted Alpha Gate) — VERIFIED. S25 discovery loop VERIFIED (0 honest promotions). S18 paper-forward REOPENED and running to day 90.
 
 ## Completed Specs
 | Spec | Title | Date Completed |
@@ -33,6 +33,7 @@
 | S22 | Loop+Agent Framework | **DRAFT** | Recursive loop framework (`loops/` pkg): Mandate↓/Report↑ contract, composite allocation, JSON ledger, bounded LLM agent client. |
 | S23 | Crypto Leaf + L3 Orchestrator | **HOLDOUT REJECTED** | Framework/engine/agent VALIDATED (oracle match + 147 tests). But long-only 3-strategy config FAILED combined gates on 5y holdout (−18% CAGR, Sharpe −1.18 in a bear year). Do not iterate; S25+ needed (breakout-only / add hedge / regime-gate). |
 | S25 | Strategy Discovery Loop ("Agent 1") | **VERIFIED — machinery; 0 promotions (honest)** | Full propose→search→prove→promote pipeline built + UAT'd on live 5y×20 crypto. Anti-overfitting enforced: trial budget + deflated-Sharpe + ≥2/3 sub-period robustness; holdout read once per survivor. Deterministic. 47 discovery tests; full suite 198 green. **UAT (2026-06-22): 20 proposed → 0 passed WF → 0 promoted.** Gates discriminate correctly (167–2006 trades/candidate, no misfire); all fail G2 alpha because BTC did +32% CAGR over the WF span — long-only de-risking can't beat HODL on a bull window (reproduces S23 REJECTION). Breakout template is the standout: Sharpe 0.86 ✓, maxDD 16.3% ✓, 167 trades ✓, fails only raw-CAGR alpha (+13.8% < +32%). Did NOT weaken gates to force a promotion (D4 discipline). |
+| S26 | Risk-Adjusted Alpha Gate | **VERIFIED** | Changed G2/G9 benchmark from raw-CAGR-vs-BTC to Sharpe-based excess + CAGR≥0 floor (configurable `alpha_mode`; default stays raw_cagr → S25 reproduces). 7 new tests; 205 green. **Demo (reused holdout, contaminated, clean_oos=false): breakout now PASSES walk-forward (1/20 vs 0/20 raw) — gate fix works on principle — but the holdout HONESTLY rejects it (−25.3%, Sharpe −2.16, 0/3 sub-periods). Still 0 promotions, now for the right reason (OOS failure, not an unbeatable bar).** Apparatus validated end-to-end; nothing written to any registry. |
 | S21 | Regime-Stacked Swing Engine | **SUPERSEDED-BY-S23** | Rules (D1–D11) survive and are absorbed into S23; not rejected. Window-test showed it underperformed standalone S20 (S18) in the live window. |
 | S17.1 | Rolling-Window Robustness Test | NOT STARTED | Optional; deferred. |
 

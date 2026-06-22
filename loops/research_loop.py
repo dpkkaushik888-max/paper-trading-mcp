@@ -56,20 +56,25 @@ class StrategyDiscoveryLoop(Loop):
         manifest_path: str = "state/discovery/registry.json",
         state: Any = None,
         agent: Any = None,
-        gate_cfg: WFGateConfig = WFGateConfig(),
+        gate_cfg: Optional[WFGateConfig] = None,
         capital: float = 10_000.0,
         base_sharpe: float = 1.0,
         benchmark: Optional[str] = None,
+        alpha_mode: str = "raw_cagr",
+        clean_oos: bool = True,
     ) -> None:
         super().__init__(loop_id, Cadence.MONTHLY, state=state, agent=agent)
         self._bars = bars or {}
         self._seed = seed
         self._n_candidates = n_candidates
         self._manifest = manifest or RegistryManifest(manifest_path)
-        self._gate_cfg = gate_cfg
+        self._alpha_mode = alpha_mode
+        # WF gate inherits the alpha_mode unless an explicit gate_cfg overrides it.
+        self._gate_cfg = gate_cfg or WFGateConfig(alpha_mode=alpha_mode)
         self._capital = capital
         self._base_sharpe = base_sharpe
         self._benchmark = benchmark
+        self._clean_oos = clean_oos     # False ⇒ reused/contaminated holdout (S26 D4)
         # filled across the lifecycle
         self._search = None
         self._verdicts: list = []
@@ -126,13 +131,15 @@ class StrategyDiscoveryLoop(Loop):
                 decision["ho_start"], decision["ho_end"],
                 n_trials=n_trials, base_sharpe=self._base_sharpe,
                 capital=self._capital, benchmark=self._benchmark,
+                alpha_mode=self._alpha_mode,
             )
             self._verdicts.append((cr, verdict))
             if verdict.promoted:
                 provenance = {
                     "walk_forward": cr.to_dict(), "holdout": verdict.to_dict(),
                     "trial_count": n_trials, "deflated_threshold": verdict.deflated_threshold,
-                    "seed": self._seed,
+                    "seed": self._seed, "alpha_mode": self._alpha_mode,
+                    "clean_oos": self._clean_oos,
                 }
                 self._manifest.promote(
                     cr.candidate, provenance, period=period,
@@ -154,9 +161,9 @@ class StrategyDiscoveryLoop(Loop):
         survivors_evidence = [
             {"id": cr.candidate.id, "name": cr.candidate.name,
              "wf_sharpe": cr.sharpe, "wf_cagr": cr.cagr,
-             "promoted": v.promoted, "holdout_sharpe": v.sharpe,
+             "promoted": v.promoted, "holdout_sharpe": v.sharpe, "bh_sharpe": v.bh_sharpe,
              "deflated_threshold": v.deflated_threshold, "alpha": v.alpha,
-             "subperiod_alphas": v.subperiod_alphas,
+             "alpha_mode": v.alpha_mode, "subperiod_alphas": v.subperiod_alphas,
              "regime_map": cr.candidate.regime_weights, "reasons": v.reasons}
             for cr, v in self._verdicts
         ]
