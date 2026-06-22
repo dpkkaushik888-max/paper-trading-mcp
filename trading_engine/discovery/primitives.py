@@ -15,15 +15,34 @@ from typing import Union
 import pandas as pd
 import pandas_ta as ta
 
+from trading_engine.chart_patterns import detect_candlestick_patterns
+
+# Candlestick pattern columns (S27): +1 bullish / −1 bearish / 0 none, vectorized
+# and reused verbatim from chart_patterns.detect_candlestick_patterns.
+CANDLESTICK_COLUMNS = [
+    "hammer", "hanging_man", "bullish_engulfing", "bearish_engulfing",
+    "morning_star", "evening_star", "dragonfly_doji", "shooting_star",
+    "piercing_line", "dark_cloud_cover",
+]
+
 # Columns build_features produces (the agent may reference only these, plus "close").
 FEATURE_COLUMNS = [
     "close", "rsi_2", "rsi_14", "sma_5", "sma_10", "sma_20", "sma_50", "sma_200",
     "ema_12", "ema_26", "macd", "macd_signal", "bb_upper", "bb_lower", "bb_mid",
     "bb_width", "adx_14", "atr_14", "volume", "vol_sma_20", "prior_high_20",
     "prior_low_20", "roc_20",
-]
+    # S27 — multi-bar sequences, longer Donchian S/R, trend slope
+    "roc_5", "roc_10", "up_streak", "down_streak", "prior_high_55", "prior_low_55",
+    "sma20_slope",
+] + CANDLESTICK_COLUMNS
 
 VALID_OPS = (">", "<", ">=", "<=")
+
+
+def _streak(mask: pd.Series) -> pd.Series:
+    """Length of the current run of True in ``mask`` (0 where False). Vectorized."""
+    grp = (mask != mask.shift()).cumsum()
+    return mask.groupby(grp).cumcount().add(1).where(mask, 0).astype(int)
 
 
 def build_features(df: pd.DataFrame) -> pd.DataFrame:
@@ -66,6 +85,22 @@ def build_features(df: pd.DataFrame) -> pd.DataFrame:
     out["prior_high_20"] = close.shift(1).rolling(20).max()
     out["prior_low_20"] = close.shift(1).rolling(20).min()
     out["roc_20"] = close.pct_change(20)
+
+    # ── S27 grammar expansion (all vectorized, no lookahead) ────────────────
+    out["roc_5"] = close.pct_change(5)
+    out["roc_10"] = close.pct_change(10)
+    diff = close.diff()
+    out["up_streak"] = _streak(diff > 0)
+    out["down_streak"] = _streak(diff < 0)
+    out["prior_high_55"] = close.shift(1).rolling(55).max()
+    out["prior_low_55"] = close.shift(1).rolling(55).min()
+    sma20 = out["sma_20"]
+    out["sma20_slope"] = (sma20 - sma20.shift(5)) / sma20.shift(5)
+
+    # Candlestick patterns (reused, vectorized): +1 bullish / −1 bearish / 0 none.
+    candles = detect_candlestick_patterns(df["Open"], high, low, close)
+    for col in CANDLESTICK_COLUMNS:
+        out[col] = candles[col] if col in candles.columns else 0
     return out
 
 
