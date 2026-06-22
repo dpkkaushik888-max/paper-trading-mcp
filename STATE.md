@@ -32,6 +32,7 @@
 | S18 | Paper-Forward Validation (S20 config) | **IN PROGRESS** (reopened 2026-06-22) | Day-29 FAIL was premature; live run continued and is +5.36% at day 54/90, beating both benchmarks. No-signal halt removed; running to day 90. |
 | S22 | Loop+Agent Framework | **DRAFT** | Recursive loop framework (`loops/` pkg): Mandate↓/Report↑ contract, composite allocation, JSON ledger, bounded LLM agent client. |
 | S23 | Crypto Leaf + L3 Orchestrator | **HOLDOUT REJECTED** | Framework/engine/agent VALIDATED (oracle match + 147 tests). But long-only 3-strategy config FAILED combined gates on 5y holdout (−18% CAGR, Sharpe −1.18 in a bear year). Do not iterate; S25+ needed (breakout-only / add hedge / regime-gate). |
+| S25 | Strategy Discovery Loop ("Agent 1") | **DRAFT** | Research loop: agent proposes (tune known + invent new), search on walk-forward, prove once on locked holdout (G1–G9), promote survivors to registry with regime map. Anti-overfitting: trial budget + deflated Sharpe + sub-period robustness. |
 | S21 | Regime-Stacked Swing Engine | **SUPERSEDED-BY-S23** | Rules (D1–D11) survive and are absorbed into S23; not rejected. Window-test showed it underperformed standalone S20 (S18) in the live window. |
 | S17.1 | Rolling-Window Robustness Test | NOT STARTED | Optional; deferred. |
 
