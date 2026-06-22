@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-06-22
 **Current milestone:** M7: Loop-Engineering Redesign — recursive loop+agent hierarchy (personal finance ⊃ investment ⊃ {equity, crypto}); crypto engine becomes the first L2 leaf
-**Active spec:** S22 (Loop Framework) + S23 (Crypto Leaf + L3 Orchestrator) — DRAFT. S18 paper-forward REOPENED and running to day 90.
+**Active spec:** S25 (Strategy Discovery Loop) — IMPLEMENTED, awaiting UAT. S18 paper-forward REOPENED and running to day 90.
 
 ## Completed Specs
 | Spec | Title | Date Completed |
@@ -32,7 +32,7 @@
 | S18 | Paper-Forward Validation (S20 config) | **IN PROGRESS** (reopened 2026-06-22) | Day-29 FAIL was premature; live run continued and is +5.36% at day 54/90, beating both benchmarks. No-signal halt removed; running to day 90. |
 | S22 | Loop+Agent Framework | **DRAFT** | Recursive loop framework (`loops/` pkg): Mandate↓/Report↑ contract, composite allocation, JSON ledger, bounded LLM agent client. |
 | S23 | Crypto Leaf + L3 Orchestrator | **HOLDOUT REJECTED** | Framework/engine/agent VALIDATED (oracle match + 147 tests). But long-only 3-strategy config FAILED combined gates on 5y holdout (−18% CAGR, Sharpe −1.18 in a bear year). Do not iterate; S25+ needed (breakout-only / add hedge / regime-gate). |
-| S25 | Strategy Discovery Loop ("Agent 1") | **DRAFT** | Research loop: agent proposes (tune known + invent new), search on walk-forward, prove once on locked holdout (G1–G9), promote survivors to registry with regime map. Anti-overfitting: trial budget + deflated Sharpe + sub-period robustness. |
+| S25 | Strategy Discovery Loop ("Agent 1") | **VERIFIED — machinery; 0 promotions (honest)** | Full propose→search→prove→promote pipeline built + UAT'd on live 5y×20 crypto. Anti-overfitting enforced: trial budget + deflated-Sharpe + ≥2/3 sub-period robustness; holdout read once per survivor. Deterministic. 47 discovery tests; full suite 198 green. **UAT (2026-06-22): 20 proposed → 0 passed WF → 0 promoted.** Gates discriminate correctly (167–2006 trades/candidate, no misfire); all fail G2 alpha because BTC did +32% CAGR over the WF span — long-only de-risking can't beat HODL on a bull window (reproduces S23 REJECTION). Breakout template is the standout: Sharpe 0.86 ✓, maxDD 16.3% ✓, 167 trades ✓, fails only raw-CAGR alpha (+13.8% < +32%). Did NOT weaken gates to force a promotion (D4 discipline). |
 | S21 | Regime-Stacked Swing Engine | **SUPERSEDED-BY-S23** | Rules (D1–D11) survive and are absorbed into S23; not rejected. Window-test showed it underperformed standalone S20 (S18) in the live window. |
 | S17.1 | Rolling-Window Robustness Test | NOT STARTED | Optional; deferred. |
 
