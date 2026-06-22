@@ -51,6 +51,7 @@ Plan: `/Users/deepakkaushik/.claude/plans/starry-dancing-scone.md`.
 | 21 | S25 | Strategy Discovery Loop ("Agent 1") — propose/search/prove/promote | IMPLEMENTED (awaiting UAT) | S23 engine+gates |
 | 21b | S26 | Risk-Adjusted Alpha Gate (Sharpe-based G2/G9, configurable) | VERIFIED | S25 |
 | 21c | S27 | Primitive Grammar Expansion (candlesticks, sequences, Donchian, slope) | VERIFIED | S25 |
+| 21d | S28 | Multi-Window (Full-Cycle) Walk-Forward (consistency gating) | VERIFIED (mechanism; TF hypothesis disproved) | S25–S27 |
 | 22 | S24 | Crypto-Leaf Paper-Forward Validation (planned, stricter 14-day halt) | BLOCKED | a config passes S25/S26 gates on a CLEAN holdout |
 | — | S21 | Regime-Stacked Swing Engine (3 strategies × 3 regimes) | **SUPERSEDED-BY-S23** (rules absorbed, not rejected) | — |
 

@@ -48,10 +48,11 @@ class CandidateResult:
     n_trades: int
     bh_cagr: float
     gates: dict           # {"G1": bool, ...}
-    passed: bool          # all G1–G4
+    passed: bool          # all gates
     rank_score: float
     reached_holdout: bool = False
     reject_reason: Optional[str] = None
+    windows: Optional[list] = None   # per-window breakdown (windowed WF, S28)
 
     def to_dict(self) -> dict:
         return {
@@ -60,6 +61,7 @@ class CandidateResult:
             "max_dd": self.max_dd, "n_trades": self.n_trades, "bh_cagr": self.bh_cagr,
             "gates": self.gates, "passed": self.passed, "rank_score": self.rank_score,
             "reached_holdout": self.reached_holdout, "reject_reason": self.reject_reason,
+            "windows": self.windows,
         }
 
 
@@ -218,6 +220,101 @@ def search_walk_forward(
     results = [
         gate_candidate(spec, data, feats, wf_start, wf_end,
                        capital=capital, gate_cfg=gate_cfg, benchmark=benchmark)
+        for spec in candidates
+    ]
+    n_passed = sum(1 for r in results if r.passed)
+    survivors = select_survivors(results, trial_budget)
+    return SearchResult(
+        all_candidates=results, survivors=survivors, trial_budget=trial_budget,
+        n_proposed=len(candidates), n_passed_wf=n_passed,
+    )
+
+
+# ── multi-window (full-cycle) walk-forward (S28) ────────────────────────────
+@dataclass(frozen=True)
+class WindowedWFConfig:
+    n_windows: int = 4              # slice WF span into this many contiguous windows
+    min_windows_pass: int = 3       # candidate must clear ≥ this many windows
+    max_dd: float = 0.30            # worst-window max drawdown ceiling
+    min_total_trades: int = 12      # summed across windows
+    alpha_mode: str = "risk_adjusted"   # per-window pass criterion
+
+
+def window_bounds(data: dict, start, end, n: int) -> list[tuple]:
+    """Split trading dates in [start, end] into n contiguous (a, b) windows."""
+    all_dates = sorted(set().union(*[df.index for df in data.values()])) if data else []
+    span = [d for d in all_dates if start <= d <= end]
+    if len(span) < n or n <= 1:
+        return [(start, end)]
+    size = len(span) // n
+    bounds = []
+    for i in range(n):
+        lo = i * size
+        hi = (i + 1) * size - 1 if i < n - 1 else len(span) - 1
+        bounds.append((span[lo], span[hi]))
+    return bounds
+
+
+def _window_pass(sharpe: float, cagr: float, bh: dict, alpha_mode: str) -> bool:
+    if alpha_mode == "risk_adjusted":
+        return (sharpe >= bh["sharpe"]) and (cagr >= 0.0)
+    return cagr >= bh["cagr"]
+
+
+def gate_candidate_windowed(
+    spec: CandidateSpec, data: dict, feats: dict, wf_start, wf_end,
+    capital: float = 10_000.0, cfg: WindowedWFConfig = WindowedWFConfig(),
+    benchmark: Optional[str] = None,
+) -> CandidateResult:
+    """Evaluate a candidate across N WF sub-windows and gate on cross-regime consistency.
+
+    Passes iff ≥ ``cfg.min_windows_pass`` windows show non-negative (risk-adjusted)
+    alpha, worst-window drawdown is under the ceiling, and total trades clear the floor.
+    """
+    bounds = window_bounds(data, wf_start, wf_end, cfg.n_windows)
+    wins = []
+    for a, b in bounds:
+        res, days = run_candidate_window(spec, data, feats, a, b, capital=capital)
+        c = cagr_of(res.final_value, days, capital)
+        bh = buy_hold(data, a, b, capital=capital, symbol=benchmark)
+        passed = _window_pass(res.sharpe, c, bh, cfg.alpha_mode)
+        wins.append({"start": str(a.date()), "end": str(b.date()), "cagr": c,
+                     "sharpe": res.sharpe, "bh_cagr": bh["cagr"], "bh_sharpe": bh["sharpe"],
+                     "max_dd": res.max_dd, "n_trades": res.n_trades, "pass": passed})
+
+    n_pass = sum(1 for w in wins if w["pass"])
+    total_trades = sum(w["n_trades"] for w in wins)
+    worst_dd = max((w["max_dd"] for w in wins), default=0.0)
+    gates = {
+        "G1_consistency": n_pass >= cfg.min_windows_pass,
+        "G3_worst_dd": worst_dd < cfg.max_dd,
+        "G4_trades": total_trades >= cfg.min_total_trades,
+    }
+    passed = all(gates.values())
+    reject = None if passed else ",".join(k for k, v in gates.items() if not v)
+    mean_cagr = sum(w["cagr"] for w in wins) / len(wins) if wins else 0.0
+    mean_sharpe = sum(w["sharpe"] for w in wins) / len(wins) if wins else 0.0
+    mean_bh_cagr = sum(w["bh_cagr"] for w in wins) / len(wins) if wins else 0.0
+    return CandidateResult(
+        candidate=spec, return_pct=0.0, cagr=mean_cagr, sharpe=mean_sharpe,
+        max_dd=worst_dd, n_trades=total_trades, bh_cagr=mean_bh_cagr, gates=gates,
+        passed=passed, rank_score=float(n_pass), reject_reason=reject, windows=wins,
+    )
+
+
+def search_walk_forward_windows(
+    candidates: list[CandidateSpec], data: dict, feats: dict, wf_start, wf_end,
+    *, trial_budget: int = 10, capital: float = 10_000.0,
+    cfg: WindowedWFConfig = WindowedWFConfig(), benchmark: Optional[str] = None,
+) -> SearchResult:
+    """Full-cycle walk-forward search: gate on cross-window consistency (S28).
+
+    Survivors rank by windows-passed (rank_score) then mean CAGR — the most
+    regime-robust candidates get the scarce holdout slots. ALL candidates logged.
+    """
+    results = [
+        gate_candidate_windowed(spec, data, feats, wf_start, wf_end,
+                                capital=capital, cfg=cfg, benchmark=benchmark)
         for spec in candidates
     ]
     n_passed = sum(1 for r in results if r.passed)

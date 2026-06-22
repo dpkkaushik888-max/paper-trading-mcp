@@ -27,7 +27,9 @@ from trading_engine.discovery.candidate import CandidateSpec
 from trading_engine.discovery.gates import evaluate_holdout
 from trading_engine.discovery.primitives import FEATURE_COLUMNS, build_features
 from trading_engine.discovery.registry_manifest import RegistryManifest
-from trading_engine.discovery.search import WFGateConfig, search_walk_forward
+from trading_engine.discovery.search import (
+    WFGateConfig, WindowedWFConfig, search_walk_forward, search_walk_forward_windows,
+)
 
 from .base import Loop
 from .contracts import Cadence, Report
@@ -62,6 +64,8 @@ class StrategyDiscoveryLoop(Loop):
         benchmark: Optional[str] = None,
         alpha_mode: str = "raw_cagr",
         clean_oos: bool = True,
+        wf_mode: str = "single",                  # "single" | "windowed" (S28)
+        windowed_cfg: Optional[WindowedWFConfig] = None,
     ) -> None:
         super().__init__(loop_id, Cadence.MONTHLY, state=state, agent=agent)
         self._bars = bars or {}
@@ -75,6 +79,8 @@ class StrategyDiscoveryLoop(Loop):
         self._base_sharpe = base_sharpe
         self._benchmark = benchmark
         self._clean_oos = clean_oos     # False ⇒ reused/contaminated holdout (S26 D4)
+        self._wf_mode = wf_mode
+        self._windowed_cfg = windowed_cfg or WindowedWFConfig(alpha_mode=alpha_mode)
         # filled across the lifecycle
         self._search = None
         self._verdicts: list = []
@@ -110,12 +116,20 @@ class StrategyDiscoveryLoop(Loop):
 
     def decide(self, observation: dict) -> dict:
         candidates = self._propose()
-        search = search_walk_forward(
-            candidates, observation["bars"], observation["feats"],
-            observation["wf_start"], observation["wf_end"],
-            trial_budget=self._trial_budget(), capital=self._capital,
-            gate_cfg=self._gate_cfg, benchmark=self._benchmark,
-        )
+        if self._wf_mode == "windowed":
+            search = search_walk_forward_windows(
+                candidates, observation["bars"], observation["feats"],
+                observation["wf_start"], observation["wf_end"],
+                trial_budget=self._trial_budget(), capital=self._capital,
+                cfg=self._windowed_cfg, benchmark=self._benchmark,
+            )
+        else:
+            search = search_walk_forward(
+                candidates, observation["bars"], observation["feats"],
+                observation["wf_start"], observation["wf_end"],
+                trial_budget=self._trial_budget(), capital=self._capital,
+                gate_cfg=self._gate_cfg, benchmark=self._benchmark,
+            )
         self._search = search
         return {"search": search, **observation}
 
