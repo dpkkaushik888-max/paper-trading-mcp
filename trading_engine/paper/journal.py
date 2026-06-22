@@ -33,7 +33,8 @@ SCHEMA_VERSION = 3  # v2 adds 'benchmarks'; v3 adds the trend_timed_btc tracker 
 def _fresh_trend_timed() -> dict[str, Any]:
     return {"name": "trend_timed_btc", "initialized": False, "init_date": None,
             "invested": False, "shares": 0.0, "cash": STARTING_CAPITAL,
-            "ma_window": 200, "n_switches": 0, "starting_capital": STARTING_CAPITAL}
+            "ma_window": 200, "band_pct": 0.02, "n_switches": 0,
+            "starting_capital": STARTING_CAPITAL}
 
 
 @dataclass

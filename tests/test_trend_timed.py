@@ -1,8 +1,8 @@
-"""S29 — trend-timed BTC tracker: bull→invested, bear→cash, costs, marking."""
+"""S29/S30 — trend-timed BTC tracker: bull→invested, bear→cash, hysteresis band, costs."""
 
 from trading_engine.paper.config import COST_PCT, STARTING_CAPITAL
 from trading_engine.paper.trend_timed import (
-    TrendTimer, step, value_of, serialize, deserialize,
+    TrendTimer, step, value_of, serialize, deserialize, DEFAULT_BAND,
 )
 
 
@@ -17,11 +17,41 @@ def test_starts_in_cash_and_initializes():
 
 def test_bull_goes_fully_invested_with_cost():
     t = TrendTimer()
-    v = step(t, close=100.0, sma=90.0, date="2026-01-02")   # close > sma → bull
+    v = step(t, close=100.0, sma=90.0, date="2026-01-02")   # well above band → bull
     assert t.invested and t.cash == 0.0
     assert t.shares == STARTING_CAPITAL * (1 - COST_PCT) / 100.0
     assert t.n_switches == 1
     assert abs(v - STARTING_CAPITAL * (1 - COST_PCT)) < 1e-9   # paid entry cost
+
+
+# ── S30 hysteresis band ──────────────────────────────────────────────────────
+def test_band_blocks_entry_just_above_sma():
+    t = TrendTimer(band_pct=0.02)
+    # close 1% above SMA — inside the +2% band → must NOT enter
+    step(t, close=101.0, sma=100.0, date="d1")
+    assert not t.invested
+    # close 3% above SMA — clears the band → enters
+    step(t, close=103.0, sma=100.0, date="d2")
+    assert t.invested
+
+
+def test_band_holds_through_minor_dip_below_sma():
+    t = TrendTimer(band_pct=0.02)
+    step(t, close=110.0, sma=100.0, date="d1")          # enter
+    assert t.invested
+    step(t, close=99.0, sma=100.0, date="d2")           # 1% below SMA — inside band → HOLD
+    assert t.invested
+    step(t, close=97.0, sma=100.0, date="d3")           # >2% below → exit
+    assert not t.invested
+
+
+def test_band_suppresses_whipsaw_switch_count():
+    """Oscillating within the band must not rack up switches."""
+    t = TrendTimer(band_pct=0.02)
+    step(t, 103.0, 100.0, "d1")    # enter (1 switch)
+    for i, px in enumerate([99.5, 100.5, 99.0, 101.0]):   # all within ±2% of SMA 100
+        step(t, px, 100.0, f"x{i}")
+    assert t.invested and t.n_switches == 1   # held throughout, no churn
 
 
 def test_stays_invested_through_bull_no_double_switch():
