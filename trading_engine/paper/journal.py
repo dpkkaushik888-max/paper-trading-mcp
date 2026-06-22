@@ -27,7 +27,13 @@ from .config import (
 
 log = logging.getLogger(__name__)
 
-SCHEMA_VERSION = 2  # v2 adds 'benchmarks' key (BH_BTC + BH_BASKET)
+SCHEMA_VERSION = 3  # v2 adds 'benchmarks'; v3 adds the trend_timed_btc tracker (S29)
+
+
+def _fresh_trend_timed() -> dict[str, Any]:
+    return {"name": "trend_timed_btc", "initialized": False, "init_date": None,
+            "invested": False, "shares": 0.0, "cash": STARTING_CAPITAL,
+            "ma_window": 200, "n_switches": 0, "starting_capital": STARTING_CAPITAL}
 
 
 @dataclass
@@ -82,6 +88,7 @@ class DaySnapshot:
     skipped: bool = False    # True if cron failed / bars unavailable
     bh_btc_value: float = 0.0       # Buy-and-hold BTC phantom portfolio
     bh_basket_value: float = 0.0    # Equal-weight 20-coin phantom portfolio
+    trend_timed_value: float = 0.0  # Trend-timed BTC tracker (S29)
 
 
 class Journal:
@@ -120,6 +127,13 @@ class Journal:
                 d.setdefault("bh_basket_value", STARTING_CAPITAL)
             data["version"] = 2
             log.info("Migrated journal v1 → v2 (added benchmarks scaffold)")
+        if v < 3:
+            # v2 → v3: add the trend-timed BTC tracker + back-fill day field.
+            data.setdefault("benchmarks", {}).setdefault("trend_timed_btc", _fresh_trend_timed())
+            for d in data.get("days", []):
+                d.setdefault("trend_timed_value", STARTING_CAPITAL)
+            data["version"] = 3
+            log.info("Migrated journal v2 → v3 (added trend_timed_btc tracker)")
         return data
 
     def save(self, path: str | Path = JOURNAL_PATH) -> None:
@@ -149,6 +163,7 @@ class Journal:
                            "starting_capital": STARTING_CAPITAL, "positions": []},
                 "bh_basket": {"name": "bh_basket", "initialized": False, "init_date": None,
                               "starting_capital": STARTING_CAPITAL, "positions": []},
+                "trend_timed_btc": _fresh_trend_timed(),
             },
         })
 
