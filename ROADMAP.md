@@ -54,6 +54,7 @@ Plan: `/Users/deepakkaushik/.claude/plans/starry-dancing-scone.md`.
 | 21d | S28 | Multi-Window (Full-Cycle) Walk-Forward (consistency gating) | VERIFIED (mechanism; TF hypothesis disproved) | S25–S27 |
 | 21e | S29 | Trend-Timed BTC Core — tracked live in the 90-day paper-forward | VERIFIED | S28, S18 |
 | 21f | S30 | Anti-Whipsaw Band (±2% hysteresis on the trend core) | VERIFIED | S29 |
+| 21g | S31 | Strategy-Selection Harness (agent picks sleeve/period vs HODL) | VERIFIED | S18, S29, S30 |
 | 22 | S24 | Crypto-Leaf Paper-Forward Validation (planned, stricter 14-day halt) | BLOCKED | a config passes S25/S26 gates on a CLEAN holdout |
 | — | S21 | Regime-Stacked Swing Engine (3 strategies × 3 regimes) | **SUPERSEDED-BY-S23** (rules absorbed, not rejected) | — |
 
