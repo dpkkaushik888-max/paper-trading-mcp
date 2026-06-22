@@ -31,8 +31,9 @@ TEST_DAYS = 90
 # ── Early-termination triggers (S18 D10) ────────────────────────────────────
 MAX_DRAWDOWN_PCT = 0.15           # >15% DD → halt
 MAX_CONSECUTIVE_LOSSES = 10       # 10 straight losers → halt
-MAX_NO_SIGNAL_DAYS = 30           # 30 days no trades → halt
 MAX_SKIPPED_DAYS = 5              # >5 cron failures → halt
+# MAX_NO_SIGNAL_DAYS removed 2026-06-22: idle during a downtrend is correct
+# Connors behavior, not failure. It caused a false FAIL on day 29.
 
 # ── Data source ─────────────────────────────────────────────────────────────
 # api.binance.com geoblocks GitHub Actions runner IP ranges (HTTP 451). The

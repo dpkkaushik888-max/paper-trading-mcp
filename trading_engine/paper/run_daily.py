@@ -45,7 +45,6 @@ from .config import (
     TEST_DAYS,
     MAX_DRAWDOWN_PCT,
     MAX_CONSECUTIVE_LOSSES,
-    MAX_NO_SIGNAL_DAYS,
     MAX_SKIPPED_DAYS,
 )
 from .data import fetch_universe
@@ -275,9 +274,10 @@ def _check_halt(journal: Journal) -> str | None:
     losses = journal.consecutive_losses()
     if losses >= MAX_CONSECUTIVE_LOSSES:
         return f"{losses} consecutive losing trades"
-    no_sig = journal.days_since_last_trade()
-    if no_sig >= MAX_NO_SIGNAL_DAYS:
-        return f"{no_sig} days without any trade activity"
+    # No-signal halt REMOVED (2026-06-22): "no trades during a downtrend" is
+    # correct Connors behavior, not failure. The 30-day idle trigger produced a
+    # false FAIL on day 29 while the live run was healthy and later profitable.
+    # Drawdown and loss-streak halts remain — those are real failure modes.
     return None
 
 

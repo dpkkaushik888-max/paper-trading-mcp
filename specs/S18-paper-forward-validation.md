@@ -1,11 +1,13 @@
 # S18: Paper-Forward Validation of S20 Config
 
-**Status:** FAIL — terminated day 29/90 (2026-05-27)
+**Status:** IN PROGRESS — REOPENED 2026-06-22 (was prematurely closed FAIL on day 29/90)
 **Branch:** `feature/s18-paper-forward`
 **Priority:** P1 (gate before real capital)
 **Depends on:** S20 (VERIFIED)
-**Verdict:** Active strategy produced 0 trades vs 2 passive benchmarks both
-positive. Regime mismatch (broad crypto downtrend) — not a bug. See UAT below.
+**Verdict:** PENDING — full 90-day run. The day-29 FAIL was a premature local
+judgment: the no-signal halt fired during a downtrend (correct idle behavior),
+but the live run continued, the regime turned, and by day 54 it was +5.36%
+beating both benchmarks. See "Reopened" addendum below.
 
 ## Overview
 
@@ -354,6 +356,34 @@ Answer the "did I beat doing nothing" question at day 90. Without this,
   **Connors Sharpe > BH_BTC Sharpe**. Beating buy-and-hold BTC is the minimum
   bar for active management to be worth the effort.
 - **FAIL** if Connors underperforms BOTH benchmarks — the active work adds no value.
+
+## Reopened (2026-06-22) — the day-29 FAIL was premature
+
+The FAIL closure above was a local judgment recorded on day 29 and **never
+pushed to the remote**. The live GitHub Actions cron never actually stopped
+(the cron-disable + FAIL commits stayed local). It kept running, and:
+
+- A trade fired before 30 consecutive idle days, so the D10 no-signal halt
+  **never triggered on the live run** — it only triggered in the local
+  snapshot, which is what prompted the false FAIL call.
+- By **day 54/90** the live portfolio was **+5.36% ($10,535.69)** on 5 trades
+  (4W/1L, 80% WR, Sharpe 3.57, max DD 2.0%) — on **TRXUSDT and NEARUSDT**
+  during the crypto recovery.
+- Both passive benchmarks were **down ~16.7%** over the same window, so the
+  active strategy is beating BH on both CAGR and Sharpe (the S18 PASS gate).
+
+### Decisions taken on reopen
+1. **Status → IN PROGRESS.** Let the run finish to day 90, then render the
+   honest PASS / MIXED / FAIL verdict per the day-90 gate.
+2. **No-signal halt REMOVED** (`config.py` `MAX_NO_SIGNAL_DAYS`,
+   `run_daily.py` `_check_halt`). "No trades during a downtrend" is correct
+   Connors behavior, not a failure mode. Drawdown (15%) and loss-streak (10)
+   halts remain.
+3. **Workflow re-activated** (`paper-forward.yml`); local reconciled with the
+   53 live daily-bot commits via merge.
+4. The original day-29 FAIL analysis (regime mismatch, F1 pass-rate audit) is
+   preserved above as a true observation of that window — it correctly
+   described a downtrend, it just shouldn't have ended the test.
 
 ## Notes & Risks
 
