@@ -1,6 +1,9 @@
 # S23: Crypto Leaf + L3 Regime-Aware Orchestrator
 
-**Status:** DRAFT
+**Status:** HOLDOUT REJECTED (2026-06-22) — framework/engine VALIDATED, but the
+long-only 3-strategy config failed combined gates G5/G6/G7/G9 on the 5y locked
+holdout. Do NOT iterate this spec (D10/D11); a new spec (S25+) is required. See
+"Holdout result" below.
 **Branch:** `feature/s23-crypto-leaf`
 **Priority:** P1 (first compliant L2 leaf for the loop hierarchy)
 **Depends on:** S22 (Loop framework), S20 (validated single-strategy baseline)
@@ -135,6 +138,46 @@ New CLI: `python -m trading_engine.paper_v2.run_daily [--dry-run]`;
 
 ## UAT
 <Filled during Phase 4.>
+
+## Holdout result (2026-06-22) — STACK REJECTED, framework VALIDATED
+
+Ran `scripts/sim_crypto_leaf.py --mode gates --years 5` (purged walk-forward +
+locked holdout, evaluated **once** per D8). Split: walk-forward 2024-06→2025-06,
+holdout 2025-06→2026-06 (a brutal crypto bear — BH_BTC −38.7%).
+
+**Walk-forward (each strategy in isolation):**
+| Strategy | CAGR | Sharpe | Max DD | Trades | G1 | G2 | G3 | G4 |
+|---|---:|---:|---:|---:|:--:|:--:|:--:|:--:|
+| A_connors | +3.3% | 0.31 | 8.2% | 80 | ✗ | ✗ | ✓ | ✓ |
+| B_breakout | +22.9% | 1.29 | 13.8% | 38 | ✓ | ✗ | ✓ | ✓ |
+| C_range | +0.3% | 0.35 | 0.7% | 2 | ✗ | ✗ | ✓ | ✗ |
+
+**Locked holdout (combined stack):** ret −18.15%, CAGR −18.2%, Sharpe −1.18,
+max DD 24.4%, 83 trades (6.9/mo). BH_BTC: CAGR −38.7%, Sharpe −0.93.
+
+| Gate | Target | Result | |
+|---|---|---|:--:|
+| G5 | combined Sharpe ≥ 1.0 | −1.18 | ✗ |
+| G6 | combined CAGR ≥ +8% | −18.2% | ✗ |
+| G7 | combined max DD < 20% | 24.4% | ✗ |
+| G8 | ≥ 4 trades/month | 6.9/mo | ✓ |
+| G9 | beats BH_BTC on CAGR & Sharpe | CAGR yes, Sharpe no | ✗ |
+
+**Verdict: 10 gates failed → S23 stack REJECTED on the holdout (per D9/D10).**
+
+Root cause: the holdout was a sustained downtrend. The long-only stack lost less
+than buy-and-hold (−18% vs −39%) but came nowhere near the absolute gates
+(+8% CAGR / Sharpe 1.0) — long-only strategies cannot hit those bars in a bear
+year. B_breakout was the only walk-forward standout (Sharpe 1.29); A and C were
+weak. Trade frequency (G8) was the only combined gate met.
+
+**Per D10/D11: do NOT iterate S23.** Options for a new spec (S25+): (a) drop A/C
+and run breakout-only, (b) add a short/hedge sleeve so the engine isn't purely
+long, (c) regime-gate entries (the wired-but-off `regime_map`) and re-validate
+on a *fresh* holdout. The **framework, orchestrator, leaf, gates, and agent are
+validated and reusable** — only this particular long-only 3-strategy config is
+rejected. The methodology did its job: it caught an unviable config honestly
+before any capital, instead of data-snooping it into looking good.
 
 ## Notes & Risks
 - **S21 is DRAFT and gated on a one-shot holdout that may REJECT it.** The
