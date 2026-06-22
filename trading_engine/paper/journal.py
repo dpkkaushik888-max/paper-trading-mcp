@@ -27,12 +27,19 @@ from .config import (
 
 log = logging.getLogger(__name__)
 
-SCHEMA_VERSION = 3  # v2 adds 'benchmarks'; v3 adds the trend_timed_btc tracker (S29)
+SCHEMA_VERSION = 4  # v2 benchmarks; v3 trend_timed_btc (S29); v4 regime_selector (S32)
 
 
 def _fresh_trend_timed() -> dict[str, Any]:
     return {"name": "trend_timed_btc", "initialized": False, "init_date": None,
             "invested": False, "shares": 0.0, "cash": STARTING_CAPITAL,
+            "ma_window": 200, "band_pct": 0.02, "n_switches": 0,
+            "starting_capital": STARTING_CAPITAL}
+
+
+def _fresh_regime_selector() -> dict[str, Any]:
+    return {"name": "regime_selector", "initialized": False, "init_date": None,
+            "mode": "bear", "shares": 0.0, "value": STARTING_CAPITAL,
             "ma_window": 200, "band_pct": 0.02, "n_switches": 0,
             "starting_capital": STARTING_CAPITAL}
 
@@ -90,6 +97,7 @@ class DaySnapshot:
     bh_btc_value: float = 0.0       # Buy-and-hold BTC phantom portfolio
     bh_basket_value: float = 0.0    # Equal-weight 20-coin phantom portfolio
     trend_timed_value: float = 0.0  # Trend-timed BTC tracker (S29)
+    selector_value: float = 0.0     # Regime selector: bull→BTC, bear→Connors (S32)
 
 
 class Journal:
@@ -135,6 +143,13 @@ class Journal:
                 d.setdefault("trend_timed_value", STARTING_CAPITAL)
             data["version"] = 3
             log.info("Migrated journal v2 → v3 (added trend_timed_btc tracker)")
+        if v < 4:
+            # v3 → v4: add the regime-selector tracker (bull→BTC, bear→Connors).
+            data.setdefault("benchmarks", {}).setdefault("regime_selector", _fresh_regime_selector())
+            for d in data.get("days", []):
+                d.setdefault("selector_value", STARTING_CAPITAL)
+            data["version"] = 4
+            log.info("Migrated journal v3 → v4 (added regime_selector tracker)")
         return data
 
     def save(self, path: str | Path = JOURNAL_PATH) -> None:
@@ -165,6 +180,7 @@ class Journal:
                 "bh_basket": {"name": "bh_basket", "initialized": False, "init_date": None,
                               "starting_capital": STARTING_CAPITAL, "positions": []},
                 "trend_timed_btc": _fresh_trend_timed(),
+                "regime_selector": _fresh_regime_selector(),
             },
         })
 
