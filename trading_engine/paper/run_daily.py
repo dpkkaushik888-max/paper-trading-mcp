@@ -59,6 +59,10 @@ from .trend_timed import (
     TrendTimer, step as trend_step, value_of as trend_value,
     serialize as trend_serialize, deserialize as trend_deserialize,
 )
+from .selector_track import (
+    step as selector_step, serialize as selector_serialize,
+    deserialize as selector_deserialize,
+)
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger("s18.run_daily")
@@ -238,6 +242,10 @@ def run(dry_run: bool = False) -> int:
 
     # ── 3c. Trend-timed BTC tracker (S29): invested in bull, cash in bear ─
     timer = trend_deserialize(journal.get_benchmark("trend_timed_btc"))
+    selector = selector_deserialize(journal.get_benchmark("regime_selector"))
+    # Connors' daily return drives the selector's bear leg.
+    prev_pf = journal.last_portfolio_value()
+    connors_daily_ret = (portfolio / prev_pf - 1.0) if prev_pf > 0 else 0.0
     btc_df = bars_by_sym.get(BH_BTC_SYMBOL)
     if btc_df is not None and len(btc_df) >= 1:
         btc_close = float(btc_df["Close"].iloc[-1])
@@ -245,10 +253,15 @@ def run(dry_run: bool = False) -> int:
                if len(btc_df) >= timer.ma_window else None)
         trend_timed_value = trend_step(timer, btc_close, sma, today)
         journal.set_benchmark("trend_timed_btc", trend_serialize(timer))
-        log.info("Trend-timed: %s | value $%.2f (%d switches)",
-                 "INVESTED" if timer.invested else "CASH", trend_timed_value, timer.n_switches)
+        # ── 3d. Regime selector (S32): bull → BTC (S30), bear → Connors (S18) ─
+        selector_value = selector_step(selector, btc_close, sma, connors_daily_ret, today)
+        journal.set_benchmark("regime_selector", selector_serialize(selector))
+        log.info("Trend-timed: %s $%.2f (%d sw) | Selector: %s $%.2f (%d sw)",
+                 "INVESTED" if timer.invested else "CASH", trend_timed_value, timer.n_switches,
+                 selector.mode.upper(), selector_value, selector.n_switches)
     else:
         trend_timed_value = trend_value(timer, todays_closes.get(BH_BTC_SYMBOL, 0.0))
+        selector_value = selector.value
 
     snap = DaySnapshot(
         date=today,
@@ -262,6 +275,7 @@ def run(dry_run: bool = False) -> int:
         bh_btc_value=bh_btc_value,
         bh_basket_value=bh_basket_value,
         trend_timed_value=trend_timed_value,
+        selector_value=selector_value,
     )
     journal.append_day(snap)
 

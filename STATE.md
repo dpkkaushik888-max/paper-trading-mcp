@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-06-22
 **Current milestone:** M7: Loop-Engineering Redesign — recursive loop+agent hierarchy (personal finance ⊃ investment ⊃ {equity, crypto}); crypto engine becomes the first L2 leaf
-**Active spec:** S31 (Selection Harness) — VERIFIED; reusable "agent picks strategy each period vs HODL" backtest. S25–S30 VERIFIED. S18 paper-forward running to day 90 (tracking Connors + trend-timed + benchmarks).
+**Active spec:** S32 (Live Regime-Selector) — VERIFIED; bull→BTC/bear→Connors selector tracked live in the 90-day paper-forward (day 54). S25–S31 VERIFIED. S18 paper-forward tracking 5 series.
 
 ## Completed Specs
 | Spec | Title | Date Completed |
@@ -39,6 +39,7 @@
 | S29 | Trend-Timed BTC Core | **VERIFIED** | The one robust edge (S28): hold BTC above its 200d SMA, cash below. Added as a 3rd tracked series (`trend_timed_btc`) to the live 90-day paper-forward via journal v2→v3 + `trend_timed.py` tracker; back-filled over 54 existing days. 9 new tests; 228 green. Live (day 54, a downtrend): trend-timed $10,000 (0.0%, CASH whole window — preserved capital) vs Connors $10,536 (+5.4%) vs BH_BTC $8,331 (−16.7%). Window is pure downtrend so BTC never reclaimed its 200d SMA; flips to INVESTED automatically when it does. |
 | S30 | Anti-Whipsaw Band (trend core) | **VERIFIED** | ±2% hysteresis band on S29 (enter above +band, exit below −band, hold inside). Principled anti-whipsaw — tested slope filter (REJECTED, halved returns) vs band (ADOPTED). Band matched HODL +205% at 31% maxDD (vs ~70%), ≥ bare S29 every year. Does NOT fix 2024–25 (that's MA lag, not whipsaw — honestly left unsolved). 12 trend-timed tests; 231 green. Live tracker now band_pct=0.02. |
 | S31 | Strategy-Selection Harness | **VERIFIED** | Reusable period-by-period "agent picks a sleeve {btc/connors/cash} each month vs HODL" backtest; no-lookahead by construction, pluggable selectors (bounded agent drops in later). 7 tests; 238 green. Result (4y): naive monthly selectors underperform HODL on return (+112%/+102% vs +205%) but ~halve drawdown; monthly cadence too slow vs daily S30; Connors-in-bear < cash again. Beating HODL needs finer cadence or real regime detection (unsolved). |
+| S32 | Live Regime-Selector | **VERIFIED** | 5th tracked series in the live 90-day paper-forward: bull→BTC (S30), bear→Connors (S18), 200d-SMA+band regime, bear-leg mirrors actual Connors return. Journal v3→v4; `selector_track.py` + backfill. 7 tests; 245 green. Live (day 54): selector = Connors exactly ($10,535.69, +5.36%) — S30 never fired (BTC below SMA all window, 0 switches); combining cost nothing. Diverges only when BTC turns bull. |
 | S21 | Regime-Stacked Swing Engine | **SUPERSEDED-BY-S23** | Rules (D1–D11) survive and are absorbed into S23; not rejected. Window-test showed it underperformed standalone S20 (S18) in the live window. |
 | S17.1 | Rolling-Window Robustness Test | NOT STARTED | Optional; deferred. |
 
