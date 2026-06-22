@@ -1,8 +1,8 @@
 # Project State
 
-**Last updated:** 2026-05-27
-**Current milestone:** M6: Regime-Stacked Engine (single-regime strategies don't fit personal-compounder use case)
-**Active spec:** S21 — Regime-Stacked Swing Engine (DRAFT)
+**Last updated:** 2026-06-22
+**Current milestone:** M7: Loop-Engineering Redesign — recursive loop+agent hierarchy (personal finance ⊃ investment ⊃ {equity, crypto}); crypto engine becomes the first L2 leaf
+**Active spec:** S22 (Loop Framework) + S23 (Crypto Leaf + L3 Orchestrator) — DRAFT. S18 paper-forward REOPENED and running to day 90.
 
 ## Completed Specs
 | Spec | Title | Date Completed |
@@ -24,14 +24,16 @@
 | S17 | Rule-Based Connors Swing (Crypto Daily) | 2026-04-20 (**PASSED 4/4 gates**) |
 | S19 | Expanded-Universe Test (20 crypto) | 2026-04-21 (3/4 gates; triggered S20) |
 | S20 | Raise Position Cap 4→6 | 2026-04-21 (**PASSED 4/4 + S20.1**) |
-| S18 | Paper-Forward Validation (S20 config) | 2026-05-27 (**FAIL** — closed day 29/90; see below) |
 
 ## In Progress
 | Spec | Title | Status | Notes |
 |------|-------|--------|-------|
 | S14 | Live Paper Trading Simulation | **RETIRED** | Strategy pivoted — S14 was ML-on-1min. Workflow renamed to .disabled. |
-| S21 | Regime-Stacked Swing Engine | **DRAFT** | 3 strategies (uptrend pullback / range fade / downtrend continuation) to cover all 3 regimes. Personal-compounder primary engine. |
-| S17.1 | Rolling-Window Robustness Test | NOT STARTED | Optional; deferred — S18 already invalidated S20 as standalone |
+| S18 | Paper-Forward Validation (S20 config) | **IN PROGRESS** (reopened 2026-06-22) | Day-29 FAIL was premature; live run continued and is +5.36% at day 54/90, beating both benchmarks. No-signal halt removed; running to day 90. |
+| S22 | Loop+Agent Framework | **DRAFT** | Recursive loop framework (`loops/` pkg): Mandate↓/Report↑ contract, composite allocation, JSON ledger, bounded LLM agent client. |
+| S23 | Crypto Leaf + L3 Orchestrator | **DRAFT** | First compliant L2 leaf; regime-aware StrategyOrchestrator wires regime→strategy selection. Absorbs S21's locked rules. |
+| S21 | Regime-Stacked Swing Engine | **SUPERSEDED-BY-S23** | Rules (D1–D11) survive and are absorbed into S23; not rejected. Window-test showed it underperformed standalone S20 (S18) in the live window. |
+| S17.1 | Rolling-Window Robustness Test | NOT STARTED | Optional; deferred. |
 
 ## 2026-05-27 S18 FAIL — single-strategy regime mismatch
 
@@ -155,14 +157,13 @@ universe, pre-committed). 7 symbols produced 0 trades.
 | **Deployment** | GitHub Actions daily cron @ 00:30 UTC |
 
 ## Next Actions
-- **Refine and approve S21** — regime-stacked engine (uptrend pullback + range fade + downtrend continuation) as the personal-compounder primary engine
-- **Pre-commit S21 universe + rules + gates** before any backtest runs (avoid S17→S19→S20 holdout-snooping repeat)
-- **Backtest each of the 3 S21 strategies in isolation** against honest costs, then evaluate the combined portfolio
-- **Do not relaunch S18 / S20 standalone** — single-regime active strategy lost to passive BH_BTC over 29 days
-- **(Optional, deferred)** S17.1 rolling-window robustness — S18 already provided harsher evidence
+- **Let S18 finish to day 90**, then render the honest PASS/MIXED/FAIL verdict (currently +5.36% at day 54, beating both benchmarks — on track to PASS).
+- **Build the loop-engineering redesign** per `/Users/deepakkaushik/.claude/plans/starry-dancing-scone.md`: S22 framework → S23 crypto leaf + L3 orchestrator (regime wiring) → validation track. Build alongside the live S18 run (physical isolation, `state_v2/`).
+- **Carry S21's locked rules (D1–D11) into S23** so the backtest methodology/gates are unchanged (avoid the S17→S19→S20 holdout-snooping repeat).
+- **(Optional, deferred)** S17.1 rolling-window robustness.
 
 ## Blockers
-- **Single-strategy regime mismatch confirmed.** S20 alone is unsuitable as a personal-compounder primary engine (0 trades in 29 days, lost to passive BH_BTC). Must stack regimes — see S21.
+- **None blocking the redesign.** Note the earlier "S20 unsuitable" conclusion was based on the premature day-29 FAIL; the live run has since shown S20 trades and is profitable in the recovery regime. S20 stands as the validated single-strategy baseline; S23 stacks regimes on top of it.
 - **Honest-cost audit reveals all prior "profitable" strategies were cost-inflation artifacts.**
   Pipeline must be re-validated before any further live deployment.
 - **India model** not profitable even after calibration — deferred.

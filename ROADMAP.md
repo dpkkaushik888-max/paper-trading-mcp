@@ -36,21 +36,27 @@
 | 15 | S17 | Rule-based Connors swing | DONE (4/4 gates) | S16 |
 | 16 | S19 | Expanded 20-crypto universe | DONE (3/4 gates) | S17 |
 | 17 | S20 | Raise position cap 4→6 | DONE (4/4 gates) | S19 |
-| 18 | S18 | Paper-Forward Validation of S20 | **FAIL** — closed day 29/90, 0 trades, regime mismatch | S20 |
+| 18 | S18 | Paper-Forward Validation of S20 | **IN PROGRESS** (reopened 2026-06-22; +5.36% at day 54/90, beating both BH) | S20 |
 
-## M5: Regime-Stacked Personal-Compounder Engine
+## M5: Loop-Engineering Redesign — recursive loop+agent hierarchy
+
+Personal Finance ⊃ Investment ⊃ {Equity, Crypto}. Crypto engine becomes the
+first compliant L2 leaf. Built alongside the live S18 run (physical isolation).
+Plan: `/Users/deepakkaushik/.claude/plans/starry-dancing-scone.md`.
 
 | Order | Spec | Title | Status | Depends On |
 |-------|------|-------|--------|------------|
-| 19 | S21 | Regime-Stacked Swing Engine (3 strategies × 3 regimes) | DRAFT | S18 lessons |
-| 20 | S22 | S21 Paper-Forward Validation (planned, stricter D10) | NOT STARTED | S21 APPROVED |
+| 19 | S22 | Loop+Agent Framework (`loops/` pkg, Mandate↓/Report↑, composite, agent client) | DRAFT | S18 lessons |
+| 20 | S23 | Crypto Leaf + L3 Regime Orchestrator (absorbs S21 rules) | DRAFT | S22 |
+| 21 | S24 | Crypto-Leaf Paper-Forward Validation (planned, stricter 14-day halt) | NOT STARTED | S23 gates pass |
+| — | S21 | Regime-Stacked Swing Engine (3 strategies × 3 regimes) | **SUPERSEDED-BY-S23** (rules absorbed, not rejected) | — |
 
 ## Deferred / Backlogged
 
 | Spec | Title | Status |
 |------|-------|--------|
-| Live Broker Automation (Zerodha / IBKR) | BACKLOG | Gated on S22 PASS |
-| Web Dashboard (P&L charts, multi-strategy attribution) | BACKLOG | After S21 APPROVED |
+| Live Broker Automation (Zerodha / IBKR) | BACKLOG | Gated on S24 PASS |
+| Web Dashboard (P&L charts, multi-strategy attribution) | BACKLOG | After S23 APPROVED |
 | Alert System (email/Telegram on signals) | BACKLOG | After live deployment |
 | Indian F&O Integration | BACKLOG | After live US/crypto deployment |
 | Alternative Broker Profiles | BACKLOG | After live deployment |

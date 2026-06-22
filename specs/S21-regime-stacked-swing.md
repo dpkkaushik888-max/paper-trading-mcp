@@ -1,9 +1,11 @@
 # S21: Regime-Stacked Swing Engine
 
-**Status:** DRAFT
+**Status:** SUPERSEDED-BY-S23 (2026-06-22) — rules D1–D11 absorbed verbatim into
+S23; NOT rejected. This spec remains the canonical source for the locked
+strategy rules and gates. See `specs/S23-crypto-leaf-l3-orchestrator.md`.
 **Branch:** `feature/s21-regime-stacked`
-**Priority:** P1 (replaces S20-as-standalone after S18 FAIL)
-**Depends on:** S20 (kept as one of three stacked strategies), S18 FAIL findings
+**Priority:** P1 (rules now realized inside the S23 L3 orchestrator)
+**Depends on:** S20 (kept as one of three stacked strategies), S18 findings
 
 ## Overview
 
