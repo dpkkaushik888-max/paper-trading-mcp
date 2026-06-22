@@ -42,6 +42,11 @@ def main(argv=None) -> int:
                    help="G2/G9 benchmark: beat BH on CAGR (raw) or Sharpe (risk-adjusted, S26)")
     p.add_argument("--reused-holdout", action="store_true",
                    help="mark promotions clean_oos=false (the 5y holdout was already observed)")
+    p.add_argument("--wf-mode", choices=["single", "windowed"], default="single",
+                   help="walk-forward filter: one aggregate span, or N regime windows (S28)")
+    p.add_argument("--wf-windows", type=int, default=4, help="windowed WF: number of sub-windows")
+    p.add_argument("--min-windows-pass", type=int, default=3,
+                   help="windowed WF: min windows a candidate must clear")
     args = p.parse_args(argv)
 
     print(f"Fetching {args.years}y daily bars for {len(oracle.UNIVERSE)} symbols...")
@@ -56,10 +61,14 @@ def main(argv=None) -> int:
     if not clean_oos:
         print("⚠️  --reused-holdout: promotions marked clean_oos=FALSE — methodology")
         print("    demo on an already-observed holdout, NOT eligible for live capital.\n")
+    from trading_engine.discovery.search import WindowedWFConfig
     loop = StrategyDiscoveryLoop(
         bars=bars, seed=args.seed, n_candidates=args.n_candidates,
         manifest=manifest, state=state, agent=agent,
-        alpha_mode=args.alpha_mode, clean_oos=clean_oos,
+        alpha_mode=args.alpha_mode, clean_oos=clean_oos, wf_mode=args.wf_mode,
+        windowed_cfg=WindowedWFConfig(n_windows=args.wf_windows,
+                                      min_windows_pass=args.min_windows_pass,
+                                      alpha_mode=args.alpha_mode),
     )
     loop.set_mandate(Mandate(
         loop_id="L_research", issued_by="owner", period=args.period,
@@ -70,9 +79,9 @@ def main(argv=None) -> int:
     rpt = loop.run(args.period)
     d = rpt.diagnostics
 
-    print("── Discovery pass ──")
+    print(f"── Discovery pass (wf_mode={args.wf_mode}, alpha={args.alpha_mode}) ──")
     print(f"  proposed:        {d['n_proposed']}")
-    print(f"  passed WF (G1–4):{d['n_passed_wf']}")
+    print(f"  passed WF:       {d['n_passed_wf']}")
     print(f"  reached holdout: {d['n_reached_holdout']} (trial budget {d['trial_budget']})")
     print(f"  PROMOTED:        {d['n_promoted']}  {d['promoted_ids']}\n")
 
