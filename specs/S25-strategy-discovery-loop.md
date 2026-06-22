@@ -1,6 +1,6 @@
 # S25: Strategy Discovery Loop ("Agent 1")
 
-**Status:** DRAFT
+**Status:** IMPLEMENTED (awaiting UAT)
 **Branch:** `feature/s25-strategy-discovery`
 **Priority:** P1 (the research loop that grows the strategy registry)
 **Depends on:** S22 (loop framework), S23 (orchestrator/leaf/gates — VALIDATED engine)
@@ -100,20 +100,33 @@ Every generated strategy implements the existing `BaseStrategy` contract
 
 ## Acceptance Criteria
 
-- [ ] `loops/research_loop.py` — `StrategyDiscoveryLoop(Loop)` running the D1 pipeline.
-- [ ] `trading_engine/discovery/primitives.py` — indicator primitive library + a
+- [x] `loops/research_loop.py` — `StrategyDiscoveryLoop(Loop)` running the D1 pipeline.
+- [x] `trading_engine/discovery/primitives.py` — indicator primitive library + a
       rule grammar that compiles a candidate spec into a `BaseStrategy`.
-- [ ] `trading_engine/discovery/candidate.py` — candidate spec dataclass +
+- [x] `trading_engine/discovery/candidate.py` — candidate spec dataclass +
       `to_strategy()` codegen.
-- [ ] `loops/agent.py` gains `propose_candidates(...)` (bounded: returns specs from
+- [x] `loops/agent.py` gains `propose_candidates(...)` (bounded: returns specs from
       the primitive grammar only; validated/rejected on malformed output).
-- [ ] Search uses `run_walk_forward` on train+WF only; holdout read once/candidate.
-- [ ] Trial budget enforced + ALL candidates logged (no silent multiple testing).
-- [ ] Deflated-Sharpe threshold applied by trial count; ≥2/3 sub-period robustness.
-- [ ] Promotions append to a registry manifest with full provenance; reversible.
-- [ ] Report up: survivors + evidence + regime maps; mandate down: constraints +
+- [x] Search runs each candidate on train+WF only; holdout read once/candidate.
+      *(See Research note: built a candidate-native `search.py` on `CryptoLeaf`
+      rather than reusing `run_walk_forward`, which only mutates `rules.json`.)*
+- [x] Trial budget enforced + ALL candidates logged (no silent multiple testing).
+- [x] Deflated-Sharpe threshold applied by trial count; ≥2/3 sub-period robustness.
+- [x] Promotions append to a registry manifest with full provenance; reversible.
+- [x] Report up: survivors + evidence + regime maps; mandate down: constraints +
       trial budget.
-- [ ] Determinism: same seed + same data → same candidates + same verdicts.
+- [x] Determinism: same seed + same data → same candidates + same verdicts.
+
+**Implementation note (search engine):** D1 step 2 suggested reusing
+`strategy_optimizer.run_walk_forward`. That optimizer mutates `rules.json` (a
+different strategy representation) and cannot evaluate a `GeneratedStrategy`.
+Instead, `discovery/search.py` evaluates each candidate in isolation through the
+canonical `CryptoLeaf` + `StrategyOrchestrator` on the train+WF span and applies
+the S23 single-strategy gates G1–G4 — same anti-overfitting discipline, native to
+the candidate codegen path, and keeps the dependency arrow discovery → engine
+(never discovery → scripts). Tests: `test_discovery_search.py`,
+`test_discovery_gates.py`, `test_discovery_generate.py`,
+`test_registry_manifest.py`, `test_research_loop.py` (47 tests; full suite 198 green).
 
 ## Technical Design
 

@@ -102,6 +102,56 @@ class AgentClient:
             )
         return weights
 
+    # ── discovery judgment: propose candidate strategy specs (S25) ─────────
+    def propose_candidates(
+        self, n: int, primitives: list[str], example_spec: dict,
+        mandate=None, regime_hint: Optional[str] = None,
+    ) -> Optional[list]:
+        """Return up to ``n`` validated candidate spec dicts, or None → caller falls
+        back to the deterministic grammar generator.
+
+        The agent's output is bounded: it may only emit conditions over the named
+        ``primitives``. Every returned spec is re-validated by compiling it through
+        ``CandidateSpec.from_dict`` (which rejects unknown columns / bad operators);
+        malformed specs are dropped, never trusted. The agent NEVER sees the holdout.
+        """
+        if not self.enabled or shutil.which(self.command) is None:
+            return None
+        req = AgentRequest(
+            schema_version=1, decision_type="propose_candidates", loop_id="L_research",
+            period=getattr(mandate, "period", ""),
+            mandate=mandate.to_dict() if mandate else {},
+            inputs={"n": n, "primitives": primitives, "example_spec": example_spec,
+                    "regime_hint": regime_hint},
+            options=primitives,
+            constraints={"max_candidates": n, "feature_columns": primitives},
+        )
+        resp = self._invoke(req)
+        specs = self._validate_candidates(resp, n) if resp else None
+        if self.state is not None:
+            self.state.record_agent_call(
+                req.period or "adhoc", req.decision_type, asdict(req),
+                asdict(resp) if resp else {"error": "no_response"},
+            )
+        return specs
+
+    @staticmethod
+    def _validate_candidates(resp: AgentResponse, n: int) -> Optional[list]:
+        """Compile each proposed spec dict through the grammar; drop any that fail."""
+        from trading_engine.discovery.candidate import CandidateSpec
+        raw = resp.selection.get("candidates")
+        if not isinstance(raw, list):
+            return None
+        valid = []
+        for d in raw[:n]:
+            try:
+                spec = CandidateSpec.from_dict(d)
+                spec.to_strategy()              # must compile to a BaseStrategy
+            except (KeyError, TypeError, ValueError):
+                continue                        # malformed → rejected, not trusted
+            valid.append(spec)
+        return valid or None
+
     # ── subprocess + parsing ──────────────────────────────────────────────
     def _invoke(self, req: AgentRequest) -> Optional[AgentResponse]:
         prompt = self._build_prompt(req)
@@ -120,7 +170,21 @@ class AgentClient:
 
     @staticmethod
     def _build_prompt(req: AgentRequest) -> str:
-        if req.decision_type == "select_weights":
+        if req.decision_type == "propose_candidates":
+            head = (
+                "You are a quant strategy researcher. Propose up to "
+                f"{req.constraints.get('max_candidates')} trading strategy candidates "
+                "as bounded rule specs. You may ONLY reference these feature columns "
+                f"in conditions: {req.options}. Each condition is "
+                '{"lhs": "<col>", "op": ">|<|>=|<=", "rhs": <number or col>, '
+                '"rhs_mult": <float>}. Return ONLY a JSON object '
+                '{"candidates": [<spec>, ...], "confidence": <0..1>, "rationale": '
+                '"<short>"} where each <spec> matches the example shape exactly:\n'
+                f"{json.dumps(req.inputs.get('example_spec'), indent=2)}\n"
+                "Invent NEW rule combinations; do not output trades or results. The "
+                "holdout is never shown to you."
+            )
+        elif req.decision_type == "select_weights":
             head = (
                 "You are a crypto strategy portfolio manager. Given the market "
                 "regime and what each strategy does, decide how hard to lean on "
@@ -150,10 +214,15 @@ class AgentClient:
             d = json.loads(s[start:end + 1])
         except json.JSONDecodeError:
             return None
-        if "weights" not in d:
+        if "weights" not in d and "candidates" not in d:
             return None
+        selection = {}
+        if "weights" in d:
+            selection["weights"] = d["weights"]
+        if "candidates" in d:
+            selection["candidates"] = d["candidates"]
         return AgentResponse(
-            selection={"weights": d["weights"]},
+            selection=selection,
             confidence=float(d.get("confidence", 0.0)),
             rationale=str(d.get("rationale", "")),
             flags=list(d.get("flags", [])),

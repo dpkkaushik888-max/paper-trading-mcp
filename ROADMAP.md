@@ -48,7 +48,7 @@ Plan: `/Users/deepakkaushik/.claude/plans/starry-dancing-scone.md`.
 |-------|------|-------|--------|------------|
 | 19 | S22 | Loop+Agent Framework (`loops/` pkg, Mandate↓/Report↑, composite, agent client) | DRAFT | S18 lessons |
 | 20 | S23 | Crypto Leaf + L3 Regime Orchestrator (absorbs S21 rules) | DRAFT | S22 |
-| 21 | S25 | Strategy Discovery Loop ("Agent 1") — propose/search/prove/promote | DRAFT | S23 engine+gates |
+| 21 | S25 | Strategy Discovery Loop ("Agent 1") — propose/search/prove/promote | IMPLEMENTED (awaiting UAT) | S23 engine+gates |
 | 22 | S24 | Crypto-Leaf Paper-Forward Validation (planned, stricter 14-day halt) | BLOCKED | a config passes S25 gates |
 | — | S21 | Regime-Stacked Swing Engine (3 strategies × 3 regimes) | **SUPERSEDED-BY-S23** (rules absorbed, not rejected) | — |
 
