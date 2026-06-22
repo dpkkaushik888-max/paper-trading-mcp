@@ -53,6 +53,16 @@ class CryptoAssetLoop(Loop):
 
     def decide(self, observation: dict) -> dict:
         m = self.mandate
+        # Bounded agent hook: the crypto agent weights the (fixed) strategies by
+        # regime. Engine re-validates; deterministic weights stand on any problem.
+        advisor = None
+        if self.agent is not None:
+            info = {s.name: getattr(s, "reason", s.name) for s in self._strategies}
+
+            def advisor(rr, names, _info=info):
+                regime = rr.state.value if rr is not None else None
+                return self.agent.select_weights(regime, _info, names, mandate=self.mandate)
+
         orch = StrategyOrchestrator(
             strategies=self._strategies,
             regime_filter=self._regime_filter,
@@ -60,6 +70,7 @@ class CryptoAssetLoop(Loop):
             global_max_concurrent=int(m.risk_limits.get("max_concurrent", 8)) if m else 8,
             per_strategy_cap=int(m.risk_limits.get("per_strategy_cap", 4)) if m else 4,
             base_pos_size_pct=float(m.risk_limits.get("pos_size_pct", 0.12)) if m else 0.12,
+            weight_advisor=advisor,
         )
         capital = float(m.capital_budget) if m else 10_000.0
         return {"orch": orch, "capital": capital, **observation}

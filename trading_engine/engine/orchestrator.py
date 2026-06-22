@@ -68,6 +68,8 @@ class StrategyOrchestrator:
         global_max_concurrent: int = 8,
         per_strategy_cap: int = 4,
         base_pos_size_pct: float = 0.12,
+        weight_advisor=None,        # callable(rr, names) -> Optional[dict]; injected
+        max_advisor_weight: float = 2.0,
     ) -> None:
         self.strategies = strategies
         self.regime_filter = regime_filter
@@ -76,6 +78,12 @@ class StrategyOrchestrator:
         self.global_max = global_max_concurrent
         self.per_strategy_cap = per_strategy_cap
         self.base_pos_size_pct = base_pos_size_pct
+        # Dependency-inverted agent hook: the control plane (loops) injects a
+        # callable that returns per-strategy weights. Engine re-validates and
+        # falls back to deterministic weights on any problem. Keeps trading_engine
+        # free of any loops import.
+        self.weight_advisor = weight_advisor
+        self.max_advisor_weight = max_advisor_weight
 
     def _ordered(self) -> list:
         return sorted(self.strategies, key=lambda s: getattr(s, "priority", 99))
@@ -92,21 +100,40 @@ class StrategyOrchestrator:
                 rr = None
 
         names = [s.name for s in self.strategies]
-        if not self.regime_gating:
+        if self.regime_gating:
+            state = rr.state if rr else RegimeState.NEUTRAL
+            base = self.regime_map.get(state, {})
+            weights = {n: base.get(n, 1.0) for n in names}
+            if rr and rr.is_caution:
+                weights = {n: w * 0.5 for n, w in weights.items()}
+            # regime_map is the sole per-strategy gate: weight 0 = blocked. We do
+            # NOT also AND rr.allows_new_longs (a coarse "no longs in bear") — the
+            # map already encodes which long strategies fire per regime (range
+            # fades are still allowed in bear).
+        else:
             # Reproduces the unconditional S21 stack: all fire, weight 1.0.
-            return rr, RegimePolicy({n: 1.0 for n in names}, {n: True for n in names})
+            weights = {n: 1.0 for n in names}
 
-        state = rr.state if rr else RegimeState.NEUTRAL
-        base = self.regime_map.get(state, {})
-        weights = {n: base.get(n, 1.0) for n in names}
-        if rr and rr.is_caution:
-            weights = {n: w * 0.5 for n, w in weights.items()}
-        # regime_map is the sole per-strategy gate: weight 0 = blocked. We do NOT
-        # also AND rr.allows_new_longs (a coarse "no longs in bear") — the map
-        # already encodes which long strategies fire in each regime (e.g. range
-        # fades are still allowed in bear).
+        # Bounded agent override (judgment only). Engine re-validates; on any
+        # problem the deterministic weights above stand.
+        if self.weight_advisor is not None:
+            advised = self._validate_advisor(self.weight_advisor(rr, names), names)
+            if advised is not None:
+                weights = advised
+
         allow = {n: weights[n] > 0.0 for n in names}
         return rr, RegimePolicy(weights, allow)
+
+    def _validate_advisor(self, advised, names) -> Optional[dict]:
+        if not advised or set(advised) != set(names):
+            return None
+        try:
+            out = {n: float(advised[n]) for n in names}
+        except (TypeError, ValueError, KeyError):
+            return None
+        if any(v < 0.0 or v > self.max_advisor_weight for v in out.values()):
+            return None
+        return out
 
     # ── exits (each position uses its owning strategy's exit) ─────────────
     def decide_exits(self, view: PortfolioView, snapshot: dict, current_day) -> list[Order]:

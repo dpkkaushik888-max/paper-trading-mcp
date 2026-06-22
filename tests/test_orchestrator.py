@@ -110,6 +110,49 @@ def test_regime_gating_off_by_default_all_weight_one():
     assert all(policy.allow_new.values())
 
 
+def test_weight_advisor_overrides_when_valid():
+    # Agent (advisor) zeroes out breakout → breakout blocked; others normal.
+    def advisor(rr, names):
+        return {"A_connors": 1.0, "B_breakout": 0.0, "C_range": 1.0}
+
+    orch = stack()
+    orch.weight_advisor = advisor
+    _, policy = orch.regime_policy(None, DAY)
+    assert policy.weights["B_breakout"] == 0.0
+    assert policy.allow_new["B_breakout"] is False
+    assert policy.allow_new["A_connors"] is True
+
+
+def test_weight_advisor_rejected_on_bad_keys_falls_back():
+    def advisor(rr, names):
+        return {"A_connors": 1.0}  # missing keys → invalid
+
+    orch = stack()
+    orch.weight_advisor = advisor
+    _, policy = orch.regime_policy(None, DAY)
+    assert all(w == 1.0 for w in policy.weights.values())  # deterministic fallback
+
+
+def test_weight_advisor_rejected_on_out_of_range():
+    def advisor(rr, names):
+        return {"A_connors": 5.0, "B_breakout": 1.0, "C_range": 1.0}  # 5 > max 2
+
+    orch = stack()
+    orch.weight_advisor = advisor
+    _, policy = orch.regime_policy(None, DAY)
+    assert all(w == 1.0 for w in policy.weights.values())
+
+
+def test_weight_advisor_none_returns_deterministic():
+    def advisor(rr, names):
+        return None  # agent unavailable / declined
+
+    orch = stack()
+    orch.weight_advisor = advisor
+    _, policy = orch.regime_policy(None, DAY)
+    assert all(w == 1.0 for w in policy.weights.values())
+
+
 def test_regime_gating_on_bear_blocks_connors_and_breakout():
     orch = stack()
     orch.regime_gating = True
