@@ -1,35 +1,35 @@
 {
-  "generated_at": "2026-06-29T18:35:13+00:00",
+  "generated_at": "2026-06-29T18:53:30+00:00",
   "start_date": "2026-04-21",
   "starting_capital": 10000.0,
   "test_days": 90,
   "metrics": {
-    "days_elapsed": 55,
-    "total_return_pct": 5.356917904646874,
-    "cagr_pct": 41.38400822599566,
-    "sharpe": 3.53575692496548,
+    "days_elapsed": 61,
+    "total_return_pct": 4.414291417718785,
+    "cagr_pct": 29.494741631601574,
+    "sharpe": 2.6537507802736044,
     "max_dd_pct": 2.014943450440587,
-    "win_rate_pct": 80.0,
-    "profit_factor": 3.7090067985279855,
-    "trades": 5,
-    "wins": 4,
-    "losses": 1,
-    "portfolio_value": 10535.691790464687,
-    "cash": 10535.691790464687,
-    "n_open": 0
+    "win_rate_pct": 71.42857142857143,
+    "profit_factor": 2.1913997680511668,
+    "trades": 7,
+    "wins": 5,
+    "losses": 2,
+    "portfolio_value": 10441.429141771878,
+    "cash": 8905.448802320223,
+    "n_open": 1
   },
   "bh_btc_metrics": {
     "value": 7832.754929162957,
     "total_return_pct": -21.672450708370437,
-    "cagr_pct": -80.23129132369505,
-    "sharpe": -3.8893897017388355,
+    "cagr_pct": -76.81397299508981,
+    "sharpe": -3.881333214036992,
     "max_dd_pct": 27.54688732435511
   },
   "bh_basket_metrics": {
     "value": 7850.328826807962,
     "total_return_pct": -21.49671173192038,
-    "cagr_pct": -79.93507505534933,
-    "sharpe": -3.24674317135018,
+    "cagr_pct": -76.50095350419322,
+    "sharpe": -3.193313155089554,
     "max_dd_pct": 31.49073833119966
   },
   "backtest_baseline": {
@@ -373,13 +373,59 @@
       "bh_basket": 8339.973910895735
     },
     {
+      "date": "2026-06-23",
+      "connors": 10531.94216527728,
+      "bh_btc": 8257.002145410323,
+      "bh_basket": 8177.288885061658
+    },
+    {
+      "date": "2026-06-24",
+      "connors": 10534.218355117584,
+      "bh_btc": 8035.159215395056,
+      "bh_basket": 8034.352177865217
+    },
+    {
+      "date": "2026-06-25",
+      "connors": 10436.342191984575,
+      "bh_btc": 7854.704331972547,
+      "bh_basket": 7871.845701974458
+    },
+    {
+      "date": "2026-06-26",
+      "connors": 10383.10623607589,
+      "bh_btc": 7908.1040181843655,
+      "bh_basket": 7939.346751346069
+    },
+    {
+      "date": "2026-06-27",
+      "connors": 10436.955966302488,
+      "bh_btc": 7900.015110566228,
+      "bh_basket": 7882.8646216613615
+    },
+    {
+      "date": "2026-06-28",
+      "connors": 10441.429141771878,
+      "bh_btc": 7832.754929162957,
+      "bh_basket": 7850.328826807962
+    },
+    {
       "date": "2026-06-29",
-      "connors": 10535.691790464687,
+      "connors": 10441.429141771878,
       "bh_btc": 7832.754929162957,
       "bh_basket": 7850.328826807962
     }
   ],
-  "open_positions": [],
+  "open_positions": [
+    {
+      "symbol": "NEARUSDT",
+      "entry_date": "2026-06-26",
+      "entry_price": 1.7968979999999999,
+      "current_price": 1.84,
+      "shares": 834.77192361503,
+      "unrealized_pnl": 35.98033945165518,
+      "unrealized_pct": 2.3986892967770013
+    }
+  ],
   "closed_trades": [
     {
       "symbol": "TRXUSDT",
@@ -435,18 +481,40 @@
       "pnl_pct": 14.530169518245174,
       "hold_days": 2,
       "reason": "MR_EXIT"
+    },
+    {
+      "symbol": "NEARUSDT",
+      "entry_date": "2026-06-23",
+      "exit_date": "2026-06-26",
+      "entry_price": 1.976988,
+      "exit_price": 1.793306,
+      "pnl": -145.08630401398477,
+      "pnl_pct": -9.672420267598984,
+      "hold_days": 3,
+      "reason": "SL"
+    },
+    {
+      "symbol": "TRXUSDT",
+      "entry_date": "2026-06-26",
+      "exit_date": "2026-06-28",
+      "entry_price": 0.31885935,
+      "exit_price": 0.32393795000000003,
+      "pnl": 17.843315869520893,
+      "pnl_pct": 1.189554391301393,
+      "hold_days": 2,
+      "reason": "MR_EXIT"
     }
   ],
   "per_symbol": {
     "TRXUSDT": {
-      "trades": 3,
-      "wins": 2,
-      "pnl": 60.65662790464535
+      "trades": 4,
+      "wins": 3,
+      "pnl": 78.49994377416624
     },
     "NEARUSDT": {
-      "trades": 2,
+      "trades": 3,
       "wins": 2,
-      "pnl": 475.03516256004104
+      "pnl": 329.9488585460563
     }
   }
 }
