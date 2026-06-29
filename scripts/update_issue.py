@@ -114,15 +114,15 @@ _This issue body is auto-edited by `.github/workflows/paper-forward.yml` on each
 
 
 def _check_halt_msg(j: Journal) -> str | None:
+    # Mirror run_daily._check_halt: the no-signal-days halt was removed 2026-06-22
+    # ("no trades during a downtrend" is correct Connors behavior, not failure).
     from trading_engine.paper.config import (
-        MAX_DRAWDOWN_PCT, MAX_CONSECUTIVE_LOSSES, MAX_NO_SIGNAL_DAYS,
+        MAX_DRAWDOWN_PCT, MAX_CONSECUTIVE_LOSSES,
     )
     if j.max_drawdown() > MAX_DRAWDOWN_PCT:
         return f"### ⚠️ HALT — Drawdown {j.max_drawdown() * 100:.2f}% exceeds {MAX_DRAWDOWN_PCT * 100:.0f}%"
     if j.consecutive_losses() >= MAX_CONSECUTIVE_LOSSES:
         return f"### ⚠️ HALT — {j.consecutive_losses()} consecutive losses"
-    if j.days_since_last_trade() >= MAX_NO_SIGNAL_DAYS:
-        return f"### ⚠️ HALT — {j.days_since_last_trade()} days without any trade"
     return None
 
 
