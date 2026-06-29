@@ -1,5 +1,6 @@
 yfinance>=0.2.36
-pandas>=2.0.0
+# pandas 3.0.x was yanked from PyPI for datetime segfaults — cap below it (pandas-ta needs >=2.3.2).
+pandas>=2.3.2,<3.0
 pandas-ta>=0.3.14b1
 scikit-learn>=1.4.0
 lightgbm>=4.0.0
