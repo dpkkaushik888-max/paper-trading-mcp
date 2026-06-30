@@ -2,7 +2,7 @@
   "version": 4,
   "start_date": "2026-04-21",
   "starting_capital": 10000.0,
-  "cash": 8905.448802320223,
+  "cash": 10483.388447475374,
   "config": {
     "max_concurrent": 6,
     "pos_size_pct": 0.15,
@@ -8493,17 +8493,159 @@
       "bh_basket_value": 7850.328826807962,
       "trend_timed_value": 10000.0,
       "selector_value": 10441.429141771874
-    }
-  ],
-  "open_positions": [
+    },
     {
-      "symbol": "NEARUSDT",
-      "entry_date": "2026-06-26",
-      "entry_price": 1.7968979999999999,
-      "shares": 834.77192361503,
-      "entry_cost": 3.0
+      "date": "2026-06-30",
+      "portfolio_value": 10483.388447475374,
+      "cash": 10483.388447475374,
+      "n_open": 0,
+      "closes": {
+        "BTCUSDT": 60253.78,
+        "ETHUSDT": 1613.39,
+        "SOLUSDT": 75.06,
+        "AVAXUSDT": 6.676,
+        "LINKUSDT": 7.382,
+        "MATICUSDT": 0.4492,
+        "DOGEUSDT": 0.07343,
+        "XRPUSDT": 1.0586,
+        "ADAUSDT": 0.14564,
+        "DOTUSDT": 0.824,
+        "ATOMUSDT": 1.54,
+        "NEARUSDT": 1.895,
+        "LTCUSDT": 43.17,
+        "TRXUSDT": 0.3232,
+        "BCHUSDT": 200.6,
+        "APTUSDT": 0.583,
+        "UNIUSDT": 2.866,
+        "ARBUSDT": 0.0781,
+        "OPUSDT": 0.101,
+        "SUIUSDT": 0.7027
+      },
+      "decisions": [
+        {
+          "symbol": "NEARUSDT",
+          "action": "exit",
+          "reason": "MR_EXIT"
+        },
+        {
+          "symbol": "BTCUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "ETHUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "SOLUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "AVAXUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "LINKUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "MATICUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "DOGEUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "XRPUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "ADAUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "DOTUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "ATOMUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "NEARUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "LTCUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "TRXUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "BCHUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "APTUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "UNIUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "ARBUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "OPUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "SUIUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        }
+      ],
+      "fills": [
+        {
+          "symbol": "NEARUSDT",
+          "side": "SELL",
+          "modeled_price": 1.895,
+          "fill_price": 1.8940525000000001,
+          "shares": 834.77192361503,
+          "cost": 3.162203697705714
+        }
+      ],
+      "skipped": false,
+      "bh_btc_value": 7928.863837052716,
+      "bh_basket_value": 7966.975037759603,
+      "trend_timed_value": 10000.0,
+      "selector_value": 10483.38844747537
     }
   ],
+  "open_positions": [],
   "closed_trades": [
     {
       "symbol": "TRXUSDT",
@@ -8587,6 +8729,18 @@
       "pnl": 17.843315869520893,
       "pnl_pct": 0.01189554391301393,
       "hold_days": 2,
+      "reason": "MR_EXIT"
+    },
+    {
+      "symbol": "NEARUSDT",
+      "entry_date": "2026-06-26",
+      "exit_date": "2026-06-30",
+      "entry_price": 1.7968979999999999,
+      "exit_price": 1.8940525000000001,
+      "shares": 834.77192361503,
+      "pnl": 74.93964515515108,
+      "pnl_pct": 0.04995976343676739,
+      "hold_days": 4,
       "reason": "MR_EXIT"
     }
   ],
@@ -8751,7 +8905,7 @@
       "init_date": "2026-04-21",
       "mode": "bear",
       "shares": 0.0,
-      "value": 10441.429141771874,
+      "value": 10483.38844747537,
       "ma_window": 200,
       "band_pct": 0.02,
       "n_switches": 0,
