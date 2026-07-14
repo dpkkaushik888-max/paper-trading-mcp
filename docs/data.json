@@ -1,35 +1,35 @@
 {
-  "generated_at": "2026-07-13T04:08:50+00:00",
+  "generated_at": "2026-07-14T03:44:18+00:00",
   "start_date": "2026-04-21",
   "starting_capital": 10000.0,
   "test_days": 90,
   "metrics": {
-    "days_elapsed": 75,
-    "total_return_pct": 4.833884474753747,
-    "cagr_pct": 25.827287443138246,
-    "sharpe": 2.5942534082958773,
+    "days_elapsed": 76,
+    "total_return_pct": 4.796388222879688,
+    "cagr_pct": 25.232155368648158,
+    "sharpe": 2.5569687836574118,
     "max_dd_pct": 2.014943450440587,
     "win_rate_pct": 75.0,
     "profit_factor": 2.4099903854027294,
     "trades": 8,
     "wins": 6,
     "losses": 2,
-    "portfolio_value": 10483.388447475374,
-    "cash": 10483.388447475374,
-    "n_open": 0
+    "portfolio_value": 10479.638822287969,
+    "cash": 8980.388447475374,
+    "n_open": 1
   },
   "bh_btc_metrics": {
-    "value": 8393.675339331761,
-    "total_return_pct": -16.06324660668239,
-    "cagr_pct": -57.351815703935905,
-    "sharpe": -2.227363967058541,
+    "value": 8203.24584719842,
+    "total_return_pct": -17.967541528015808,
+    "cagr_pct": -61.371740715167576,
+    "sharpe": -2.5054984594245973,
     "max_dd_pct": 28.631308852599496
   },
   "bh_basket_metrics": {
-    "value": 8403.454137577912,
-    "total_return_pct": -15.965458624220885,
-    "cagr_pct": -57.109465356898916,
-    "sharpe": -1.8562643218668375,
+    "value": 8253.450453118108,
+    "total_return_pct": -17.465495468818915,
+    "cagr_pct": -60.22307077460924,
+    "sharpe": -2.037551168463126,
     "max_dd_pct": 32.10147017821779
   },
   "backtest_baseline": {
@@ -497,9 +497,25 @@
       "connors": 10483.388447475374,
       "bh_btc": 8393.675339331761,
       "bh_basket": 8403.454137577912
+    },
+    {
+      "date": "2026-07-14",
+      "connors": 10479.638822287969,
+      "bh_btc": 8203.24584719842,
+      "bh_basket": 8253.450453118108
     }
   ],
-  "open_positions": [],
+  "open_positions": [
+    {
+      "symbol": "TRXUSDT",
+      "entry_date": "2026-07-14",
+      "entry_price": 0.3249624,
+      "current_price": 0.3248,
+      "shares": 4615.91864166439,
+      "unrealized_pnl": -0.7496251874063291,
+      "unrealized_pct": -0.04997501249375258
+    }
+  ],
   "closed_trades": [
     {
       "symbol": "TRXUSDT",
