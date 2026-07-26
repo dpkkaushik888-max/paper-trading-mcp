@@ -22,6 +22,7 @@ import yfinance as yf
 
 from .config import CRYPTO_WATCHLIST, PROJECT_ROOT
 from .ml_model import MARKET_CONFIGS
+from .models.classifiers import SmartLogistic
 from .time_machine import TimeMachineBacktest
 
 warnings.filterwarnings("ignore")
@@ -40,6 +41,16 @@ SEARCH_SPACE = {
     "max_depth": [2, 3, 4, 5],
     "n_estimators": [100, 150, 200, 300],
     "min_child_samples": [10, 15, 20, 30],
+}
+
+SEARCH_SPACE_LOGISTIC = {
+    "model_type": ["logistic"],
+    "logistic_C": [0.001, 0.01, 0.05, 0.1, 0.5, 1.0, 5.0, 10.0],
+    "confidence_threshold": [0.55, 0.60, 0.65, 0.70, 0.75, 0.80],
+    "train_window": [100, 150, 200, 300],
+    "retrain_every": [7, 10, 14, 21, 30],
+    "sl_tp": [(0.03, 0.06), (0.05, 0.08), (0.05, 0.10), (0.07, 0.12), (0.10, 0.15)],
+    "max_position_pct": [0.10, 0.15, 0.20],
 }
 
 SEARCH_SPACE_WINRATE = {
@@ -111,14 +122,20 @@ def _run_single_config(
 ) -> dict:
     """Run a single backtest with the given config and return metrics."""
     sl, tp = config["sl_tp"]
+    model_type = config.get("model_type", "lgbm")
+
+    model_factory = None
+    if model_type == "logistic":
+        c_val = config.get("logistic_C", 1.0)
+        model_factory = lambda: SmartLogistic(params={"C": c_val})
 
     lgbm_params = {
-        "n_estimators": config["n_estimators"],
-        "max_depth": config["max_depth"],
-        "learning_rate": config["learning_rate"],
+        "n_estimators": config.get("n_estimators", 100),
+        "max_depth": config.get("max_depth", 2),
+        "learning_rate": config.get("learning_rate", 0.02),
         "subsample": 0.7,
         "colsample_bytree": 0.7,
-        "min_child_samples": config["min_child_samples"],
+        "min_child_samples": config.get("min_child_samples", 15),
         "reg_alpha": 0.1,
         "reg_lambda": 1.0,
     }
@@ -140,6 +157,7 @@ def _run_single_config(
             take_profit_pct=tp,
             session_id=f"autoresearch_iter_{iteration}",
             enable_learning=True,
+            model_factory=model_factory,
         )
         result = tm.run(history_data=data)
     finally:
@@ -176,7 +194,12 @@ def _score(metrics: dict, mode: str = "balanced") -> float:
 def _generate_candidates(n: int, seed: int = 42, mode: str = "balanced") -> list[dict]:
     """Generate n random configs from the search space."""
     rng = random.Random(seed)
-    space = SEARCH_SPACE_WINRATE if mode == "winrate" else SEARCH_SPACE
+    if mode == "logistic":
+        space = SEARCH_SPACE_LOGISTIC
+    elif mode == "winrate":
+        space = SEARCH_SPACE_WINRATE
+    else:
+        space = SEARCH_SPACE
     candidates = []
 
     for _ in range(n):
@@ -215,12 +238,20 @@ def run_autoresearch(
     tsv_path = RESULTS_DIR / f"{market}_results{suffix}.tsv"
     tsv_file = open(tsv_path, "w", newline="")
     writer = csv.writer(tsv_file, delimiter="\t")
-    writer.writerow([
-        "iter", "score", "return_pct", "win_rate", "max_dd", "cal_error",
-        "trades", "closed", "confidence", "train_window", "retrain_every",
-        "sl", "tp", "max_pos", "lr", "depth", "estimators", "min_child",
-        "kept", "runtime_s",
-    ])
+    if mode == "logistic":
+        writer.writerow([
+            "iter", "score", "return_pct", "win_rate", "max_dd", "cal_error",
+            "trades", "closed", "confidence", "train_window", "retrain_every",
+            "sl", "tp", "max_pos", "logistic_C",
+            "kept", "runtime_s",
+        ])
+    else:
+        writer.writerow([
+            "iter", "score", "return_pct", "win_rate", "max_dd", "cal_error",
+            "trades", "closed", "confidence", "train_window", "retrain_every",
+            "sl", "tp", "max_pos", "lr", "depth", "estimators", "min_child",
+            "kept", "runtime_s",
+        ])
 
     candidates = _generate_candidates(max_iterations, seed=42 if mode == "balanced" else 99, mode=mode)
 
@@ -232,25 +263,40 @@ def run_autoresearch(
     for i, config in enumerate(candidates):
         sl, tp = config["sl_tp"]
         print(f"\n  --- Iteration {i+1}/{max_iterations} ---")
-        print(f"  conf={config['confidence_threshold']:.2f} "
-              f"tw={config['train_window']} rt={config['retrain_every']} "
-              f"sl={sl:.0%}/{tp:.0%} pos={config['max_position_pct']:.0%} "
-              f"lr={config['learning_rate']} d={config['max_depth']} "
-              f"n={config['n_estimators']} mc={config['min_child_samples']}")
+        if mode == "logistic":
+            print(f"  conf={config['confidence_threshold']:.2f} "
+                  f"tw={config['train_window']} rt={config['retrain_every']} "
+                  f"sl={sl:.0%}/{tp:.0%} pos={config['max_position_pct']:.0%} "
+                  f"C={config.get('logistic_C', 1.0)}")
+        else:
+            print(f"  conf={config['confidence_threshold']:.2f} "
+                  f"tw={config['train_window']} rt={config['retrain_every']} "
+                  f"sl={sl:.0%}/{tp:.0%} pos={config['max_position_pct']:.0%} "
+                  f"lr={config['learning_rate']} d={config['max_depth']} "
+                  f"n={config['n_estimators']} mc={config['min_child_samples']}")
 
         t0 = time.time()
         try:
             metrics = _run_single_config(data, config, i + 1)
         except Exception as e:
             print(f"  ERROR: {e}")
-            writer.writerow([
-                i + 1, "ERR", 0, 0, 0, 0, 0, 0,
-                config["confidence_threshold"], config["train_window"],
-                config["retrain_every"], sl, tp, config["max_position_pct"],
-                config["learning_rate"], config["max_depth"],
-                config["n_estimators"], config["min_child_samples"],
-                "ERR", 0,
-            ])
+            if mode == "logistic":
+                writer.writerow([
+                    i + 1, "ERR", 0, 0, 0, 0, 0, 0,
+                    config["confidence_threshold"], config["train_window"],
+                    config["retrain_every"], sl, tp, config["max_position_pct"],
+                    config.get("logistic_C", 1.0),
+                    "ERR", 0,
+                ])
+            else:
+                writer.writerow([
+                    i + 1, "ERR", 0, 0, 0, 0, 0, 0,
+                    config["confidence_threshold"], config["train_window"],
+                    config["retrain_every"], sl, tp, config["max_position_pct"],
+                    config["learning_rate"], config["max_depth"],
+                    config["n_estimators"], config["min_child_samples"],
+                    "ERR", 0,
+                ])
             no_improve_count += 1
             if no_improve_count >= patience:
                 print(f"\n  PATIENCE EXHAUSTED ({patience} consecutive failures). Stopping.")
@@ -275,17 +321,29 @@ def run_autoresearch(
               f"Trades: {metrics['total_trades']} | Score: {score:.4f} | {status} "
               f"({elapsed:.0f}s)")
 
-        writer.writerow([
-            i + 1, f"{score:.4f}", f"{metrics['return_pct']:.2f}",
-            f"{metrics['win_rate']:.1f}", f"{metrics['max_dd']:.2f}",
-            f"{metrics['cal_error']:.3f}", metrics['total_trades'],
-            metrics['closed_trades'],
-            config["confidence_threshold"], config["train_window"],
-            config["retrain_every"], sl, tp, config["max_position_pct"],
-            config["learning_rate"], config["max_depth"],
-            config["n_estimators"], config["min_child_samples"],
-            "YES" if kept else "no", f"{elapsed:.0f}",
-        ])
+        if mode == "logistic":
+            writer.writerow([
+                i + 1, f"{score:.4f}", f"{metrics['return_pct']:.2f}",
+                f"{metrics['win_rate']:.1f}", f"{metrics['max_dd']:.2f}",
+                f"{metrics['cal_error']:.3f}", metrics['total_trades'],
+                metrics['closed_trades'],
+                config["confidence_threshold"], config["train_window"],
+                config["retrain_every"], sl, tp, config["max_position_pct"],
+                config.get("logistic_C", 1.0),
+                "YES" if kept else "no", f"{elapsed:.0f}",
+            ])
+        else:
+            writer.writerow([
+                i + 1, f"{score:.4f}", f"{metrics['return_pct']:.2f}",
+                f"{metrics['win_rate']:.1f}", f"{metrics['max_dd']:.2f}",
+                f"{metrics['cal_error']:.3f}", metrics['total_trades'],
+                metrics['closed_trades'],
+                config["confidence_threshold"], config["train_window"],
+                config["retrain_every"], sl, tp, config["max_position_pct"],
+                config["learning_rate"], config["max_depth"],
+                config["n_estimators"], config["min_child_samples"],
+                "YES" if kept else "no", f"{elapsed:.0f}",
+            ])
         tsv_file.flush()
 
         if no_improve_count >= patience:
@@ -306,10 +364,14 @@ def run_autoresearch(
         print(f"    retrain_every:  {best_config['retrain_every']}")
         print(f"    SL/TP:          {sl:.0%} / {tp:.0%}")
         print(f"    max_position:   {best_config['max_position_pct']:.0%}")
-        print(f"    learning_rate:  {best_config['learning_rate']}")
-        print(f"    max_depth:      {best_config['max_depth']}")
-        print(f"    n_estimators:   {best_config['n_estimators']}")
-        print(f"    min_child:      {best_config['min_child_samples']}")
+        if mode == "logistic":
+            print(f"    logistic_C:     {best_config.get('logistic_C', 1.0)}")
+        else:
+            print(f"    learning_rate:  {best_config['learning_rate']}")
+            print(f"    max_depth:      {best_config['max_depth']}")
+            print(f"    n_estimators:   {best_config['n_estimators']}")
+            print(f"    min_child:      {best_config['min_child_samples']}")
+
         print(f"\n  BEST METRICS:")
         print(f"    Return:         {best_metrics['return_pct']:+.2f}%")
         print(f"    Win rate:       {best_metrics['win_rate']:.1f}%")
@@ -336,7 +398,7 @@ def main():
     parser.add_argument("--period", default="2y")
     parser.add_argument("--iterations", type=int, default=20)
     parser.add_argument("--patience", type=int, default=5)
-    parser.add_argument("--mode", default="balanced", choices=["balanced", "winrate"])
+    parser.add_argument("--mode", default="balanced", choices=["balanced", "winrate", "logistic"])
     args = parser.parse_args()
 
     run_autoresearch(

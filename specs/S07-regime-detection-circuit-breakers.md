@@ -1,7 +1,7 @@
 # S07: HMM Regime Detection + Portfolio Circuit Breakers
 
-**Status:** DRAFT
-**Branch:** `feature/s07-regime-circuit-breakers`
+**Status:** DONE
+**Branch:** master (direct)
 **Priority:** P1 (critical)
 **Ticket:** N/A
 

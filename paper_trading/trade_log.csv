@@ -1,0 +1,5 @@
+date,time,action,symbol,price,shares,confidence,pnl,cost,cash,portfolio_value,positions_count,reason
+2026-04-16,10:35:08,SHORT,DOT-USD,1.26,118.953208,0.7185,,0.1500,849.85,999.85,1,ML short (72% conf)
+2026-04-16,10:35:08,SHORT,ADA-USD,0.25,513.194439,0.7323,,0.1275,722.25,999.72,2,ML short (73% conf)
+2026-04-16,10:35:08,SHORT,BTC-USD,74481.14,0.001455,0.8320,,0.1083,613.80,999.65,3,ML short (83% conf)
+2026-04-16,10:35:08,SHORT,ETH-USD,2335.55,0.039421,0.8897,,0.0921,521.64,999.56,4,ML short (89% conf)

@@ -60,6 +60,7 @@ def run_comparison(
     enable_learning: bool = True,
     verbose: bool = False,
     dynamic_sl: bool = False,
+    hourly_data: dict[str, pd.DataFrame] | None = None,
 ):
     """Run batch vs time-machine comparison for a single config."""
     print(f"\n  {'='*80}")
@@ -88,7 +89,7 @@ def run_comparison(
         enable_learning=enable_learning,
         dynamic_sl=dynamic_sl,
     )
-    tm_r = tm.run(history_data=data, verbose=verbose)
+    tm_r = tm.run(history_data=data, verbose=verbose, hourly_data=hourly_data)
     tm_time = time.time() - t0
 
     if "error" in batch_r:
@@ -219,12 +220,28 @@ def main():
             data = fetch_data(watchlist, period=period, label="India")
         print(f"  Download time: {time.time() - t0:.0f}s")
 
+        hourly = None
+        if market == "crypto":
+            print(f"  Fetching hourly data (MTF features)...")
+            t1 = time.time()
+            hourly = {}
+            for sym in list(data.keys()):
+                try:
+                    h_df = yf.Ticker(sym).history(period="710d", interval="1h")
+                    if not h_df.empty:
+                        h_df.index = h_df.index.tz_localize(None) if h_df.index.tz else h_df.index
+                        hourly[sym] = h_df
+                except Exception:
+                    pass
+            print(f"  Hourly: {len(hourly)} symbols, {time.time() - t1:.0f}s")
+
         run_comparison(
             market=market, data=data, capital=capital,
             confidence=conf, stop_loss=sl, take_profit=tp,
             enable_learning=not args.no_learning,
             verbose=args.verbose,
             dynamic_sl=args.dynamic_sl,
+            hourly_data=hourly,
         )
 
     print(f"\n{'='*90}")

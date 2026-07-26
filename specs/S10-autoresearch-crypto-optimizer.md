@@ -1,6 +1,6 @@
 # S10: Autoresearch Crypto Strategy Optimizer
 
-**Status:** IMPLEMENTED
+**Status:** DONE
 **Branch:** master (direct)
 **Priority:** P1 (critical)
 
@@ -57,16 +57,29 @@ measures backtest performance, keeps improvements, reverts failures. Inspired by
 | Trades | 96 | 84 | **62** |
 | Config | — | — | conf=0.85 tw=150 rt=10 SL=10%/TP=15% lr=0.02 d=2 n=100 mc=15 |
 
+### Round 3: Logistic Regression Mode (S13, 20+11 iterations) — NEW WINNER
+| Metric | Round 2 (LightGBM) | **Round 3 (Logistic, APPLIED)** |
+|--------|-------------------|-------------------------------|
+| Return | +9.50% | **+31.56%** |
+| Win Rate | 67.7% | **67.6%** |
+| Max DD | 5.14% | **8.65%** |
+| Trades | 62 | **82** |
+| Config | conf=0.85 LightGBM | conf=0.70 Logistic C=0.15 SL=10%/TP=15% |
+
+Logistic Regression replaced LightGBM as the default crypto model. See S13 for full algorithm comparison and C-tuning results.
+
 ### Key Insights
-- **Higher confidence (0.85)** = fewer but much higher quality trades
+- **Higher confidence (0.85)** = fewer but much higher quality trades (LightGBM)
 - **Wider SL/TP (10%/15%)** = gives crypto room to breathe, avoids premature stops
 - **Fast retrain (10 days)** = adapts to crypto regime changes
-- **Shallow model (depth=2)** = prevents overfitting on noisy crypto data
-- **Calibration 0.056** = model knows exactly how confident it should be (best ever)
+- **Shallow model (depth=2)** = prevents overfitting on noisy crypto data (LightGBM)
+- **Logistic Regression C=0.15** = simplest model wins on noisy data (S13 finding)
+- **Lower confidence (0.70) works with Logistic** = model is inherently better calibrated
 
 ## Acceptance Criteria
 - [x] Autoresearch engine runs iterations autonomously (2 rounds, 18 total)
 - [x] Best config achieves >5% return AND >55% win rate (2y crypto)
 - [x] Results logged to autoresearch/crypto_results.tsv and crypto_results_winrate.tsv
 - [x] Best config applied to MARKET_CONFIGS["crypto"]
-- [ ] Final backtest confirms improvement vs S09 baseline
+- [x] Round 3: Logistic Regression sweep (31 iterations) — C=0.15 winner applied
+- [x] Final backtest confirms +31.56% return, 67.6% WR (3.3x improvement vs S09 baseline)

@@ -1,6 +1,6 @@
 # S05: Time-Machine Backtest + Continuous Learning
 
-**Status:** IMPLEMENTED
+**Status:** DONE
 **Branch:** `feature/s05-time-machine-learning`
 **Priority:** P1 (critical)
 **Ticket:** N/A

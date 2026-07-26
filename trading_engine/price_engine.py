@@ -173,6 +173,121 @@ def calculate_indicators(df: pd.DataFrame) -> dict:
     return indicators
 
 
+def get_multi_timeframe_history(
+    symbol: str,
+    days: int = HISTORY_DAYS,
+    intervals: tuple[str, ...] = ("1h", "1d"),
+) -> dict[str, pd.DataFrame]:
+    """Fetch OHLCV data at multiple timeframes for one symbol.
+
+    Args:
+        symbol: Ticker symbol.
+        days: Number of calendar days of history to request.
+        intervals: Tuple of yfinance interval strings.
+                   Yahoo limits: 1h max ~730 days, 15m max ~60 days.
+
+    Returns:
+        Dict keyed by interval string → DataFrame.
+    """
+    result: dict[str, pd.DataFrame] = {}
+    end = datetime.now()
+
+    INTERVAL_MAX_DAYS = {
+        "15m": 59, "30m": 59, "60m": 729, "1h": 729,
+        "1d": 9999, "1wk": 9999,
+    }
+
+    for iv in intervals:
+        max_days = INTERVAL_MAX_DAYS.get(iv, days)
+        req_days = min(days, max_days)
+        start = end - timedelta(days=req_days + 10)
+        try:
+            ticker = yf.Ticker(symbol)
+            df = ticker.history(start=start, end=end, interval=iv)
+            if df.empty:
+                continue
+            df.index = df.index.tz_localize(None) if df.index.tz else df.index
+            result[iv] = df
+        except Exception:
+            continue
+    return result
+
+
+def build_mtf_features(
+    daily_df: pd.DataFrame,
+    hourly_df: pd.DataFrame | None = None,
+) -> dict[str, float]:
+    """Derive multi-timeframe summary features from hourly data.
+
+    These are appended as extra columns to the daily feature matrix.
+    All values are scalar summaries aligned to the latest daily bar.
+
+    Returns dict of feature_name → value (NaN-safe).
+    """
+    import pandas_ta as ta
+
+    features: dict[str, float] = {}
+
+    if hourly_df is None or len(hourly_df) < 50:
+        return features
+
+    h_close = hourly_df["Close"]
+    h_high = hourly_df["High"]
+    h_low = hourly_df["Low"]
+
+    rsi_h = ta.rsi(h_close, length=14)
+    if rsi_h is not None and not rsi_h.empty:
+        features["mtf_rsi_1h"] = round(float(rsi_h.iloc[-1]), 4)
+        features["mtf_rsi_1h_slope"] = round(
+            float(rsi_h.iloc[-1] - rsi_h.iloc[-6]) if len(rsi_h) >= 6 else 0.0, 4
+        )
+
+    ema_8h = ta.ema(h_close, length=8)
+    ema_21h = ta.ema(h_close, length=21)
+    if ema_8h is not None and ema_21h is not None and not ema_8h.empty:
+        features["mtf_ema_cross_1h"] = round(
+            float((ema_8h.iloc[-1] - ema_21h.iloc[-1]) / ema_21h.iloc[-1])
+            if ema_21h.iloc[-1] != 0 else 0.0, 6
+        )
+
+    atr_h = ta.atr(h_high, h_low, h_close, length=14)
+    if atr_h is not None and not atr_h.empty and h_close.iloc[-1] > 0:
+        features["mtf_atr_pct_1h"] = round(
+            float(atr_h.iloc[-1] / h_close.iloc[-1]), 6
+        )
+
+    bb_h = ta.bbands(h_close, length=20, std=2.0)
+    if bb_h is not None and not bb_h.empty:
+        cols = bb_h.columns
+        bw = bb_h[cols[2]].iloc[-1] - bb_h[cols[0]].iloc[-1]
+        mid = bb_h[cols[1]].iloc[-1]
+        if mid != 0:
+            features["mtf_bb_width_1h"] = round(float(bw / mid), 6)
+        pct_b = (h_close.iloc[-1] - bb_h[cols[0]].iloc[-1]) / bw if bw != 0 else 0.5
+        features["mtf_bb_pct_1h"] = round(float(pct_b), 4)
+
+    if len(h_close) >= 24:
+        h24_ret = float(h_close.iloc[-1] / h_close.iloc[-24] - 1)
+        features["mtf_return_24h"] = round(h24_ret, 6)
+
+    if len(h_close) >= 6:
+        h6_ret = float(h_close.iloc[-1] / h_close.iloc[-6] - 1)
+        features["mtf_return_6h"] = round(h6_ret, 6)
+
+    if len(h_close) >= 24:
+        vol_24h = float(h_close.pct_change().tail(24).std())
+        features["mtf_vol_24h"] = round(vol_24h, 6)
+
+    d_close = daily_df["Close"]
+    if len(d_close) >= 2 and len(h_close) >= 6:
+        d_vol = float(d_close.pct_change().tail(20).std()) if len(d_close) >= 20 else 0
+        h_vol = features.get("mtf_vol_24h", 0)
+        if d_vol > 0 and h_vol > 0:
+            features["mtf_vol_ratio_h_d"] = round(h_vol / d_vol, 4)
+
+    return features
+
+
 def scan_watchlist(symbols: Optional[list[str]] = None) -> list[dict]:
     """Fetch quotes and indicators for all watchlist symbols."""
     symbols = symbols or WATCHLIST

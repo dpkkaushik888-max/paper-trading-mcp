@@ -1,6 +1,6 @@
 # S06: Model Calibration Fix + Feature Engineering v2
 
-**Status:** IMPLEMENTED
+**Status:** DONE
 **Branch:** `feature/s06-model-calibration`
 **Priority:** P1 (critical)
 **Ticket:** N/A

@@ -1,6 +1,6 @@
 # S09: Crypto Market + Earnings Signal + Simplified Model
 
-**Status:** IMPLEMENTED
+**Status:** DONE
 **Branch:** master (direct)
 **Priority:** P1 (critical)
 

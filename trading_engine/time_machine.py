@@ -26,6 +26,7 @@ import pandas as pd
 
 from .config import CIRCUIT_BREAKER_TIERS, PROJECT_ROOT
 from .learning_loop import LearningLoop
+from .price_engine import build_mtf_features
 from .ml_model import (
     MARKET_CONFIGS,
     _SmartLGBM,
@@ -34,6 +35,9 @@ from .ml_model import (
     add_vix_features,
     build_features_for_market,
 )
+from .models.trend_model import TrendModel, build_trend_features
+from .regime import RegimeFilter, RegimeState
+from .risk import ExitManager
 from .strategies import (
     BaseStrategy,
     DEFAULT_STRATEGY_CONFIGS,
@@ -87,6 +91,8 @@ class TimeMachineBacktest:
         journal_db_path: str | None = None,
         simplified_features: list[str] | None = None,
         multi_strategy: bool = False,
+        model_factory=None,
+        hourly_data: dict | None = None,
     ):
         self.market = market
         self.initial_capital = initial_capital
@@ -97,6 +103,13 @@ class TimeMachineBacktest:
         self.session_id = session_id
         self.enable_learning = enable_learning
         self.multi_strategy = multi_strategy
+        self._model_factory = model_factory
+        if model_factory is None:
+            cfg_peek = MARKET_CONFIGS.get(market, MARKET_CONFIGS["us"])
+            if cfg_peek.get("model_type") == "logistic":
+                from .models.classifiers import SmartLogistic
+                c_val = cfg_peek.get("logistic_C", 1.0)
+                self._model_factory = lambda: SmartLogistic(params={"C": c_val})
         cfg = MARKET_CONFIGS.get(market, MARKET_CONFIGS["us"])
         self.train_window = cfg["train_window"]
         self.min_train = cfg["min_train"]
@@ -132,6 +145,12 @@ class TimeMachineBacktest:
         self._days_in_week = 0
         self._halted = False
         self._circuit_breaker_log: list[dict] = []
+
+        self.regime_filter: Optional[RegimeFilter] = None
+        self.exit_manager: Optional[ExitManager] = None
+        self._regime_log: list[dict] = []
+
+        self._hourly_data: dict = hourly_data or {}
 
         self.strategies: list[BaseStrategy] = []
         if multi_strategy:
@@ -185,6 +204,7 @@ class TimeMachineBacktest:
         start_date: str | None = None,
         end_date: str | None = None,
         verbose: bool = False,
+        hourly_data: dict[str, pd.DataFrame] | None = None,
     ) -> dict:
         """Run full time-machine backtest.
 
@@ -197,6 +217,9 @@ class TimeMachineBacktest:
         Returns:
             Result dict with performance metrics + calibration data.
         """
+        if hourly_data is not None:
+            self._hourly_data = hourly_data
+
         self.journal.clear_session(self.market)
 
         all_dates = sorted(set().union(
@@ -228,6 +251,7 @@ class TimeMachineBacktest:
         self._days_in_week = 0
         self._halted = False
         self._circuit_breaker_log = []
+        self._regime_log = []
 
         daily_results = []
         all_trades = []
@@ -245,6 +269,7 @@ class TimeMachineBacktest:
                 all_dates=all_dates,
                 history_data=history_data,
                 verbose=verbose,
+                hourly_data=self._hourly_data,
             )
 
             daily_results.append(result["snapshot"])
@@ -282,6 +307,7 @@ class TimeMachineBacktest:
             "trades": all_trades,
             "daily_results": daily_results,
             "circuit_breaker_log": self._circuit_breaker_log,
+            "regime_log": self._regime_log,
         }
 
         if self.multi_strategy:
@@ -298,6 +324,7 @@ class TimeMachineBacktest:
         all_dates: list,
         history_data: dict[str, pd.DataFrame],
         verbose: bool = False,
+        hourly_data: dict[str, pd.DataFrame] | None = None,
     ) -> dict:
         """Process a single trading day with strict temporal isolation."""
         day_str = str(day)[:10]
@@ -340,6 +367,20 @@ class TimeMachineBacktest:
             snapshot = self._build_snapshot(day_str, day_pnl, 0, effective_threshold)
             return {"snapshot": snapshot, "trades": []}
 
+        # Regime filter — restrict new positions in BEAR markets
+        regime_allows_longs = True
+        regime_allows_shorts = True
+        if self.regime_filter is not None and self.cross_asset_symbol in history_data:
+            btc_df = history_data[self.cross_asset_symbol]
+            btc_temporal = btc_df[btc_df.index <= day]
+            regime_result = self.regime_filter.evaluate(btc_temporal, current_day=day)
+            regime_allows_longs = regime_result.allows_new_longs
+            regime_allows_shorts = regime_result.allows_new_shorts
+            self._regime_log.append({
+                "date": day_str, "state": regime_result.state.value,
+                "confidence": regime_result.confidence,
+            })
+
         allow_new_positions = cb_action not in ("no_new_positions",)
         position_size_mult = 0.5 if cb_action == "halve_size" else 1.0
 
@@ -381,6 +422,14 @@ class TimeMachineBacktest:
                         cross.columns = [f"{self.cross_asset_prefix}_{c}" for c in cross.columns]
                         feat = feat.join(cross, how="left")
                         feat = _add_relative_strength(feat, ca_feat, self.cross_asset_prefix)
+
+                if hourly_data and symbol in hourly_data:
+                    h_df = hourly_data[symbol]
+                    h_before = h_df[h_df.index < day]
+                    if len(h_before) >= 50:
+                        mtf = build_mtf_features(temporal_df, h_before)
+                        for k, v in mtf.items():
+                            feat.loc[day, k] = v
 
                 if day in feat.index:
                     row = feat.loc[day]
@@ -433,7 +482,7 @@ class TimeMachineBacktest:
                 elif not self.multi_strategy:
                     total_open = len(self.long_positions) + len(self.short_positions)
                     atr_pct = self._compute_atr_pct(symbol, history_data, day) if self.dynamic_sl else 0.0
-                    if up_prob > effective_threshold and total_open < 8:
+                    if up_prob > effective_threshold and total_open < 8 and regime_allows_longs:
                         trade = self._open_long(
                             symbol, price, day_str, up_prob,
                             size_mult=position_size_mult,
@@ -442,7 +491,7 @@ class TimeMachineBacktest:
                         if trade:
                             day_trades.append(trade)
 
-                    elif down_prob > effective_threshold and total_open < 8:
+                    elif down_prob > effective_threshold and total_open < 8 and regime_allows_shorts:
                         trade = self._open_short(
                             symbol, price, day_str, down_prob,
                             size_mult=position_size_mult,
@@ -619,6 +668,15 @@ class TimeMachineBacktest:
                     feat = feat.join(cross, how="left")
                     feat = _add_relative_strength(feat, ca_feat, self.cross_asset_prefix)
 
+            if self._hourly_data and symbol in self._hourly_data:
+                h_df = self._hourly_data[symbol]
+                h_before = h_df[h_df.index < current_day]
+                if len(h_before) >= 50:
+                    mtf = build_mtf_features(temporal_df, h_before)
+                    for k, v in mtf.items():
+                        if not feat.empty:
+                            feat.loc[feat.index[-1], k] = v
+
             if self.feature_cols is None and symbol != self.cross_asset_symbol:
                 exclude = {"target", "target_dir"}
                 cols = [c for c in feat.columns if c not in exclude]
@@ -658,7 +716,10 @@ class TimeMachineBacktest:
         else:
             sample_weights = None
 
-        self.model = _SmartLGBM(params=self.lgbm_params)
+        if self._model_factory is not None:
+            self.model = self._model_factory()
+        else:
+            self.model = _SmartLGBM(params=self.lgbm_params)
         self.model.fit(X_train, y_train, sample_weight=sample_weights)
 
         model_path = MODELS_DIR / f"{self.market}_latest.pkl"
