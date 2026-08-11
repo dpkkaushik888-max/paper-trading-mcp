@@ -1,35 +1,35 @@
 {
-  "generated_at": "2026-08-10T02:40:52+00:00",
+  "generated_at": "2026-08-11T02:34:46+00:00",
   "start_date": "2026-04-21",
   "starting_capital": 10000.0,
   "test_days": 90,
   "metrics": {
-    "days_elapsed": 103,
-    "total_return_pct": 4.913375233168127,
-    "cagr_pct": 18.527218627199105,
-    "sharpe": 2.2301864687726582,
+    "days_elapsed": 104,
+    "total_return_pct": 4.932245596601903,
+    "cagr_pct": 18.408378115094905,
+    "sharpe": 2.227451420641727,
     "max_dd_pct": 2.014943450440587,
     "win_rate_pct": 66.66666666666666,
     "profit_factor": 2.3994182693689816,
     "trades": 9,
     "wins": 6,
     "losses": 3,
-    "portfolio_value": 10491.337523316814,
+    "portfolio_value": 10493.22455966019,
     "cash": 8978.877894100584,
     "n_open": 1
   },
   "bh_btc_metrics": {
-    "value": 8539.495433668635,
-    "total_return_pct": -14.605045663313653,
-    "cagr_pct": -42.849891780773305,
-    "sharpe": -1.4864183812190428,
+    "value": 8417.74730729314,
+    "total_return_pct": -15.822526927068592,
+    "cagr_pct": -45.36558145147402,
+    "sharpe": -1.6256717150136795,
     "max_dd_pct": 28.631308852599496
   },
   "bh_basket_metrics": {
-    "value": 8176.692974247185,
-    "total_return_pct": -18.23307025752815,
-    "cagr_pct": -50.999276049955355,
-    "sharpe": -1.6568608563305065,
+    "value": 8167.285997960531,
+    "total_return_pct": -18.327140020394694,
+    "cagr_pct": -50.86094875578071,
+    "sharpe": -1.6588695595204175,
     "max_dd_pct": 32.10147017821779
   },
   "backtest_baseline": {
@@ -665,6 +665,12 @@
       "connors": 10491.337523316814,
       "bh_btc": 8539.495433668635,
       "bh_basket": 8176.692974247185
+    },
+    {
+      "date": "2026-08-11",
+      "connors": 10493.22455966019,
+      "bh_btc": 8417.74730729314,
+      "bh_basket": 8167.285997960531
     }
   ],
   "open_positions": [
@@ -672,10 +678,10 @@
       "symbol": "NEARUSDT",
       "entry_date": "2026-08-08",
       "entry_price": 1.5897944999999998,
-      "current_price": 1.603,
+      "current_price": 1.605,
       "shares": 943.5181716882278,
-      "unrealized_pnl": 12.459629216229084,
-      "unrealized_pct": 0.8306419477486005
+      "unrealized_pnl": 14.34666555960554,
+      "unrealized_pct": 0.9564443706403747
     }
   ],
   "closed_trades": [
