@@ -1,35 +1,35 @@
 {
-  "generated_at": "2026-08-14T03:05:51+00:00",
+  "generated_at": "2026-08-15T01:56:21+00:00",
   "start_date": "2026-04-21",
   "starting_capital": 10000.0,
   "test_days": 90,
   "metrics": {
-    "days_elapsed": 107,
-    "total_return_pct": 3.6978736910672882,
-    "cagr_pct": 13.186427548322088,
-    "sharpe": 1.6242571138580981,
-    "max_dd_pct": 2.014943450440587,
-    "win_rate_pct": 63.63636363636363,
-    "profit_factor": 1.796938029442858,
-    "trades": 11,
+    "days_elapsed": 108,
+    "total_return_pct": 2.481004205189019,
+    "cagr_pct": 8.635222117743368,
+    "sharpe": 1.0651192712488768,
+    "max_dd_pct": 2.7296866277548975,
+    "win_rate_pct": 58.333333333333336,
+    "profit_factor": 1.4175707582100037,
+    "trades": 12,
     "wins": 7,
-    "losses": 4,
-    "portfolio_value": 10369.787369106729,
-    "cash": 8870.536994294136,
-    "n_open": 1
+    "losses": 5,
+    "portfolio_value": 10248.100420518902,
+    "cash": 10248.100420518902,
+    "n_open": 0
   },
   "bh_btc_metrics": {
-    "value": 8353.98350258442,
-    "total_return_pct": -16.4601649741558,
-    "cagr_pct": -45.85450533724875,
-    "sharpe": -1.6807135184150324,
+    "value": 8295.892592091055,
+    "total_return_pct": -17.041074079089448,
+    "cagr_pct": -46.81521619635185,
+    "sharpe": -1.7439440263793287,
     "max_dd_pct": 28.631308852599496
   },
   "bh_basket_metrics": {
-    "value": 8091.746756765081,
-    "total_return_pct": -19.082532432349186,
-    "cagr_pct": -51.436222718527944,
-    "sharpe": -1.7077237872708793,
+    "value": 7995.861784748611,
+    "total_return_pct": -20.041382152513886,
+    "cagr_pct": -53.040807887375706,
+    "sharpe": -1.7993131166108118,
     "max_dd_pct": 32.10147017821779
   },
   "backtest_baseline": {
@@ -689,19 +689,15 @@
       "connors": 10369.787369106729,
       "bh_btc": 8353.98350258442,
       "bh_basket": 8091.746756765081
-    }
-  ],
-  "open_positions": [
+    },
     {
-      "symbol": "UNIUSDT",
-      "entry_date": "2026-08-14",
-      "entry_price": 3.4787384999999995,
-      "current_price": 3.477,
-      "shares": 431.1907894197854,
-      "unrealized_pnl": -0.749625187406143,
-      "unrealized_pct": -0.04997501249374148
+      "date": "2026-08-15",
+      "connors": 10248.100420518902,
+      "bh_btc": 8295.892592091055,
+      "bh_basket": 7995.861784748611
     }
   ],
+  "open_positions": [],
   "closed_trades": [
     {
       "symbol": "TRXUSDT",
@@ -823,6 +819,17 @@
       "pnl_pct": -8.291577061787574,
       "hold_days": 2,
       "reason": "SL"
+    },
+    {
+      "symbol": "UNIUSDT",
+      "entry_date": "2026-08-14",
+      "exit_date": "2026-08-15",
+      "entry_price": 3.4787384999999995,
+      "exit_price": 3.201191,
+      "pnl": -125.43657377523482,
+      "pnl_pct": -8.36243825168232,
+      "hold_days": 1,
+      "reason": "SL"
     }
   ],
   "per_symbol": {
@@ -837,9 +844,9 @@
       "pnl": 420.92125982157427
     },
     "UNIUSDT": {
-      "trades": 1,
+      "trades": 2,
       "wins": 0,
-      "pnl": -124.37365592681363
+      "pnl": -249.81022970204845
     }
   }
 }
