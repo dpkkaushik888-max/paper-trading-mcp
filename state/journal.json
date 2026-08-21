@@ -15669,6 +15669,142 @@
       "bh_basket_value": 8573.364560100365,
       "trend_timed_value": 10000.0,
       "selector_value": 10248.100420518896
+    },
+    {
+      "date": "2026-08-21",
+      "portfolio_value": 10248.100420518902,
+      "cash": 10248.100420518902,
+      "n_open": 0,
+      "closes": {
+        "BTCUSDT": 73028.52,
+        "ETHUSDT": 2327.23,
+        "SOLUSDT": 87.67,
+        "AVAXUSDT": 7.307,
+        "LINKUSDT": 10.684,
+        "MATICUSDT": 0.4492,
+        "DOGEUSDT": 0.08041,
+        "XRPUSDT": 1.2688,
+        "ADAUSDT": 0.19896,
+        "DOTUSDT": 0.845,
+        "ATOMUSDT": 1.514,
+        "NEARUSDT": 1.773,
+        "LTCUSDT": 47.79,
+        "TRXUSDT": 0.3356,
+        "BCHUSDT": 220.2,
+        "APTUSDT": 0.582,
+        "UNIUSDT": 3.752,
+        "ARBUSDT": 0.0912,
+        "OPUSDT": 0.098,
+        "SUIUSDT": 0.7317
+      },
+      "decisions": [
+        {
+          "symbol": "BTCUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "ETHUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "SOLUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "AVAXUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "LINKUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "MATICUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "DOGEUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "XRPUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "ADAUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "DOTUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "ATOMUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "NEARUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "LTCUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "TRXUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "BCHUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "APTUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "UNIUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "ARBUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "OPUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "SUIUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        }
+      ],
+      "fills": [],
+      "skipped": false,
+      "bh_btc_value": 9609.906487219243,
+      "bh_basket_value": 8937.624891841242,
+      "trend_timed_value": 9980.0,
+      "selector_value": 10227.604219677858
     }
   ],
   "open_positions": [],
@@ -15965,24 +16101,24 @@
       "name": "trend_timed_btc",
       "initialized": true,
       "init_date": "2026-04-21",
-      "invested": false,
-      "shares": 0.0,
-      "cash": 10000.0,
+      "invested": true,
+      "shares": 0.13665893817922092,
+      "cash": 0.0,
       "ma_window": 200,
       "band_pct": 0.02,
-      "n_switches": 0,
+      "n_switches": 1,
       "starting_capital": 10000.0
     },
     "regime_selector": {
       "name": "regime_selector",
       "initialized": true,
       "init_date": "2026-04-21",
-      "mode": "bear",
-      "shares": 0.0,
-      "value": 10248.100420518896,
+      "mode": "bull",
+      "shares": 0.14004945218221398,
+      "value": 10227.604219677858,
       "ma_window": 200,
       "band_pct": 0.02,
-      "n_switches": 0,
+      "n_switches": 1,
       "starting_capital": 10000.0
     }
   }
