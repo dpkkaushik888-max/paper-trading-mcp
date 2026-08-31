@@ -17029,6 +17029,20 @@
       "bh_basket_value": 9376.26420463268,
       "trend_timed_value": 10692.736492537435,
       "selector_value": 10958.023734567065
+    },
+    {
+      "date": "2026-08-31",
+      "portfolio_value": 10248.100420518902,
+      "cash": 10248.100420518902,
+      "n_open": 0,
+      "closes": {},
+      "decisions": [],
+      "fills": [],
+      "skipped": true,
+      "bh_btc_value": 0.0,
+      "bh_basket_value": 0.0,
+      "trend_timed_value": 0.0,
+      "selector_value": 0.0
     }
   ],
   "open_positions": [],
