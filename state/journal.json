@@ -2,7 +2,7 @@
   "version": 4,
   "start_date": "2026-04-21",
   "starting_capital": 10000.0,
-  "cash": 8981.89750945397,
+  "cash": 9118.220490046104,
   "config": {
     "max_concurrent": 6,
     "pos_size_pct": 0.15,
@@ -19221,14 +19221,172 @@
       "bh_basket_value": 10277.796772540454,
       "trend_timed_value": 10682.832819287587,
       "selector_value": 10947.874350767419
+    },
+    {
+      "date": "2026-09-16",
+      "portfolio_value": 10617.470864858697,
+      "cash": 9118.220490046104,
+      "n_open": 1,
+      "closes": {
+        "BTCUSDT": 75656.53,
+        "ETHUSDT": 2401.48,
+        "SOLUSDT": 96.96,
+        "AVAXUSDT": 7.285,
+        "LINKUSDT": 10.901,
+        "MATICUSDT": 0.4492,
+        "DOGEUSDT": 0.0801,
+        "XRPUSDT": 1.283,
+        "ADAUSDT": 0.19574,
+        "DOTUSDT": 0.947,
+        "ATOMUSDT": 1.515,
+        "NEARUSDT": 2.33,
+        "LTCUSDT": 51.52,
+        "TRXUSDT": 0.3344,
+        "BCHUSDT": 217.1,
+        "APTUSDT": 0.551,
+        "UNIUSDT": 6.242,
+        "ARBUSDT": 0.1516,
+        "OPUSDT": 0.095,
+        "SUIUSDT": 0.6886
+      },
+      "decisions": [
+        {
+          "symbol": "ARBUSDT",
+          "action": "exit",
+          "reason": "MR_EXIT"
+        },
+        {
+          "symbol": "BTCUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "ETHUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "SOLUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "AVAXUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "LINKUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "MATICUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "DOGEUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "XRPUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "ADAUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "DOTUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "ATOMUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "NEARUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "TRXUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "BCHUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "APTUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "UNIUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "ARBUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "OPUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "SUIUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "LTCUSDT",
+          "action": "enter",
+          "reason": "connors_signal"
+        }
+      ],
+      "fills": [
+        {
+          "symbol": "ARBUSDT",
+          "side": "SELL",
+          "modeled_price": 0.1516,
+          "fill_price": 0.15152420000000003,
+          "shares": 10840.566701464886,
+          "cost": 3.285216393972212
+        },
+        {
+          "symbol": "LTCUSDT",
+          "side": "BUY",
+          "modeled_price": 51.52,
+          "fill_price": 51.54576,
+          "shares": 29.10035665397115,
+          "cost": 3.0
+        }
+      ],
+      "skipped": false,
+      "bh_btc_value": 9955.729329411266,
+      "bh_basket_value": 9875.482678818733,
+      "trend_timed_value": 10339.141056124374,
+      "selector_value": 10595.655580507238
     }
   ],
   "open_positions": [
     {
-      "symbol": "ARBUSDT",
-      "entry_date": "2026-09-12",
-      "entry_price": 0.13836915,
-      "shares": 10840.566701464886,
+      "symbol": "LTCUSDT",
+      "entry_date": "2026-09-16",
+      "entry_price": 51.54576,
+      "shares": 29.10035665397115,
       "entry_cost": 3.0
     }
   ],
@@ -19448,6 +19606,18 @@
       "pnl_pct": 0.0010982429127825526,
       "hold_days": 4,
       "reason": "MR_EXIT"
+    },
+    {
+      "symbol": "ARBUSDT",
+      "entry_date": "2026-09-12",
+      "exit_date": "2026-09-16",
+      "entry_price": 0.13836915,
+      "exit_price": 0.15152420000000003,
+      "shares": 10840.566701464886,
+      "pnl": 136.32298059213372,
+      "pnl_pct": 0.09088198706142248,
+      "hold_days": 4,
+      "reason": "MR_EXIT"
     }
   ],
   "benchmarks": {
@@ -19611,7 +19781,7 @@
       "init_date": "2026-04-21",
       "mode": "bull",
       "shares": 0.14004945218221398,
-      "value": 10947.874350767419,
+      "value": 10595.655580507238,
       "ma_window": 200,
       "band_pct": 0.02,
       "n_switches": 1,
