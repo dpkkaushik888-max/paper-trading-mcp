@@ -19379,6 +19379,142 @@
       "bh_basket_value": 9875.482678818733,
       "trend_timed_value": 10339.141056124374,
       "selector_value": 10595.655580507238
+    },
+    {
+      "date": "2026-09-17",
+      "portfolio_value": 10623.581939756032,
+      "cash": 9118.220490046104,
+      "n_open": 1,
+      "closes": {
+        "BTCUSDT": 76230.11,
+        "ETHUSDT": 2417.93,
+        "SOLUSDT": 98.69,
+        "AVAXUSDT": 7.474,
+        "LINKUSDT": 11.048,
+        "MATICUSDT": 0.4492,
+        "DOGEUSDT": 0.0809,
+        "XRPUSDT": 1.2997,
+        "ADAUSDT": 0.1963,
+        "DOTUSDT": 1.003,
+        "ATOMUSDT": 1.514,
+        "NEARUSDT": 2.622,
+        "LTCUSDT": 51.73,
+        "TRXUSDT": 0.3342,
+        "BCHUSDT": 221.1,
+        "APTUSDT": 0.547,
+        "UNIUSDT": 6.613,
+        "ARBUSDT": 0.1688,
+        "OPUSDT": 0.094,
+        "SUIUSDT": 0.7139
+      },
+      "decisions": [
+        {
+          "symbol": "LTCUSDT",
+          "action": "hold",
+          "reason": "no_exit_signal"
+        },
+        {
+          "symbol": "BTCUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "ETHUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "SOLUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "AVAXUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "LINKUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "MATICUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "DOGEUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "XRPUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "ADAUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "DOTUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "ATOMUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "NEARUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "TRXUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "BCHUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "APTUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "UNIUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "ARBUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "OPUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "SUIUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        }
+      ],
+      "fills": [],
+      "skipped": false,
+      "bh_btc_value": 10031.207377753739,
+      "bh_basket_value": 10188.84448133508,
+      "trend_timed_value": 10417.525889885212,
+      "selector_value": 10675.985145289913
     }
   ],
   "open_positions": [
@@ -19781,7 +19917,7 @@
       "init_date": "2026-04-21",
       "mode": "bull",
       "shares": 0.14004945218221398,
-      "value": 10595.655580507238,
+      "value": 10675.985145289913,
       "ma_window": 200,
       "band_pct": 0.02,
       "n_switches": 1,
