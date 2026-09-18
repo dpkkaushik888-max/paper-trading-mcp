@@ -1,35 +1,35 @@
 {
-  "generated_at": "2026-09-17T05:07:13+00:00",
+  "generated_at": "2026-09-18T04:59:34+00:00",
   "start_date": "2026-04-21",
   "starting_capital": 10000.0,
   "test_days": 90,
   "metrics": {
-    "days_elapsed": 141,
-    "total_return_pct": 6.235819397560327,
-    "cagr_pct": 16.951667070926636,
-    "sharpe": 1.9286516656991952,
+    "days_elapsed": 142,
+    "total_return_pct": 6.845516672370122,
+    "cagr_pct": 18.55390145038882,
+    "sharpe": 2.0893243282406577,
     "max_dd_pct": 2.943225060464171,
-    "win_rate_pct": 73.68421052631578,
-    "profit_factor": 2.0455585302983326,
-    "trades": 19,
-    "wins": 14,
+    "win_rate_pct": 75.0,
+    "profit_factor": 2.1521494325734243,
+    "trades": 20,
+    "wins": 15,
     "losses": 5,
-    "portfolio_value": 10623.581939756032,
-    "cash": 9118.220490046104,
-    "n_open": 1
+    "portfolio_value": 10684.551667237012,
+    "cash": 10684.551667237012,
+    "n_open": 0
   },
   "bh_btc_metrics": {
-    "value": 10031.207377753739,
-    "total_return_pct": 0.31207377753739163,
-    "cagr_pct": 0.809854352488637,
-    "sharpe": -1.5404304278491254,
+    "value": 10060.9864536279,
+    "total_return_pct": 0.6098645362790034,
+    "cagr_pct": 1.5751250978607079,
+    "sharpe": -1.530161912119266,
     "max_dd_pct": 100.0
   },
   "bh_basket_metrics": {
-    "value": 10188.84448133508,
-    "total_return_pct": 1.888444813350798,
-    "cagr_pct": 4.962128477671324,
-    "sharpe": -1.5032500760231664,
+    "value": 10811.338042673104,
+    "total_return_pct": 8.113380426731043,
+    "cagr_pct": 22.20373889677458,
+    "sharpe": -1.3997880954945885,
     "max_dd_pct": 100.0
   },
   "backtest_baseline": {
@@ -893,19 +893,15 @@
       "connors": 10623.581939756032,
       "bh_btc": 10031.207377753739,
       "bh_basket": 10188.84448133508
-    }
-  ],
-  "open_positions": [
+    },
     {
-      "symbol": "LTCUSDT",
-      "entry_date": "2026-09-16",
-      "entry_price": 51.54576,
-      "current_price": 51.73,
-      "shares": 29.10035665397115,
-      "unrealized_pnl": 5.3614497099275145,
-      "unrealized_pct": 0.3574299806618386
+      "date": "2026-09-18",
+      "connors": 10684.551667237012,
+      "bh_btc": 10060.9864536279,
+      "bh_basket": 10811.338042673104
     }
   ],
+  "open_positions": [],
   "closed_trades": [
     {
       "symbol": "TRXUSDT",
@@ -1115,6 +1111,17 @@
       "pnl_pct": 9.088198706142247,
       "hold_days": 4,
       "reason": "MR_EXIT"
+    },
+    {
+      "symbol": "LTCUSDT",
+      "entry_date": "2026-09-16",
+      "exit_date": "2026-09-18",
+      "entry_price": 51.54576,
+      "exit_price": 53.933020000000006,
+      "pnl": 63.33117719090774,
+      "pnl_pct": 4.222078479393849,
+      "hold_days": 2,
+      "reason": "MR_EXIT"
     }
   ],
   "per_symbol": {
@@ -1144,9 +1151,9 @@
       "pnl": 49.78996790619681
     },
     "LTCUSDT": {
-      "trades": 1,
-      "wins": 1,
-      "pnl": 39.93898811839745
+      "trades": 2,
+      "wins": 2,
+      "pnl": 103.27016530930518
     },
     "BTCUSDT": {
       "trades": 1,
