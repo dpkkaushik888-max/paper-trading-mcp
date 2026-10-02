@@ -1,35 +1,35 @@
 {
-  "generated_at": "2026-10-01T06:20:31+00:00",
+  "generated_at": "2026-10-02T05:59:27+00:00",
   "start_date": "2026-04-21",
   "starting_capital": 10000.0,
   "test_days": 90,
   "metrics": {
-    "days_elapsed": 155,
-    "total_return_pct": 6.900040278830355,
-    "cagr_pct": 17.01410286624605,
-    "sharpe": 2.0131296246784443,
+    "days_elapsed": 156,
+    "total_return_pct": 7.053316903990847,
+    "cagr_pct": 17.288844959203043,
+    "sharpe": 2.048511970622565,
     "max_dd_pct": 2.943225060464171,
     "win_rate_pct": 75.0,
     "profit_factor": 2.1521494325734243,
     "trades": 20,
     "wins": 15,
     "losses": 5,
-    "portfolio_value": 10690.004027883037,
-    "cash": 9181.551667237012,
-    "n_open": 1
+    "portfolio_value": 10705.331690399085,
+    "cash": 7678.551667237012,
+    "n_open": 2
   },
   "bh_btc_metrics": {
-    "value": 10999.226046291336,
-    "total_return_pct": 9.992260462913372,
-    "cagr_pct": 25.14143728039746,
-    "sharpe": -1.3165532234635804,
+    "value": 11170.509026981063,
+    "total_return_pct": 11.705090269810636,
+    "cagr_pct": 29.56222839723179,
+    "sharpe": -1.2886791541673164,
     "max_dd_pct": 100.0
   },
   "bh_basket_metrics": {
-    "value": 13403.004008543443,
-    "total_return_pct": 34.03004008543442,
-    "cagr_pct": 99.31525557298056,
-    "sharpe": -0.988336585535387,
+    "value": 13209.350831289934,
+    "total_return_pct": 32.093508312899345,
+    "cagr_pct": 91.79251581939172,
+    "sharpe": -1.006198235909808,
     "max_dd_pct": 100.0
   },
   "backtest_baseline": {
@@ -977,6 +977,12 @@
       "connors": 10690.004027883037,
       "bh_btc": 10999.226046291336,
       "bh_basket": 13403.004008543443
+    },
+    {
+      "date": "2026-10-02",
+      "connors": 10705.331690399085,
+      "bh_btc": 11170.509026981063,
+      "bh_basket": 13209.350831289934
     }
   ],
   "open_positions": [
@@ -984,10 +990,19 @@
       "symbol": "LTCUSDT",
       "entry_date": "2026-09-30",
       "entry_price": 66.8334,
-      "current_price": 67.21,
+      "current_price": 68.06,
       "shares": 22.443867886416076,
-      "unrealized_pnl": 8.45236064602421,
-      "unrealized_pct": 0.5634907097349373
+      "unrealized_pnl": 27.529648349478066,
+      "unrealized_pct": 1.8353098899652087
+    },
+    {
+      "symbol": "OPUSDT",
+      "entry_date": "2026-10-02",
+      "entry_price": 0.1290645,
+      "current_price": 0.129,
+      "shares": 11622.095928779796,
+      "unrealized_pnl": -0.7496251874062401,
+      "unrealized_pct": -0.04997501249375258
     }
   ],
   "closed_trades": [
