@@ -2,7 +2,7 @@
   "version": 4,
   "start_date": "2026-04-21",
   "starting_capital": 10000.0,
-  "cash": 7678.551667237012,
+  "cash": 6236.562024184288,
   "config": {
     "max_concurrent": 6,
     "pos_size_pct": 0.15,
@@ -21587,21 +21587,194 @@
       "bh_basket_value": 13209.350831289934,
       "trend_timed_value": 11600.703944157705,
       "selector_value": 11888.517896843781
+    },
+    {
+      "date": "2026-10-03",
+      "portfolio_value": 10711.068956764511,
+      "cash": 6236.562024184288,
+      "n_open": 3,
+      "closes": {
+        "BTCUSDT": 84515.77,
+        "ETHUSDT": 2670.0,
+        "SOLUSDT": 118.59,
+        "AVAXUSDT": 10.814,
+        "LINKUSDT": 13.804,
+        "MATICUSDT": 0.4492,
+        "DOGEUSDT": 0.09294,
+        "XRPUSDT": 1.4851,
+        "ADAUSDT": 0.24422,
+        "DOTUSDT": 1.138,
+        "ATOMUSDT": 1.635,
+        "NEARUSDT": 4.697,
+        "LTCUSDT": 69.86,
+        "TRXUSDT": 0.3361,
+        "BCHUSDT": 311.3,
+        "APTUSDT": 0.7976,
+        "UNIUSDT": 8.865,
+        "ARBUSDT": 0.1944,
+        "OPUSDT": 0.127,
+        "SUIUSDT": 1.1467
+      },
+      "decisions": [
+        {
+          "symbol": "LTCUSDT",
+          "action": "exit",
+          "reason": "MR_EXIT"
+        },
+        {
+          "symbol": "OPUSDT",
+          "action": "hold",
+          "reason": "no_exit_signal"
+        },
+        {
+          "symbol": "BTCUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "ETHUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "SOLUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "AVAXUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "LINKUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "MATICUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "XRPUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "ADAUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "DOTUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "ATOMUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "NEARUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "LTCUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "TRXUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "BCHUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "APTUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "UNIUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "SUIUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "ARBUSDT",
+          "action": "enter",
+          "reason": "connors_signal"
+        },
+        {
+          "symbol": "DOGEUSDT",
+          "action": "enter",
+          "reason": "connors_signal"
+        }
+      ],
+      "fills": [
+        {
+          "symbol": "LTCUSDT",
+          "side": "SELL",
+          "modeled_price": 69.86,
+          "fill_price": 69.82507,
+          "shares": 22.443867886416076,
+          "cost": 3.134289292479509
+        },
+        {
+          "symbol": "ARBUSDT",
+          "side": "BUY",
+          "modeled_price": 0.1944,
+          "fill_price": 0.19449719999999998,
+          "shares": 7712.193286073014,
+          "cost": 3.0
+        },
+        {
+          "symbol": "DOGEUSDT",
+          "side": "BUY",
+          "modeled_price": 0.09294,
+          "fill_price": 0.09298646999999999,
+          "shares": 16131.379113542005,
+          "cost": 3.0
+        }
+      ],
+      "skipped": false,
+      "bh_btc_value": 11121.52685547139,
+      "bh_basket_value": 13024.932362241552,
+      "trend_timed_value": 11549.835387599254,
+      "selector_value": 11836.387289257997
     }
   ],
   "open_positions": [
-    {
-      "symbol": "LTCUSDT",
-      "entry_date": "2026-09-30",
-      "entry_price": 66.8334,
-      "shares": 22.443867886416076,
-      "entry_cost": 3.0
-    },
     {
       "symbol": "OPUSDT",
       "entry_date": "2026-10-02",
       "entry_price": 0.1290645,
       "shares": 11622.095928779796,
+      "entry_cost": 3.0
+    },
+    {
+      "symbol": "ARBUSDT",
+      "entry_date": "2026-10-03",
+      "entry_price": 0.19449719999999998,
+      "shares": 7712.193286073014,
+      "entry_cost": 3.0
+    },
+    {
+      "symbol": "DOGEUSDT",
+      "entry_date": "2026-10-03",
+      "entry_price": 0.09298646999999999,
+      "shares": 16131.379113542005,
       "entry_cost": 3.0
     }
   ],
@@ -21845,6 +22018,18 @@
       "pnl_pct": 0.04222078479393849,
       "hold_days": 2,
       "reason": "MR_EXIT"
+    },
+    {
+      "symbol": "LTCUSDT",
+      "entry_date": "2026-09-30",
+      "exit_date": "2026-10-03",
+      "entry_price": 66.8334,
+      "exit_price": 69.82507,
+      "shares": 22.443867886416076,
+      "pnl": 61.010356947274886,
+      "pnl_pct": 0.040673571298183255,
+      "hold_days": 3,
+      "reason": "MR_EXIT"
     }
   ],
   "benchmarks": {
@@ -22008,7 +22193,7 @@
       "init_date": "2026-04-21",
       "mode": "bull",
       "shares": 0.14004945218221398,
-      "value": 11888.517896843781,
+      "value": 11836.387289257997,
       "ma_window": 200,
       "band_pct": 0.02,
       "n_switches": 1,

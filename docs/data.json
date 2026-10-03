@@ -1,35 +1,35 @@
 {
-  "generated_at": "2026-10-02T05:59:27+00:00",
+  "generated_at": "2026-10-03T05:34:45+00:00",
   "start_date": "2026-04-21",
   "starting_capital": 10000.0,
   "test_days": 90,
   "metrics": {
-    "days_elapsed": 156,
-    "total_return_pct": 7.053316903990847,
-    "cagr_pct": 17.288844959203043,
-    "sharpe": 2.048511970622565,
+    "days_elapsed": 157,
+    "total_return_pct": 7.110689567645112,
+    "cagr_pct": 17.315810411662813,
+    "sharpe": 2.057673331749186,
     "max_dd_pct": 2.943225060464171,
-    "win_rate_pct": 75.0,
-    "profit_factor": 2.1521494325734243,
-    "trades": 20,
-    "wins": 15,
+    "win_rate_pct": 76.19047619047619,
+    "profit_factor": 2.2548342283341616,
+    "trades": 21,
+    "wins": 16,
     "losses": 5,
-    "portfolio_value": 10705.331690399085,
-    "cash": 7678.551667237012,
-    "n_open": 2
+    "portfolio_value": 10711.068956764511,
+    "cash": 6236.562024184288,
+    "n_open": 3
   },
   "bh_btc_metrics": {
-    "value": 11170.509026981063,
-    "total_return_pct": 11.705090269810636,
-    "cagr_pct": 29.56222839723179,
-    "sharpe": -1.2886791541673164,
+    "value": 11121.52685547139,
+    "total_return_pct": 11.215268554713887,
+    "cagr_pct": 28.033882015478362,
+    "sharpe": -1.291057918301652,
     "max_dd_pct": 100.0
   },
   "bh_basket_metrics": {
-    "value": 13209.350831289934,
-    "total_return_pct": 32.093508312899345,
-    "cagr_pct": 91.79251581939172,
-    "sharpe": -1.006198235909808,
+    "value": 13024.932362241552,
+    "total_return_pct": 30.249323622415524,
+    "cagr_pct": 84.85649190540026,
+    "sharpe": -1.0232479351965924,
     "max_dd_pct": 100.0
   },
   "backtest_baseline": {
@@ -983,26 +983,41 @@
       "connors": 10705.331690399085,
       "bh_btc": 11170.509026981063,
       "bh_basket": 13209.350831289934
+    },
+    {
+      "date": "2026-10-03",
+      "connors": 10711.068956764511,
+      "bh_btc": 11121.52685547139,
+      "bh_basket": 13024.932362241552
     }
   ],
   "open_positions": [
     {
-      "symbol": "LTCUSDT",
-      "entry_date": "2026-09-30",
-      "entry_price": 66.8334,
-      "current_price": 68.06,
-      "shares": 22.443867886416076,
-      "unrealized_pnl": 27.529648349478066,
-      "unrealized_pct": 1.8353098899652087
-    },
-    {
       "symbol": "OPUSDT",
       "entry_date": "2026-10-02",
       "entry_price": 0.1290645,
-      "current_price": 0.129,
+      "current_price": 0.127,
       "shares": 11622.095928779796,
-      "unrealized_pnl": -0.7496251874062401,
+      "unrealized_pnl": -23.99381704496585,
+      "unrealized_pct": -1.5995878029977262
+    },
+    {
+      "symbol": "ARBUSDT",
+      "entry_date": "2026-10-03",
+      "entry_price": 0.19449719999999998,
+      "current_price": 0.1944,
+      "shares": 7712.193286073014,
+      "unrealized_pnl": -0.7496251874062332,
       "unrealized_pct": -0.04997501249375258
+    },
+    {
+      "symbol": "DOGEUSDT",
+      "entry_date": "2026-10-03",
+      "entry_price": 0.09298646999999999,
+      "current_price": 0.09294,
+      "shares": 16131.379113542005,
+      "unrealized_pnl": -0.7496251874061826,
+      "unrealized_pct": -0.04997501249374148
     }
   ],
   "closed_trades": [
@@ -1225,6 +1240,17 @@
       "pnl_pct": 4.222078479393849,
       "hold_days": 2,
       "reason": "MR_EXIT"
+    },
+    {
+      "symbol": "LTCUSDT",
+      "entry_date": "2026-09-30",
+      "exit_date": "2026-10-03",
+      "entry_price": 66.8334,
+      "exit_price": 69.82507,
+      "pnl": 61.010356947274886,
+      "pnl_pct": 4.067357129818325,
+      "hold_days": 3,
+      "reason": "MR_EXIT"
     }
   ],
   "per_symbol": {
@@ -1254,9 +1280,9 @@
       "pnl": 49.78996790619681
     },
     "LTCUSDT": {
-      "trades": 2,
-      "wins": 2,
-      "pnl": 103.27016530930518
+      "trades": 3,
+      "wins": 3,
+      "pnl": 164.28052225658007
     },
     "BTCUSDT": {
       "trades": 1,
