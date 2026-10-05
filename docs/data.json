@@ -1,35 +1,35 @@
 {
-  "generated_at": "2026-10-04T06:10:58+00:00",
+  "generated_at": "2026-10-05T06:02:12+00:00",
   "start_date": "2026-04-21",
   "starting_capital": 10000.0,
   "test_days": 90,
   "metrics": {
-    "days_elapsed": 158,
-    "total_return_pct": 8.278118401498347,
-    "cagr_pct": 20.169260821169168,
-    "sharpe": 2.324172541593868,
+    "days_elapsed": 159,
+    "total_return_pct": 8.718556818506752,
+    "cagr_pct": 21.154244449589843,
+    "sharpe": 2.427822479405721,
     "max_dd_pct": 2.943225060464171,
-    "win_rate_pct": 78.26086956521739,
-    "profit_factor": 2.3995774406703907,
-    "trades": 23,
-    "wins": 18,
+    "win_rate_pct": 79.16666666666666,
+    "profit_factor": 2.4673954899336783,
+    "trades": 24,
+    "wins": 19,
     "losses": 5,
-    "portfolio_value": 10827.811840149834,
-    "cash": 9328.56146533724,
-    "n_open": 1
+    "portfolio_value": 10871.855681850675,
+    "cash": 10871.855681850675,
+    "n_open": 0
   },
   "bh_btc_metrics": {
-    "value": 11154.495700674714,
-    "total_return_pct": 11.544957006747136,
-    "cagr_pct": 28.710912338792237,
-    "sharpe": -1.2824598415472106,
+    "value": 11381.195659812895,
+    "total_return_pct": 13.81195659812895,
+    "cagr_pct": 34.5813182436818,
+    "sharpe": -1.2478444960929065,
     "max_dd_pct": 100.0
   },
   "bh_basket_metrics": {
-    "value": 13267.091322324475,
-    "total_return_pct": 32.67091322324476,
-    "cagr_pct": 92.14427590780024,
-    "sharpe": -0.9927241753501834,
+    "value": 13461.924597106197,
+    "total_return_pct": 34.619245971061964,
+    "cagr_pct": 97.86913587318394,
+    "sharpe": -0.9681453940795277,
     "max_dd_pct": 100.0
   },
   "backtest_baseline": {
@@ -995,19 +995,15 @@
       "connors": 10827.811840149834,
       "bh_btc": 11154.495700674714,
       "bh_basket": 13267.091322324475
-    }
-  ],
-  "open_positions": [
+    },
     {
-      "symbol": "DOGEUSDT",
-      "entry_date": "2026-10-03",
-      "entry_price": 0.09298646999999999,
-      "current_price": 0.09294,
-      "shares": 16131.379113542005,
-      "unrealized_pnl": -0.7496251874061826,
-      "unrealized_pct": -0.04997501249374148
+      "date": "2026-10-05",
+      "connors": 10871.855681850675,
+      "bh_btc": 11381.195659812895,
+      "bh_basket": 13461.924597106197
     }
   ],
+  "open_positions": [],
   "closed_trades": [
     {
       "symbol": "TRXUSDT",
@@ -1261,6 +1257,17 @@
       "pnl_pct": 3.141565585520038,
       "hold_days": 1,
       "reason": "MR_EXIT"
+    },
+    {
+      "symbol": "DOGEUSDT",
+      "entry_date": "2026-10-03",
+      "exit_date": "2026-10-05",
+      "entry_price": 0.09298646999999999,
+      "exit_price": 0.095862045,
+      "pnl": 40.29421651343523,
+      "pnl_pct": 2.686281100895682,
+      "hold_days": 2,
+      "reason": "MR_EXIT"
     }
   ],
   "per_symbol": {
@@ -1313,6 +1320,11 @@
       "trades": 1,
       "wins": 1,
       "pnl": 38.875957370152264
+    },
+    "DOGEUSDT": {
+      "trades": 1,
+      "wins": 1,
+      "pnl": 40.29421651343523
     }
   }
 }
