@@ -1,35 +1,35 @@
 {
-  "generated_at": "2026-10-09T06:28:33+00:00",
+  "generated_at": "2026-10-10T06:12:21+00:00",
   "start_date": "2026-04-21",
   "starting_capital": 10000.0,
   "test_days": 90,
   "metrics": {
-    "days_elapsed": 163,
-    "total_return_pct": 3.6891323821982125,
-    "cagr_pct": 8.450329550036507,
-    "sharpe": 0.8989838591856949,
+    "days_elapsed": 164,
+    "total_return_pct": 5.899911868552521,
+    "cagr_pct": 13.60773131718387,
+    "sharpe": 1.3255577650887322,
     "max_dd_pct": 4.626095657896377,
-    "win_rate_pct": 76.0,
-    "profit_factor": 1.9888642873875297,
-    "trades": 25,
-    "wins": 19,
+    "win_rate_pct": 76.92307692307693,
+    "profit_factor": 2.1960093028120102,
+    "trades": 26,
+    "wins": 20,
     "losses": 6,
-    "portfolio_value": 10368.91323821982,
-    "cash": 1710.89963378014,
-    "n_open": 6
+    "portfolio_value": 10589.991186855252,
+    "cash": 3366.587851777352,
+    "n_open": 5
   },
   "bh_btc_metrics": {
-    "value": 10751.571513391771,
-    "total_return_pct": 7.515715133917711,
-    "cagr_pct": 17.618055131376288,
-    "sharpe": -1.314283419082328,
+    "value": 10874.498696416988,
+    "total_return_pct": 8.744986964169875,
+    "cagr_pct": 20.51268764627585,
+    "sharpe": -1.2933673145785938,
     "max_dd_pct": 100.0
   },
   "bh_basket_metrics": {
-    "value": 12076.277157760209,
-    "total_return_pct": 20.76277157760209,
-    "cagr_pct": 52.57021631150764,
-    "sharpe": -1.1041731687758276,
+    "value": 12602.812019349874,
+    "total_return_pct": 26.028120193498737,
+    "cagr_pct": 67.34061307119066,
+    "sharpe": -1.0377093895670593,
     "max_dd_pct": 100.0
   },
   "backtest_baseline": {
@@ -1025,6 +1025,12 @@
       "connors": 10368.91323821982,
       "bh_btc": 10751.571513391771,
       "bh_basket": 12076.277157760209
+    },
+    {
+      "date": "2026-10-10",
+      "connors": 10589.991186855252,
+      "bh_btc": 10874.498696416988,
+      "bh_basket": 12602.812019349874
     }
   ],
   "open_positions": [
@@ -1032,55 +1038,46 @@
       "symbol": "BTCUSDT",
       "entry_date": "2026-10-08",
       "entry_price": 83327.56296,
-      "current_price": 81704.37,
+      "current_price": 82638.53,
       "shares": 0.01800124648695234,
-      "unrealized_pnl": -29.219496568845777,
-      "unrealized_pct": -1.9479664379230544
+      "unrealized_pnl": -12.403452150594315,
+      "unrealized_pct": -0.8268968100396235
     },
     {
       "symbol": "DOGEUSDT",
       "entry_date": "2026-10-08",
       "entry_price": 0.089094525,
-      "current_price": 0.08427,
+      "current_price": 0.08536,
       "shares": 16836.051373527163,
-      "unrealized_pnl": -81.22595075286607,
-      "unrealized_pct": -5.41506338352441
-    },
-    {
-      "symbol": "DOTUSDT",
-      "entry_date": "2026-10-08",
-      "entry_price": 1.1115555,
-      "current_price": 1.094,
-      "shares": 1349.4602833596705,
-      "unrealized_pnl": -23.69045000452047,
-      "unrealized_pct": -1.579363333634698
+      "unrealized_pnl": -62.87465475572134,
+      "unrealized_pct": -4.191643650381427
     },
     {
       "symbol": "ETHUSDT",
       "entry_date": "2026-10-08",
       "entry_price": 2576.0874,
-      "current_price": 2473.89,
+      "current_price": 2489.01,
       "shares": 0.5822783807723294,
-      "unrealized_pnl": -59.507336591142064,
-      "unrealized_pct": -3.967155772742803
+      "unrealized_pnl": -50.70328747386424,
+      "unrealized_pct": -3.3802191649242808
     },
     {
       "symbol": "LTCUSDT",
       "entry_date": "2026-10-08",
       "entry_price": 66.07302,
-      "current_price": 63.41,
+      "current_price": 63.52,
       "shares": 22.702155887531703,
-      "unrealized_pnl": -60.45629517161474,
-      "unrealized_pct": -4.030419678107656
+      "unrealized_pnl": -57.95905802398611,
+      "unrealized_pct": -3.863937201599077
     },
     {
       "symbol": "SOLUSDT",
       "entry_date": "2026-10-08",
       "entry_price": 116.368155,
-      "current_price": 109.55,
+      "current_price": 109.18,
       "shares": 12.89012445028453,
-      "unrealized_pnl": -87.88686647132978,
-      "unrealized_pct": -5.85912443142198
+      "unrealized_pnl": -92.65621251793493,
+      "unrealized_pct": -6.177080834528992
     }
   ],
   "closed_trades": [
@@ -1358,6 +1355,17 @@
       "pnl_pct": -9.530403204702376,
       "hold_days": 1,
       "reason": "SL"
+    },
+    {
+      "symbol": "DOTUSDT",
+      "entry_date": "2026-10-08",
+      "exit_date": "2026-10-10",
+      "entry_price": 1.1115555,
+      "exit_price": 1.229385,
+      "pnl": 152.68821799721218,
+      "pnl_pct": 10.179214533147478,
+      "hold_days": 2,
+      "reason": "MR_EXIT"
     }
   ],
   "per_symbol": {
@@ -1415,6 +1423,11 @@
       "trades": 1,
       "wins": 1,
       "pnl": 40.29421651343523
+    },
+    "DOTUSDT": {
+      "trades": 1,
+      "wins": 1,
+      "pnl": 152.68821799721218
     }
   }
 }

@@ -2,7 +2,7 @@
   "version": 4,
   "start_date": "2026-04-21",
   "starting_capital": 10000.0,
-  "cash": 1710.89963378014,
+  "cash": 3366.587851777352,
   "config": {
     "max_concurrent": 6,
     "pos_size_pct": 0.15,
@@ -22681,6 +22681,156 @@
       "bh_basket_value": 12076.277157760209,
       "trend_timed_value": 11165.632448802193,
       "selector_value": 11442.652259392918
+    },
+    {
+      "date": "2026-10-10",
+      "portfolio_value": 10589.991186855252,
+      "cash": 3366.587851777352,
+      "n_open": 5,
+      "closes": {
+        "BTCUSDT": 82638.53,
+        "ETHUSDT": 2489.01,
+        "SOLUSDT": 109.18,
+        "AVAXUSDT": 10.354,
+        "LINKUSDT": 12.813,
+        "MATICUSDT": 0.4492,
+        "DOGEUSDT": 0.08536,
+        "XRPUSDT": 1.3967,
+        "ADAUSDT": 0.24292,
+        "DOTUSDT": 1.23,
+        "ATOMUSDT": 2.074,
+        "NEARUSDT": 4.899,
+        "LTCUSDT": 63.52,
+        "TRXUSDT": 0.3324,
+        "BCHUSDT": 276.7,
+        "APTUSDT": 0.8166,
+        "UNIUSDT": 7.335,
+        "ARBUSDT": 0.1832,
+        "OPUSDT": 0.131,
+        "SUIUSDT": 1.0711
+      },
+      "decisions": [
+        {
+          "symbol": "BTCUSDT",
+          "action": "hold",
+          "reason": "no_exit_signal"
+        },
+        {
+          "symbol": "DOGEUSDT",
+          "action": "hold",
+          "reason": "no_exit_signal"
+        },
+        {
+          "symbol": "DOTUSDT",
+          "action": "exit",
+          "reason": "MR_EXIT"
+        },
+        {
+          "symbol": "ETHUSDT",
+          "action": "hold",
+          "reason": "no_exit_signal"
+        },
+        {
+          "symbol": "LTCUSDT",
+          "action": "hold",
+          "reason": "no_exit_signal"
+        },
+        {
+          "symbol": "SOLUSDT",
+          "action": "hold",
+          "reason": "no_exit_signal"
+        },
+        {
+          "symbol": "AVAXUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "LINKUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "MATICUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "XRPUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "ADAUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "DOTUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "ATOMUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "NEARUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "TRXUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "BCHUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "APTUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "UNIUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "ARBUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "OPUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "SUIUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        }
+      ],
+      "fills": [
+        {
+          "symbol": "DOTUSDT",
+          "side": "SELL",
+          "modeled_price": 1.23,
+          "fill_price": 1.229385,
+          "shares": 1349.4602833596705,
+          "cost": 3.3180124609162567
+        }
+      ],
+      "skipped": false,
+      "bh_btc_value": 10874.498696416988,
+      "bh_basket_value": 12602.812019349874,
+      "trend_timed_value": 11293.293762491694,
+      "selector_value": 11573.480855643456
     }
   ],
   "open_positions": [
@@ -22696,13 +22846,6 @@
       "entry_date": "2026-10-08",
       "entry_price": 0.089094525,
       "shares": 16836.051373527163,
-      "entry_cost": 3.0
-    },
-    {
-      "symbol": "DOTUSDT",
-      "entry_date": "2026-10-08",
-      "entry_price": 1.1115555,
-      "shares": 1349.4602833596705,
       "entry_cost": 3.0
     },
     {
@@ -23027,6 +23170,18 @@
       "pnl_pct": -0.09530403204702376,
       "hold_days": 1,
       "reason": "SL"
+    },
+    {
+      "symbol": "DOTUSDT",
+      "entry_date": "2026-10-08",
+      "exit_date": "2026-10-10",
+      "entry_price": 1.1115555,
+      "exit_price": 1.229385,
+      "shares": 1349.4602833596705,
+      "pnl": 152.68821799721218,
+      "pnl_pct": 0.10179214533147478,
+      "hold_days": 2,
+      "reason": "MR_EXIT"
     }
   ],
   "benchmarks": {
@@ -23190,7 +23345,7 @@
       "init_date": "2026-04-21",
       "mode": "bull",
       "shares": 0.14004945218221398,
-      "value": 11442.652259392918,
+      "value": 11573.480855643456,
       "ma_window": 200,
       "band_pct": 0.02,
       "n_switches": 1,
