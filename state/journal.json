@@ -2,7 +2,7 @@
   "version": 4,
   "start_date": "2026-04-21",
   "starting_capital": 10000.0,
-  "cash": 3366.587851777352,
+  "cash": 10697.416934740659,
   "config": {
     "max_concurrent": 6,
     "pos_size_pct": 0.15,
@@ -22967,45 +22967,211 @@
       "bh_basket_value": 12913.97598090622,
       "trend_timed_value": 11342.717834073592,
       "selector_value": 11624.131140519676
+    },
+    {
+      "date": "2026-10-12",
+      "portfolio_value": 10697.416934740659,
+      "cash": 10697.416934740659,
+      "n_open": 0,
+      "closes": {
+        "BTCUSDT": 83748.07,
+        "ETHUSDT": 2537.01,
+        "SOLUSDT": 111.35,
+        "AVAXUSDT": 10.967,
+        "LINKUSDT": 13.348,
+        "MATICUSDT": 0.4492,
+        "DOGEUSDT": 0.0868,
+        "XRPUSDT": 1.4104,
+        "ADAUSDT": 0.25171,
+        "DOTUSDT": 1.255,
+        "ATOMUSDT": 1.909,
+        "NEARUSDT": 5.876,
+        "LTCUSDT": 64.65,
+        "TRXUSDT": 0.329,
+        "BCHUSDT": 285.2,
+        "APTUSDT": 0.8979,
+        "UNIUSDT": 7.739,
+        "ARBUSDT": 0.1984,
+        "OPUSDT": 0.144,
+        "SUIUSDT": 1.1287
+      },
+      "decisions": [
+        {
+          "symbol": "BTCUSDT",
+          "action": "exit",
+          "reason": "MR_EXIT"
+        },
+        {
+          "symbol": "DOGEUSDT",
+          "action": "exit",
+          "reason": "MR_EXIT"
+        },
+        {
+          "symbol": "ETHUSDT",
+          "action": "exit",
+          "reason": "MR_EXIT"
+        },
+        {
+          "symbol": "LTCUSDT",
+          "action": "exit",
+          "reason": "MR_EXIT"
+        },
+        {
+          "symbol": "SOLUSDT",
+          "action": "exit",
+          "reason": "MR_EXIT"
+        },
+        {
+          "symbol": "BTCUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "ETHUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "SOLUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "AVAXUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "LINKUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "MATICUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "DOGEUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "XRPUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "ADAUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "DOTUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "ATOMUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "NEARUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "LTCUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "TRXUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "BCHUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "APTUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "UNIUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "ARBUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "OPUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "SUIUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        }
+      ],
+      "fills": [
+        {
+          "symbol": "BTCUSDT",
+          "side": "SELL",
+          "modeled_price": 83748.07,
+          "fill_price": 83706.195965,
+          "shares": 0.01800124648695234,
+          "cost": 3.0136317321022013
+        },
+        {
+          "symbol": "DOGEUSDT",
+          "side": "SELL",
+          "modeled_price": 0.0868,
+          "fill_price": 0.0867566,
+          "shares": 16836.051373527163,
+          "cost": 2.9212771491850935
+        },
+        {
+          "symbol": "ETHUSDT",
+          "side": "SELL",
+          "modeled_price": 2537.01,
+          "fill_price": 2535.741495,
+          "shares": 0.5822783807723294,
+          "cost": 2.953014903531612
+        },
+        {
+          "symbol": "LTCUSDT",
+          "side": "SELL",
+          "modeled_price": 64.65,
+          "fill_price": 64.617675,
+          "shares": 22.702155887531703,
+          "cost": 2.9339210618797207
+        },
+        {
+          "symbol": "SOLUSDT",
+          "side": "SELL",
+          "modeled_price": 111.35,
+          "fill_price": 111.294325,
+          "shares": 12.89012445028453,
+          "cost": 2.8691953997208257
+        }
+      ],
+      "skipped": false,
+      "bh_btc_value": 11020.504334266821,
+      "bh_basket_value": 13309.705623944605,
+      "trend_timed_value": 11444.922320759068,
+      "selector_value": 11728.87132481771
     }
   ],
-  "open_positions": [
-    {
-      "symbol": "BTCUSDT",
-      "entry_date": "2026-10-08",
-      "entry_price": 83327.56296,
-      "shares": 0.01800124648695234,
-      "entry_cost": 3.0
-    },
-    {
-      "symbol": "DOGEUSDT",
-      "entry_date": "2026-10-08",
-      "entry_price": 0.089094525,
-      "shares": 16836.051373527163,
-      "entry_cost": 3.0
-    },
-    {
-      "symbol": "ETHUSDT",
-      "entry_date": "2026-10-08",
-      "entry_price": 2576.0874,
-      "shares": 0.5822783807723294,
-      "entry_cost": 3.0
-    },
-    {
-      "symbol": "LTCUSDT",
-      "entry_date": "2026-10-08",
-      "entry_price": 66.07302,
-      "shares": 22.702155887531703,
-      "entry_cost": 3.0
-    },
-    {
-      "symbol": "SOLUSDT",
-      "entry_date": "2026-10-08",
-      "entry_price": 116.368155,
-      "shares": 12.89012445028453,
-      "entry_cost": 3.0
-    }
-  ],
+  "open_positions": [],
   "closed_trades": [
     {
       "symbol": "TRXUSDT",
@@ -23318,6 +23484,66 @@
       "pnl_pct": 0.10179214533147478,
       "hold_days": 2,
       "reason": "MR_EXIT"
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry_date": "2026-10-08",
+      "exit_date": "2026-10-12",
+      "entry_price": 83327.56296,
+      "exit_price": 83706.195965,
+      "shares": 0.01800124648695234,
+      "pnl": 0.802234318998444,
+      "pnl_pct": 0.000534822879332296,
+      "hold_days": 4,
+      "reason": "MR_EXIT"
+    },
+    {
+      "symbol": "DOGEUSDT",
+      "entry_date": "2026-10-08",
+      "exit_date": "2026-10-12",
+      "entry_price": 0.089094525,
+      "exit_price": 0.0867566,
+      "shares": 16836.051373527163,
+      "pnl": -45.28270255663824,
+      "pnl_pct": -0.03018846837109216,
+      "hold_days": 4,
+      "reason": "MR_EXIT"
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry_date": "2026-10-08",
+      "exit_date": "2026-10-12",
+      "entry_price": 2576.0874,
+      "exit_price": 2535.741495,
+      "shares": 0.5822783807723294,
+      "pnl": -29.445563137725685,
+      "pnl_pct": -0.019630375425150455,
+      "hold_days": 4,
+      "reason": "MR_EXIT"
+    },
+    {
+      "symbol": "LTCUSDT",
+      "entry_date": "2026-10-08",
+      "exit_date": "2026-10-12",
+      "entry_price": 66.07302,
+      "exit_price": 64.617675,
+      "shares": 22.702155887531703,
+      "pnl": -38.97339012201951,
+      "pnl_pct": -0.02598226008134634,
+      "hold_days": 4,
+      "reason": "MR_EXIT"
+    },
+    {
+      "symbol": "SOLUSDT",
+      "entry_date": "2026-10-08",
+      "exit_date": "2026-10-12",
+      "entry_price": 116.368155,
+      "exit_price": 111.294325,
+      "shares": 12.89012445028453,
+      "pnl": -71.27149553930803,
+      "pnl_pct": -0.04751433035953869,
+      "hold_days": 4,
+      "reason": "MR_EXIT"
     }
   ],
   "benchmarks": {
@@ -23481,7 +23707,7 @@
       "init_date": "2026-04-21",
       "mode": "bull",
       "shares": 0.14004945218221398,
-      "value": 11624.131140519676,
+      "value": 11728.87132481771,
       "ma_window": 200,
       "band_pct": 0.02,
       "n_switches": 1,
