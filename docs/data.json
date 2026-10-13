@@ -1,35 +1,35 @@
 {
-  "generated_at": "2026-10-12T06:18:01+00:00",
+  "generated_at": "2026-10-13T06:58:20+00:00",
   "start_date": "2026-04-21",
   "starting_capital": 10000.0,
   "test_days": 90,
   "metrics": {
-    "days_elapsed": 166,
-    "total_return_pct": 6.974169347406578,
-    "cagr_pct": 15.97873153141116,
-    "sharpe": 1.5336333687281187,
+    "days_elapsed": 167,
+    "total_return_pct": 6.936673095532542,
+    "cagr_pct": 15.787075320108457,
+    "sharpe": 1.5212211305689542,
     "max_dd_pct": 4.626095657896377,
     "win_rate_pct": 67.74193548387096,
     "profit_factor": 1.7563510471638597,
     "trades": 31,
     "wins": 21,
     "losses": 10,
-    "portfolio_value": 10697.416934740659,
-    "cash": 10697.416934740659,
-    "n_open": 0
+    "portfolio_value": 10693.667309553253,
+    "cash": 9194.416934740659,
+    "n_open": 1
   },
   "bh_btc_metrics": {
-    "value": 11020.504334266821,
-    "total_return_pct": 10.205043342668208,
-    "cagr_pct": 23.82045289990915,
-    "sharpe": -1.2658702308348915,
+    "value": 10777.240997840612,
+    "total_return_pct": 7.772409978406114,
+    "cagr_pct": 17.774029175743976,
+    "sharpe": -1.2937538301407787,
     "max_dd_pct": 100.0
   },
   "bh_basket_metrics": {
-    "value": 13309.705623944605,
-    "total_return_pct": 33.097056239446054,
-    "cagr_pct": 87.50851298766698,
-    "sharpe": -0.9524033653321122,
+    "value": 12339.419012180892,
+    "total_return_pct": 23.394190121808922,
+    "cagr_pct": 58.32020603492476,
+    "sharpe": -1.049773596752015,
     "max_dd_pct": 100.0
   },
   "backtest_baseline": {
@@ -1043,9 +1043,25 @@
       "connors": 10697.416934740659,
       "bh_btc": 11020.504334266821,
       "bh_basket": 13309.705623944605
+    },
+    {
+      "date": "2026-10-13",
+      "connors": 10693.667309553253,
+      "bh_btc": 10777.240997840612,
+      "bh_basket": 12339.419012180892
     }
   ],
-  "open_positions": [],
+  "open_positions": [
+    {
+      "symbol": "XRPUSDT",
+      "entry_date": "2026-10-13",
+      "entry_price": 1.34177055,
+      "current_price": 1.3411,
+      "shares": 1117.9258629577166,
+      "unrealized_pnl": -0.7496251874062259,
+      "unrealized_pct": -0.04997501249375258
+    }
+  ],
   "closed_trades": [
     {
       "symbol": "TRXUSDT",
