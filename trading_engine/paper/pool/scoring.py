@@ -395,10 +395,16 @@ def _score_line(spec: Optional[LineSpec], jd: dict, baselines_dir, history, day_
     s.days_active = len(path)
     s.years_beating_s18 = _years(base)
     vals = [v for _, v, _ in path]
+    cap = None
+    if vals and spec is not None:
+        # pool line: measure from the book's starting capital, not the first marked value, but only when
+        # the path starts on the book's init date (else pre-path P&L would be counted).
+        bk = jd.get("benchmarks", {}).get(spec.id) or {}
+        if bk.get("init_date") == path[0][0]:
+            cap = float(bk.get("starting_capital") or STARTING_CAPITAL)
     if vals:
-        if spec is not None:   # pool line: measure from the book's starting capital, not the first marked value
-            cap = (jd.get("benchmarks", {}).get(spec.id) or {}).get("starting_capital") or STARTING_CAPITAL
-            vals = [float(cap)] + vals
+        if cap is not None:
+            vals = [cap] + vals
         s.total_return = vals[-1] / vals[0] - 1.0
         s.max_dd = max_drawdown(vals)
         s.current_dd = 1.0 - vals[-1] / max(vals)
@@ -418,7 +424,12 @@ def _score_line(spec: Optional[LineSpec], jd: dict, baselines_dir, history, day_
     s.streak_threshold = streak_threshold(p_backtest)
     _trade_stats(s, trades, seed_key, B, p_backtest)
     if spec is not None:
-        s.paired = paired_vs_live(path, live_path, B, stable_seed(seed_key, "paired"))
+        ppath = path
+        if cap is not None:   # day-1 return (cap -> v1) pairs with live's return over the same day
+            prev = [x for x in live_path if x[0] < path[0][0]]
+            if prev:
+                ppath = [(prev[-1][0], cap, None)] + path
+        s.paired = paired_vs_live(ppath, live_path, B, stable_seed(seed_key, "paired"))
         if spec.hypothesis and spec.hypothesis.kind == "control" and s.paired:
             s.guard_effect = s.paired["cum_ret_diff"]
     cond = _cond_cells(trades, base, day_ctx, history, seed_key, B_CELL if B >= B_CELL else B)
