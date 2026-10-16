@@ -62,7 +62,8 @@ def _num(x) -> Optional[float]:
 
 
 def _ctx_fields(ctx) -> dict:
-    return {k: getattr(ctx, k, None) for k in ("bar_date", "dow", "btc_trend", "btc_vol20", "basket_ret20")}
+    return {k: getattr(ctx, k, None) for k in ("bar_date", "dow", "btc_trend", "btc_vol20", "btc_vol20_bucket",
+                                       "basket_ret20", "basket_ret20_bucket")}
 
 
 def step(book: Book, spec: LineSpec, strat: LineStrategy,
@@ -81,6 +82,10 @@ def step(book: Book, spec: LineSpec, strat: LineStrategy,
     flagged = set(flags.get("stale", [])) | set(flags.get("gap200", []))
     day = dict(value=0.0, n_open=0, exposure=0.0, signals=0, entries=0, exits=0,
                blocked=dict(cap=0, gate=0, cash=0, data=0), blocked_syms=[])
+
+    prepare = getattr(strat, "prepare", None)   # optional: cross-sectional families rank the day first
+    if prepare is not None:
+        prepare(snapshot, ctx, today)
 
     # 1. Exits (data guard never blocks an exit).
     for pos in list(book.open_positions):

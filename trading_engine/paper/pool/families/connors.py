@@ -27,10 +27,13 @@ class ConnorsStrategy:
     def __init__(self, params: Mapping):
         self.overrides = ConnorsOverrides(**{k: v for k, v in params.items() if k in _OV_FIELDS})
         self.btc_sma_gate = bool(params.get("btc_sma_gate", False))
+        # Pool-only override: mean-reversion exit on close > SMA(n) instead of SMA5 (connors_swing.py untouched).
+        self.mr_exit_sma = params.get("mr_exit_sma")
 
     def indicators(self, df: pd.DataFrame) -> pd.DataFrame:
         ind = precompute_indicators(df).copy()
         ind[ATR_COL] = atr_wilder(df)
+        ind["sma_10"] = df["Close"].rolling(10).mean()
         return ind
 
     def gate(self, ctx) -> bool:
@@ -45,6 +48,9 @@ class ConnorsStrategy:
         return Signal(strength=_f(ind_row.get("rsi_2")), meta={"entry_atr": _f(ind_row.get(ATR_COL))})
 
     def exit(self, pos: dict, close, ind_row, ctx, today) -> Optional[str]:
+        if self.mr_exit_sma:
+            ind_row = ind_row.copy()
+            ind_row["sma_5"] = ind_row[f"sma_{int(self.mr_exit_sma)}"]
         return long_exit(close, ind_row, pos["entry_price"], pd.Timestamp(pos["entry_date"]),
                          pd.Timestamp(today), overrides=self.overrides, entry_atr=pos.get("entry_atr"))
 

@@ -1,0 +1,3239 @@
+{
+ "2026-04-21": {
+  "bar_date": "2026-04-20",
+  "basket_ret20": 0.06940035937791203,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 75853.48,
+  "btc_sma200": 86383.0758,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.41953494943929215,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Monday"
+ },
+ "2026-04-22": {
+  "bar_date": "2026-04-21",
+  "basket_ret20": 0.06364848879410276,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 76305.28,
+  "btc_sma200": 86153.1575,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.417974973437855,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Tuesday"
+ },
+ "2026-04-23": {
+  "bar_date": "2026-04-22",
+  "basket_ret20": 0.1116397388394484,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 78208.89,
+  "btc_sma200": 85932.32695,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.41112063340764854,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Wednesday"
+ },
+ "2026-04-24": {
+  "bar_date": "2026-04-23",
+  "basket_ret20": 0.09861941670690805,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 78254.34,
+  "btc_sma200": 85707.12800000001,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.4111841080483129,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Thursday"
+ },
+ "2026-04-25": {
+  "bar_date": "2026-04-24",
+  "basket_ret20": 0.09746008874216885,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 77438.57,
+  "btc_sma200": 85470.33154999999,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.41850462411038103,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Friday"
+ },
+ "2026-04-26": {
+  "bar_date": "2026-04-25",
+  "basket_ret20": 0.09713440181310032,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 77610.68,
+  "btc_sma200": 85251.7374,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.4109496870660464,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Saturday"
+ },
+ "2026-04-27": {
+  "bar_date": "2026-04-26",
+  "basket_ret20": 0.11400648394407537,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 78626.16,
+  "btc_sma200": 85027.59184999998,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.41047747741724433,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Sunday"
+ },
+ "2026-04-28": {
+  "bar_date": "2026-04-27",
+  "basket_ret20": 0.024371364290341875,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 77373.7,
+  "btc_sma200": 84806.16705,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.385134810395979,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Monday"
+ },
+ "2026-04-29": {
+  "bar_date": "2026-04-28",
+  "basket_ret20": 0.04892488455982086,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 76332.32,
+  "btc_sma200": 84621.87924999998,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.38609079533386553,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Tuesday"
+ },
+ "2026-04-30": {
+  "bar_date": "2026-04-29",
+  "basket_ret20": 0.025703469716458982,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 75792.81,
+  "btc_sma200": 84448.24609999999,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.38731620621404056,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Wednesday"
+ },
+ "2026-05-01": {
+  "bar_date": "2026-04-30",
+  "basket_ret20": 0.014173146264106762,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 76327.21,
+  "btc_sma200": 84253.62109999999,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.3835511792268662,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Thursday"
+ },
+ "2026-05-02": {
+  "bar_date": "2026-05-01",
+  "basket_ret20": 0.025472408921781722,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 78235.09,
+  "btc_sma200": 84068.34355,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.3952631474975086,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Friday"
+ },
+ "2026-05-03": {
+  "bar_date": "2026-05-02",
+  "basket_ret20": 0.0777430328163599,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 78674.91,
+  "btc_sma200": 83896.44235,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.36104068259805433,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Saturday"
+ },
+ "2026-05-04": {
+  "bar_date": "2026-05-03",
+  "basket_ret20": 0.01736601648622973,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 78565.73,
+  "btc_sma200": 83733.32734999999,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.2945428952216671,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Sunday"
+ },
+ "2026-05-05": {
+  "bar_date": "2026-05-04",
+  "basket_ret20": 0.04898253788432203,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 79858.72,
+  "btc_sma200": 83592.63085,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.2982054777678203,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Monday"
+ },
+ "2026-05-06": {
+  "bar_date": "2026-05-05",
+  "basket_ret20": 0.04594137957842093,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 80933.1,
+  "btc_sma200": 83463.6876,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.3003656536218127,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Tuesday"
+ },
+ "2026-05-07": {
+  "bar_date": "2026-05-06",
+  "basket_ret20": 0.023918697389663963,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 81444.83,
+  "btc_sma200": 83336.1118,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.3005356059770412,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Wednesday"
+ },
+ "2026-05-08": {
+  "bar_date": "2026-05-07",
+  "basket_ret20": 0.002465897557229683,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 80034.95,
+  "btc_sma200": 83194.0088,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.29649772906228566,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Thursday"
+ },
+ "2026-05-09": {
+  "bar_date": "2026-05-08",
+  "basket_ret20": 0.08771336049228991,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 80205.47,
+  "btc_sma200": 83042.43835,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.28258265664820786,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Friday"
+ },
+ "2026-05-10": {
+  "bar_date": "2026-05-09",
+  "basket_ret20": 0.13676411954415388,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 80697.78,
+  "btc_sma200": 82902.9537,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.25178963310894276,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Saturday"
+ },
+ "2026-05-11": {
+  "bar_date": "2026-05-10",
+  "basket_ret20": 0.14614381535318371,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 82154.4,
+  "btc_sma200": 82775.79305,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.2378101544051142,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Sunday"
+ },
+ "2026-05-12": {
+  "bar_date": "2026-05-11",
+  "basket_ret20": 0.13671151493083653,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 81774.05,
+  "btc_sma200": 82634.31284999999,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.24042474216482354,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Monday"
+ },
+ "2026-05-13": {
+  "bar_date": "2026-05-12",
+  "basket_ret20": 0.09598729147497151,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 80483.2,
+  "btc_sma200": 82481.57884999999,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.23412820467550716,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Tuesday"
+ },
+ "2026-05-14": {
+  "bar_date": "2026-05-13",
+  "basket_ret20": 0.07384832406012148,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 79329.71,
+  "btc_sma200": 82319.81014999999,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.24376866625286694,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Wednesday"
+ },
+ "2026-05-15": {
+  "bar_date": "2026-05-14",
+  "basket_ret20": 0.08191809635071254,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 81077.62,
+  "btc_sma200": 82151.76229999999,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.2541489310344126,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Thursday"
+ },
+ "2026-05-16": {
+  "bar_date": "2026-05-15",
+  "basket_ret20": 0.04667673716167215,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 79112.25,
+  "btc_sma200": 81976.27355,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.27881526393496353,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Friday"
+ },
+ "2026-05-17": {
+  "bar_date": "2026-05-16",
+  "basket_ret20": 0.011232556670932703,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 78154.97,
+  "btc_sma200": 81802.75349999999,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.27866974823365,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Saturday"
+ },
+ "2026-05-18": {
+  "bar_date": "2026-05-17",
+  "basket_ret20": 0.012020434735902653,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 77436.87,
+  "btc_sma200": 81639.21259999998,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.27271667659386817,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Sunday"
+ },
+ "2026-05-19": {
+  "bar_date": "2026-05-18",
+  "basket_ret20": 0.015147637839733576,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 77006.42,
+  "btc_sma200": 81482.73604999999,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.26715225193609676,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Monday"
+ },
+ "2026-05-29": {
+  "bar_date": "2026-05-28",
+  "basket_ret20": -0.09736434394735152,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 73622.27,
+  "btc_sma200": 80020.8875,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.2687300673357134,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Thursday"
+ },
+ "2026-05-30": {
+  "bar_date": "2026-05-29",
+  "basket_ret20": -0.1131720999301779,
+  "basket_ret20_bucket": "<-10%",
+  "btc_close": 73481.41,
+  "btc_sma200": 79857.3203,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.2649208400147794,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Friday"
+ },
+ "2026-05-31": {
+  "bar_date": "2026-05-30",
+  "basket_ret20": -0.1387407230356725,
+  "basket_ret20_bucket": "<-10%",
+  "btc_close": 73850.05,
+  "btc_sma200": 79710.5266,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.24907412486624053,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Saturday"
+ },
+ "2026-06-01": {
+  "bar_date": "2026-05-31",
+  "basket_ret20": -0.13669247215213076,
+  "basket_ret20_bucket": "<-10%",
+  "btc_close": 73672.19,
+  "btc_sma200": 79569.97134999999,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.24937423293271993,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Sunday"
+ },
+ "2026-06-02": {
+  "bar_date": "2026-06-01",
+  "basket_ret20": -0.11112404045802525,
+  "basket_ret20_bucket": "<-10%",
+  "btc_close": 71419.55,
+  "btc_sma200": 79427.35035000001,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.26943278643079394,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Monday"
+ },
+ "2026-06-03": {
+  "bar_date": "2026-06-02",
+  "basket_ret20": -0.15973397196039407,
+  "basket_ret20_bucket": "<-10%",
+  "btc_close": 66764.81,
+  "btc_sma200": 79287.47235,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.37549762276855175,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Tuesday"
+ },
+ "2026-06-04": {
+  "bar_date": "2026-06-03",
+  "basket_ret20": -0.16734201807637625,
+  "basket_ret20_bucket": "<-10%",
+  "btc_close": 64151.82,
+  "btc_sma200": 79130.6354,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.37200795781607526,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Wednesday"
+ },
+ "2026-06-05": {
+  "bar_date": "2026-06-04",
+  "basket_ret20": -0.19912987693207077,
+  "basket_ret20_bucket": "<-10%",
+  "btc_close": 63892.97,
+  "btc_sma200": 78978.60029999999,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.36871667683467735,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Thursday"
+ },
+ "2026-06-06": {
+  "bar_date": "2026-06-05",
+  "basket_ret20": -0.2582547109722555,
+  "basket_ret20_bucket": "<-10%",
+  "btc_close": 61106.88,
+  "btc_sma200": 78822.7778,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.3962067100054754,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Friday"
+ },
+ "2026-06-07": {
+  "bar_date": "2026-06-06",
+  "basket_ret20": -0.24771287332626046,
+  "basket_ret20_bucket": "<-10%",
+  "btc_close": 60908.45,
+  "btc_sma200": 78662.5992,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.3979167586568992,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Saturday"
+ },
+ "2026-06-08": {
+  "bar_date": "2026-06-07",
+  "basket_ret20": -0.21081317242142292,
+  "basket_ret20_bucket": "<-10%",
+  "btc_close": 63303.49,
+  "btc_sma200": 78522.9146,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.4525542210862976,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Sunday"
+ },
+ "2026-06-09": {
+  "bar_date": "2026-06-08",
+  "basket_ret20": -0.1995822345187289,
+  "basket_ret20_bucket": "<-10%",
+  "btc_close": 63107.85,
+  "btc_sma200": 78403.1438,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.4522956418381303,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Monday"
+ },
+ "2026-06-10": {
+  "bar_date": "2026-06-09",
+  "basket_ret20": -0.22207380363551968,
+  "basket_ret20_bucket": "<-10%",
+  "btc_close": 61712.86,
+  "btc_sma200": 78286.69205,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.4468491779510919,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Tuesday"
+ },
+ "2026-06-11": {
+  "bar_date": "2026-06-10",
+  "basket_ret20": -0.27400861914246616,
+  "basket_ret20_bucket": "<-10%",
+  "btc_close": 61519.3,
+  "btc_sma200": 78170.935,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.4450554361679381,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Wednesday"
+ },
+ "2026-06-12": {
+  "bar_date": "2026-06-11",
+  "basket_ret20": -0.21325559841852465,
+  "basket_ret20_bucket": "<-10%",
+  "btc_close": 63603.92,
+  "btc_sma200": 78054.0407,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.4784936183519821,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Thursday"
+ },
+ "2026-06-13": {
+  "bar_date": "2026-06-12",
+  "basket_ret20": -0.2328049790489657,
+  "basket_ret20_bucket": "<-10%",
+  "btc_close": 63586.66,
+  "btc_sma200": 77929.4136,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.46736629387569184,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Friday"
+ },
+ "2026-06-14": {
+  "bar_date": "2026-06-13",
+  "basket_ret20": -0.20364021642516497,
+  "basket_ret20_bucket": "<-10%",
+  "btc_close": 64440.92,
+  "btc_sma200": 77813.7519,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.474046862382206,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Saturday"
+ },
+ "2026-06-15": {
+  "bar_date": "2026-06-14",
+  "basket_ret20": -0.19913949783181759,
+  "basket_ret20_bucket": "<-10%",
+  "btc_close": 65759.69,
+  "btc_sma200": 77689.66175000001,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.4878478027577472,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Sunday"
+ },
+ "2026-06-16": {
+  "bar_date": "2026-06-15",
+  "basket_ret20": -0.17422234529876385,
+  "basket_ret20_bucket": "<-10%",
+  "btc_close": 66325.9,
+  "btc_sma200": 77564.03025000001,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.49044760745739924,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Monday"
+ },
+ "2026-06-17": {
+  "bar_date": "2026-06-16",
+  "basket_ret20": -0.1498246594499285,
+  "basket_ret20_bucket": "<-10%",
+  "btc_close": 65672.74,
+  "btc_sma200": 77437.78635,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.487425295917884,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Tuesday"
+ },
+ "2026-06-18": {
+  "bar_date": "2026-06-17",
+  "basket_ret20": -0.14861443735160373,
+  "basket_ret20_bucket": "<-10%",
+  "btc_close": 64453.17,
+  "btc_sma200": 77305.6577,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.4899067031392932,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Wednesday"
+ },
+ "2026-06-19": {
+  "bar_date": "2026-06-18",
+  "basket_ret20": -0.16833172164289073,
+  "basket_ret20_bucket": "<-10%",
+  "btc_close": 62984.56,
+  "btc_sma200": 77167.63115,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.4942822473936467,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Thursday"
+ },
+ "2026-06-20": {
+  "bar_date": "2026-06-19",
+  "basket_ret20": -0.18151646852855408,
+  "basket_ret20_bucket": "<-10%",
+  "btc_close": 63535.89,
+  "btc_sma200": 77054.0617,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.49636551148850494,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Friday"
+ },
+ "2026-06-21": {
+  "bar_date": "2026-06-20",
+  "basket_ret20": -0.16803581068341472,
+  "basket_ret20_bucket": "<-10%",
+  "btc_close": 64312.8,
+  "btc_sma200": 76917.87565,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.5031004048823857,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Saturday"
+ },
+ "2026-06-22": {
+  "bar_date": "2026-06-21",
+  "basket_ret20": -0.18354461185135418,
+  "basket_ret20_bucket": "<-10%",
+  "btc_close": 63308.83,
+  "btc_sma200": 76765.68275,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.4930653580517634,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Sunday"
+ },
+ "2026-06-23": {
+  "bar_date": "2026-06-22",
+  "basket_ret20": -0.11071731486223281,
+  "basket_ret20_bucket": "<-10%",
+  "btc_close": 64018.92,
+  "btc_sma200": 76625.1484,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.41292857667311805,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "b3_backfill": true,
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Monday"
+ },
+ "2026-06-24": {
+  "bar_date": "2026-06-23",
+  "basket_ret20": -0.13407643700566382,
+  "basket_ret20_bucket": "<-10%",
+  "btc_close": 62747.4,
+  "btc_sma200": 76493.41485,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.3858049161170534,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "b3_backfill": true,
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Tuesday"
+ },
+ "2026-06-25": {
+  "bar_date": "2026-06-24",
+  "basket_ret20": -0.09997585130422754,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 61061.55,
+  "btc_sma200": 76351.60865,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.40159391916221227,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "b3_backfill": true,
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Wednesday"
+ },
+ "2026-06-26": {
+  "bar_date": "2026-06-25",
+  "basket_ret20": -0.025525388553671518,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 59690.22,
+  "btc_sma200": 76197.9635,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.36667028323309464,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "b3_backfill": true,
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Thursday"
+ },
+ "2026-06-27": {
+  "bar_date": "2026-06-26",
+  "basket_ret20": -0.007773661367629297,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 60096.02,
+  "btc_sma200": 76044.3544,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.36807748006200197,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "b3_backfill": true,
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Friday"
+ },
+ "2026-06-28": {
+  "bar_date": "2026-06-27",
+  "basket_ret20": -0.06406486345337689,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 60034.55,
+  "btc_sma200": 75879.65424999999,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.32310662094910797,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "b3_backfill": true,
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Saturday"
+ },
+ "2026-06-29": {
+  "bar_date": "2026-06-28",
+  "basket_ret20": -0.07109929916830456,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 59523.42,
+  "btc_sma200": 75717.53689999999,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.3240896308372824,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "b3_backfill": true,
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Sunday"
+ },
+ "2026-06-30": {
+  "bar_date": "2026-06-29",
+  "basket_ret20": -0.03605328600766842,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 60253.78,
+  "btc_sma200": 75555.82335,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.3178477929208371,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Monday"
+ },
+ "2026-07-01": {
+  "bar_date": "2026-06-30",
+  "basket_ret20": -0.022834756636966984,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 58632.52,
+  "btc_sma200": 75397.5122,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.3368395521857491,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Tuesday"
+ },
+ "2026-07-02": {
+  "bar_date": "2026-07-01",
+  "basket_ret20": -0.04871948013125517,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 60033.87,
+  "btc_sma200": 75246.1873,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.3191523438333505,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Wednesday"
+ },
+ "2026-07-03": {
+  "bar_date": "2026-07-02",
+  "basket_ret20": -0.011447040838466434,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 61557.61,
+  "btc_sma200": 75112.40460000001,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.3407645871990852,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Thursday"
+ },
+ "2026-07-04": {
+  "bar_date": "2026-07-03",
+  "basket_ret20": 0.007999801918256591,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 62607.32,
+  "btc_sma200": 74993.01060000001,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.34409511264267795,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Friday"
+ },
+ "2026-07-05": {
+  "bar_date": "2026-07-04",
+  "basket_ret20": -0.007070036792914809,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 63173.19,
+  "btc_sma200": 74870.72230000001,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.3336564244292713,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Saturday"
+ },
+ "2026-07-06": {
+  "bar_date": "2026-07-05",
+  "basket_ret20": -0.024089587706359415,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 63637.54,
+  "btc_sma200": 74757.4935,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.3329370177131723,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Sunday"
+ },
+ "2026-07-07": {
+  "bar_date": "2026-07-06",
+  "basket_ret20": -0.030892278965957864,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 64033.63,
+  "btc_sma200": 74651.16165,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.3327701834547363,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Monday"
+ },
+ "2026-07-08": {
+  "bar_date": "2026-07-07",
+  "basket_ret20": -0.036804523758651425,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 63339.51,
+  "btc_sma200": 74526.875,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.32648086092633455,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Tuesday"
+ },
+ "2026-07-09": {
+  "bar_date": "2026-07-08",
+  "basket_ret20": -0.02803287102753436,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 62303.49,
+  "btc_sma200": 74396.41995,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.31904066172157197,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Wednesday"
+ },
+ "2026-07-10": {
+  "bar_date": "2026-07-09",
+  "basket_ret20": 0.0033029462324035697,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 63290.95,
+  "btc_sma200": 74269.58995,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.3243103712776975,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Thursday"
+ },
+ "2026-07-11": {
+  "bar_date": "2026-07-10",
+  "basket_ret20": 0.010729536171957463,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 64169.35,
+  "btc_sma200": 74148.91415,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.3255744607585391,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Friday"
+ },
+ "2026-07-12": {
+  "bar_date": "2026-07-11",
+  "basket_ret20": 0.030170429707011708,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 63844.0,
+  "btc_sma200": 74031.4906,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.31886699347126596,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Saturday"
+ },
+ "2026-07-13": {
+  "bar_date": "2026-07-12",
+  "basket_ret20": 0.012667276029527615,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 63786.02,
+  "btc_sma200": 73911.2893,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.3152100414774389,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Sunday"
+ },
+ "2026-07-14": {
+  "bar_date": "2026-07-13",
+  "basket_ret20": 0.02008708927621445,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 62338.89,
+  "btc_sma200": 73785.67965,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.3189272154867884,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Monday"
+ },
+ "2026-07-15": {
+  "bar_date": "2026-07-14",
+  "basket_ret20": 0.0825713776496767,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 65032.0,
+  "btc_sma200": 73674.1482,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.3435955865621098,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Tuesday"
+ },
+ "2026-07-16": {
+  "bar_date": "2026-07-15",
+  "basket_ret20": 0.10237301379769687,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 64772.49,
+  "btc_sma200": 73558.35095000001,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.325349437858647,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Wednesday"
+ },
+ "2026-07-17": {
+  "bar_date": "2026-07-16",
+  "basket_ret20": 0.06521660772943036,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 63833.67,
+  "btc_sma200": 73438.89495000002,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.33463701919343697,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Thursday"
+ },
+ "2026-07-18": {
+  "bar_date": "2026-07-17",
+  "basket_ret20": 0.07613456194460945,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 63953.71,
+  "btc_sma200": 73322.66219999999,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.334193272634948,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Friday"
+ },
+ "2026-07-19": {
+  "bar_date": "2026-07-18",
+  "basket_ret20": 0.08290400020745503,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 64839.54,
+  "btc_sma200": 73204.69935000001,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.332758194967336,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Saturday"
+ },
+ "2026-07-20": {
+  "bar_date": "2026-07-19",
+  "basket_ret20": 0.05849535578900024,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 64704.25,
+  "btc_sma200": 73089.67120000001,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.3318224031655739,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Sunday"
+ },
+ "2026-07-21": {
+  "bar_date": "2026-07-20",
+  "basket_ret20": 0.09874891745361836,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 65261.05,
+  "btc_sma200": 72971.61480000001,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.30180023407887213,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Monday"
+ },
+ "2026-07-22": {
+  "bar_date": "2026-07-21",
+  "basket_ret20": 0.08533258560170738,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 66559.92,
+  "btc_sma200": 72854.68855,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.29768676457510274,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Tuesday"
+ },
+ "2026-07-23": {
+  "bar_date": "2026-07-22",
+  "basket_ret20": 0.04116251009376876,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 66086.59,
+  "btc_sma200": 72731.56435,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.2879492719849884,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Wednesday"
+ },
+ "2026-07-24": {
+  "bar_date": "2026-07-23",
+  "basket_ret20": -0.025031335129090518,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 65096.15,
+  "btc_sma200": 72599.5451,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.29186318883662643,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Thursday"
+ },
+ "2026-07-25": {
+  "bar_date": "2026-07-24",
+  "basket_ret20": -0.04854682973475147,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 64156.9,
+  "btc_sma200": 72449.7548,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.29818961631673346,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Friday"
+ },
+ "2026-07-26": {
+  "bar_date": "2026-07-25",
+  "basket_ret20": -0.042080874184046005,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 64362.82,
+  "btc_sma200": 72302.59695,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.29696791564910574,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Saturday"
+ },
+ "2026-07-27": {
+  "bar_date": "2026-07-26",
+  "basket_ret20": -0.017744832015744245,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 65354.23,
+  "btc_sma200": 72172.3643,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.3027576591199326,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Sunday"
+ },
+ "2026-07-28": {
+  "bar_date": "2026-07-27",
+  "basket_ret20": -0.044102563188754655,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 63759.28,
+  "btc_sma200": 72035.6089,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.318536857532891,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Monday"
+ },
+ "2026-07-29": {
+  "bar_date": "2026-07-28",
+  "basket_ret20": -0.014827337059220173,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 63938.65,
+  "btc_sma200": 71902.81,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.3094990861402967,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Tuesday"
+ },
+ "2026-07-30": {
+  "bar_date": "2026-07-29",
+  "basket_ret20": -0.04054826090513244,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 63981.89,
+  "btc_sma200": 71770.55175,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.30262129503964835,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Wednesday"
+ },
+ "2026-07-31": {
+  "bar_date": "2026-07-30",
+  "basket_ret20": -0.03730410871373942,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 64786.73,
+  "btc_sma200": 71639.57335,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.30159110114614246,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Thursday"
+ },
+ "2026-08-01": {
+  "bar_date": "2026-07-31",
+  "basket_ret20": -0.06107119889696275,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 62868.96,
+  "btc_sma200": 71497.62455000001,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.32812576326112586,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Friday"
+ },
+ "2026-08-02": {
+  "bar_date": "2026-08-01",
+  "basket_ret20": -0.055537957545049484,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 62821.06,
+  "btc_sma200": 71334.78155,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.3281251673813544,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Saturday"
+ },
+ "2026-08-03": {
+  "bar_date": "2026-08-02",
+  "basket_ret20": -0.00964522704262625,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 63540.39,
+  "btc_sma200": 71167.41519999999,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.316089388717255,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Sunday"
+ },
+ "2026-08-04": {
+  "bar_date": "2026-08-03",
+  "basket_ret20": -0.047648457818930394,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 63514.37,
+  "btc_sma200": 71007.07165,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.2556692570710677,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Monday"
+ },
+ "2026-08-05": {
+  "bar_date": "2026-08-04",
+  "basket_ret20": -0.03689072269864644,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 64098.98,
+  "btc_sma200": 70849.70814999999,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.2590423492203138,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Tuesday"
+ },
+ "2026-08-06": {
+  "bar_date": "2026-08-05",
+  "basket_ret20": -0.01754094671493032,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 64656.16,
+  "btc_sma200": 70697.2933,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.253760607954042,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Wednesday"
+ },
+ "2026-08-07": {
+  "bar_date": "2026-08-06",
+  "basket_ret20": -0.02814637436717791,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 64318.65,
+  "btc_sma200": 70550.12370000001,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.2549101664853251,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Thursday"
+ },
+ "2026-08-08": {
+  "bar_date": "2026-08-07",
+  "basket_ret20": -0.026454594803632586,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 64915.74,
+  "btc_sma200": 70411.55855,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.2510260836914515,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Friday"
+ },
+ "2026-08-09": {
+  "bar_date": "2026-08-08",
+  "basket_ret20": -0.014216701947949741,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 64974.91,
+  "btc_sma200": 70294.3487,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.25086015656038113,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Saturday"
+ },
+ "2026-08-10": {
+  "bar_date": "2026-08-09",
+  "basket_ret20": -0.03381824068913747,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 64894.15,
+  "btc_sma200": 70170.73959999999,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.2480651530484026,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Sunday"
+ },
+ "2026-08-11": {
+  "bar_date": "2026-08-10",
+  "basket_ret20": -0.047835500258875674,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 63968.95,
+  "btc_sma200": 70042.688,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.23780864109945363,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Monday"
+ },
+ "2026-08-12": {
+  "bar_date": "2026-08-11",
+  "basket_ret20": -0.042145827791818885,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 63604.72,
+  "btc_sma200": 69912.57745,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.237292495244537,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Tuesday"
+ },
+ "2026-08-13": {
+  "bar_date": "2026-08-12",
+  "basket_ret20": -0.03752199456183205,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 63445.79,
+  "btc_sma200": 69783.44619999999,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.22982926774812,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Wednesday"
+ },
+ "2026-08-14": {
+  "bar_date": "2026-08-13",
+  "basket_ret20": -0.01397612665042437,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 63484.39,
+  "btc_sma200": 69667.6218,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.22203041788792283,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Thursday"
+ },
+ "2026-08-15": {
+  "bar_date": "2026-08-14",
+  "basket_ret20": -0.03263122883579231,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 63042.94,
+  "btc_sma200": 69541.04765000001,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.2230020661017492,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Friday"
+ },
+ "2026-08-16": {
+  "bar_date": "2026-08-15",
+  "basket_ret20": -0.057915560095108266,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 63081.59,
+  "btc_sma200": 69410.1531,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.21084946643158772,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Saturday"
+ },
+ "2026-08-17": {
+  "bar_date": "2026-08-16",
+  "basket_ret20": -0.014558971361093711,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 62888.6,
+  "btc_sma200": 69278.34879999999,
+  "btc_trend": "below_both",
+  "btc_vol20": 0.18420720319795988,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Sunday"
+ },
+ "2026-08-18": {
+  "bar_date": "2026-08-17",
+  "basket_ret20": -0.011925527677156359,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 64505.48,
+  "btc_sma200": 69177.45425,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.2150975315868586,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Monday"
+ },
+ "2026-08-19": {
+  "bar_date": "2026-08-18",
+  "basket_ret20": -0.008492793920074996,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 64753.6,
+  "btc_sma200": 69080.0207,
+  "btc_trend": "below200_above50",
+  "btc_vol20": 0.21558772454563616,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Tuesday"
+ },
+ "2026-08-20": {
+  "bar_date": "2026-08-19",
+  "basket_ret20": 0.05574957708660374,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 69327.55,
+  "btc_sma200": 69032.62945000001,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.35874540079249095,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Wednesday"
+ },
+ "2026-08-21": {
+  "bar_date": "2026-08-20",
+  "basket_ret20": 0.13810622811880288,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 73028.52,
+  "btc_sma200": 69013.10005,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.38231923272404605,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Thursday"
+ },
+ "2026-08-22": {
+  "bar_date": "2026-08-21",
+  "basket_ret20": 0.27353585418594,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 78329.48,
+  "btc_sma200": 69010.77464999999,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.46398637398180737,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Friday"
+ },
+ "2026-08-23": {
+  "bar_date": "2026-08-22",
+  "basket_ret20": 0.21935117681455382,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 77082.81,
+  "btc_sma200": 69017.4293,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.4781643142109908,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Saturday"
+ },
+ "2026-08-24": {
+  "bar_date": "2026-08-23",
+  "basket_ret20": 0.24297869923028811,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 77727.0,
+  "btc_sma200": 69040.2609,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.4760822276518554,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Sunday"
+ },
+ "2026-08-25": {
+  "bar_date": "2026-08-24",
+  "basket_ret20": 0.20304669469568878,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 78979.64,
+  "btc_sma200": 69121.38865000001,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.47671726562356953,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Monday"
+ },
+ "2026-08-26": {
+  "bar_date": "2026-08-25",
+  "basket_ret20": 0.16193700175061118,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 78572.17,
+  "btc_sma200": 69161.3084,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.4813481645369957,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Tuesday"
+ },
+ "2026-08-27": {
+  "bar_date": "2026-08-26",
+  "basket_ret20": 0.19190197411988236,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 79033.17,
+  "btc_sma200": 69209.92235,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.47703105751015284,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Wednesday"
+ },
+ "2026-08-28": {
+  "bar_date": "2026-08-27",
+  "basket_ret20": 0.21356019017459218,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 80253.37,
+  "btc_sma200": 69259.6108,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.47747844791286764,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Thursday"
+ },
+ "2026-08-29": {
+  "bar_date": "2026-08-28",
+  "basket_ret20": 0.1426846991983451,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 77828.9,
+  "btc_sma200": 69298.1543,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.5078965653264391,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Friday"
+ },
+ "2026-08-30": {
+  "bar_date": "2026-08-29",
+  "basket_ret20": 0.15867985124195835,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 78243.96,
+  "btc_sma200": 69345.1848,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.5061181658006838,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Saturday"
+ },
+ "2026-08-31": {
+  "bar_date": "2026-08-30",
+  "basket_ret20": 0.13085129115172256,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 77697.33,
+  "btc_sma200": 69398.23199999999,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.5004454658390434,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Sunday"
+ },
+ "2026-09-01": {
+  "bar_date": "2026-08-31",
+  "basket_ret20": 0.1732186901366446,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 78570.75,
+  "btc_sma200": 69459.82435000001,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.4956188089452792,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Monday"
+ },
+ "2026-09-02": {
+  "bar_date": "2026-09-01",
+  "basket_ret20": 0.20374711553901564,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 77446.95,
+  "btc_sma200": 69502.726,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.5041836331170724,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Tuesday"
+ },
+ "2026-09-03": {
+  "bar_date": "2026-09-02",
+  "basket_ret20": 0.2158810899987963,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 77168.07,
+  "btc_sma200": 69539.36434999999,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.5060057729195998,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Wednesday"
+ },
+ "2026-09-04": {
+  "bar_date": "2026-09-03",
+  "basket_ret20": 0.30692043228619603,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 81281.98,
+  "btc_sma200": 69601.68435,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.5305683456283331,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Thursday"
+ },
+ "2026-09-05": {
+  "bar_date": "2026-09-04",
+  "basket_ret20": 0.2791003559264994,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 79665.33,
+  "btc_sma200": 69655.84465,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.5467572030736872,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Friday"
+ },
+ "2026-09-06": {
+  "bar_date": "2026-09-05",
+  "basket_ret20": 0.37966890382640966,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 79815.88,
+  "btc_sma200": 69717.43304999999,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.5445985479863845,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Saturday"
+ },
+ "2026-09-07": {
+  "bar_date": "2026-09-06",
+  "basket_ret20": 0.4137657376424744,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 80345.07,
+  "btc_sma200": 69786.93045,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.5415775824919429,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Sunday"
+ },
+ "2026-09-08": {
+  "bar_date": "2026-09-07",
+  "basket_ret20": 0.3932155968557394,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 79123.21,
+  "btc_sma200": 69847.69285,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.5525083527076822,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Monday"
+ },
+ "2026-09-09": {
+  "bar_date": "2026-09-08",
+  "basket_ret20": 0.292943471357618,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 78421.38,
+  "btc_sma200": 69899.68549999999,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.49121078744868024,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Tuesday"
+ },
+ "2026-09-10": {
+  "bar_date": "2026-09-09",
+  "basket_ret20": 0.18697693052070655,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 78303.05,
+  "btc_sma200": 69951.0849,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.44642128548483645,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Wednesday"
+ },
+ "2026-09-11": {
+  "bar_date": "2026-09-10",
+  "basket_ret20": 0.029336907292909657,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 76634.78,
+  "btc_sma200": 69996.0717,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.34363122262752227,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Thursday"
+ },
+ "2026-09-12": {
+  "bar_date": "2026-09-11",
+  "basket_ret20": 0.03537659774383636,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 77205.0,
+  "btc_sma200": 70058.76675,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.33860073715023026,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Friday"
+ },
+ "2026-09-13": {
+  "bar_date": "2026-09-12",
+  "basket_ret20": 0.0179672347275852,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 77284.74,
+  "btc_sma200": 70125.06745,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.3366177403358264,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Saturday"
+ },
+ "2026-09-14": {
+  "bar_date": "2026-09-13",
+  "basket_ret20": 0.0232147996637552,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 76827.78,
+  "btc_sma200": 70169.4167,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.32920397186965916,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Sunday"
+ },
+ "2026-09-15": {
+  "bar_date": "2026-09-14",
+  "basket_ret20": 0.09067020407491333,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 78171.49,
+  "btc_sma200": 70222.86715,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.3381484870035189,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Monday"
+ },
+ "2026-09-16": {
+  "bar_date": "2026-09-15",
+  "basket_ret20": 0.03105597598043864,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 75656.53,
+  "btc_sma200": 70271.7349,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.36390104732827455,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Tuesday"
+ },
+ "2026-09-17": {
+  "bar_date": "2026-09-16",
+  "basket_ret20": 0.04416804065947392,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 76230.11,
+  "btc_sma200": 70318.11480000001,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.3581910557390264,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Wednesday"
+ },
+ "2026-09-18": {
+  "bar_date": "2026-09-17",
+  "basket_ret20": 0.16712998672859897,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 76456.41,
+  "btc_sma200": 70371.791,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.3356025601910925,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Thursday"
+ },
+ "2026-09-19": {
+  "bar_date": "2026-09-18",
+  "basket_ret20": 0.29917683838919495,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 80880.22,
+  "btc_sma200": 70432.13494999999,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.4148674835755767,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Friday"
+ },
+ "2026-09-20": {
+  "bar_date": "2026-09-19",
+  "basket_ret20": 0.33801815714819206,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 81256.72,
+  "btc_sma200": 70497.1024,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.41317399273536776,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Saturday"
+ },
+ "2026-09-21": {
+  "bar_date": "2026-09-20",
+  "basket_ret20": 0.3202073112291197,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 81164.57,
+  "btc_sma200": 70539.18835,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.4114010570152978,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Sunday"
+ },
+ "2026-09-22": {
+  "bar_date": "2026-09-21",
+  "basket_ret20": 0.38582496830091884,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 86625.28,
+  "btc_sma200": 70618.02175000001,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.48546388286666736,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Monday"
+ },
+ "2026-09-23": {
+  "bar_date": "2026-09-22",
+  "basket_ret20": 0.40828713137692063,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 86150.48,
+  "btc_sma200": 70708.1829,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.4862185084774006,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Tuesday"
+ },
+ "2026-09-24": {
+  "bar_date": "2026-09-23",
+  "basket_ret20": 0.25193122202713114,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 84414.36,
+  "btc_sma200": 70793.93375,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.45035516730903097,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Wednesday"
+ },
+ "2026-09-25": {
+  "bar_date": "2026-09-24",
+  "basket_ret20": 0.3255011567633244,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 84411.53,
+  "btc_sma200": 70885.95449999999,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.43957148537027474,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Thursday"
+ },
+ "2026-09-26": {
+  "bar_date": "2026-09-25",
+  "basket_ret20": 0.31065282010721984,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 84104.62,
+  "btc_sma200": 70964.603,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.44044857257866943,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Friday"
+ },
+ "2026-09-27": {
+  "bar_date": "2026-09-26",
+  "basket_ret20": 0.2639067233522426,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 84451.58,
+  "btc_sma200": 71037.17515000001,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.4401433494970403,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Saturday"
+ },
+ "2026-09-28": {
+  "bar_date": "2026-09-27",
+  "basket_ret20": 0.29474036056748393,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 84472.26,
+  "btc_sma200": 71108.5732,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.4330036679592483,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Sunday"
+ },
+ "2026-09-29": {
+  "bar_date": "2026-09-28",
+  "basket_ret20": 0.22027009206163153,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 83528.39,
+  "btc_sma200": 71173.76805,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.4343730934632488,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Monday"
+ },
+ "2026-09-30": {
+  "bar_date": "2026-09-29",
+  "basket_ret20": 0.2578756845958725,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 83663.45,
+  "btc_sma200": 71237.24215,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.43393330357335885,
+  "btc_vol20_bucket": "mid",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Tuesday"
+ },
+ "2026-10-01": {
+  "bar_date": "2026-09-30",
+  "basket_ret20": 0.31032219382339626,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 83586.37,
+  "btc_sma200": 71299.1176,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.419969858655979,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Wednesday"
+ },
+ "2026-10-02": {
+  "bar_date": "2026-10-01",
+  "basket_ret20": 0.3072732356846901,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 84888.0,
+  "btc_sma200": 71359.84820000001,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.42249601451170765,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Thursday"
+ },
+ "2026-10-03": {
+  "bar_date": "2026-10-02",
+  "basket_ret20": 0.2836277591682406,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 84515.77,
+  "btc_sma200": 71408.02715,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.42404500113157595,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Friday"
+ },
+ "2026-10-04": {
+  "bar_date": "2026-10-03",
+  "basket_ret20": 0.3395085058924789,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 84766.31,
+  "btc_sma200": 71462.31455,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.42154885000365655,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Saturday"
+ },
+ "2026-10-05": {
+  "bar_date": "2026-10-04",
+  "basket_ret20": 0.32200587289336646,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 86489.07,
+  "btc_sma200": 71538.4794,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.4232870909658381,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Sunday"
+ },
+ "2026-10-06": {
+  "bar_date": "2026-10-05",
+  "basket_ret20": 0.40342869010959326,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 85800.56,
+  "btc_sma200": 71617.5928,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.39302673090709545,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Monday"
+ },
+ "2026-10-07": {
+  "bar_date": "2026-10-06",
+  "basket_ret20": 0.3374840461403517,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 85580.91,
+  "btc_sma200": 71693.02425,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.3947749247052278,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Tuesday"
+ },
+ "2026-10-08": {
+  "bar_date": "2026-10-07",
+  "basket_ret20": 0.2081363594431769,
+  "basket_ret20_bucket": ">+10%",
+  "btc_close": 83285.92,
+  "btc_sma200": 71765.71650000001,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.41916718907569644,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Wednesday"
+ },
+ "2026-10-09": {
+  "bar_date": "2026-10-08",
+  "basket_ret20": 0.023996998222464525,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 81704.37,
+  "btc_sma200": 71834.911,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.35904704180835145,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Thursday"
+ },
+ "2026-10-10": {
+  "bar_date": "2026-10-09",
+  "basket_ret20": 0.058983974280773385,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 82638.53,
+  "btc_sma200": 71893.54945,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.36167509904464623,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Friday"
+ },
+ "2026-10-11": {
+  "bar_date": "2026-10-10",
+  "basket_ret20": 0.04991413280879839,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 83000.19,
+  "btc_sma200": 71955.54175,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.3618607306628218,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Saturday"
+ },
+ "2026-10-12": {
+  "bar_date": "2026-10-11",
+  "basket_ret20": 0.014479692524082413,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 83748.07,
+  "btc_sma200": 72017.61165,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.2245591881829445,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Sunday"
+ },
+ "2026-10-13": {
+  "bar_date": "2026-10-12",
+  "basket_ret20": -0.0877630717432569,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 81899.44,
+  "btc_sma200": 72083.07125,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.2409440458008999,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Monday"
+ },
+ "2026-10-14": {
+  "bar_date": "2026-10-13",
+  "basket_ret20": 0.001973129652218908,
+  "basket_ret20_bucket": "0..+10",
+  "btc_close": 83162.96,
+  "btc_sma200": 72166.7437,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.2384123235136087,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Tuesday"
+ },
+ "2026-10-15": {
+  "bar_date": "2026-10-14",
+  "basket_ret20": -0.07241400539786108,
+  "basket_ret20_bucket": "-10..0",
+  "btc_close": 81681.78,
+  "btc_sma200": 72243.1857,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.24944123727872752,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Wednesday"
+ },
+ "2026-10-16": {
+  "bar_date": "2026-10-15",
+  "basket_ret20": -0.10108184317449435,
+  "basket_ret20_bucket": "<-10%",
+  "btc_close": 82242.08,
+  "btc_sma200": 72324.04445,
+  "btc_trend": "above_both",
+  "btc_vol20": 0.2518334255109163,
+  "btc_vol20_bucket": "low",
+  "data_flags": {
+   "gap200": [
+    "TRXUSDT"
+   ],
+   "stale": [
+    "MATICUSDT"
+   ]
+  },
+  "dow": "Thursday"
+ }
+}

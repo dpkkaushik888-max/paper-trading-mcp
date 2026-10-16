@@ -1,4 +1,4 @@
-"""Day context shared by all lines (S35 §3). C1 stores raw values; buckets are frozen in C2."""
+"""Day context shared by all lines (S35 §3). Buckets frozen in C2."""
 
 from __future__ import annotations
 
@@ -12,6 +12,27 @@ import pandas as pd
 GAP200_BARS = 200
 _DAY_NS = 86_400_000_000_000
 TRADING_DAYS_YEAR = 365   # crypto trades every day
+CONTEXT_BARS = 300        # = config.KLINE_LIMIT: the window live run_daily sees
+# Frozen 2026-10-16 (S35 C2), never rolling: terciles (1/3, 2/3 quantiles) of BTC btc_vol20 = annualised
+# (sqrt 365) std of 20 daily log returns, binance.com BTCUSDT daily closes 2020-01-01..2025-12-31 (2192 values).
+BTC_VOL20_TERCILES = (0.4330, 0.6134)
+BASKET_RET20_EDGES = (-0.10, 0.0, 0.10)
+BASKET_RET20_LABELS = ("<-10%", "-10..0", "0..+10", ">+10%")
+
+
+def vol20_bucket(v: Optional[float]) -> Optional[str]:
+    if v is None:
+        return None
+    lo, hi = BTC_VOL20_TERCILES
+    return "low" if v < lo else "mid" if v < hi else "high"
+
+
+def ret20_bucket(r: Optional[float]) -> Optional[str]:
+    """<-10% | -10..0 | 0..+10 (inclusive of 0 and +10 %) | >+10%."""
+    if r is None:
+        return None
+    a, b, c = BASKET_RET20_EDGES
+    return BASKET_RET20_LABELS[0 if r < a else 1 if r < b else 2 if r <= c else 3]
 
 
 @dataclass
@@ -67,4 +88,22 @@ def build_context(bars_by_sym: dict[str, pd.DataFrame], today: str, stale: list[
             for s, df in bars_by_sym.items()
             if s not in ctx.data_flags["stale"] and s not in gap200 and len(df) >= 21]
     ctx.basket_ret20 = float(np.mean(rets)) if rets else None
+    ctx.btc_vol20_bucket = vol20_bucket(ctx.btc_vol20)
+    ctx.basket_ret20_bucket = ret20_bucket(ctx.basket_ret20)
     return ctx
+
+
+def context_for_bar(bars: dict[str, pd.DataFrame], bar: pd.Timestamp, btc_symbol: str) -> DayContext:
+    """Context for journal day bar+1 from full cached bars, as live would see it (last CONTEXT_BARS bars;
+    stale = no bar on ``bar``). Used by the backtest and the context backfill."""
+    vis, stale = {}, []
+    for s, df in bars.items():
+        w = df.iloc[max(0, df.index.searchsorted(bar, side="right") - CONTEXT_BARS):df.index.searchsorted(bar, side="right")]
+        if len(w):
+            vis[s] = w
+            if w.index[-1] < bar:
+                stale.append(s)
+    btc = vis.get(btc_symbol)
+    btc_close = float(btc["Close"].iloc[-1]) if btc is not None and len(btc) else None
+    btc_sma = float(btc["Close"].iloc[-200:].mean()) if btc is not None and len(btc) >= 200 else None
+    return build_context(vis, (bar + timedelta(days=1)).date().isoformat(), stale, btc_symbol, btc_close, btc_sma)

@@ -12,7 +12,7 @@ from trading_engine.paper import run_daily
 from trading_engine.paper.config import COST_PCT, MAX_CONCURRENT, POS_SIZE_PCT, SLIPPAGE_BPS, SL_SLIPPAGE_BPS, STARTING_CAPITAL
 from trading_engine.paper.journal import DaySnapshot, Journal
 from trading_engine.paper.pool import book as pool_book
-from trading_engine.paper.pool.context import DayContext, build_context, contiguous_bars
+from trading_engine.paper.pool.context import DayContext, build_context, contiguous_bars, ret20_bucket
 from trading_engine.paper.pool.families.connors import ConnorsStrategy
 from trading_engine.paper.pool.registry import LINES, LIVE_ID, BookParams, Hypothesis, LineSpec, validate
 from trading_engine.paper.shadow import SHADOW_VARIANTS
@@ -86,7 +86,7 @@ def test_golden_live_path_and_parity_with_old_shadow_step():
         sma = float(btc.rolling(200).mean().iloc[-1]) if len(btc) >= 200 else None
         for v in SHADOW_VARIANTS:
             _ref_step(refs[v.name], v.overrides, v.btc_sma_gate, snap, atr, float(btc.iloc[-1]), sma, d.date().isoformat())
-    assert [v.name for v in SHADOW_VARIANTS] == [l.id for l in LINES]
+    assert [v.name for v in SHADOW_VARIANTS] == [l.id for l in LINES[:4]]
     for v in SHADOW_VARIANTS:
         new, ref = j.get_benchmark(v.name), refs[v.name]
         assert ref["closed_trades"], v.name
@@ -172,7 +172,7 @@ def test_context_gap200_and_trend():
     d = ctx.to_dict()
     assert d["data_flags"] == {"stale": ["SOLUSDT"], "gap200": ["XRPUSDT"]}
     assert d["bar_date"] == "2025-12-31" and d["dow"] == "Wednesday" and d["btc_vol20"] > 0
-    assert d["btc_trend"] in ("below_both", "below200_above50") and d["basket_ret20_bucket"] is None
+    assert d["btc_trend"] in ("below_both", "below200_above50") and d["basket_ret20_bucket"] == ret20_bucket(d["basket_ret20"])
 
 
 # (h) registry validation.
@@ -188,7 +188,7 @@ def test_registry_validation():
     with pytest.raises(ValueError, match="baseline"):   # a note is not a waiver
         validate((LineSpec("w", "connors", {}, registered_on="2026-10-16", hypothesis=hyp, note="n"),))
     validate((LineSpec("y", "connors", {}, registered_on="2026-10-17", hypothesis=hyp, baseline="b.json"),))
-    assert [l.id for l in LINES] == ["shadow_atr_stop", "shadow_btc200", "shadow_rsi15", "shadow_combo"]
+    assert [l.id for l in LINES][:4] == ["shadow_atr_stop", "shadow_btc200", "shadow_rsi15", "shadow_combo"]
     assert LINES[1].hypothesis == Hypothesis("reduces_dd_in", "below200")
 
 

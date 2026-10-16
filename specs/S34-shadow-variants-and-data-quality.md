@@ -64,3 +64,24 @@ The four shadows now live in the strategy-pool registry (`trading_engine/paper/p
 ("full-history numbers in this spec"). `paper/shadow.py` is a compatibility shim over `pool/book.step`;
 a parity test pins the new book to the pre-C1 step. Daily rows gain optional `context`, `lines`
 (incl. the read-only `live_s18`) and `pool_errors`. Full design: `specs/S35-strategy-pool.md` (C4).
+
+### C2 — families, full-history baselines, registration gate (2026-10-16)
+New pure-pandas families (`pool/families/{breakout,xsec_momentum,basket_trend}.py`) plus two connors lines.
+Baselines: `state/pool_baselines/<id>.json` from `scripts/pool_backtest.py --line all --venue com`
+(binance.com daily bars 2020-01-01..2026-10-15, MATIC excluded, real `book.step`); S18 reference
+`state/pool_baselines/_s18_reference_com.json` (CAGR 8.6 %, MaxDD 24.8 %, Sharpe 0.415, 587 trades).
+Gate (design §7): active iff beats the S18 reference in >= 4/7 calendar years (2020–2026, chained from
+one full run) or the per-bucket evidence supports the primary hypothesis; otherwise `candidate` (not stepped).
+
+| line | family | status | years beating S18 | gate |
+|---|---|---|---|---|
+| breakout_s21 | breakout | active | 5/7 | pass (years) |
+| xsec_mom_top3 | xsec_momentum | active | 4/7 | pass (years) |
+| basket_sma50_band | basket_trend | active | 5/7 | pass (years; below_both MaxDD also < bh_basket-eq) |
+| connors_exit_sma10 | connors | active | 5/7 | pass (years) |
+| connors_guarded | connors | candidate | 0/7 | fail: identical to S18 on .com (no MATIC/TRX artefact in .com data) |
+| shadow_* (4) | connors | active (S34 waiver) | 6/7, 3/7, 4/7, 5/7 | baselines recorded; waiver kept |
+
+Day context buckets frozen: `BTC_VOL20_TERCILES = (0.4330, 0.6134)`; basket_ret20 {<-10%, -10..0, 0..+10, >+10%}.
+`.us` parity of the reference vs the live journal (2026-04-20..2026-10-15): 30/31 closed trades.
+`state/pool_context_history.json`: context for every journal day from `.us` bars (`scripts/pool_context_backfill.py`).

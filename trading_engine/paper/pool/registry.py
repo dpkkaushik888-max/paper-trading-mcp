@@ -35,7 +35,7 @@ class LineSpec:
     params: Mapping
     book: BookParams = BookParams()
     registered_on: str = ""
-    status: str = "active"        # active | retired | promoted
+    status: str = "active"        # active | candidate (failed the §7 gate; not stepped) | retired | promoted
     hypothesis: Optional[Hypothesis] = None
     baseline: Optional[str] = None   # state/pool_baselines/<id>.json
     retired_on: Optional[str] = None
@@ -51,19 +51,40 @@ def _p(**kw) -> Mapping:
     return MappingProxyType(dict(kw))
 
 
-_S34 = dict(family="connors", registered_on="2026-10-16", baseline=None,
+_S34 = dict(family="connors", registered_on="2026-10-16",
             baseline_waiver="S34 shadow registered before the pool; full-history numbers in specs/S34",
             # S34 shadows keep live data handling (no data guard) so their series is unchanged.
             book=BookParams(data_guard=False))
 BEATS_LIVE = Hypothesis("beats_live")
+_C2 = "2026-10-16"   # S35 C2; status from the §7 registration gate (state/pool_baselines/<id>.json "gate")
+
+
+def _b(i: str) -> str:
+    return f"state/pool_baselines/{i}.json"
 
 LINES: tuple[LineSpec, ...] = (
-    LineSpec("shadow_atr_stop", params=_p(sl_pct=0.25, atr_stop_mult=3.0), hypothesis=BEATS_LIVE, **_S34),
-    LineSpec("shadow_btc200", params=_p(btc_sma_gate=True),
+    LineSpec("shadow_atr_stop", baseline=_b("shadow_atr_stop"), params=_p(sl_pct=0.25, atr_stop_mult=3.0), hypothesis=BEATS_LIVE, **_S34),
+    LineSpec("shadow_btc200", baseline=_b("shadow_btc200"), params=_p(btc_sma_gate=True),
              hypothesis=Hypothesis("reduces_dd_in", "below200"), **_S34),
-    LineSpec("shadow_rsi15", params=_p(rsi_threshold=15), hypothesis=BEATS_LIVE, **_S34),
-    LineSpec("shadow_combo", params=_p(rsi_threshold=15, sl_pct=0.25, atr_stop_mult=3.0, btc_sma_gate=True),
+    LineSpec("shadow_rsi15", baseline=_b("shadow_rsi15"), params=_p(rsi_threshold=15), hypothesis=BEATS_LIVE, **_S34),
+    LineSpec("shadow_combo", baseline=_b("shadow_combo"), params=_p(rsi_threshold=15, sl_pct=0.25, atr_stop_mult=3.0, btc_sma_gate=True),
              hypothesis=BEATS_LIVE, **_S34),
+    LineSpec("breakout_s21", "breakout", _p(), registered_on=_C2, baseline=_b("breakout_s21"),
+             status="active", hypothesis=Hypothesis("earns_when_live_idle"),
+             note="locked S21 rules; mean pnl on days the S18 reference is flat"),
+    LineSpec("xsec_mom_top3", "xsec_momentum", _p(top_n=3, lookback=28, sma_len=100), registered_on=_C2,
+             baseline=_b("xsec_mom_top3"), status="active", hypothesis=BEATS_LIVE,
+             book=BookParams(pos_size_pct=0.30, max_concurrent=3, catastrophe_sl=0.25)),
+    LineSpec("basket_sma50_band", "basket_trend", _p(band=0.98), registered_on=_C2, baseline=_b("basket_sma50_band"),
+             status="active", hypothesis=Hypothesis("reduces_dd_in", "below_both"),
+             book=BookParams(pos_size_pct=1 / 19, max_concurrent=19),
+             note="primary: lower MaxDD than bh_basket on below_both days; secondary: beats_live"),
+    LineSpec("connors_guarded", "connors", _p(), registered_on=_C2, baseline=_b("connors_guarded"),
+             status="candidate", hypothesis=BEATS_LIVE,   # §7 gate failed on .com: 0/7 (identical to S18 there)
+             note="control: live rules + data guard only"),
+    LineSpec("connors_exit_sma10", "connors", _p(mr_exit_sma=10), registered_on=_C2,
+             baseline=_b("connors_exit_sma10"), status="active", hypothesis=BEATS_LIVE,
+             note="MR exit on close > SMA10 instead of SMA5; stop unchanged"),
 )
 
 
