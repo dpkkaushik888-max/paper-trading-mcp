@@ -21,19 +21,43 @@ def test_mark_benchmark_missing_close_not_zero():
     assert mark_benchmark(b, {}) > 0
 
 
-def _journal(tmp_path, days):
+def _journal(_unused, days):
     return Journal({"version": 4, "start_date": "2026-01-01", "starting_capital": 10000.0,
                              "cash": 10000.0, "open_positions": [], "closed_trades": [], "days": days,
                              "benchmarks": {}})
 
 
-def test_carry_forward_on_skipped_day(tmp_path):
+def test_carry_forward_on_skipped_day():
+    """Exercise the skipped branch of run_daily.run() (fetch raises)."""
+    from trading_engine.paper import run_daily
+
     days = [{"date": "d1", "portfolio_value": 1.0, "bh_btc_value": 10100.0, "bh_basket_value": 9900.0,
              "trend_timed_value": 10050.0, "selector_value": 10020.0}]
-    j = _journal(tmp_path, days)
-    out = carry_forward_benchmarks(j)
-    assert out == {"bh_btc_value": 10100.0, "bh_basket_value": 9900.0,
-                   "trend_timed_value": 10050.0, "selector_value": 10020.0}
+    j = _journal(None, days)
+
+    def boom(_):
+        raise RuntimeError("no network")
+
+    orig_load, orig_fetch = run_daily.Journal.load, run_daily.fetch_universe
+    run_daily.Journal.load = classmethod(lambda cls, *a, **k: j)
+    run_daily.fetch_universe = boom
+    try:
+        assert run_daily.run(dry_run=True) == 0
+    finally:
+        run_daily.Journal.load, run_daily.fetch_universe = orig_load, orig_fetch
+    snap = j.days[-1]
+    assert snap["skipped"] is True
+    assert snap["bh_btc_value"] == 10100.0 and snap["bh_basket_value"] == 9900.0
+    assert snap["trend_timed_value"] == 10050.0 and snap["selector_value"] == 10020.0
+
+
+def test_mark_benchmark_uses_last_known_close():
+    from trading_engine.paper.benchmarks import serialize, deserialize
+    b = init_bh_btc({"BTCUSDT": 100.0}, "2026-01-01")
+    v1 = mark_benchmark(b, {"BTCUSDT": 150.0})
+    b = deserialize(serialize(b))            # persisted between days
+    v2 = mark_benchmark(b, {})               # close missing today
+    assert v2 == v1 > mark_benchmark(init_bh_btc({"BTCUSDT": 100.0}, "x"), {})
 
 
 def test_metrics_ignore_non_positive():

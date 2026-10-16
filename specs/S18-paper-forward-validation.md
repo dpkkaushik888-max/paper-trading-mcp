@@ -24,7 +24,7 @@ persistence **before committing any real capital**.
 
 ## Design Decisions
 
-All decisions below are locked before day 1 to prevent mid-test tampering.
+All decisions below are locked before day 1 to prevent mid-test tampering (amended 2026-10-16, see below).
 
 ### D1 — State persistence: journal committed to repo
 Each cron run reads `state/journal.json`, updates it, and commits it back.
@@ -137,6 +137,10 @@ Daily peeking = emotional tampering.
   CAGR alone no longer gates; it is shown for information.
   *2026-10-16: changed because an active, low-exposure mean-reversion strategy
   is judged on risk-adjusted return, not raw CAGR vs a bull-market buy-and-hold.*
+  **Disclosure:** this gate was changed at day 170 with the outcome already
+  visible. Under the original CAGR + Sharpe gate the run was a FAIL (CAGR 16.2%
+  vs 18.5% for BH BTC and 62.6% for BH basket); under the risk-adjusted gate it
+  is a PASS. The change was decided by the repo owner on 2026-10-16.
 - [ ] **Decision gate:**
   - **PASS (deploy real capital €500):** live CAGR ≥ +6%, WR ≥ 55%,
     no early-termination trigger hit, slippage within 2× model

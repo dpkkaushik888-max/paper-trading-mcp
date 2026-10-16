@@ -37,6 +37,8 @@ class Benchmark:
     positions: list[BenchmarkPosition] = field(default_factory=list)
     # Book-keeping
     starting_capital: float = STARTING_CAPITAL
+    # Last observed close per symbol; used when a close is missing on a later day.
+    last_closes: dict[str, float] = field(default_factory=dict)
 
 
 def init_bh_btc(todays_closes: dict[str, float], date: str) -> Benchmark:
@@ -84,14 +86,19 @@ def init_bh_basket(todays_closes: dict[str, float], date: str) -> Benchmark:
 def mark_benchmark(bench: Benchmark, todays_closes: dict[str, float]) -> float:
     """Return current portfolio value of a benchmark at today's closes.
 
-    If a symbol's close is missing, fall back to its entry price (stale mark —
-    better than crashing). This should be rare with Binance's 99%+ uptime.
+    If a symbol's close is missing, use its last known close; only if none was
+    ever seen, fall back to its entry price (stale mark — better than crashing).
+    Updates ``bench.last_closes`` in place (callers should re-serialize).
     """
     if not bench.initialized:
         return bench.starting_capital
     value = 0.0
     for p in bench.positions:
-        px = todays_closes.get(p.symbol, p.entry_price)
+        if p.symbol in todays_closes:
+            px = todays_closes[p.symbol]
+            bench.last_closes[p.symbol] = px
+        else:
+            px = bench.last_closes.get(p.symbol, p.entry_price)
         value += p.shares * px
     # Unallocated cash (for basket if symbols were missing at init)
     allocated_total = sum(p.allocated for p in bench.positions)
@@ -106,6 +113,7 @@ def serialize(bench: Benchmark) -> dict[str, Any]:
         "init_date": bench.init_date,
         "starting_capital": bench.starting_capital,
         "positions": [asdict(p) for p in bench.positions],
+        "last_closes": dict(bench.last_closes),
     }
 
 
@@ -116,4 +124,5 @@ def deserialize(data: dict[str, Any]) -> Benchmark:
         init_date=data.get("init_date"),
         starting_capital=data.get("starting_capital", STARTING_CAPITAL),
         positions=[BenchmarkPosition(**p) for p in data.get("positions", [])],
+        last_closes=dict(data.get("last_closes", {})),
     )

@@ -372,7 +372,9 @@ INDEX_HTML = r"""<!doctype html>
 
   // Connors vs Buy & Hold table
   const cn = m, bh1 = d.bh_btc_metrics, bh2 = d.bh_basket_metrics;
+  // null on any side = no verdict (same rule as beatsBoth below).
   const verdictOf = (cnv, b1v, b2v) =>
+    (cnv == null || b1v == null || b2v == null) ? '<span class="muted">—</span>' :
     cnv > b1v && cnv > b2v ? '<span class="pos">Beats both</span>' :
     cnv > b1v || cnv > b2v ? '<span class="muted">Beats one</span>' :
     '<span class="neg">Trails both</span>';
@@ -384,7 +386,7 @@ INDEX_HTML = r"""<!doctype html>
     ['CAGR / Max DD', cn.calmar, bh1.calmar, bh2.calmar, ''],
   ];
   // Gate: beat BOTH benchmarks on Sharpe AND CAGR / Max DD (null calmar never beats).
-  const beatsBoth = (cnv, b1v, b2v) => cnv != null && cnv > (b1v ?? -Infinity) && cnv > (b2v ?? -Infinity);
+  const beatsBoth = (cnv, b1v, b2v) => cnv != null && b1v != null && b2v != null && cnv > b1v && cnv > b2v;
   const gatePass = beatsBoth(cn.sharpe, bh1.sharpe, bh2.sharpe) && beatsBoth(cn.calmar, bh1.calmar, bh2.calmar);
   const gateEl = document.getElementById('gate');
   gateEl.textContent = 'S18 gate: ' + (gatePass ? 'PASS' : 'FAIL');
@@ -406,8 +408,10 @@ INDEX_HTML = r"""<!doctype html>
     ['Trades (90d est)', Math.round(b.trades * 90 / b.holdout_days), m.trades, ''],
   ];
   document.querySelector('#compare tbody').innerHTML = cmpRows.map(([lab, bv, lv, suf]) => {
-    const delta = lv - bv;
-    return `<tr><td>${lab}</td><td class="num">${fmt(bv, suf)}</td><td class="num">${fmt(lv, suf)}</td><td class="num ${cls(delta)}">${delta >= 0 ? '+' : ''}${fmt(delta, suf)}</td></tr>`;
+    const hasDelta = bv != null && lv != null;
+    const delta = hasDelta ? lv - bv : null;
+    const dcell = hasDelta ? `${delta >= 0 ? '+' : ''}${fmt(delta, suf)}` : '—';
+    return `<tr><td>${lab}</td><td class="num">${fmt(bv, suf)}</td><td class="num">${fmt(lv, suf)}</td><td class="num ${hasDelta ? cls(delta) : ''}">${dcell}</td></tr>`;
   }).join('');
 
   // Open positions
