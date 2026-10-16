@@ -7,7 +7,9 @@ from __future__ import annotations
 import json
 import sys
 
-KEYS = ("bh_btc_value", "bh_basket_value", "trend_timed_value", "selector_value")
+KEYS = ("bh_btc_value", "bh_basket_value", "trend_timed_value", "selector_value",
+        # Shadow series: leading 0.0 = not started yet; untouched (no previous positive value).
+        "shadow_atr_stop_value", "shadow_btc200_value", "shadow_rsi15_value", "shadow_combo_value")
 
 
 def repair_days(days: list[dict]) -> list[tuple[str, str, float]]:

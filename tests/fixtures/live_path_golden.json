@@ -1,0 +1,7660 @@
+{
+ "cash": 9658.987089707327,
+ "closed_trades": [
+  {
+   "entry_date": "2025-07-30",
+   "entry_price": 638.6483465251378,
+   "exit_date": "2025-08-01",
+   "exit_price": 698.2917706031745,
+   "hold_days": 2,
+   "pnl": 133.80495891146347,
+   "pnl_pct": 0.08920330594097566,
+   "reason": "MR_EXIT",
+   "shares": 2.348710378976858,
+   "symbol": "DOGEUSDT"
+  },
+  {
+   "entry_date": "2025-08-02",
+   "entry_price": 351.99055834736777,
+   "exit_date": "2025-08-04",
+   "exit_price": 382.9541511286802,
+   "hold_days": 2,
+   "pnl": 125.68676629070546,
+   "pnl_pct": 0.08379117752713697,
+   "reason": "MR_EXIT",
+   "shares": 4.26147794146143,
+   "symbol": "ETHUSDT"
+  },
+  {
+   "entry_date": "2025-08-06",
+   "entry_price": 1261.2306488231472,
+   "exit_date": "2025-08-09",
+   "exit_price": 1345.3496527834027,
+   "hold_days": 3,
+   "pnl": 93.84386999000071,
+   "pnl_pct": 0.06256257999333381,
+   "reason": "MR_EXIT",
+   "shares": 1.189314580485059,
+   "symbol": "LINKUSDT"
+  },
+  {
+   "entry_date": "2025-08-13",
+   "entry_price": 395.2759420168299,
+   "exit_date": "2025-08-16",
+   "exit_price": 391.0167592064113,
+   "hold_days": 3,
+   "pnl": -22.13049515400371,
+   "pnl_pct": -0.014753663436002474,
+   "reason": "MR_EXIT",
+   "shares": 3.7948173429085994,
+   "symbol": "ETHUSDT"
+  },
+  {
+   "entry_date": "2025-08-22",
+   "entry_price": 1437.3348017017574,
+   "exit_date": "2025-08-23",
+   "exit_price": 1506.2097304761176,
+   "hold_days": 1,
+   "pnl": 65.73399562380541,
+   "pnl_pct": 0.043822663749203614,
+   "reason": "MR_EXIT",
+   "shares": 1.0435981917532706,
+   "symbol": "LINKUSDT"
+  },
+  {
+   "entry_date": "2025-08-28",
+   "entry_price": 792.6792606147309,
+   "exit_date": "2025-09-02",
+   "exit_price": 730.5565796682642,
+   "hold_days": 5,
+   "pnl": -123.32065918406897,
+   "pnl_pct": -0.08221377278937932,
+   "reason": "SL",
+   "shares": 1.8923164444049345,
+   "symbol": "DOGEUSDT"
+  },
+  {
+   "entry_date": "2025-09-10",
+   "entry_price": 1598.9391252012927,
+   "exit_date": "2025-09-13",
+   "exit_price": 1456.1045821662103,
+   "hold_days": 3,
+   "pnl": -139.7282374002823,
+   "pnl_pct": -0.09315215826685487,
+   "reason": "SL",
+   "shares": 0.938122018754881,
+   "symbol": "LINKUSDT"
+  },
+  {
+   "entry_date": "2025-09-13",
+   "entry_price": 1459.0211662066033,
+   "exit_date": "2025-09-15",
+   "exit_price": 1522.907016996737,
+   "hold_days": 2,
+   "pnl": 59.54882194168749,
+   "pnl_pct": 0.039699214627791655,
+   "reason": "MR_EXIT",
+   "shares": 1.0280865245429853,
+   "symbol": "LINKUSDT"
+  },
+  {
+   "entry_date": "2025-09-14",
+   "entry_price": 163.85469162590365,
+   "exit_date": "2025-09-17",
+   "exit_price": 150.8364165464044,
+   "hold_days": 3,
+   "pnl": -124.93683116809507,
+   "pnl_pct": -0.08329122077873005,
+   "reason": "SL",
+   "shares": 9.154452552537508,
+   "symbol": "BTCUSDT"
+  },
+  {
+   "entry_date": "2025-09-17",
+   "entry_price": 151.1385425685304,
+   "exit_date": "2025-09-20",
+   "exit_price": 139.34632027050853,
+   "hold_days": 3,
+   "pnl": -122.79983464267161,
+   "pnl_pct": -0.08186655642844774,
+   "reason": "SL",
+   "shares": 9.924668946174723,
+   "symbol": "BTCUSDT"
+  },
+  {
+   "entry_date": "2025-09-19",
+   "entry_price": 1037.754464161741,
+   "exit_date": "2025-09-21",
+   "exit_price": 956.126812220916,
+   "hold_days": 2,
+   "pnl": -123.75097017204439,
+   "pnl_pct": -0.08250064678136293,
+   "reason": "SL",
+   "shares": 1.4454286170781674,
+   "symbol": "DOGEUSDT"
+  },
+  {
+   "entry_date": "2025-09-21",
+   "entry_price": 1408.552976860423,
+   "exit_date": "2025-09-22",
+   "exit_price": 1547.9149549576284,
+   "hold_days": 1,
+   "pnl": 142.11291065283763,
+   "pnl_pct": 0.09474194043522509,
+   "reason": "MR_EXIT",
+   "shares": 1.0649226721620415,
+   "symbol": "LINKUSDT"
+  },
+  {
+   "entry_date": "2025-09-20",
+   "entry_price": 139.6254315780108,
+   "exit_date": "2025-09-25",
+   "exit_price": 129.0071376241791,
+   "hold_days": 5,
+   "pnl": -119.8444899989795,
+   "pnl_pct": -0.07989632666598633,
+   "reason": "SL",
+   "shares": 10.743028566124273,
+   "symbol": "BTCUSDT"
+  },
+  {
+   "entry_date": "2025-09-21",
+   "entry_price": 958.0419385348285,
+   "exit_date": "2025-09-25",
+   "exit_price": 853.876412658411,
+   "hold_days": 4,
+   "pnl": -168.76510032063516,
+   "pnl_pct": -0.11251006688042343,
+   "reason": "SL",
+   "shares": 1.5656934625367334,
+   "symbol": "DOGEUSDT"
+  },
+  {
+   "entry_date": "2025-09-25",
+   "entry_price": 855.5867309611818,
+   "exit_date": "2025-09-27",
+   "exit_price": 927.7965740384129,
+   "hold_days": 2,
+   "pnl": 120.34386576469637,
+   "pnl_pct": 0.08022924384313092,
+   "reason": "MR_EXIT",
+   "shares": 1.7531828693917126,
+   "symbol": "DOGEUSDT"
+  },
+  {
+   "entry_date": "2025-09-26",
+   "entry_price": 446.83758998265114,
+   "exit_date": "2025-09-30",
+   "exit_price": 412.04300232845526,
+   "hold_days": 4,
+   "pnl": -122.569194011528,
+   "pnl_pct": -0.08171279600768533,
+   "reason": "SL",
+   "shares": 3.356924380641832,
+   "symbol": "ETHUSDT"
+  },
+  {
+   "entry_date": "2025-10-01",
+   "entry_price": 399.7104188882489,
+   "exit_date": "2025-10-03",
+   "exit_price": 450.31167721216667,
+   "hold_days": 2,
+   "pnl": 183.51240731126177,
+   "pnl_pct": 0.12234160487417452,
+   "reason": "MR_EXIT",
+   "shares": 3.752716789750157,
+   "symbol": "ETHUSDT"
+  },
+  {
+   "entry_date": "2025-10-11",
+   "entry_price": 137.70944988762975,
+   "exit_date": "2025-10-13",
+   "exit_price": 127.67300523599238,
+   "hold_days": 2,
+   "pnl": -115.10331611781999,
+   "pnl_pct": -0.07673554407854666,
+   "reason": "SL",
+   "shares": 10.892498671834016,
+   "symbol": "BTCUSDT"
+  },
+  {
+   "entry_date": "2025-11-12",
+   "entry_price": 1582.361372555903,
+   "exit_date": "2025-11-18",
+   "exit_price": 1459.4082105999094,
+   "hold_days": 6,
+   "pnl": -122.32038461026082,
+   "pnl_pct": -0.08154692307350721,
+   "reason": "SL",
+   "shares": 0.9479503392939445,
+   "symbol": "DOGEUSDT"
+  },
+  {
+   "entry_date": "2025-11-18",
+   "entry_price": 1462.3314118229437,
+   "exit_date": "2025-11-20",
+   "exit_price": 1506.9427825793737,
+   "hold_days": 2,
+   "pnl": 39.66900600126178,
+   "pnl_pct": 0.026446004000841187,
+   "reason": "MR_EXIT",
+   "shares": 1.0257592689813717,
+   "symbol": "DOGEUSDT"
+  }
+ ],
+ "days": [
+  {
+   "bh_basket_value": 9993.0,
+   "bh_btc_value": 9980.0,
+   "cash": 8497.0,
+   "closes": {
+    "AVAXUSDT": 450.4684640267323,
+    "BTCUSDT": 103.15596262524751,
+    "DOGEUSDT": 638.3291819341707,
+    "ETHUSDT": 402.46355754284053,
+    "LINKUSDT": 1371.6978071638175,
+    "SOLUSDT": 154.49897367047913,
+    "XRPUSDT": 412.31771236798346
+   },
+   "date": "2025-07-30",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    },
+    {
+     "action": "enter",
+     "reason": "connors_signal",
+     "symbol": "DOGEUSDT"
+    }
+   ],
+   "fills": [
+    {
+     "cost": 3.0,
+     "fill_price": 638.6483465251378,
+     "modeled_price": 638.3291819341707,
+     "shares": 2.348710378976858,
+     "side": "BUY",
+     "symbol": "DOGEUSDT"
+    }
+   ],
+   "n_open": 1,
+   "portfolio_value": 9996.250374812595,
+   "selector_value": 9996.250374812595,
+   "skipped": false,
+   "trend_timed_value": 10000.0
+  },
+  {
+   "bh_basket_value": 9914.88132810917,
+   "bh_btc_value": 10034.83224846619,
+   "cash": 8497.0,
+   "closes": {
+    "AVAXUSDT": 416.19862330140035,
+    "BTCUSDT": 103.72272348430928,
+    "DOGEUSDT": 643.4141225206415,
+    "ETHUSDT": 373.2445016430188,
+    "LINKUSDT": 1365.263492904271,
+    "SOLUSDT": 153.17620125603568,
+    "XRPUSDT": 408.98547944628245
+   },
+   "date": "2025-07-31",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_exit_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 1,
+   "portfolio_value": 10008.193427544518,
+   "selector_value": 10008.193427544518,
+   "skipped": false,
+   "trend_timed_value": 10000.0
+  },
+  {
+   "bh_basket_value": 9911.413292626938,
+   "bh_btc_value": 10510.707901638152,
+   "cash": 10133.804958911463,
+   "closes": {
+    "AVAXUSDT": 415.9029709399375,
+    "BTCUSDT": 108.64150215092975,
+    "DOGEUSDT": 698.6410911487488,
+    "ETHUSDT": 365.04884886960946,
+    "LINKUSDT": 1344.4465373117869,
+    "SOLUSDT": 153.37370217488908,
+    "XRPUSDT": 365.1836684508253
+   },
+   "date": "2025-08-01",
+   "decisions": [
+    {
+     "action": "exit",
+     "reason": "MR_EXIT",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [
+    {
+     "cost": 3.280170258339606,
+     "fill_price": 698.2917706031745,
+     "modeled_price": 698.6410911487488,
+     "shares": 2.348710378976858,
+     "side": "SELL",
+     "symbol": "DOGEUSDT"
+    }
+   ],
+   "n_open": 0,
+   "portfolio_value": 10133.804958911463,
+   "selector_value": 10133.804958911463,
+   "skipped": false,
+   "trend_timed_value": 10000.0
+  },
+  {
+   "bh_basket_value": 9836.186546132043,
+   "bh_btc_value": 10396.831145342016,
+   "cash": 8630.804958911463,
+   "closes": {
+    "AVAXUSDT": 419.43549144121255,
+    "BTCUSDT": 107.46444138776656,
+    "DOGEUSDT": 696.2568043980883,
+    "ETHUSDT": 351.81465102185683,
+    "LINKUSDT": 1330.0551383439179,
+    "SOLUSDT": 143.80251617697985,
+    "XRPUSDT": 349.4633494208114
+   },
+   "date": "2025-08-02",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    },
+    {
+     "action": "enter",
+     "reason": "connors_signal",
+     "symbol": "ETHUSDT"
+    }
+   ],
+   "fills": [
+    {
+     "cost": 3.0000000000000004,
+     "fill_price": 351.99055834736777,
+     "modeled_price": 351.81465102185683,
+     "shares": 4.26147794146143,
+     "side": "BUY",
+     "symbol": "ETHUSDT"
+    }
+   ],
+   "n_open": 1,
+   "portfolio_value": 10130.055333724056,
+   "selector_value": 10130.055333724056,
+   "skipped": false,
+   "trend_timed_value": 10000.0
+  },
+  {
+   "bh_basket_value": 9843.578402675474,
+   "bh_btc_value": 10601.09156033944,
+   "cash": 8630.804958911463,
+   "closes": {
+    "AVAXUSDT": 410.8040990452298,
+    "BTCUSDT": 109.57573194240501,
+    "DOGEUSDT": 670.2647815577293,
+    "ETHUSDT": 360.18992538688576,
+    "LINKUSDT": 1353.6147891289538,
+    "SOLUSDT": 146.03815597305788,
+    "XRPUSDT": 350.19328026803635
+   },
+   "date": "2025-08-03",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_exit_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 1,
+   "portfolio_value": 10165.746380684315,
+   "selector_value": 10165.746380684317,
+   "skipped": false,
+   "trend_timed_value": 10000.0
+  },
+  {
+   "bh_basket_value": 9806.2205059491,
+   "bh_btc_value": 10380.506446710728,
+   "cash": 10259.49172520217,
+   "closes": {
+    "AVAXUSDT": 369.69184097636736,
+    "BTCUSDT": 107.29570491463252,
+    "DOGEUSDT": 670.7775519595262,
+    "ETHUSDT": 383.14572399067555,
+    "LINKUSDT": 1314.815407663506,
+    "SOLUSDT": 144.6324911171069,
+    "XRPUSDT": 357.63360610235395
+   },
+   "date": "2025-08-04",
+   "decisions": [
+    {
+     "action": "exit",
+     "reason": "MR_EXIT",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [
+    {
+     "cost": 3.2639013352519153,
+     "fill_price": 382.9541511286802,
+     "modeled_price": 383.14572399067555,
+     "shares": 4.26147794146143,
+     "side": "SELL",
+     "symbol": "ETHUSDT"
+    }
+   ],
+   "n_open": 0,
+   "portfolio_value": 10259.49172520217,
+   "selector_value": 10259.491725202171,
+   "skipped": false,
+   "trend_timed_value": 10000.0
+  },
+  {
+   "bh_basket_value": 9786.910838566144,
+   "bh_btc_value": 10056.288096271472,
+   "cash": 10259.49172520217,
+   "closes": {
+    "AVAXUSDT": 370.36553013261886,
+    "BTCUSDT": 103.94449689455925,
+    "DOGEUSDT": 659.1037721566489,
+    "ETHUSDT": 404.03624917723715,
+    "LINKUSDT": 1299.748954685067,
+    "SOLUSDT": 145.06630599436426,
+    "XRPUSDT": 343.96604349892596
+   },
+   "date": "2025-08-05",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 10259.49172520217,
+   "selector_value": 10259.491725202171,
+   "skipped": false,
+   "trend_timed_value": 10000.0
+  },
+  {
+   "bh_basket_value": 9766.655785446103,
+   "bh_btc_value": 10765.086648620536,
+   "cash": 8756.49172520217,
+   "closes": {
+    "AVAXUSDT": 362.97923989423623,
+    "BTCUSDT": 111.27082925677865,
+    "DOGEUSDT": 637.6708254841053,
+    "ETHUSDT": 409.1701712521127,
+    "LINKUSDT": 1260.600348648823,
+    "SOLUSDT": 132.88376245227045,
+    "XRPUSDT": 357.5710065414134
+   },
+   "date": "2025-08-06",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    },
+    {
+     "action": "enter",
+     "reason": "connors_signal",
+     "symbol": "LINKUSDT"
+    }
+   ],
+   "fills": [
+    {
+     "cost": 3.0,
+     "fill_price": 1261.2306488231472,
+     "modeled_price": 1260.600348648823,
+     "shares": 1.189314580485059,
+     "side": "BUY",
+     "symbol": "LINKUSDT"
+    }
+   ],
+   "n_open": 1,
+   "portfolio_value": 10255.742100014764,
+   "selector_value": 10255.742100014766,
+   "skipped": false,
+   "trend_timed_value": 10000.0
+  },
+  {
+   "bh_basket_value": 9708.88779678106,
+   "bh_btc_value": 11572.023535017715,
+   "cash": 8756.49172520217,
+   "closes": {
+    "AVAXUSDT": 351.34526075835265,
+    "BTCUSDT": 119.61154581931584,
+    "DOGEUSDT": 592.9329715196681,
+    "ETHUSDT": 433.5683871248026,
+    "LINKUSDT": 1225.9304525243324,
+    "SOLUSDT": 127.10108474047799,
+    "XRPUSDT": 316.9044963434186
+   },
+   "date": "2025-08-07",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_exit_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 1,
+   "portfolio_value": 10214.508687050005,
+   "selector_value": 10214.508687050007,
+   "skipped": false,
+   "trend_timed_value": 10000.0
+  },
+  {
+   "bh_basket_value": 9738.700480318408,
+   "bh_btc_value": 11723.734765006995,
+   "cash": 8756.49172520217,
+   "closes": {
+    "AVAXUSDT": 347.860629111287,
+    "BTCUSDT": 121.17967387248261,
+    "DOGEUSDT": 593.4451048679232,
+    "ETHUSDT": 441.6256294697304,
+    "LINKUSDT": 1220.6739995109403,
+    "SOLUSDT": 126.70453811738506,
+    "XRPUSDT": 332.51300378289443
+   },
+   "date": "2025-08-08",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_exit_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 1,
+   "portfolio_value": 10208.257110839542,
+   "selector_value": 10208.257110839544,
+   "skipped": false,
+   "trend_timed_value": 10000.0
+  },
+  {
+   "bh_basket_value": 9804.31707881487,
+   "bh_btc_value": 12324.545970549732,
+   "cash": 10353.33559519217,
+   "closes": {
+    "AVAXUSDT": 333.5055946467943,
+    "BTCUSDT": 127.3898199910995,
+    "DOGEUSDT": 631.7542706067364,
+    "ETHUSDT": 446.865791122005,
+    "LINKUSDT": 1346.0226641154604,
+    "SOLUSDT": 121.0504709193593,
+    "XRPUSDT": 322.3455062941921
+   },
+   "date": "2025-08-09",
+   "decisions": [
+    {
+     "action": "exit",
+     "reason": "MR_EXIT",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [
+    {
+     "cost": 3.2000879158116247,
+     "fill_price": 1345.3496527834027,
+     "modeled_price": 1346.0226641154604,
+     "shares": 1.189314580485059,
+     "side": "SELL",
+     "symbol": "LINKUSDT"
+    }
+   ],
+   "n_open": 0,
+   "portfolio_value": 10353.33559519217,
+   "selector_value": 10353.335595192171,
+   "skipped": false,
+   "trend_timed_value": 10000.0
+  },
+  {
+   "bh_basket_value": 9808.911153530558,
+   "bh_btc_value": 12230.466607243423,
+   "cash": 10353.33559519217,
+   "closes": {
+    "AVAXUSDT": 342.08298365312226,
+    "BTCUSDT": 126.41739040342085,
+    "DOGEUSDT": 665.6472046747529,
+    "ETHUSDT": 421.845557522632,
+    "LINKUSDT": 1329.6051181458472,
+    "SOLUSDT": 124.5544411980634,
+    "XRPUSDT": 321.5014474621575
+   },
+   "date": "2025-08-10",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 10353.33559519217,
+   "selector_value": 10353.335595192171,
+   "skipped": false,
+   "trend_timed_value": 10000.0
+  },
+  {
+   "bh_basket_value": 9834.057555169005,
+   "bh_btc_value": 11985.297668845553,
+   "cash": 10353.33559519217,
+   "closes": {
+    "AVAXUSDT": 343.25633639829107,
+    "BTCUSDT": 123.8832583546992,
+    "DOGEUSDT": 694.5490078178929,
+    "ETHUSDT": 411.0400045541787,
+    "LINKUSDT": 1346.9022876319495,
+    "SOLUSDT": 135.7051858792269,
+    "XRPUSDT": 308.77835527824567
+   },
+   "date": "2025-08-11",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 10353.33559519217,
+   "selector_value": 10353.335595192171,
+   "skipped": false,
+   "trend_timed_value": 10000.0
+  },
+  {
+   "bh_basket_value": 9830.029072808595,
+   "bh_btc_value": 12337.320454696908,
+   "cash": 10353.33559519217,
+   "closes": {
+    "AVAXUSDT": 336.66865901263617,
+    "BTCUSDT": 127.52186049302765,
+    "DOGEUSDT": 702.6498102407387,
+    "ETHUSDT": 406.2214821917839,
+    "LINKUSDT": 1355.7154350557473,
+    "SOLUSDT": 135.87748488962174,
+    "XRPUSDT": 293.53078605601274
+   },
+   "date": "2025-08-12",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 10353.33559519217,
+   "selector_value": 10353.335595192171,
+   "skipped": false,
+   "trend_timed_value": 10000.0
+  },
+  {
+   "bh_basket_value": 9877.637051987513,
+   "bh_btc_value": 13186.980257962592,
+   "cash": 8850.33559519217,
+   "closes": {
+    "AVAXUSDT": 341.5090376792414,
+    "BTCUSDT": 136.30417260824308,
+    "DOGEUSDT": 718.3502610505006,
+    "ETHUSDT": 395.07840281542224,
+    "LINKUSDT": 1350.252515753977,
+    "SOLUSDT": 138.6187587320976,
+    "XRPUSDT": 288.9358860977993
+   },
+   "date": "2025-08-13",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    },
+    {
+     "action": "enter",
+     "reason": "connors_signal",
+     "symbol": "ETHUSDT"
+    }
+   ],
+   "fills": [
+    {
+     "cost": 3.0,
+     "fill_price": 395.2759420168299,
+     "modeled_price": 395.07840281542224,
+     "shares": 3.7948173429085994,
+     "side": "BUY",
+     "symbol": "ETHUSDT"
+    }
+   ],
+   "n_open": 1,
+   "portfolio_value": 10349.585970004764,
+   "selector_value": 10332.628924001787,
+   "skipped": false,
+   "trend_timed_value": 9980.0
+  },
+  {
+   "bh_basket_value": 9885.142025087021,
+   "bh_btc_value": 13277.323620449111,
+   "cash": 8850.33559519217,
+   "closes": {
+    "AVAXUSDT": 342.09556724752235,
+    "BTCUSDT": 137.23798588721087,
+    "DOGEUSDT": 750.4287056017146,
+    "ETHUSDT": 380.9322586576632,
+    "LINKUSDT": 1355.7286217264855,
+    "SOLUSDT": 136.49779835907162,
+    "XRPUSDT": 288.6540417055339
+   },
+   "date": "2025-08-14",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_exit_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 1,
+   "portfolio_value": 10295.903936819614,
+   "selector_value": 10403.417263868763,
+   "skipped": false,
+   "trend_timed_value": 10048.372496202914
+  },
+  {
+   "bh_basket_value": 9882.43761768399,
+   "bh_btc_value": 13443.50036260747,
+   "cash": 8850.33559519217,
+   "closes": {
+    "AVAXUSDT": 322.9062024691102,
+    "BTCUSDT": 138.95563336248873,
+    "DOGEUSDT": 751.2468204466195,
+    "ETHUSDT": 374.86511853167565,
+    "LINKUSDT": 1468.1279982419026,
+    "SOLUSDT": 134.25720666596519,
+    "XRPUSDT": 274.99887337236106
+   },
+   "date": "2025-08-15",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_exit_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 1,
+   "portfolio_value": 10272.88024824766,
+   "selector_value": 10533.62467898073,
+   "skipped": false,
+   "trend_timed_value": 10174.136230909275
+  },
+  {
+   "bh_basket_value": 9896.343885896422,
+   "bh_btc_value": 13522.430786809082,
+   "cash": 10331.205100038165,
+   "closes": {
+    "AVAXUSDT": 322.01431980667377,
+    "BTCUSDT": 139.77147944354448,
+    "DOGEUSDT": 762.2747372128423,
+    "ETHUSDT": 391.2123653891058,
+    "LINKUSDT": 1457.3599625571887,
+    "SOLUSDT": 126.90501358286267,
+    "XRPUSDT": 283.0318999821382
+   },
+   "date": "2025-08-16",
+   "decisions": [
+    {
+     "action": "exit",
+     "reason": "MR_EXIT",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [
+    {
+     "cost": 2.9676743584088103,
+     "fill_price": 391.0167592064113,
+     "modeled_price": 391.2123653891058,
+     "shares": 3.7948173429085994,
+     "side": "SELL",
+     "symbol": "ETHUSDT"
+    }
+   ],
+   "n_open": 0,
+   "portfolio_value": 10331.205100038165,
+   "selector_value": 10595.470436548832,
+   "skipped": false,
+   "trend_timed_value": 10233.871334634514
+  },
+  {
+   "bh_basket_value": 9912.596217668306,
+   "bh_btc_value": 13129.86383804944,
+   "cash": 10331.205100038165,
+   "closes": {
+    "AVAXUSDT": 317.1293562029377,
+    "BTCUSDT": 135.71380193911992,
+    "DOGEUSDT": 752.687460102602,
+    "ETHUSDT": 399.5228673503203,
+    "LINKUSDT": 1556.2899451357753,
+    "SOLUSDT": 129.81990241268116,
+    "XRPUSDT": 277.31330036688183
+   },
+   "date": "2025-08-17",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 10331.205100038165,
+   "selector_value": 10287.875480765702,
+   "skipped": false,
+   "trend_timed_value": 9936.773889125292
+  },
+  {
+   "bh_basket_value": 9877.11100861549,
+   "bh_btc_value": 12248.793419112239,
+   "cash": 10331.205100038165,
+   "closes": {
+    "AVAXUSDT": 296.6880135582159,
+    "BTCUSDT": 126.60682125714627,
+    "DOGEUSDT": 790.1963116554298,
+    "ETHUSDT": 404.9852519491888,
+    "LINKUSDT": 1600.9268769354574,
+    "SOLUSDT": 123.24430063351927,
+    "XRPUSDT": 277.4102006478612
+   },
+   "date": "2025-08-18",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 10331.205100038165,
+   "selector_value": 9578.319692701496,
+   "skipped": false,
+   "trend_timed_value": 9251.433612515591
+  },
+  {
+   "bh_basket_value": 9813.220219754026,
+   "bh_btc_value": 12371.07829304677,
+   "cash": 10331.205100038165,
+   "closes": {
+    "AVAXUSDT": 289.9183779922531,
+    "BTCUSDT": 127.87079058432298,
+    "DOGEUSDT": 763.9887592301268,
+    "ETHUSDT": 400.4024674250237,
+    "LINKUSDT": 1551.8694008155412,
+    "SOLUSDT": 120.80726808561141,
+    "XRPUSDT": 268.63545835124864
+   },
+   "date": "2025-08-19",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 10331.205100038165,
+   "selector_value": 9578.319692701496,
+   "skipped": false,
+   "trend_timed_value": 9251.433612515591
+  },
+  {
+   "bh_basket_value": 9770.160494635364,
+   "bh_btc_value": 11778.35302805048,
+   "cash": 10331.205100038165,
+   "closes": {
+    "AVAXUSDT": 295.7909736449134,
+    "BTCUSDT": 121.744222920696,
+    "DOGEUSDT": 787.7313279733334,
+    "ETHUSDT": 394.3968523808186,
+    "LINKUSDT": 1517.368365251183,
+    "SOLUSDT": 118.04152141444706,
+    "XRPUSDT": 260.73683644613527
+   },
+   "date": "2025-08-20",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 10331.205100038165,
+   "selector_value": 9578.319692701496,
+   "skipped": false,
+   "trend_timed_value": 9251.433612515591
+  },
+  {
+   "bh_basket_value": 9802.171331312122,
+   "bh_btc_value": 12632.917153274624,
+   "cash": 10331.205100038165,
+   "closes": {
+    "AVAXUSDT": 289.41834727946207,
+    "BTCUSDT": 130.57722742595644,
+    "DOGEUSDT": 817.9145512181436,
+    "ETHUSDT": 395.0791297708981,
+    "LINKUSDT": 1494.6083949415204,
+    "SOLUSDT": 112.3856278168972,
+    "XRPUSDT": 259.454326450085
+   },
+   "date": "2025-08-21",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 10331.205100038165,
+   "selector_value": 9578.319692701496,
+   "skipped": false,
+   "trend_timed_value": 9251.433612515591
+  },
+  {
+   "bh_basket_value": 9791.205066844095,
+   "bh_btc_value": 12785.545551982585,
+   "cash": 8828.205100038165,
+   "closes": {
+    "AVAXUSDT": 307.1000243894447,
+    "BTCUSDT": 132.15483558153457,
+    "DOGEUSDT": 848.6103105395941,
+    "ETHUSDT": 384.6708045210851,
+    "LINKUSDT": 1436.61649345503,
+    "SOLUSDT": 109.1707850960944,
+    "XRPUSDT": 244.750191090104
+   },
+   "date": "2025-08-22",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    },
+    {
+     "action": "enter",
+     "reason": "connors_signal",
+     "symbol": "LINKUSDT"
+    }
+   ],
+   "fills": [
+    {
+     "cost": 2.9999999999999996,
+     "fill_price": 1437.3348017017574,
+     "modeled_price": 1436.61649345503,
+     "shares": 1.0435981917532706,
+     "side": "BUY",
+     "symbol": "LINKUSDT"
+    }
+   ],
+   "n_open": 1,
+   "portfolio_value": 10327.455474850758,
+   "selector_value": 9574.843321027038,
+   "skipped": false,
+   "trend_timed_value": 9251.433612515591
+  },
+  {
+   "bh_basket_value": 9891.998242502244,
+   "bh_btc_value": 13168.836360647196,
+   "cash": 10396.93909566197,
+   "closes": {
+    "AVAXUSDT": 329.6733000607545,
+    "BTCUSDT": 136.11663240850928,
+    "DOGEUSDT": 876.0785388389836,
+    "ETHUSDT": 388.39510182537424,
+    "LINKUSDT": 1506.9632120821586,
+    "SOLUSDT": 108.51367372610996,
+    "XRPUSDT": 250.58751146611326
+   },
+   "date": "2025-08-23",
+   "decisions": [
+    {
+     "action": "exit",
+     "reason": "MR_EXIT",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [
+    {
+     "cost": 3.1437555022521146,
+     "fill_price": 1506.2097304761176,
+     "modeled_price": 1506.9632120821586,
+     "shares": 1.0435981917532706,
+     "side": "SELL",
+     "symbol": "LINKUSDT"
+    }
+   ],
+   "n_open": 0,
+   "portfolio_value": 10396.93909566197,
+   "selector_value": 9555.693634384983,
+   "skipped": false,
+   "trend_timed_value": 9232.93074529056
+  },
+  {
+   "bh_basket_value": 9911.130643318176,
+   "bh_btc_value": 13677.395000461587,
+   "cash": 10396.93909566197,
+   "closes": {
+    "AVAXUSDT": 326.63663650899906,
+    "BTCUSDT": 141.37323121025676,
+    "DOGEUSDT": 862.8933413133163,
+    "ETHUSDT": 387.29152454449263,
+    "LINKUSDT": 1535.9475405816256,
+    "SOLUSDT": 112.99355101443871,
+    "XRPUSDT": 237.1444119422688
+   },
+   "date": "2025-08-24",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 10396.93909566197,
+   "selector_value": 9924.718688998619,
+   "skipped": false,
+   "trend_timed_value": 9589.491231937434
+  },
+  {
+   "bh_basket_value": 9893.96056962138,
+   "bh_btc_value": 13170.645640466884,
+   "cash": 10396.93909566197,
+   "closes": {
+    "AVAXUSDT": 334.9514937913212,
+    "BTCUSDT": 136.13533361106022,
+    "DOGEUSDT": 846.5276723374238,
+    "ETHUSDT": 383.7371886213493,
+    "LINKUSDT": 1572.6262322132586,
+    "SOLUSDT": 112.74838945398423,
+    "XRPUSDT": 240.12390378645148
+   },
+   "date": "2025-08-25",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 10396.93909566197,
+   "selector_value": 9557.006500851112,
+   "skipped": false,
+   "trend_timed_value": 9234.19926703512
+  },
+  {
+   "bh_basket_value": 9879.4015503604,
+   "bh_btc_value": 12651.006277371072,
+   "cash": 10396.93909566197,
+   "closes": {
+    "AVAXUSDT": 363.8318580941428,
+    "BTCUSDT": 130.76420147497615,
+    "DOGEUSDT": 835.5468018185767,
+    "ETHUSDT": 387.2889238305148,
+    "LINKUSDT": 1515.2210576166462,
+    "SOLUSDT": 118.48902473488684,
+    "XRPUSDT": 228.5174208084063
+   },
+   "date": "2025-08-26",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 10396.93909566197,
+   "selector_value": 9179.940948654783,
+   "skipped": false,
+   "trend_timed_value": 8869.869866881898
+  },
+  {
+   "bh_basket_value": 9920.763823834532,
+   "bh_btc_value": 13443.04943230165,
+   "cash": 10396.93909566197,
+   "closes": {
+    "AVAXUSDT": 360.11764571163997,
+    "BTCUSDT": 138.95097242563764,
+    "DOGEUSDT": 825.939280285334,
+    "ETHUSDT": 387.9163298654393,
+    "LINKUSDT": 1547.6033295781708,
+    "SOLUSDT": 119.83189453206649,
+    "XRPUSDT": 225.61694256969886
+   },
+   "date": "2025-08-27",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 10396.93909566197,
+   "selector_value": 9754.670676206531,
+   "skipped": false,
+   "trend_timed_value": 9425.186934881067
+  },
+  {
+   "bh_basket_value": 9886.921819191706,
+   "bh_btc_value": 13770.230896797604,
+   "cash": 8893.93909566197,
+   "closes": {
+    "AVAXUSDT": 348.44224375444145,
+    "BTCUSDT": 142.33280798908638,
+    "DOGEUSDT": 792.2831190552033,
+    "ETHUSDT": 393.17118817665033,
+    "LINKUSDT": 1519.9774661465683,
+    "SOLUSDT": 120.22133924831945,
+    "XRPUSDT": 218.4437988461651
+   },
+   "date": "2025-08-28",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    },
+    {
+     "action": "enter",
+     "reason": "connors_signal",
+     "symbol": "DOGEUSDT"
+    }
+   ],
+   "fills": [
+    {
+     "cost": 3.0,
+     "fill_price": 792.6792606147309,
+     "modeled_price": 792.2831190552033,
+     "shares": 1.8923164444049345,
+     "side": "BUY",
+     "symbol": "DOGEUSDT"
+    }
+   ],
+   "n_open": 1,
+   "portfolio_value": 10393.189470474565,
+   "selector_value": 9992.08313634732,
+   "skipped": false,
+   "trend_timed_value": 9654.580308760414
+  },
+  {
+   "bh_basket_value": 9937.733891582811,
+   "bh_btc_value": 13893.44952812594,
+   "cash": 8893.93909566197,
+   "closes": {
+    "AVAXUSDT": 343.6347116900405,
+    "BTCUSDT": 143.60642888367957,
+    "DOGEUSDT": 780.9733902955185,
+    "ETHUSDT": 379.6608261808732,
+    "LINKUSDT": 1676.1643459193015,
+    "SOLUSDT": 122.27388827231461,
+    "XRPUSDT": 228.459528970078
+   },
+   "date": "2025-08-29",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_exit_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 1,
+   "portfolio_value": 10371.787884760852,
+   "selector_value": 10081.494186707123,
+   "skipped": false,
+   "trend_timed_value": 9740.971319965
+  },
+  {
+   "bh_basket_value": 9926.26292768179,
+   "bh_btc_value": 14407.08124523023,
+   "cash": 8893.93909566197,
+   "closes": {
+    "AVAXUSDT": 326.23251079659764,
+    "BTCUSDT": 148.91546437593928,
+    "DOGEUSDT": 763.9679753501765,
+    "ETHUSDT": 365.77482132120014,
+    "LINKUSDT": 1675.1652590173169,
+    "SOLUSDT": 120.5900862447398,
+    "XRPUSDT": 243.69350721758303
+   },
+   "date": "2025-08-30",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_exit_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 1,
+   "portfolio_value": 10339.608258415852,
+   "selector_value": 10454.200414891318,
+   "skipped": false,
+   "trend_timed_value": 10101.088641095987
+  },
+  {
+   "bh_basket_value": 9835.797976313905,
+   "bh_btc_value": 13319.300947415344,
+   "cash": 8893.93909566197,
+   "closes": {
+    "AVAXUSDT": 310.02190085149823,
+    "BTCUSDT": 137.67187482224458,
+    "DOGEUSDT": 738.0790936402491,
+    "ETHUSDT": 354.7157588017189,
+    "LINKUSDT": 1698.7970094765574,
+    "SOLUSDT": 124.7353941279268,
+    "XRPUSDT": 238.60821757144188
+   },
+   "date": "2025-08-31",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_exit_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 1,
+   "portfolio_value": 10290.618301828903,
+   "selector_value": 9664.87514857536,
+   "skipped": false,
+   "trend_timed_value": 9338.42443290297
+  },
+  {
+   "bh_basket_value": 9883.388724168497,
+   "bh_btc_value": 13954.070123178122,
+   "cash": 8893.93909566197,
+   "closes": {
+    "AVAXUSDT": 313.55946296728257,
+    "BTCUSDT": 144.23301964896245,
+    "DOGEUSDT": 751.5050945576423,
+    "ETHUSDT": 341.9294927462305,
+    "LINKUSDT": 1731.6422643753408,
+    "SOLUSDT": 125.1026397846675,
+    "XRPUSDT": 242.04283511168808
+   },
+   "date": "2025-09-01",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_exit_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 1,
+   "portfolio_value": 10316.024544147482,
+   "selector_value": 10125.482267232128,
+   "skipped": false,
+   "trend_timed_value": 9783.473614057413
+  },
+  {
+   "bh_basket_value": 9887.096465674533,
+   "bh_btc_value": 14126.75439538504,
+   "cash": 10273.6184364779,
+   "closes": {
+    "AVAXUSDT": 309.30219016644725,
+    "BTCUSDT": 146.0179307040471,
+    "DOGEUSDT": 731.6540607594034,
+    "ETHUSDT": 360.0927873119775,
+    "LINKUSDT": 1704.9284251741612,
+    "SOLUSDT": 125.35536159491892,
+    "XRPUSDT": 243.43873214210296
+   },
+   "date": "2025-09-02",
+   "decisions": [
+    {
+     "action": "exit",
+     "reason": "SL",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [
+    {
+     "cost": 2.76488845854896,
+     "fill_price": 730.5565796682642,
+     "modeled_price": 731.6540607594034,
+     "shares": 1.8923164444049345,
+     "side": "SELL",
+     "symbol": "DOGEUSDT"
+    }
+   ],
+   "n_open": 0,
+   "portfolio_value": 10273.6184364779,
+   "selector_value": 10250.787036423211,
+   "skipped": false,
+   "trend_timed_value": 9904.545961106383
+  },
+  {
+   "bh_basket_value": 9929.924569338036,
+   "bh_btc_value": 14443.719197508952,
+   "cash": 10273.6184364779,
+   "closes": {
+    "AVAXUSDT": 313.3047725391814,
+    "BTCUSDT": 149.29416409897829,
+    "DOGEUSDT": 741.598345005954,
+    "ETHUSDT": 348.59954948623937,
+    "LINKUSDT": 1684.1191885358153,
+    "SOLUSDT": 134.27650443160627,
+    "XRPUSDT": 249.86639402829036
+   },
+   "date": "2025-09-03",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 10273.6184364779,
+   "selector_value": 10480.785986902289,
+   "skipped": false,
+   "trend_timed_value": 10126.77623161458
+  },
+  {
+   "bh_basket_value": 9995.602057686516,
+   "bh_btc_value": 14934.386809108542,
+   "cash": 10273.6184364779,
+   "closes": {
+    "AVAXUSDT": 320.4452373283696,
+    "BTCUSDT": 154.365836423987,
+    "DOGEUSDT": 789.4044773854175,
+    "ETHUSDT": 354.1409707164804,
+    "LINKUSDT": 1663.381427840494,
+    "SOLUSDT": 129.52314764648023,
+    "XRPUSDT": 259.68992708760896
+   },
+   "date": "2025-09-04",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 10273.6184364779,
+   "selector_value": 10836.82878706741,
+   "skipped": false,
+   "trend_timed_value": 10470.79296572741
+  },
+  {
+   "bh_basket_value": 10140.654555035992,
+   "bh_btc_value": 16297.642733734752,
+   "cash": 10273.6184364779,
+   "closes": {
+    "AVAXUSDT": 311.7304124600568,
+    "BTCUSDT": 168.45681610428645,
+    "DOGEUSDT": 847.5871259443716,
+    "ETHUSDT": 364.56701032887906,
+    "LINKUSDT": 1724.668756455897,
+    "SOLUSDT": 124.30304520720094,
+    "XRPUSDT": 278.4451094322106
+   },
+   "date": "2025-09-05",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 10273.6184364779,
+   "selector_value": 11826.047242231512,
+   "skipped": false,
+   "trend_timed_value": 11426.598565817825
+  },
+  {
+   "bh_basket_value": 10178.825682046705,
+   "bh_btc_value": 16853.556659854454,
+   "cash": 10273.6184364779,
+   "closes": {
+    "AVAXUSDT": 310.2444881121332,
+    "BTCUSDT": 174.20289187439252,
+    "DOGEUSDT": 851.2921216470428,
+    "ETHUSDT": 386.27031921088997,
+    "LINKUSDT": 1681.339347323578,
+    "SOLUSDT": 123.64376177183314,
+    "XRPUSDT": 278.534213618813
+   },
+   "date": "2025-09-06",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 10273.6184364779,
+   "selector_value": 12229.434680544775,
+   "skipped": false,
+   "trend_timed_value": 11816.36077712026
+  },
+  {
+   "bh_basket_value": 10182.706786332692,
+   "bh_btc_value": 16898.434954820277,
+   "cash": 10273.6184364779,
+   "closes": {
+    "AVAXUSDT": 307.84256066995994,
+    "BTCUSDT": 174.66676599445054,
+    "DOGEUSDT": 890.0540563321239,
+    "ETHUSDT": 383.65215145324396,
+    "LINKUSDT": 1675.8460249559828,
+    "SOLUSDT": 124.80043534268401,
+    "XRPUSDT": 258.2945510754823
+   },
+   "date": "2025-09-07",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 10273.6184364779,
+   "selector_value": 12261.99968672926,
+   "skipped": false,
+   "trend_timed_value": 11847.82583432337
+  },
+  {
+   "bh_basket_value": 10162.473968579792,
+   "bh_btc_value": 16425.758266347086,
+   "cash": 10273.6184364779,
+   "closes": {
+    "AVAXUSDT": 300.6184611015202,
+    "BTCUSDT": 169.7810526868387,
+    "DOGEUSDT": 902.3012836257622,
+    "ETHUSDT": 375.799828819044,
+    "LINKUSDT": 1702.512094762962,
+    "SOLUSDT": 122.9483691881447,
+    "XRPUSDT": 264.77789886841515
+   },
+   "date": "2025-09-08",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 10273.6184364779,
+   "selector_value": 11919.011627688373,
+   "skipped": false,
+   "trend_timed_value": 11516.42289103615
+  },
+  {
+   "bh_basket_value": 10325.68257925432,
+   "bh_btc_value": 18343.857253775397,
+   "cash": 10273.6184364779,
+   "closes": {
+    "AVAXUSDT": 291.6001932119931,
+    "BTCUSDT": 189.6070394061453,
+    "DOGEUSDT": 996.6372537312552,
+    "ETHUSDT": 378.9529911541168,
+    "LINKUSDT": 1680.5420528294003,
+    "SOLUSDT": 127.11237769243233,
+    "XRPUSDT": 259.9708493788989
+   },
+   "date": "2025-09-09",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 10273.6184364779,
+   "selector_value": 13310.84047135609,
+   "skipped": false,
+   "trend_timed_value": 12861.239899049087
+  },
+  {
+   "bh_basket_value": 10328.655167690256,
+   "bh_btc_value": 17038.64718204542,
+   "cash": 8770.6184364779,
+   "closes": {
+    "AVAXUSDT": 296.1913458707698,
+    "BTCUSDT": 176.11603726411386,
+    "DOGEUSDT": 1068.499660902152,
+    "ETHUSDT": 407.2300769808348,
+    "LINKUSDT": 1598.1400551737058,
+    "SOLUSDT": 128.5564873666981,
+    "XRPUSDT": 257.6761990052276
+   },
+   "date": "2025-09-10",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    },
+    {
+     "action": "enter",
+     "reason": "connors_signal",
+     "symbol": "LINKUSDT"
+    }
+   ],
+   "fills": [
+    {
+     "cost": 3.0,
+     "fill_price": 1598.9391252012927,
+     "modeled_price": 1598.1400551737058,
+     "shares": 0.938122018754881,
+     "side": "BUY",
+     "symbol": "LINKUSDT"
+    }
+   ],
+   "n_open": 1,
+   "portfolio_value": 10269.868811290495,
+   "selector_value": 12363.74178834441,
+   "skipped": false,
+   "trend_timed_value": 11946.13139057444
+  },
+  {
+   "bh_basket_value": 10354.808275038815,
+   "bh_btc_value": 16936.669578430556,
+   "cash": 8770.6184364779,
+   "closes": {
+    "AVAXUSDT": 295.41933653589876,
+    "BTCUSDT": 175.061969341558,
+    "DOGEUSDT": 1121.5675803619813,
+    "ETHUSDT": 403.44873198453274,
+    "LINKUSDT": 1530.0784930373552,
+    "SOLUSDT": 130.13769149511128,
+    "XRPUSDT": 270.04034644957824
+   },
+   "date": "2025-09-11",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_exit_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 1,
+   "portfolio_value": 10206.01876121953,
+   "selector_value": 12289.743850255938,
+   "skipped": false,
+   "trend_timed_value": 11874.632882584741
+  },
+  {
+   "bh_basket_value": 10362.715357827266,
+   "bh_btc_value": 16828.199733772315,
+   "cash": 8770.6184364779,
+   "closes": {
+    "AVAXUSDT": 300.2715700750345,
+    "BTCUSDT": 173.94079587046264,
+    "DOGEUSDT": 1118.7292986273387,
+    "ETHUSDT": 418.86381316609595,
+    "LINKUSDT": 1509.889286344184,
+    "SOLUSDT": 123.43482330942646,
+    "XRPUSDT": 286.61165257440734
+   },
+   "date": "2025-09-12",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_exit_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 1,
+   "portfolio_value": 10187.078821879473,
+   "selector_value": 12211.034951782502,
+   "skipped": false,
+   "trend_timed_value": 11798.58253643003
+  },
+  {
+   "bh_basket_value": 10372.208169394406,
+   "bh_btc_value": 16248.871183497102,
+   "cash": 8630.890199077618,
+   "closes": {
+    "AVAXUSDT": 313.4764346109839,
+    "BTCUSDT": 167.95270025123128,
+    "DOGEUSDT": 1111.7082729206988,
+    "ETHUSDT": 435.70394318023267,
+    "LINKUSDT": 1458.292020196505,
+    "SOLUSDT": 131.68431741880494,
+    "XRPUSDT": 287.08001515370466
+   },
+   "date": "2025-09-13",
+   "decisions": [
+    {
+     "action": "exit",
+     "reason": "SL",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    },
+    {
+     "action": "enter",
+     "reason": "connors_signal",
+     "symbol": "LINKUSDT"
+    }
+   ],
+   "fills": [
+    {
+     "cost": 2.7320075402799953,
+     "fill_price": 1456.1045821662103,
+     "modeled_price": 1458.292020196505,
+     "shares": 0.938122018754881,
+     "side": "SELL",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "cost": 3.0000000000000004,
+     "fill_price": 1459.0211662066033,
+     "modeled_price": 1458.292020196505,
+     "shares": 1.0280865245429853,
+     "side": "BUY",
+     "symbol": "LINKUSDT"
+    }
+   ],
+   "n_open": 1,
+   "portfolio_value": 10130.140573890212,
+   "selector_value": 11790.657175912691,
+   "skipped": false,
+   "trend_timed_value": 11392.403870603117
+  },
+  {
+   "bh_basket_value": 10406.46734989885,
+   "bh_btc_value": 15844.480091434101,
+   "cash": 7127.890199077618,
+   "closes": {
+    "AVAXUSDT": 327.4360883016662,
+    "BTCUSDT": 163.772805223292,
+    "DOGEUSDT": 1140.5967357864758,
+    "ETHUSDT": 416.8708026688457,
+    "LINKUSDT": 1518.4211835784965,
+    "SOLUSDT": 131.91379966143919,
+    "XRPUSDT": 301.2653930112775
+   },
+   "date": "2025-09-14",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_exit_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    },
+    {
+     "action": "enter",
+     "reason": "connors_signal",
+     "symbol": "BTCUSDT"
+    }
+   ],
+   "fills": [
+    {
+     "cost": 3.0,
+     "fill_price": 163.85469162590365,
+     "modeled_price": 163.772805223292,
+     "shares": 9.154452552537508,
+     "side": "BUY",
+     "symbol": "BTCUSDT"
+    }
+   ],
+   "n_open": 2,
+   "portfolio_value": 10188.208931307872,
+   "selector_value": 11497.219147039008,
+   "skipped": false,
+   "trend_timed_value": 11108.877304946362
+  },
+  {
+   "bh_basket_value": 10405.612519475,
+   "bh_btc_value": 15736.574337725302,
+   "cash": 8690.439021019305,
+   "closes": {
+    "AVAXUSDT": 314.1311326078893,
+    "BTCUSDT": 162.65746234787778,
+    "DOGEUSDT": 1143.3859279029894,
+    "ETHUSDT": 436.68691711580954,
+    "LINKUSDT": 1523.6688514224481,
+    "SOLUSDT": 127.20010453816765,
+    "XRPUSDT": 306.0945634679516
+   },
+   "date": "2025-09-15",
+   "decisions": [
+    {
+     "action": "exit",
+     "reason": "MR_EXIT",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_exit_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [
+    {
+     "cost": 3.131360364612601,
+     "fill_price": 1522.907016996737,
+     "modeled_price": 1523.6688514224481,
+     "shares": 1.0280865245429853,
+     "side": "SELL",
+     "symbol": "LINKUSDT"
+    }
+   ],
+   "n_open": 1,
+   "portfolio_value": 10179.479042399109,
+   "selector_value": 11418.91956949167,
+   "skipped": false,
+   "trend_timed_value": 11033.222454075183
+  },
+  {
+   "bh_basket_value": 10399.959478176275,
+   "bh_btc_value": 14915.775352797707,
+   "cash": 8690.439021019305,
+   "closes": {
+    "AVAXUSDT": 304.47152566872666,
+    "BTCUSDT": 154.1734634087964,
+    "DOGEUSDT": 1136.3786803895246,
+    "ETHUSDT": 450.2551231640068,
+    "LINKUSDT": 1526.4235793791531,
+    "SOLUSDT": 134.06843211292102,
+    "XRPUSDT": 315.64382813199916
+   },
+   "date": "2025-09-16",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_exit_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 1,
+   "portfolio_value": 10101.812676655509,
+   "selector_value": 10823.323768877075,
+   "skipped": false,
+   "trend_timed_value": 10457.744106854774
+  },
+  {
+   "bh_basket_value": 10355.351754965754,
+   "bh_btc_value": 14614.84932175642,
+   "cash": 8565.50218985121,
+   "closes": {
+    "AVAXUSDT": 302.2720723785119,
+    "BTCUSDT": 151.0630110629989,
+    "DOGEUSDT": 1172.8934143221745,
+    "ETHUSDT": 424.0114388561569,
+    "LINKUSDT": 1471.7458933378482,
+    "SOLUSDT": 133.85951664740935,
+    "XRPUSDT": 313.5240169315192
+   },
+   "date": "2025-09-17",
+   "decisions": [
+    {
+     "action": "exit",
+     "reason": "SL",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    },
+    {
+     "action": "enter",
+     "reason": "connors_signal",
+     "symbol": "BTCUSDT"
+    }
+   ],
+   "fills": [
+    {
+     "cost": 2.761649636937685,
+     "fill_price": 150.8364165464044,
+     "modeled_price": 151.0630110629989,
+     "shares": 9.154452552537508,
+     "side": "SELL",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "cost": 3.0,
+     "fill_price": 151.1385425685304,
+     "modeled_price": 151.0630110629989,
+     "shares": 9.924668946174723,
+     "side": "BUY",
+     "symbol": "BTCUSDT"
+    }
+   ],
+   "n_open": 1,
+   "portfolio_value": 10064.752564663802,
+   "selector_value": 10604.963020782803,
+   "skipped": false,
+   "trend_timed_value": 10246.758934895144
+  },
+  {
+   "bh_basket_value": 10361.501727700157,
+   "bh_btc_value": 14680.0902143458,
+   "cash": 8565.50218985121,
+   "closes": {
+    "AVAXUSDT": 304.68333711700035,
+    "BTCUSDT": 151.73735846556283,
+    "DOGEUSDT": 1119.7789257772238,
+    "ETHUSDT": 441.18313262039754,
+    "LINKUSDT": 1506.2887437824086,
+    "SOLUSDT": 129.9667362857795,
+    "XRPUSDT": 330.42508645928297
+   },
+   "date": "2025-09-18",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_exit_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 1,
+   "portfolio_value": 10071.445239388962,
+   "selector_value": 10652.303724619092,
+   "skipped": false,
+   "trend_timed_value": 10292.500610662244
+  },
+  {
+   "bh_basket_value": 10254.472836124052,
+   "bh_btc_value": 13664.085124276131,
+   "cash": 7062.50218985121,
+   "closes": {
+    "AVAXUSDT": 317.2875360851278,
+    "BTCUSDT": 141.2356567523075,
+    "DOGEUSDT": 1037.2358462386217,
+    "ETHUSDT": 464.36393317287246,
+    "LINKUSDT": 1489.59130331745,
+    "SOLUSDT": 124.32758857057081,
+    "XRPUSDT": 322.06470488303523
+   },
+   "date": "2025-09-19",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_exit_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    },
+    {
+     "action": "enter",
+     "reason": "connors_signal",
+     "symbol": "DOGEUSDT"
+    }
+   ],
+   "fills": [
+    {
+     "cost": 3.0,
+     "fill_price": 1037.754464161741,
+     "modeled_price": 1037.2358462386217,
+     "shares": 1.4454286170781674,
+     "side": "BUY",
+     "symbol": "DOGEUSDT"
+    }
+   ],
+   "n_open": 2,
+   "portfolio_value": 9963.469701326023,
+   "selector_value": 9915.060652733555,
+   "skipped": false,
+   "trend_timed_value": 9580.159415390914
+  },
+  {
+   "bh_basket_value": 10189.279677170223,
+   "bh_btc_value": 13501.550361136848,
+   "cash": 6939.7023552085375,
+   "closes": {
+    "AVAXUSDT": 306.22536906790754,
+    "BTCUSDT": 139.55565375113522,
+    "DOGEUSDT": 999.428164484345,
+    "ETHUSDT": 466.7407477100132,
+    "LINKUSDT": 1439.3729688610597,
+    "SOLUSDT": 124.22375365343926,
+    "XRPUSDT": 322.3951168760655
+   },
+   "date": "2025-09-20",
+   "decisions": [
+    {
+     "action": "exit",
+     "reason": "SL",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_exit_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    },
+    {
+     "action": "enter",
+     "reason": "connors_signal",
+     "symbol": "BTCUSDT"
+    }
+   ],
+   "fills": [
+    {
+     "cost": 2.7659321951048663,
+     "fill_price": 139.34632027050853,
+     "modeled_price": 139.55565375113522,
+     "shares": 9.924668946174723,
+     "side": "SELL",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "cost": 3.0000000000000004,
+     "fill_price": 139.6254315780108,
+     "modeled_price": 139.55565375113522,
+     "shares": 10.743028566124273,
+     "side": "BUY",
+     "symbol": "BTCUSDT"
+    }
+   ],
+   "n_open": 2,
+   "portfolio_value": 9883.554799680709,
+   "selector_value": 9797.120664798282,
+   "skipped": false,
+   "trend_timed_value": 9466.203089207705
+  },
+  {
+   "bh_basket_value": 10149.478470177379,
+   "bh_btc_value": 13450.79682525609,
+   "cash": 5312.951385036493,
+   "closes": {
+    "AVAXUSDT": 301.8249483424024,
+    "BTCUSDT": 139.03105156171492,
+    "DOGEUSDT": 957.5631569563504,
+    "ETHUSDT": 472.9942588389578,
+    "LINKUSDT": 1407.849052334256,
+    "SOLUSDT": 121.07647438430035,
+    "XRPUSDT": 334.14283057835667
+   },
+   "date": "2025-09-21",
+   "decisions": [
+    {
+     "action": "exit",
+     "reason": "SL",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_exit_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    },
+    {
+     "action": "enter",
+     "reason": "connors_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "enter",
+     "reason": "connors_signal",
+     "symbol": "LINKUSDT"
+    }
+   ],
+   "fills": [
+    {
+     "cost": 2.7640261118796707,
+     "fill_price": 956.126812220916,
+     "modeled_price": 957.5631569563504,
+     "shares": 1.4454286170781674,
+     "side": "SELL",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "cost": 3.0,
+     "fill_price": 958.0419385348285,
+     "modeled_price": 957.5631569563504,
+     "shares": 1.5656934625367334,
+     "side": "BUY",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "cost": 3.0,
+     "fill_price": 1408.552976860423,
+     "modeled_price": 1407.849052334256,
+     "shares": 1.0649226721620415,
+     "side": "BUY",
+     "symbol": "LINKUSDT"
+    }
+   ],
+   "n_open": 3,
+   "portfolio_value": 9805.066693167479,
+   "selector_value": 9760.29241160595,
+   "skipped": false,
+   "trend_timed_value": 9430.61878479141
+  },
+  {
+   "bh_basket_value": 10181.761887533603,
+   "bh_btc_value": 13239.65803110398,
+   "cash": 6958.064295689331,
+   "closes": {
+    "AVAXUSDT": 305.73803357297277,
+    "BTCUSDT": 136.84866423122446,
+    "DOGEUSDT": 957.8309338926688,
+    "ETHUSDT": 487.6093933694203,
+    "LINKUSDT": 1548.689299607432,
+    "SOLUSDT": 116.40664960741606,
+    "XRPUSDT": 320.94115411648806
+   },
+   "date": "2025-09-22",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_exit_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_exit_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "exit",
+     "reason": "MR_EXIT",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [
+    {
+     "cost": 3.2968194602261276,
+     "fill_price": 1547.9149549576284,
+     "modeled_price": 1548.689299607432,
+     "shares": 1.0649226721620415,
+     "side": "SELL",
+     "symbol": "LINKUSDT"
+    }
+   ],
+   "n_open": 2,
+   "portfolio_value": 9927.903036172529,
+   "selector_value": 9607.083914211282,
+   "skipped": false,
+   "trend_timed_value": 9282.585214424014
+  },
+  {
+   "bh_basket_value": 10168.176679238328,
+   "bh_btc_value": 13036.879828708361,
+   "cash": 6958.064295689331,
+   "closes": {
+    "AVAXUSDT": 322.1068235297671,
+    "BTCUSDT": 134.7526942244572,
+    "DOGEUSDT": 928.2494881468766,
+    "ETHUSDT": 495.21944280819207,
+    "LINKUSDT": 1516.5469760779592,
+    "SOLUSDT": 115.94261627742509,
+    "XRPUSDT": 325.3222927039914
+   },
+   "date": "2025-09-23",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_exit_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_exit_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 2,
+   "portfolio_value": 9859.070494299518,
+   "selector_value": 9459.94210723931,
+   "skipped": false,
+   "trend_timed_value": 9140.41341973393
+  },
+  {
+   "bh_basket_value": 10144.370265884994,
+   "bh_btc_value": 12854.874173248678,
+   "cash": 6958.064295689331,
+   "closes": {
+    "AVAXUSDT": 341.39924953278256,
+    "BTCUSDT": 132.87143484648297,
+    "DOGEUSDT": 924.2580460432224,
+    "ETHUSDT": 479.7417575582402,
+    "LINKUSDT": 1470.1377803532837,
+    "SOLUSDT": 114.84113891330817,
+    "XRPUSDT": 330.8367870627839
+   },
+   "date": "2025-09-24",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_exit_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_exit_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 2,
+   "portfolio_value": 9832.610696253865,
+   "selector_value": 9327.87346915558,
+   "skipped": false,
+   "trend_timed_value": 9012.80566715131
+  },
+  {
+   "bh_basket_value": 10063.650372609574,
+   "bh_btc_value": 12499.765779230289,
+   "cash": 8172.454705369715,
+   "closes": {
+    "AVAXUSDT": 328.91966841110917,
+    "BTCUSDT": 129.2009390327282,
+    "DOGEUSDT": 855.1591513854892,
+    "ETHUSDT": 458.9207603052734,
+    "LINKUSDT": 1541.5379081776202,
+    "SOLUSDT": 112.33934360920126,
+    "XRPUSDT": 341.41122331911026
+   },
+   "date": "2025-09-25",
+   "decisions": [
+    {
+     "action": "exit",
+     "reason": "SL",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "exit",
+     "reason": "SL",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    },
+    {
+     "action": "enter",
+     "reason": "connors_signal",
+     "symbol": "DOGEUSDT"
+    }
+   ],
+   "fills": [
+    {
+     "cost": 2.7718547294609635,
+     "fill_price": 129.0071376241791,
+     "modeled_price": 129.2009390327282,
+     "shares": 10.743028566124273,
+     "side": "SELL",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "cost": 2.673817434227184,
+     "fill_price": 853.876412658411,
+     "modeled_price": 855.1591513854892,
+     "shares": 1.5656934625367334,
+     "side": "SELL",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "cost": 3.0,
+     "fill_price": 855.5867309611818,
+     "modeled_price": 855.1591513854892,
+     "shares": 1.7531828693917126,
+     "side": "BUY",
+     "symbol": "DOGEUSDT"
+    }
+   ],
+   "n_open": 1,
+   "portfolio_value": 9671.70508018231,
+   "selector_value": 9070.1964104309,
+   "skipped": false,
+   "trend_timed_value": 8763.83217251203
+  },
+  {
+   "bh_basket_value": 10126.561060053187,
+   "bh_btc_value": 12029.08153899025,
+   "cash": 6669.454705369715,
+   "closes": {
+    "AVAXUSDT": 327.1216310937235,
+    "BTCUSDT": 124.33582020562453,
+    "DOGEUSDT": 910.4006036881092,
+    "ETHUSDT": 446.61428284123053,
+    "LINKUSDT": 1590.5917819381566,
+    "SOLUSDT": 116.54265129958316,
+    "XRPUSDT": 365.4482907314716
+   },
+   "date": "2025-09-26",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_exit_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    },
+    {
+     "action": "enter",
+     "reason": "connors_signal",
+     "symbol": "ETHUSDT"
+    }
+   ],
+   "fills": [
+    {
+     "cost": 3.0,
+     "fill_price": 446.83758998265114,
+     "modeled_price": 446.61428284123053,
+     "shares": 3.356924380641832,
+     "side": "BUY",
+     "symbol": "ETHUSDT"
+    }
+   ],
+   "n_open": 2,
+   "portfolio_value": 9764.803822852176,
+   "selector_value": 8795.04982043339,
+   "skipped": false,
+   "trend_timed_value": 8416.958521606597
+  },
+  {
+   "bh_basket_value": 10108.64553328364,
+   "bh_btc_value": 12264.701334570886,
+   "cash": 8292.798571134412,
+   "closes": {
+    "AVAXUSDT": 317.6728408285778,
+    "BTCUSDT": 126.7712497473765,
+    "DOGEUSDT": 928.2607043906082,
+    "ETHUSDT": 434.9579702146662,
+    "LINKUSDT": 1577.1310682532005,
+    "SOLUSDT": 123.53751316584832,
+    "XRPUSDT": 335.3429381945225
+   },
+   "date": "2025-09-27",
+   "decisions": [
+    {
+     "action": "exit",
+     "reason": "MR_EXIT",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_exit_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [
+    {
+     "cost": 3.253194119768931,
+     "fill_price": 927.7965740384129,
+     "modeled_price": 928.2607043906082,
+     "shares": 1.7531828693917126,
+     "side": "SELL",
+     "symbol": "DOGEUSDT"
+    }
+   ],
+   "n_open": 1,
+   "portfolio_value": 9752.91958590251,
+   "selector_value": 8784.345820850158,
+   "skipped": false,
+   "trend_timed_value": 8416.958521606597
+  },
+  {
+   "bh_basket_value": 10184.25398973997,
+   "bh_btc_value": 12230.34404773707,
+   "cash": 8292.798571134412,
+   "closes": {
+    "AVAXUSDT": 329.6136516096607,
+    "BTCUSDT": 126.41612359541918,
+    "DOGEUSDT": 899.7314543934426,
+    "ETHUSDT": 446.7397726114323,
+    "LINKUSDT": 1668.2497928629612,
+    "SOLUSDT": 130.72385222527706,
+    "XRPUSDT": 348.0971307046572
+   },
+   "date": "2025-09-28",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_exit_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 1,
+   "portfolio_value": 9792.470205616117,
+   "selector_value": 8819.96862261051,
+   "skipped": false,
+   "trend_timed_value": 8416.958521606597
+  },
+  {
+   "bh_basket_value": 10145.238905545593,
+   "bh_btc_value": 12241.449311692246,
+   "cash": 8292.798571134412,
+   "closes": {
+    "AVAXUSDT": 336.56699352373414,
+    "BTCUSDT": 126.53091058875623,
+    "DOGEUSDT": 914.4089233578223,
+    "ETHUSDT": 425.80848764855654,
+    "LINKUSDT": 1580.004695030813,
+    "SOLUSDT": 128.8036620651943,
+    "XRPUSDT": 352.64931807178147
+   },
+   "date": "2025-09-29",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_exit_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 1,
+   "portfolio_value": 9722.205464806077,
+   "selector_value": 8756.681954772093,
+   "skipped": false,
+   "trend_timed_value": 8416.958521606597
+  },
+  {
+   "bh_basket_value": 10204.5675116026,
+   "bh_btc_value": 13014.569007819831,
+   "cash": 9673.229377122883,
+   "closes": {
+    "AVAXUSDT": 332.78125164924677,
+    "BTCUSDT": 134.5220835826019,
+    "DOGEUSDT": 964.1255458192718,
+    "ETHUSDT": 412.6619953214374,
+    "LINKUSDT": 1554.839425855245,
+    "SOLUSDT": 126.18032438765805,
+    "XRPUSDT": 369.11618394395873
+   },
+   "date": "2025-09-30",
+   "decisions": [
+    {
+     "action": "exit",
+     "reason": "SL",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [
+    {
+     "cost": 2.766394400778501,
+     "fill_price": 412.04300232845526,
+     "modeled_price": 412.6619953214374,
+     "shares": 3.356924380641832,
+     "side": "SELL",
+     "symbol": "ETHUSDT"
+    }
+   ],
+   "n_open": 0,
+   "portfolio_value": 9673.229377122883,
+   "selector_value": 8739.16859086255,
+   "skipped": false,
+   "trend_timed_value": 8400.124604563383
+  },
+  {
+   "bh_basket_value": 10194.859066996645,
+   "bh_btc_value": 13652.633105162158,
+   "cash": 8170.229377122883,
+   "closes": {
+    "AVAXUSDT": 325.7191474822921,
+    "BTCUSDT": 141.11728560444132,
+    "DOGEUSDT": 1000.7670204780757,
+    "ETHUSDT": 399.5106635564707,
+    "LINKUSDT": 1462.5680407610535,
+    "SOLUSDT": 118.58143850581946,
+    "XRPUSDT": 379.0176413601445
+   },
+   "date": "2025-10-01",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    },
+    {
+     "action": "enter",
+     "reason": "connors_signal",
+     "symbol": "ETHUSDT"
+    }
+   ],
+   "fills": [
+    {
+     "cost": 3.0,
+     "fill_price": 399.7104188882489,
+     "modeled_price": 399.5106635564707,
+     "shares": 3.752716789750157,
+     "side": "BUY",
+     "symbol": "ETHUSDT"
+    }
+   ],
+   "n_open": 1,
+   "portfolio_value": 9669.479751935478,
+   "selector_value": 9167.623018750302,
+   "skipped": false,
+   "trend_timed_value": 8811.956753607532
+  },
+  {
+   "bh_basket_value": 10230.505247191171,
+   "bh_btc_value": 13460.953086979556,
+   "cash": 8170.229377122883,
+   "closes": {
+    "AVAXUSDT": 330.57501005728454,
+    "BTCUSDT": 139.1360294128931,
+    "DOGEUSDT": 1000.6323710382673,
+    "ETHUSDT": 420.520176377903,
+    "LINKUSDT": 1546.1260958234893,
+    "SOLUSDT": 117.34049597760229,
+    "XRPUSDT": 368.70433120796486
+   },
+   "date": "2025-10-02",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_exit_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 1,
+   "portfolio_value": 9748.322503444937,
+   "selector_value": 9038.911572878307,
+   "skipped": false,
+   "trend_timed_value": 8688.23878523137
+  },
+  {
+   "bh_basket_value": 10334.900031123558,
+   "bh_btc_value": 14486.06244091065,
+   "cash": 9856.741784434145,
+   "closes": {
+    "AVAXUSDT": 344.8278666481392,
+    "BTCUSDT": 149.73183524464736,
+    "DOGEUSDT": 1029.2357900064796,
+    "ETHUSDT": 450.53694568500913,
+    "LINKUSDT": 1552.473185450537,
+    "SOLUSDT": 112.95638512343173,
+    "XRPUSDT": 360.13153264321454
+   },
+   "date": "2025-10-03",
+   "decisions": [
+    {
+     "action": "exit",
+     "reason": "MR_EXIT",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [
+    {
+     "cost": 3.379784383389302,
+     "fill_price": 450.31167721216667,
+     "modeled_price": 450.53694568500913,
+     "shares": 3.752716789750157,
+     "side": "SELL",
+     "symbol": "ETHUSDT"
+    }
+   ],
+   "n_open": 0,
+   "portfolio_value": 9856.741784434145,
+   "selector_value": 9727.26348546882,
+   "skipped": false,
+   "trend_timed_value": 9349.885459904244
+  },
+  {
+   "bh_basket_value": 10416.962058808487,
+   "bh_btc_value": 14547.679757453572,
+   "cash": 9856.741784434145,
+   "closes": {
+    "AVAXUSDT": 335.4079625296446,
+    "BTCUSDT": 150.3687283911774,
+    "DOGEUSDT": 1070.234879689837,
+    "ETHUSDT": 459.57804099715906,
+    "LINKUSDT": 1720.8310336385941,
+    "SOLUSDT": 113.74370423489057,
+    "XRPUSDT": 345.5620006290021
+   },
+   "date": "2025-10-04",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 9856.741784434145,
+   "selector_value": 9768.638971438551,
+   "skipped": false,
+   "trend_timed_value": 9389.655746300083
+  },
+  {
+   "bh_basket_value": 10463.699606600332,
+   "bh_btc_value": 15309.864286446582,
+   "cash": 9856.741784434145,
+   "closes": {
+    "AVAXUSDT": 332.08837294350155,
+    "BTCUSDT": 158.2468725581458,
+    "DOGEUSDT": 1023.027984543955,
+    "ETHUSDT": 475.4689694689876,
+    "LINKUSDT": 1756.0266438348515,
+    "SOLUSDT": 112.5194504286882,
+    "XRPUSDT": 362.6301872283102
+   },
+   "date": "2025-10-05",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 9856.741784434145,
+   "selector_value": 10280.439177209091,
+   "skipped": false,
+   "trend_timed_value": 9881.600198042188
+  },
+  {
+   "bh_basket_value": 10403.29697780983,
+   "bh_btc_value": 14331.572135680139,
+   "cash": 9856.741784434145,
+   "closes": {
+    "AVAXUSDT": 334.5947398735348,
+    "BTCUSDT": 148.13498192277143,
+    "DOGEUSDT": 968.8452003595368,
+    "ETHUSDT": 489.0842195337581,
+    "LINKUSDT": 1792.975128640497,
+    "SOLUSDT": 115.36259297598248,
+    "XRPUSDT": 353.1995631263032
+   },
+   "date": "2025-10-06",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 9856.741784434145,
+   "selector_value": 9623.524604661317,
+   "skipped": false,
+   "trend_timed_value": 9250.171223239659
+  },
+  {
+   "bh_basket_value": 10401.35197990444,
+   "bh_btc_value": 15436.00382324851,
+   "cash": 9856.741784434145,
+   "closes": {
+    "AVAXUSDT": 335.8419097179276,
+    "BTCUSDT": 159.5506847168538,
+    "DOGEUSDT": 949.2473275363939,
+    "ETHUSDT": 472.31117095569226,
+    "LINKUSDT": 1719.9106537908413,
+    "SOLUSDT": 115.14008235949328,
+    "XRPUSDT": 357.2208180596923
+   },
+   "date": "2025-10-07",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 9856.741784434145,
+   "selector_value": 10365.140766437517,
+   "skipped": false,
+   "trend_timed_value": 9963.015712152677
+  },
+  {
+   "bh_basket_value": 10401.605613632317,
+   "bh_btc_value": 15437.588598166532,
+   "cash": 9856.741784434145,
+   "closes": {
+    "AVAXUSDT": 341.434282362345,
+    "BTCUSDT": 159.56706537639417,
+    "DOGEUSDT": 990.9930708122054,
+    "ETHUSDT": 461.1062205094422,
+    "LINKUSDT": 1646.3168708777966,
+    "SOLUSDT": 117.23259656050593,
+    "XRPUSDT": 353.29765539382333
+   },
+   "date": "2025-10-08",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 9856.741784434145,
+   "selector_value": 10366.204928852641,
+   "skipped": false,
+   "trend_timed_value": 9964.03858941996
+  },
+  {
+   "bh_basket_value": 10396.036037316468,
+   "bh_btc_value": 15062.67856781899,
+   "cash": 9856.741784434145,
+   "closes": {
+    "AVAXUSDT": 329.03764146344236,
+    "BTCUSDT": 155.69189452685896,
+    "DOGEUSDT": 1055.2789834439918,
+    "ETHUSDT": 470.8007004936448,
+    "LINKUSDT": 1618.6140106413256,
+    "SOLUSDT": 120.07649088800798,
+    "XRPUSDT": 324.8128644263118
+   },
+   "date": "2025-10-09",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 9856.741784434145,
+   "selector_value": 10114.456141809143,
+   "skipped": false,
+   "trend_timed_value": 9722.056625320516
+  },
+  {
+   "bh_basket_value": 10359.346773985522,
+   "bh_btc_value": 14636.48735721952,
+   "cash": 9856.741784434145,
+   "closes": {
+    "AVAXUSDT": 322.26527806345894,
+    "BTCUSDT": 151.28666761385213,
+    "DOGEUSDT": 1064.6623608659754,
+    "ETHUSDT": 474.1047164647951,
+    "LINKUSDT": 1679.307726903084,
+    "SOLUSDT": 109.11277359826362,
+    "XRPUSDT": 319.87309628924226
+   },
+   "date": "2025-10-10",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 9856.741784434145,
+   "selector_value": 9828.272493381393,
+   "skipped": false,
+   "trend_timed_value": 9446.975731573348
+  },
+  {
+   "bh_basket_value": 10234.14767184932,
+   "bh_btc_value": 13316.278072332909,
+   "cash": 8353.741784434145,
+   "closes": {
+    "AVAXUSDT": 297.18975638750265,
+    "BTCUSDT": 137.64062957284332,
+    "DOGEUSDT": 1135.05414199138,
+    "ETHUSDT": 437.2501571536419,
+    "LINKUSDT": 1615.296834294229,
+    "SOLUSDT": 104.82565235947092,
+    "XRPUSDT": 316.88885722735495
+   },
+   "date": "2025-10-11",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    },
+    {
+     "action": "enter",
+     "reason": "connors_signal",
+     "symbol": "BTCUSDT"
+    }
+   ],
+   "fills": [
+    {
+     "cost": 3.0,
+     "fill_price": 137.70944988762975,
+     "modeled_price": 137.64062957284332,
+     "shares": 10.892498671834016,
+     "side": "BUY",
+     "symbol": "BTCUSDT"
+    }
+   ],
+   "n_open": 1,
+   "portfolio_value": 9852.99215924674,
+   "selector_value": 8941.763573346176,
+   "skipped": false,
+   "trend_timed_value": 8594.859730614296
+  },
+  {
+   "bh_basket_value": 10199.663153095908,
+   "bh_btc_value": 12698.196956163,
+   "cash": 8353.741784434145,
+   "closes": {
+    "AVAXUSDT": 298.7479351797241,
+    "BTCUSDT": 131.25197701582985,
+    "DOGEUSDT": 1185.6907584292094,
+    "ETHUSDT": 421.75823759732384,
+    "LINKUSDT": 1474.7813423287566,
+    "SOLUSDT": 105.86132835489005,
+    "XRPUSDT": 335.1410394139379
+   },
+   "date": "2025-10-12",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_exit_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 1,
+   "portfolio_value": 9783.403769754661,
+   "selector_value": 8526.727541512018,
+   "skipped": false,
+   "trend_timed_value": 8195.925398756264
+  },
+  {
+   "bh_basket_value": 10213.47829343572,
+   "bh_btc_value": 12370.498959750887,
+   "cash": 9741.638468316325,
+   "closes": {
+    "AVAXUSDT": 312.7507253487038,
+    "BTCUSDT": 127.86480243965185,
+    "DOGEUSDT": 1186.4165764627,
+    "ETHUSDT": 421.6873508650552,
+    "LINKUSDT": 1526.072727520526,
+    "SOLUSDT": 105.87902811257008,
+    "XRPUSDT": 331.4170083306779
+   },
+   "date": "2025-10-13",
+   "decisions": [
+    {
+     "action": "exit",
+     "reason": "SL",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [
+    {
+     "cost": 2.7813560799242087,
+     "fill_price": 127.67300523599238,
+     "modeled_price": 127.86480243965185,
+     "shares": 10.892498671834016,
+     "side": "SELL",
+     "symbol": "BTCUSDT"
+    }
+   ],
+   "n_open": 0,
+   "portfolio_value": 9741.638468316325,
+   "selector_value": 8254.677599513465,
+   "skipped": false,
+   "trend_timed_value": 7968.447142187512
+  },
+  {
+   "bh_basket_value": 10180.04668265986,
+   "bh_btc_value": 13187.151549756914,
+   "cash": 9741.638468316325,
+   "closes": {
+    "AVAXUSDT": 288.9109914011761,
+    "BTCUSDT": 136.30594312627244,
+    "DOGEUSDT": 1155.3971878193258,
+    "ETHUSDT": 398.93612630623136,
+    "LINKUSDT": 1582.6866558629285,
+    "SOLUSDT": 106.70562023003762,
+    "XRPUSDT": 315.995289047441
+   },
+   "date": "2025-10-14",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 9741.638468316325,
+   "selector_value": 8238.168244314438,
+   "skipped": false,
+   "trend_timed_value": 7952.5102479031375
+  },
+  {
+   "bh_basket_value": 10133.775293665683,
+   "bh_btc_value": 13262.5415981608,
+   "cash": 9741.638468316325,
+   "closes": {
+    "AVAXUSDT": 282.5474023851286,
+    "BTCUSDT": 137.08519493142944,
+    "DOGEUSDT": 1129.8154429788563,
+    "ETHUSDT": 409.10767540690426,
+    "LINKUSDT": 1528.5614161787362,
+    "SOLUSDT": 104.64637978096363,
+    "XRPUSDT": 308.34028847793894
+   },
+   "date": "2025-10-15",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 9741.638468316325,
+   "selector_value": 8285.265291796968,
+   "skipped": false,
+   "trend_timed_value": 7997.974208050989
+  },
+  {
+   "bh_basket_value": 10188.510865790446,
+   "bh_btc_value": 13087.489910149421,
+   "cash": 9741.638468316325,
+   "closes": {
+    "AVAXUSDT": 293.7671068002269,
+    "BTCUSDT": 135.2758136302282,
+    "DOGEUSDT": 1137.4711353417879,
+    "ETHUSDT": 420.182658364491,
+    "LINKUSDT": 1555.9169274378748,
+    "SOLUSDT": 107.6541026978677,
+    "XRPUSDT": 317.9894781174253
+   },
+   "date": "2025-10-16",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 9741.638468316325,
+   "selector_value": 8175.908449127213,
+   "skipped": false,
+   "trend_timed_value": 7892.409307430058
+  },
+  {
+   "bh_basket_value": 10331.34565169155,
+   "bh_btc_value": 13751.556495152021,
+   "cash": 9741.638468316325,
+   "closes": {
+    "AVAXUSDT": 292.9714576818858,
+    "BTCUSDT": 142.13978435399613,
+    "DOGEUSDT": 1207.8408908330334,
+    "ETHUSDT": 442.6078924798628,
+    "LINKUSDT": 1625.8908494064972,
+    "SOLUSDT": 105.72475434966782,
+    "XRPUSDT": 324.9919815971073
+   },
+   "date": "2025-10-17",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 9741.638468316325,
+   "selector_value": 8590.758633569023,
+   "skipped": false,
+   "trend_timed_value": 8292.87458627343
+  },
+  {
+   "bh_basket_value": 10366.228744643468,
+   "bh_btc_value": 14005.869913449093,
+   "cash": 9741.638468316325,
+   "closes": {
+    "AVAXUSDT": 272.4005184209923,
+    "BTCUSDT": 144.7684362049933,
+    "DOGEUSDT": 1253.7266291489466,
+    "ETHUSDT": 423.9374150982643,
+    "LINKUSDT": 1702.1248486833554,
+    "SOLUSDT": 104.66201985251286,
+    "XRPUSDT": 331.54696934258754
+   },
+   "date": "2025-10-18",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 9741.638468316325,
+   "selector_value": 8749.63120880356,
+   "skipped": false,
+   "trend_timed_value": 8446.238264362351
+  },
+  {
+   "bh_basket_value": 10280.449850883911,
+   "bh_btc_value": 13695.624614362987,
+   "cash": 9741.638468316325,
+   "closes": {
+    "AVAXUSDT": 286.29564787226343,
+    "BTCUSDT": 141.56165739966414,
+    "DOGEUSDT": 1193.7593822517338,
+    "ETHUSDT": 420.5540455389376,
+    "LINKUSDT": 1601.9407970868763,
+    "SOLUSDT": 102.0468468403422,
+    "XRPUSDT": 340.06265648626953
+   },
+   "date": "2025-10-19",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 9741.638468316325,
+   "selector_value": 8555.817331618982,
+   "skipped": false,
+   "trend_timed_value": 8259.144871900999
+  },
+  {
+   "bh_basket_value": 10215.347510430132,
+   "bh_btc_value": 13272.27547141142,
+   "cash": 9741.638468316325,
+   "closes": {
+    "AVAXUSDT": 271.2351685463546,
+    "BTCUSDT": 137.1858068618142,
+    "DOGEUSDT": 1140.1752534815741,
+    "ETHUSDT": 434.98453540249386,
+    "LINKUSDT": 1606.0345465018938,
+    "SOLUSDT": 104.86579542142327,
+    "XRPUSDT": 328.61912542273075
+   },
+   "date": "2025-10-20",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 9741.638468316325,
+   "selector_value": 8291.346156584552,
+   "skipped": false,
+   "trend_timed_value": 8003.844219211873
+  },
+  {
+   "bh_basket_value": 10213.248099208704,
+   "bh_btc_value": 12413.819959912373,
+   "cash": 9741.638468316325,
+   "closes": {
+    "AVAXUSDT": 287.38496080173985,
+    "BTCUSDT": 128.31257994201124,
+    "DOGEUSDT": 1182.2485657639481,
+    "ETHUSDT": 420.50465230814797,
+    "LINKUSDT": 1558.4617276535344,
+    "SOLUSDT": 108.27846922845006,
+    "XRPUSDT": 340.4191629628738
+   },
+   "date": "2025-10-21",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 9741.638468316325,
+   "selector_value": 7755.058929786242,
+   "skipped": false,
+   "trend_timed_value": 7486.152720270166
+  },
+  {
+   "bh_basket_value": 10242.791097571526,
+   "bh_btc_value": 12373.013082641886,
+   "cash": 9741.638468316325,
+   "closes": {
+    "AVAXUSDT": 281.58575015702627,
+    "BTCUSDT": 127.89078908964979,
+    "DOGEUSDT": 1195.8162431234457,
+    "ETHUSDT": 421.66428046787496,
+    "LINKUSDT": 1617.5147572495875,
+    "SOLUSDT": 108.07257782708346,
+    "XRPUSDT": 344.6711003628613
+   },
+   "date": "2025-10-22",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 9741.638468316325,
+   "selector_value": 7714.107262144482,
+   "skipped": false,
+   "trend_timed_value": 7446.621049280734
+  },
+  {
+   "bh_basket_value": 10112.494690610352,
+   "bh_btc_value": 11370.81547691724,
+   "cash": 9741.638468316325,
+   "closes": {
+    "AVAXUSDT": 274.5614787984411,
+    "BTCUSDT": 117.53180524603815,
+    "DOGEUSDT": 1155.1642264595253,
+    "ETHUSDT": 410.76099786590106,
+    "LINKUSDT": 1622.796868968671,
+    "SOLUSDT": 109.65282184106944,
+    "XRPUSDT": 316.4670175165306
+   },
+   "date": "2025-10-23",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 9741.638468316325,
+   "selector_value": 7714.107262144482,
+   "skipped": false,
+   "trend_timed_value": 7446.621049280734
+  },
+  {
+   "bh_basket_value": 10097.475170275868,
+   "bh_btc_value": 11780.581081582926,
+   "cash": 9741.638468316325,
+   "closes": {
+    "AVAXUSDT": 275.68336712227153,
+    "BTCUSDT": 121.76725268090843,
+    "DOGEUSDT": 1191.2997976315658,
+    "ETHUSDT": 410.71508422945317,
+    "LINKUSDT": 1547.6138629388527,
+    "SOLUSDT": 101.05425250917862,
+    "XRPUSDT": 308.35292481794227
+   },
+   "date": "2025-10-24",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 9741.638468316325,
+   "selector_value": 7714.107262144482,
+   "skipped": false,
+   "trend_timed_value": 7446.621049280734
+  },
+  {
+   "bh_basket_value": 10128.52669343456,
+   "bh_btc_value": 11064.899058182724,
+   "cash": 9741.638468316325,
+   "closes": {
+    "AVAXUSDT": 276.2664959039929,
+    "BTCUSDT": 114.36977091162659,
+    "DOGEUSDT": 1263.1155151409737,
+    "ETHUSDT": 391.2565384248877,
+    "LINKUSDT": 1552.949147506139,
+    "SOLUSDT": 104.97097070640316,
+    "XRPUSDT": 324.53507889626223
+   },
+   "date": "2025-10-25",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 9741.638468316325,
+   "selector_value": 7714.107262144482,
+   "skipped": false,
+   "trend_timed_value": 7446.621049280734
+  },
+  {
+   "bh_basket_value": 10153.639505700943,
+   "bh_btc_value": 11106.126846808267,
+   "cash": 9741.638468316325,
+   "closes": {
+    "AVAXUSDT": 283.83270158013926,
+    "BTCUSDT": 114.79591241689494,
+    "DOGEUSDT": 1309.0048621444284,
+    "ETHUSDT": 391.79111725388515,
+    "LINKUSDT": 1588.0825887485541,
+    "SOLUSDT": 97.04331112386016,
+    "XRPUSDT": 317.06381113464806
+   },
+   "date": "2025-10-26",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 9741.638468316325,
+   "selector_value": 7714.107262144482,
+   "skipped": false,
+   "trend_timed_value": 7446.621049280734
+  },
+  {
+   "bh_basket_value": 10177.556770241334,
+   "bh_btc_value": 11609.347923722768,
+   "cash": 9741.638468316325,
+   "closes": {
+    "AVAXUSDT": 290.46562182973327,
+    "BTCUSDT": 119.9973407337716,
+    "DOGEUSDT": 1319.3689092344844,
+    "ETHUSDT": 416.85363220161474,
+    "LINKUSDT": 1493.8648097054618,
+    "SOLUSDT": 94.78186112384634,
+    "XRPUSDT": 311.95035771783046
+   },
+   "date": "2025-10-27",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 9741.638468316325,
+   "selector_value": 7714.107262144482,
+   "skipped": false,
+   "trend_timed_value": 7446.621049280734
+  },
+  {
+   "bh_basket_value": 10188.786291439243,
+   "bh_btc_value": 11266.706515577616,
+   "cash": 9741.638468316325,
+   "closes": {
+    "AVAXUSDT": 289.6194228614967,
+    "BTCUSDT": 116.45570703712997,
+    "DOGEUSDT": 1397.349682631932,
+    "ETHUSDT": 436.6864349768199,
+    "LINKUSDT": 1415.7825764593047,
+    "SOLUSDT": 86.08892367436496,
+    "XRPUSDT": 312.14088122034997
+   },
+   "date": "2025-10-28",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 9741.638468316325,
+   "selector_value": 7714.107262144482,
+   "skipped": false,
+   "trend_timed_value": 7446.621049280734
+  },
+  {
+   "bh_basket_value": 10162.362080795256,
+   "bh_btc_value": 11256.466223995985,
+   "cash": 9741.638468316325,
+   "closes": {
+    "AVAXUSDT": 306.2706044102796,
+    "BTCUSDT": 116.34986063075058,
+    "DOGEUSDT": 1380.7613305855093,
+    "ETHUSDT": 426.30477570787264,
+    "LINKUSDT": 1377.3095519597407,
+    "SOLUSDT": 84.06673133122294,
+    "XRPUSDT": 313.8010698769434
+   },
+   "date": "2025-10-29",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 9741.638468316325,
+   "selector_value": 7714.107262144482,
+   "skipped": false,
+   "trend_timed_value": 7446.621049280734
+  },
+  {
+   "bh_basket_value": 10182.24135944789,
+   "bh_btc_value": 12199.46584219144,
+   "cash": 9741.638468316325,
+   "closes": {
+    "AVAXUSDT": 316.0840098326229,
+    "BTCUSDT": 126.09695816283404,
+    "DOGEUSDT": 1353.125417414973,
+    "ETHUSDT": 424.383419725301,
+    "LINKUSDT": 1359.3299745051672,
+    "SOLUSDT": 81.90921467795211,
+    "XRPUSDT": 313.26698244665937
+   },
+   "date": "2025-10-30",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 9741.638468316325,
+   "selector_value": 7714.107262144482,
+   "skipped": false,
+   "trend_timed_value": 7446.621049280734
+  },
+  {
+   "bh_basket_value": 10140.76285817086,
+   "bh_btc_value": 12020.398912877841,
+   "cash": 9741.638468316325,
+   "closes": {
+    "AVAXUSDT": 320.52481424238863,
+    "BTCUSDT": 124.2460742482357,
+    "DOGEUSDT": 1308.5215125819059,
+    "ETHUSDT": 407.018093391708,
+    "LINKUSDT": 1327.7694213531618,
+    "SOLUSDT": 88.69820307121006,
+    "XRPUSDT": 320.2974766513838
+   },
+   "date": "2025-10-31",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 9741.638468316325,
+   "selector_value": 7714.107262144482,
+   "skipped": false,
+   "trend_timed_value": 7446.621049280734
+  },
+  {
+   "bh_basket_value": 10217.334493303177,
+   "bh_btc_value": 12547.81981314715,
+   "cash": 9741.638468316325,
+   "closes": {
+    "AVAXUSDT": 323.23005122333393,
+    "BTCUSDT": 129.6976384442232,
+    "DOGEUSDT": 1417.3175191474786,
+    "ETHUSDT": 423.74837191626915,
+    "LINKUSDT": 1234.4837013007502,
+    "SOLUSDT": 84.69331676804754,
+    "XRPUSDT": 310.6153752994673
+   },
+   "date": "2025-11-01",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 9741.638468316325,
+   "selector_value": 7714.107262144482,
+   "skipped": false,
+   "trend_timed_value": 7446.621049280734
+  },
+  {
+   "bh_basket_value": 10274.318174744665,
+   "bh_btc_value": 13049.625359280959,
+   "cash": 9741.638468316325,
+   "closes": {
+    "AVAXUSDT": 322.9673692364115,
+    "BTCUSDT": 134.88443545445577,
+    "DOGEUSDT": 1549.446875457278,
+    "ETHUSDT": 428.2032189932031,
+    "LINKUSDT": 1159.5498424700857,
+    "SOLUSDT": 76.1087886167693,
+    "XRPUSDT": 292.73254742546186
+   },
+   "date": "2025-11-02",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 9741.638468316325,
+   "selector_value": 7698.679047620193,
+   "skipped": false,
+   "trend_timed_value": 7431.727807182173
+  },
+  {
+   "bh_basket_value": 10255.809491539118,
+   "bh_btc_value": 12170.731563061545,
+   "cash": 9741.638468316325,
+   "closes": {
+    "AVAXUSDT": 322.93403175026214,
+    "BTCUSDT": 125.79995292996962,
+    "DOGEUSDT": 1552.5934933168876,
+    "ETHUSDT": 447.21452212828234,
+    "LINKUSDT": 1155.9426905620332,
+    "SOLUSDT": 76.43219659855707,
+    "XRPUSDT": 292.4924172824185
+   },
+   "date": "2025-11-03",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 9741.638468316325,
+   "selector_value": 7165.811767928538,
+   "skipped": false,
+   "trend_timed_value": 6917.33766888356
+  },
+  {
+   "bh_basket_value": 10312.473692864354,
+   "bh_btc_value": 12366.406716099778,
+   "cash": 9741.638468316325,
+   "closes": {
+    "AVAXUSDT": 332.63441233437436,
+    "BTCUSDT": 127.82250390927841,
+    "DOGEUSDT": 1595.9821138122525,
+    "ETHUSDT": 447.5029069898851,
+    "LINKUSDT": 1172.764960308673,
+    "SOLUSDT": 75.40074868752787,
+    "XRPUSDT": 291.724818891529
+   },
+   "date": "2025-11-04",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 9741.638468316325,
+   "selector_value": 7165.811767928538,
+   "skipped": false,
+   "trend_timed_value": 6917.33766888356
+  },
+  {
+   "bh_basket_value": 10316.623645592817,
+   "bh_btc_value": 11803.82337304771,
+   "cash": 9741.638468316325,
+   "closes": {
+    "AVAXUSDT": 340.023304548974,
+    "BTCUSDT": 122.00749125301928,
+    "DOGEUSDT": 1631.4187555648257,
+    "ETHUSDT": 436.2189340019269,
+    "LINKUSDT": 1130.9893036694937,
+    "SOLUSDT": 78.89305205101779,
+    "XRPUSDT": 303.54138431220105
+   },
+   "date": "2025-11-05",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 9741.638468316325,
+   "selector_value": 7165.811767928538,
+   "skipped": false,
+   "trend_timed_value": 6917.33766888356
+  },
+  {
+   "bh_basket_value": 10438.746567202103,
+   "bh_btc_value": 11948.74887746893,
+   "cash": 9741.638468316325,
+   "closes": {
+    "AVAXUSDT": 341.58739166005614,
+    "BTCUSDT": 123.50548022271073,
+    "DOGEUSDT": 1700.4286684881818,
+    "ETHUSDT": 449.7080040488187,
+    "LINKUSDT": 1136.5744888055726,
+    "SOLUSDT": 81.37876364599109,
+    "XRPUSDT": 330.32328332700973
+   },
+   "date": "2025-11-06",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 9741.638468316325,
+   "selector_value": 7165.811767928538,
+   "skipped": false,
+   "trend_timed_value": 6917.33766888356
+  },
+  {
+   "bh_basket_value": 10530.772233958061,
+   "bh_btc_value": 12134.714747698617,
+   "cash": 9741.638468316325,
+   "closes": {
+    "AVAXUSDT": 356.8116560625046,
+    "BTCUSDT": 125.42767344505394,
+    "DOGEUSDT": 1790.8126528107775,
+    "ETHUSDT": 428.2816047548021,
+    "LINKUSDT": 1221.3587033509573,
+    "SOLUSDT": 75.92857242574036,
+    "XRPUSDT": 337.37397731870044
+   },
+   "date": "2025-11-07",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 9741.638468316325,
+   "selector_value": 7165.811767928538,
+   "skipped": false,
+   "trend_timed_value": 6917.33766888356
+  },
+  {
+   "bh_basket_value": 10607.073023675553,
+   "bh_btc_value": 12762.15400305264,
+   "cash": 9741.638468316325,
+   "closes": {
+    "AVAXUSDT": 354.1496653961519,
+    "BTCUSDT": 131.91305424414338,
+    "DOGEUSDT": 1847.6023878481337,
+    "ETHUSDT": 425.138174943266,
+    "LINKUSDT": 1209.714206412231,
+    "SOLUSDT": 74.79924613781986,
+    "XRPUSDT": 349.98680843072253
+   },
+   "date": "2025-11-08",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 9741.638468316325,
+   "selector_value": 7165.811767928538,
+   "skipped": false,
+   "trend_timed_value": 6917.33766888356
+  },
+  {
+   "bh_basket_value": 10660.679591778953,
+   "bh_btc_value": 12794.298921642057,
+   "cash": 9741.638468316325,
+   "closes": {
+    "AVAXUSDT": 361.461470236315,
+    "BTCUSDT": 132.24531276324174,
+    "DOGEUSDT": 1847.8202984439474,
+    "ETHUSDT": 444.70641698771425,
+    "LINKUSDT": 1187.5489505166238,
+    "SOLUSDT": 73.78844964548054,
+    "XRPUSDT": 375.43274072048496
+   },
+   "date": "2025-11-09",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 9741.638468316325,
+   "selector_value": 7165.811767928538,
+   "skipped": false,
+   "trend_timed_value": 6917.33766888356
+  },
+  {
+   "bh_basket_value": 10648.98983997727,
+   "bh_btc_value": 12924.880501296422,
+   "cash": 9741.638468316325,
+   "closes": {
+    "AVAXUSDT": 375.2289617157826,
+    "BTCUSDT": 133.5950390708942,
+    "DOGEUSDT": 1816.6493342041342,
+    "ETHUSDT": 433.6825421000381,
+    "LINKUSDT": 1153.9655150388603,
+    "SOLUSDT": 74.0221167453044,
+    "XRPUSDT": 388.67659564605174
+   },
+   "date": "2025-11-10",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 9741.638468316325,
+   "selector_value": 7151.480144392681,
+   "skipped": false,
+   "trend_timed_value": 6903.502993545792
+  },
+  {
+   "bh_basket_value": 10554.694074445026,
+   "bh_btc_value": 13166.751504215268,
+   "cash": 9741.638468316325,
+   "closes": {
+    "AVAXUSDT": 359.9323981232299,
+    "BTCUSDT": 136.0950827720192,
+    "DOGEUSDT": 1750.316667489196,
+    "ETHUSDT": 388.6104340445096,
+    "LINKUSDT": 1174.2294942010035,
+    "SOLUSDT": 73.00780369663717,
+    "XRPUSDT": 400.407382303646
+   },
+   "date": "2025-11-11",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 9741.638468316325,
+   "selector_value": 7285.310060630975,
+   "skipped": false,
+   "trend_timed_value": 7032.6923653573685
+  },
+  {
+   "bh_basket_value": 10453.334221370724,
+   "bh_btc_value": 14515.204422384593,
+   "cash": 8238.638468316325,
+   "closes": {
+    "AVAXUSDT": 357.21992766603717,
+    "BTCUSDT": 150.0330545985303,
+    "DOGEUSDT": 1581.570587262272,
+    "ETHUSDT": 372.8608105129416,
+    "LINKUSDT": 1183.8295919968464,
+    "SOLUSDT": 72.61402653450388,
+    "XRPUSDT": 386.7262420107466
+   },
+   "date": "2025-11-12",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    },
+    {
+     "action": "enter",
+     "reason": "connors_signal",
+     "symbol": "DOGEUSDT"
+    }
+   ],
+   "fills": [
+    {
+     "cost": 3.0,
+     "fill_price": 1582.361372555903,
+     "modeled_price": 1581.570587262272,
+     "shares": 0.9479503392939445,
+     "side": "BUY",
+     "symbol": "DOGEUSDT"
+    }
+   ],
+   "n_open": 1,
+   "portfolio_value": 9737.88884312892,
+   "selector_value": 8031.424059052007,
+   "skipped": false,
+   "trend_timed_value": 7752.93490503143
+  },
+  {
+   "bh_basket_value": 10531.462509378516,
+   "bh_btc_value": 14801.910437790197,
+   "cash": 8238.638468316325,
+   "closes": {
+    "AVAXUSDT": 383.02639170328666,
+    "BTCUSDT": 152.9965250403754,
+    "DOGEUSDT": 1581.5221597512004,
+    "ETHUSDT": 401.28761908291784,
+    "LINKUSDT": 1194.753565033327,
+    "SOLUSDT": 73.33991550864427,
+    "XRPUSDT": 381.50435484879745
+   },
+   "date": "2025-11-13",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_exit_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 1,
+   "portfolio_value": 9737.842936253368,
+   "selector_value": 8190.061686397609,
+   "skipped": false,
+   "trend_timed_value": 7906.071782035565
+  },
+  {
+   "bh_basket_value": 10501.952297734177,
+   "bh_btc_value": 16096.050497285198,
+   "cash": 8238.638468316325,
+   "closes": {
+    "AVAXUSDT": 369.74728272115317,
+    "BTCUSDT": 166.3731045603255,
+    "DOGEUSDT": 1535.261478020521,
+    "ETHUSDT": 395.5220568459693,
+    "LINKUSDT": 1176.8262865226,
+    "SOLUSDT": 68.17722911936357,
+    "XRPUSDT": 370.76292356155983
+   },
+   "date": "2025-11-14",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_exit_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 1,
+   "portfolio_value": 9693.990107310801,
+   "selector_value": 8906.123775993978,
+   "skipped": false,
+   "trend_timed_value": 8597.304461045258
+  },
+  {
+   "bh_basket_value": 10482.714744803932,
+   "bh_btc_value": 15785.220790259134,
+   "cash": 8238.638468316325,
+   "closes": {
+    "AVAXUSDT": 388.34842408117214,
+    "BTCUSDT": 163.16028515744,
+    "DOGEUSDT": 1543.0447170694483,
+    "ETHUSDT": 376.79128467584985,
+    "LINKUSDT": 1195.525029553233,
+    "SOLUSDT": 65.55518823407809,
+    "XRPUSDT": 366.22196396701617
+   },
+   "date": "2025-11-15",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_exit_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 1,
+   "portfolio_value": 9701.368231408038,
+   "selector_value": 8734.138241747736,
+   "skipped": false,
+   "trend_timed_value": 8431.282515022458
+  },
+  {
+   "bh_basket_value": 10470.647159274551,
+   "bh_btc_value": 15296.6998900817,
+   "cash": 8238.638468316325,
+   "closes": {
+    "AVAXUSDT": 373.34854591619785,
+    "BTCUSDT": 158.110801818727,
+    "DOGEUSDT": 1542.4422302007404,
+    "ETHUSDT": 369.21807520307925,
+    "LINKUSDT": 1214.848794401446,
+    "SOLUSDT": 69.23742973021027,
+    "XRPUSDT": 382.6754669650638
+   },
+   "date": "2025-11-16",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_exit_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 1,
+   "portfolio_value": 9700.797103776426,
+   "selector_value": 8463.834193877481,
+   "skipped": false,
+   "trend_timed_value": 8170.351244017953
+  },
+  {
+   "bh_basket_value": 10508.551920698725,
+   "bh_btc_value": 15812.673788447717,
+   "cash": 8238.638468316325,
+   "closes": {
+    "AVAXUSDT": 380.59424671580683,
+    "BTCUSDT": 163.44404672608653,
+    "DOGEUSDT": 1485.6724334657918,
+    "ETHUSDT": 389.90389600089713,
+    "LINKUSDT": 1208.0297368614779,
+    "SOLUSDT": 72.77343249715507,
+    "XRPUSDT": 394.136737694533
+   },
+   "date": "2025-11-17",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_exit_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 1,
+   "portfolio_value": 9646.982155699883,
+   "selector_value": 8749.328291004285,
+   "skipped": false,
+   "trend_timed_value": 8445.945850219845
+  },
+  {
+   "bh_basket_value": 10468.228312119452,
+   "bh_btc_value": 15409.690540463767,
+   "cash": 8116.3180837060645,
+   "closes": {
+    "AVAXUSDT": 365.82909461102196,
+    "BTCUSDT": 159.278703552977,
+    "DOGEUSDT": 1461.6006115171851,
+    "ETHUSDT": 382.50733821591376,
+    "LINKUSDT": 1264.1016523501362,
+    "SOLUSDT": 73.47282012392658,
+    "XRPUSDT": 395.38684123348565
+   },
+   "date": "2025-11-18",
+   "decisions": [
+    {
+     "action": "exit",
+     "reason": "SL",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    },
+    {
+     "action": "enter",
+     "reason": "connors_signal",
+     "symbol": "DOGEUSDT"
+    }
+   ],
+   "fills": [
+    {
+     "cost": 2.7668930168131047,
+     "fill_price": 1459.4082105999094,
+     "modeled_price": 1461.6006115171851,
+     "shares": 0.9479503392939445,
+     "side": "SELL",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "cost": 3.0,
+     "fill_price": 1462.3314118229437,
+     "modeled_price": 1461.6006115171851,
+     "shares": 1.0257592689813717,
+     "side": "BUY",
+     "symbol": "DOGEUSDT"
+    }
+   ],
+   "n_open": 1,
+   "portfolio_value": 9615.568458518657,
+   "selector_value": 8526.353177525207,
+   "skipped": false,
+   "trend_timed_value": 8230.702385607003
+  },
+  {
+   "bh_basket_value": 10414.45114614191,
+   "bh_btc_value": 15652.475211013982,
+   "cash": 8116.3180837060645,
+   "closes": {
+    "AVAXUSDT": 357.99202697506,
+    "BTCUSDT": 161.7881911683338,
+    "DOGEUSDT": 1491.8162920711925,
+    "ETHUSDT": 365.7909774963235,
+    "LINKUSDT": 1189.8033025550899,
+    "SOLUSDT": 75.2759194769905,
+    "XRPUSDT": 363.2238901838866
+   },
+   "date": "2025-11-19",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_exit_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 1,
+   "portfolio_value": 9646.562472915512,
+   "selector_value": 8660.688636226634,
+   "skipped": false,
+   "trend_timed_value": 8360.379770226715
+  },
+  {
+   "bh_basket_value": 10492.955545454988,
+   "bh_btc_value": 15712.056343426657,
+   "cash": 9658.987089707327,
+   "closes": {
+    "AVAXUSDT": 353.71737737773776,
+    "BTCUSDT": 162.40403776836706,
+    "DOGEUSDT": 1507.696630894821,
+    "ETHUSDT": 392.79147291482707,
+    "LINKUSDT": 1223.9286015623286,
+    "SOLUSDT": 78.55579529966252,
+    "XRPUSDT": 372.61213771675324
+   },
+   "date": "2025-11-20",
+   "decisions": [
+    {
+     "action": "exit",
+     "reason": "MR_EXIT",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [
+    {
+     "cost": 3.091521054110745,
+     "fill_price": 1506.9427825793737,
+     "modeled_price": 1507.696630894821,
+     "shares": 1.0257592689813717,
+     "side": "SELL",
+     "symbol": "DOGEUSDT"
+    }
+   ],
+   "n_open": 0,
+   "portfolio_value": 9658.987089707327,
+   "selector_value": 8693.655539509566,
+   "skipped": false,
+   "trend_timed_value": 8392.203548088994
+  },
+  {
+   "bh_basket_value": 10551.52942356278,
+   "bh_btc_value": 17239.06200366173,
+   "cash": 9658.987089707327,
+   "closes": {
+    "AVAXUSDT": 347.0765673335659,
+    "BTCUSDT": 178.1875787318691,
+    "DOGEUSDT": 1460.7134820357219,
+    "ETHUSDT": 394.0710560028389,
+    "LINKUSDT": 1218.5725339536755,
+    "SOLUSDT": 83.43176117626837,
+    "XRPUSDT": 381.6364272423673
+   },
+   "date": "2025-11-21",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 9658.987089707327,
+   "selector_value": 9538.564756151914,
+   "skipped": false,
+   "trend_timed_value": 9207.815587638359
+  },
+  {
+   "bh_basket_value": 10615.262983059696,
+   "bh_btc_value": 18563.4616674774,
+   "cash": 9658.987089707327,
+   "closes": {
+    "AVAXUSDT": 362.45059418497414,
+    "BTCUSDT": 191.87692965586308,
+    "DOGEUSDT": 1422.4920605408365,
+    "ETHUSDT": 406.5816560791837,
+    "LINKUSDT": 1260.1753685085646,
+    "SOLUSDT": 83.41820648742178,
+    "XRPUSDT": 364.9123007598066
+   },
+   "date": "2025-11-22",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 9658.987089707327,
+   "selector_value": 10271.369821395505,
+   "skipped": false,
+   "trend_timed_value": 9915.210680605403
+  },
+  {
+   "bh_basket_value": 10756.644427088573,
+   "bh_btc_value": 20443.279475704392,
+   "cash": 9658.987089707327,
+   "closes": {
+    "AVAXUSDT": 375.8642139175111,
+    "BTCUSDT": 211.3072318169591,
+    "DOGEUSDT": 1461.0048658823525,
+    "ETHUSDT": 382.71100078438013,
+    "LINKUSDT": 1358.6320563077388,
+    "SOLUSDT": 81.53660547427579,
+    "XRPUSDT": 366.79785683094406
+   },
+   "date": "2025-11-23",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 9658.987089707327,
+   "selector_value": 11311.49392383983,
+   "skipped": false,
+   "trend_timed_value": 10919.268541342612
+  },
+  {
+   "bh_basket_value": 10866.270094014628,
+   "bh_btc_value": 21234.82201014871,
+   "cash": 9658.987089707327,
+   "closes": {
+    "AVAXUSDT": 390.3447580478503,
+    "BTCUSDT": 219.48882821970776,
+    "DOGEUSDT": 1480.6296666623166,
+    "ETHUSDT": 405.0779833551916,
+    "LINKUSDT": 1362.6069282121987,
+    "SOLUSDT": 85.816561744442,
+    "XRPUSDT": 363.216128749755
+   },
+   "date": "2025-11-24",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 9658.987089707327,
+   "selector_value": 11749.463212449731,
+   "skipped": false,
+   "trend_timed_value": 11342.051270785027
+  },
+  {
+   "bh_basket_value": 10902.192099096654,
+   "bh_btc_value": 21264.535558072876,
+   "cash": 9658.987089707327,
+   "closes": {
+    "AVAXUSDT": 394.55946968587847,
+    "BTCUSDT": 219.79595543805735,
+    "DOGEUSDT": 1504.7665079798132,
+    "ETHUSDT": 408.3158261352879,
+    "LINKUSDT": 1353.9830158157176,
+    "SOLUSDT": 85.13002118652813,
+    "XRPUSDT": 373.32924967530204
+   },
+   "date": "2025-11-25",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 9658.987089707327,
+   "selector_value": 11765.904049019,
+   "skipped": false,
+   "trend_timed_value": 11357.922022319077
+  },
+  {
+   "bh_basket_value": 10920.603230519373,
+   "bh_btc_value": 21290.534984612237,
+   "cash": 9658.987089707327,
+   "closes": {
+    "AVAXUSDT": 422.5203206577623,
+    "BTCUSDT": 220.06469249941728,
+    "DOGEUSDT": 1500.57414703862,
+    "ETHUSDT": 435.1247959573431,
+    "LINKUSDT": 1354.5689025384024,
+    "SOLUSDT": 82.47281746895092,
+    "XRPUSDT": 344.03306864906455
+   },
+   "date": "2025-11-26",
+   "decisions": [
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "BTCUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "ETHUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "SOLUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "AVAXUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "LINKUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "DOGEUSDT"
+    },
+    {
+     "action": "hold",
+     "reason": "no_entry_signal",
+     "symbol": "XRPUSDT"
+    }
+   ],
+   "fills": [],
+   "n_open": 0,
+   "portfolio_value": 9658.987089707327,
+   "selector_value": 11780.289820914004,
+   "skipped": false,
+   "trend_timed_value": 11371.80896842484
+  }
+ ],
+ "open_positions": []
+}

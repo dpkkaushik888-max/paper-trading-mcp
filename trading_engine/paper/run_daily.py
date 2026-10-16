@@ -63,6 +63,11 @@ from .selector_track import (
     step as selector_step, serialize as selector_serialize,
     deserialize as selector_deserialize,
 )
+from .shadow import (
+    SHADOW_VARIANTS, SHADOW_VALUE_KEYS, step as shadow_step,
+    serialize as shadow_serialize, deserialize as shadow_deserialize,
+)
+from trading_engine.strategies.connors_swing import atr_wilder
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger("s18.run_daily")
@@ -72,6 +77,8 @@ def carry_forward_benchmarks(journal) -> dict[str, float]:
     """Previous day's benchmark values, for days with no market data."""
     keys = ("bh_btc_value", "bh_basket_value", "trend_timed_value", "selector_value")
     out = {k: journal.last_positive_value(k) for k in keys}
+    # Shadows: carry the last positive value; stay 0.0 (not started) before their first run.
+    out.update({k: journal.last_positive_value(k, default=0.0) for k in SHADOW_VALUE_KEYS})
     log.warning("No market data today; carrying benchmarks forward: %s", out)
     return out
 
@@ -301,6 +308,7 @@ def run(dry_run: bool = False, as_of: str | None = None) -> int:
     prev_pf = journal.last_portfolio_value()
     connors_daily_ret = (portfolio / prev_pf - 1.0) if prev_pf > 0 else 0.0
     btc_df = bars_by_sym.get(BH_BTC_SYMBOL)
+    btc_close, sma = None, None
     if btc_df is not None and len(btc_df) >= 1:
         btc_close = float(btc_df["Close"].iloc[-1])
         sma = (float(btc_df["Close"].rolling(timer.ma_window).mean().iloc[-1])
@@ -319,6 +327,9 @@ def run(dry_run: bool = False, as_of: str | None = None) -> int:
         log.warning("BTC close missing; carrying trend_timed_value forward: $%.2f", trend_timed_value)
         selector_value = selector.value  # persisted state, starts at capital; cannot reach 0
 
+    # ── 3e. Shadow variants (paper-only): own books, never touch live cash/positions ─
+    shadow_values = _run_shadows(journal, bars_by_sym, snapshot, btc_close, sma, today)
+
     snap = DaySnapshot(
         date=today,
         portfolio_value=portfolio,
@@ -333,6 +344,7 @@ def run(dry_run: bool = False, as_of: str | None = None) -> int:
         trend_timed_value=trend_timed_value,
         selector_value=selector_value,
         stale_symbols=stale_symbols,
+        **shadow_values,
     )
     journal.append_day(snap)
 
@@ -355,6 +367,34 @@ def run(dry_run: bool = False, as_of: str | None = None) -> int:
         log.info("DRY RUN — journal NOT saved.")
 
     return 0
+
+
+def _run_shadows(journal, bars_by_sym, snapshot, btc_close, btc_sma, today) -> dict[str, float]:
+    """Step every shadow book; a failure is logged and the value carried forward so a
+    shadow can never break or alter the live run."""
+    out: dict[str, float] = {}
+    try:
+        atr_today = {}
+        for sym, df in bars_by_sym.items():
+            atr = atr_wilder(df)
+            atr_today[sym] = float(atr.iloc[-1])
+    except Exception:  # noqa: BLE001
+        log.exception("Shadow ATR computation failed; ATR stops inactive today")
+        atr_today = {}
+    for variant in SHADOW_VARIANTS:
+        key = f"{variant.name}_value"
+        try:
+            book = shadow_deserialize(journal.get_benchmark(variant.name), variant.name)
+            out[key] = shadow_step(book, variant, snapshot, atr_today, btc_close, btc_sma, today)
+            journal.set_benchmark(variant.name, shadow_serialize(book))
+        except Exception:  # noqa: BLE001
+            log.exception("Shadow %s failed; carrying value forward", variant.name)
+            out[key] = journal.last_positive_value(key, default=0.0)
+    log.info("Shadows: %s", ", ".join(f"{k}=${v:.2f}" for k, v in out.items()))
+    # Only keys declared on DaySnapshot reach the journal row (an undeclared variant
+    # must not crash the live snapshot; its book is still persisted in benchmarks).
+    declared = DaySnapshot.__dataclass_fields__
+    return {k: v for k, v in out.items() if k in declared}
 
 
 def _check_halt(journal: Journal) -> str | None:

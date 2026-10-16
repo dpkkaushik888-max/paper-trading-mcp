@@ -101,6 +101,11 @@ class DaySnapshot:
     # Data quality: symbols whose latest bar is > STALE_BAR_DAYS older than the run date
     # (informational only; does not alter signals, sizing, universe or benchmarks).
     stale_symbols: list[str] = field(default_factory=list)
+    # Shadow variant books (paper-only, see paper/shadow.py); 0.0 = not started yet.
+    shadow_atr_stop_value: float = 0.0
+    shadow_btc200_value: float = 0.0
+    shadow_rsi15_value: float = 0.0
+    shadow_combo_value: float = 0.0
 
 
 class Journal:

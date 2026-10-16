@@ -18,6 +18,8 @@ Canonical rule set (Connors "Short Term Trading Strategies That Work", 2009):
 
 from __future__ import annotations
 
+from dataclasses import dataclass
+
 import pandas as pd
 import pandas_ta as ta
 
@@ -35,6 +37,29 @@ ADX_THRESHOLD = 20
 
 MAX_HOLD_DAYS = 10
 SL_PCT = 0.07
+
+
+@dataclass(frozen=True)
+class ConnorsOverrides:
+    """Per-call parameter overrides for shadow (paper-only) variants.
+
+    Defaults equal the frozen S17/S18 rules. The live path never passes an
+    override (``overrides=None`` reads the module constants), so it is unchanged.
+    """
+    rsi_threshold: float = RSI_THRESHOLD
+    sl_pct: float = SL_PCT                 # close-based % stop (emergency stop when ATR stop is set)
+    atr_stop_mult: float | None = None     # close <= entry_price - mult * ATR(14)@entry -> "SL"
+
+
+def atr_wilder(df: pd.DataFrame, length: int = ADX_LENGTH) -> pd.Series:
+    """ATR with Wilder smoothing (RMA = ewm(alpha=1/n, min_periods=n)) of the true range.
+
+    Used only by shadow variants; matches the S-ATR3 analysis definition.
+    """
+    h, l, c = df["High"], df["Low"], df["Close"]
+    tr = pd.concat([h - l, (h - c.shift()).abs(), (l - c.shift()).abs()], axis=1).max(axis=1)
+    tr.iloc[0] = float("nan")
+    return tr.ewm(alpha=1.0 / length, min_periods=length).mean()
 
 
 def precompute_indicators(df: pd.DataFrame) -> pd.DataFrame:
@@ -65,6 +90,7 @@ def long_entry(
     close_today: float,
     ind_row: pd.Series,
     use_adx_filter: bool = True,
+    overrides: ConnorsOverrides | None = None,
 ) -> bool:
     """Return True if long entry conditions met.
 
@@ -77,7 +103,8 @@ def long_entry(
         return False
 
     trend_up = close_today > ind_row["sma_200"]
-    oversold = ind_row["rsi_2"] < RSI_THRESHOLD
+    rsi_threshold = RSI_THRESHOLD if overrides is None else overrides.rsi_threshold
+    oversold = ind_row["rsi_2"] < rsi_threshold
     pullback = close_today < ind_row["sma_5"]
     passed = trend_up and oversold and pullback
 
@@ -96,16 +123,25 @@ def long_exit(
     entry_price: float,
     entry_date: pd.Timestamp,
     today: pd.Timestamp,
+    overrides: ConnorsOverrides | None = None,
+    entry_atr: float | None = None,
 ) -> str | None:
     """Return exit reason or None.
 
     Reasons: "MR_EXIT" (mean reversion complete), "MAX_HOLD", "SL".
+    ``overrides``/``entry_atr`` are for shadow variants only (ATR stop uses the
+    ATR(14) recorded at entry); the live path passes neither.
     """
     if pd.isna(close_today):
         return None
 
+    sl_pct = SL_PCT if overrides is None else overrides.sl_pct
     pnl_pct = (close_today - entry_price) / entry_price
-    if pnl_pct <= -SL_PCT:
+    if pnl_pct <= -sl_pct:
+        return "SL"
+    if (overrides is not None and overrides.atr_stop_mult is not None
+            and entry_atr is not None and not pd.isna(entry_atr)
+            and close_today <= entry_price - overrides.atr_stop_mult * entry_atr):
         return "SL"
 
     if not pd.isna(ind_row.get("sma_5")) and close_today > ind_row["sma_5"]:
