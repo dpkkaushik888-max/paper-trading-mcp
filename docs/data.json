@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-16T09:16:07+00:00",
+  "generated_at": "2026-10-16T11:42:09+00:00",
   "start_date": "2026-04-21",
   "starting_capital": 10000.0,
   "test_days": 90,
@@ -17,7 +17,9 @@
     "losses": 10,
     "portfolio_value": 10725.691270606838,
     "cash": 6188.416934740659,
-    "n_open": 3
+    "n_open": 3,
+    "invested_share_avg": 0.07516372034274257,
+    "days_fully_in_cash": 122
   },
   "bh_btc_metrics": {
     "value": 10822.32938740103,
@@ -1506,5 +1508,132 @@
       "wins": 1,
       "pnl": 152.68821799721218
     }
+  },
+  "shadows": [
+    {
+      "name": "shadow_atr_stop",
+      "start_date": "2026-10-16",
+      "days": 1,
+      "value": 10000.0,
+      "return_pct": 0.0,
+      "sharpe": null,
+      "max_dd_pct": 0.0,
+      "closed_trades": 0,
+      "connors_return_pct": 0.4718085508019776,
+      "connors_sharpe": null,
+      "connors_max_dd_pct": 0.0,
+      "error": null
+    },
+    {
+      "name": "shadow_btc200",
+      "start_date": "2026-10-16",
+      "days": 1,
+      "value": 10000.0,
+      "return_pct": 0.0,
+      "sharpe": null,
+      "max_dd_pct": 0.0,
+      "closed_trades": 0,
+      "connors_return_pct": 0.4718085508019776,
+      "connors_sharpe": null,
+      "connors_max_dd_pct": 0.0,
+      "error": null
+    },
+    {
+      "name": "shadow_rsi15",
+      "start_date": "2026-10-16",
+      "days": 1,
+      "value": 9992.500749625187,
+      "return_pct": -0.07499250374812805,
+      "sharpe": null,
+      "max_dd_pct": 0.07499250374812619,
+      "closed_trades": 0,
+      "connors_return_pct": 0.4718085508019776,
+      "connors_sharpe": null,
+      "connors_max_dd_pct": 0.0,
+      "error": null
+    },
+    {
+      "name": "shadow_combo",
+      "start_date": "2026-10-16",
+      "days": 1,
+      "value": 9992.500749625187,
+      "return_pct": -0.07499250374812805,
+      "sharpe": null,
+      "max_dd_pct": 0.07499250374812619,
+      "closed_trades": 0,
+      "connors_return_pct": 0.4718085508019776,
+      "connors_sharpe": null,
+      "connors_max_dd_pct": 0.0,
+      "error": null
+    }
+  ],
+  "pool": {
+    "available": true,
+    "as_of": "2026-10-16",
+    "lines": [
+      {
+        "id": "shadow_atr_stop",
+        "verdict": "KEEP",
+        "rule": "KEEP",
+        "tier": "insufficient",
+        "holm_adjusted_p": null
+      },
+      {
+        "id": "shadow_btc200",
+        "verdict": "KEEP",
+        "rule": "KEEP",
+        "tier": "insufficient",
+        "holm_adjusted_p": null
+      },
+      {
+        "id": "shadow_rsi15",
+        "verdict": "KEEP",
+        "rule": "KEEP",
+        "tier": "insufficient",
+        "holm_adjusted_p": null
+      },
+      {
+        "id": "shadow_combo",
+        "verdict": "KEEP",
+        "rule": "KEEP",
+        "tier": "insufficient",
+        "holm_adjusted_p": null
+      },
+      {
+        "id": "breakout_s21",
+        "verdict": "KEEP",
+        "rule": "KEEP",
+        "tier": "insufficient",
+        "holm_adjusted_p": null
+      },
+      {
+        "id": "xsec_mom_top3",
+        "verdict": "KEEP",
+        "rule": "KEEP",
+        "tier": "insufficient",
+        "holm_adjusted_p": null
+      },
+      {
+        "id": "basket_sma50_band",
+        "verdict": "KEEP",
+        "rule": "KEEP",
+        "tier": "insufficient",
+        "holm_adjusted_p": null
+      },
+      {
+        "id": "connors_guarded",
+        "verdict": "CONTROL",
+        "rule": "CONTROL",
+        "tier": "insufficient",
+        "holm_adjusted_p": null
+      },
+      {
+        "id": "connors_exit_sma10",
+        "verdict": "KEEP",
+        "rule": "KEEP",
+        "tier": "insufficient",
+        "holm_adjusted_p": null
+      }
+    ]
   }
 }
