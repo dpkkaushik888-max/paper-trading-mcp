@@ -328,7 +328,7 @@ def run(dry_run: bool = False, as_of: str | None = None) -> int:
         selector_value = selector.value  # persisted state, starts at capital; cannot reach 0
 
     # ── 3e. Shadow variants (paper-only): own books, never touch live cash/positions ─
-    shadow_values = _run_shadows(journal, bars_by_sym, snapshot, btc_close, sma, today)
+    shadow_values, shadow_errors = _run_shadows(journal, bars_by_sym, snapshot, btc_close, sma, today)
 
     snap = DaySnapshot(
         date=today,
@@ -345,6 +345,7 @@ def run(dry_run: bool = False, as_of: str | None = None) -> int:
         selector_value=selector_value,
         stale_symbols=stale_symbols,
         **shadow_values,
+        shadow_errors=shadow_errors,
     )
     journal.append_day(snap)
 
@@ -369,10 +370,12 @@ def run(dry_run: bool = False, as_of: str | None = None) -> int:
     return 0
 
 
-def _run_shadows(journal, bars_by_sym, snapshot, btc_close, btc_sma, today) -> dict[str, float]:
+def _run_shadows(journal, bars_by_sym, snapshot, btc_close, btc_sma, today
+                 ) -> tuple[dict[str, float], dict[str, str]]:
     """Step every shadow book; a failure is logged and the value carried forward so a
     shadow can never break or alter the live run."""
     out: dict[str, float] = {}
+    errors: dict[str, str] = {}
     try:
         atr_today = {}
         for sym, df in bars_by_sym.items():
@@ -387,14 +390,15 @@ def _run_shadows(journal, bars_by_sym, snapshot, btc_close, btc_sma, today) -> d
             book = shadow_deserialize(journal.get_benchmark(variant.name), variant.name)
             out[key] = shadow_step(book, variant, snapshot, atr_today, btc_close, btc_sma, today)
             journal.set_benchmark(variant.name, shadow_serialize(book))
-        except Exception:  # noqa: BLE001
+        except Exception as e:  # noqa: BLE001
             log.exception("Shadow %s failed; carrying value forward", variant.name)
+            errors[variant.name] = f"{type(e).__name__}: {e}"[:200]
             out[key] = journal.last_positive_value(key, default=0.0)
     log.info("Shadows: %s", ", ".join(f"{k}=${v:.2f}" for k, v in out.items()))
     # Only keys declared on DaySnapshot reach the journal row (an undeclared variant
     # must not crash the live snapshot; its book is still persisted in benchmarks).
     declared = DaySnapshot.__dataclass_fields__
-    return {k: v for k, v in out.items() if k in declared}
+    return {k: v for k, v in out.items() if k in declared}, errors
 
 
 def _check_halt(journal: Journal) -> str | None:

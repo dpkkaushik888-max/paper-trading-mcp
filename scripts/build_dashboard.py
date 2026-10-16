@@ -168,10 +168,17 @@ def compute_shadow_rows(j: Journal) -> list[dict]:
     starting capital; Connors: previous day's portfolio value, or starting capital)."""
     rows = []
     days = j.days
+    last_errors = (days[-1].get("shadow_errors") or {}) if days else {}
     for v in SHADOW_VARIANTS:
         key = f"{v.name}_value"
         idx = [i for i, d in enumerate(days) if (d.get(key) or 0) > 0]
+        error = last_errors.get(v.name)
         if not idx:
+            if error:  # failing since its first run: still show it, flagged
+                rows.append({"name": v.name, "start_date": None, "days": 0, "value": None,
+                             "return_pct": None, "sharpe": None, "max_dd_pct": None,
+                             "closed_trades": None, "connors_return_pct": None,
+                             "connors_sharpe": None, "connors_max_dd_pct": None, "error": error})
             continue
         first = idx[0]
         book = j.get_benchmark(v.name)
@@ -193,6 +200,7 @@ def compute_shadow_rows(j: Journal) -> list[dict]:
             "connors_return_pct": cm["return_pct"],
             "connors_sharpe": cm["sharpe"],
             "connors_max_dd_pct": cm["max_dd_pct"],
+            "error": error,
         })
     return rows
 
@@ -405,7 +413,7 @@ INDEX_HTML = r"""<!doctype html>
   const shBody = document.querySelector('#shadows tbody');
   shBody.innerHTML = sh.length === 0
     ? '<tr><td colspan="10" class="muted">no shadow data yet; starts at next daily run</td></tr>'
-    : sh.map(r => `<tr><td>${r.name}</td><td>${r.start_date}</td><td class="num">${typeof r.value === 'number' ? '$' + r.value.toFixed(2) : '—'}</td>` +
+    : sh.map(r => `<tr><td>${r.name}${r.error ? ' <span class="neg" title="' + String(r.error).replace(/"/g, '&quot;') + '">⚠ error on last run</span>' : ''}</td><td>${r.start_date || '—'}</td><td class="num">${typeof r.value === 'number' ? '$' + r.value.toFixed(2) : '—'}</td>` +
         `<td class="num ${cls(r.return_pct)}">${fmt(r.return_pct, '%')}</td><td class="num">${fmt(r.sharpe)}</td><td class="num">${fmt(r.max_dd_pct, '%')}</td>` +
         `<td class="num">${r.closed_trades ?? '—'}</td><td class="num ${cls(r.connors_return_pct)}">${fmt(r.connors_return_pct, '%')}</td>` +
         `<td class="num">${fmt(r.connors_sharpe)}</td><td class="num">${fmt(r.connors_max_dd_pct, '%')}</td></tr>`).join('');
@@ -420,7 +428,7 @@ INDEX_HTML = r"""<!doctype html>
     ['Trades', m.trades, ''],
     ['Open', m.n_open + ' / 6', ''],
     ['Avg invested share (time-weighted)', typeof m.invested_share_avg === 'number' ? fmt(m.invested_share_avg * 100, '%', 1) : '—', ''],
-    ['Days fully in cash', m.days_fully_in_cash ?? '—', ''],
+    ['Days fully in cash (skipped days excluded)', m.days_fully_in_cash ?? '—', ''],
   ];
   document.getElementById('kpis').innerHTML = kpis.map(([l, v, c]) =>
     `<div class="kpi"><div class="kpi-label">${l}</div><div class="kpi-value ${c}">${v}</div></div>`

@@ -46,8 +46,9 @@ def test_shadow_rows_same_window_and_finite():
     assert [r["name"] for r in rows] == ["shadow_atr_stop", "shadow_btc200", "shadow_rsi15", "shadow_combo"]
     for r in rows:
         assert r["start_date"] == j.days[0]["date"] and r["days"] == 60
+        assert r["error"] is None  # healthy run: no error flag
         for k, v in r.items():
-            assert v is not None, k
+            assert k == "error" or v is not None, k
             if isinstance(v, float):
                 assert math.isfinite(v), k
     # Connors over the same window equals the live series' own return since start.
@@ -66,4 +67,20 @@ def test_single_day_shadow_renders_dashes_not_nan():
 def test_index_html_has_empty_state_and_labels():
     html = bd.INDEX_HTML
     assert "no shadow data yet; starts at next daily run" in html
-    assert "Avg invested share (time-weighted)" in html and "Days fully in cash" in html
+    assert "Avg invested share (time-weighted)" in html and "Days fully in cash (skipped days excluded)" in html
+
+
+def test_shadow_row_flags_error_on_latest_day():
+    j = _journal([
+        {"date": "a", "portfolio_value": 100.0, "cash": 100.0, "n_open": 0, "closes": {},
+         "shadow_combo_value": 10_000.0, "shadow_errors": {}},
+        {"date": "b", "portfolio_value": 100.0, "cash": 100.0, "n_open": 0, "closes": {},
+         "shadow_combo_value": 10_000.0, "shadow_errors": {"shadow_combo": "KeyError: 'x'",
+                                                          "shadow_btc200": "ValueError: y"}},
+    ])
+    rows = {r["name"]: r for r in bd.compute_shadow_rows(j)}
+    assert rows["shadow_combo"]["error"] == "KeyError: 'x'"
+    assert rows["shadow_btc200"]["value"] is None and rows["shadow_btc200"]["error"]  # never ran OK
+    assert "shadow_rsi15" not in rows
+    json.dumps(bd.build_data_json(j), allow_nan=False)
+    assert "⚠ error on last run" in bd.INDEX_HTML

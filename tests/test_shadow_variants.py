@@ -160,3 +160,38 @@ def test_repair_script_covers_shadows():
             {"date": "c", "shadow_rsi15_value": 0.0}]
     m.repair_days(days)
     assert [d["shadow_rsi15_value"] for d in days] == [0.0, 10_000.0, 10_000.0]
+
+
+# ── Fix-ups: copy-on-load and visible errors ────────────────────────────────
+def test_deserialize_does_not_alias_journal_lists():
+    stored = {"name": "x", "initialized": True, "open_positions": [{"symbol": "A"}], "closed_trades": []}
+    book = shadow.deserialize(stored, "x")
+    book.open_positions.append({"symbol": "B"})
+    book.closed_trades.append({"symbol": "A"})
+    assert stored["open_positions"] == [{"symbol": "A"}] and stored["closed_trades"] == []
+
+
+def test_failed_step_leaves_persisted_book_unchanged(monkeypatch):
+    bars = synthetic_bars()
+    j = replay_live(run_daily, bars, n_days=5)
+    before = json.loads(json.dumps(j.get_benchmark("shadow_rsi15")))
+
+    def half_then_boom(book, *a, **k):
+        book.closed_trades.append({"symbol": "HALF"})
+        book.cash = -1.0
+        raise RuntimeError("mid-step failure")
+    monkeypatch.setattr(run_daily, "shadow_step", half_then_boom)
+    monkeypatch.setattr(run_daily.Journal, "load", classmethod(lambda cls, *a, **k: j))
+    monkeypatch.setattr(run_daily, "fetch_universe", lambda syms: {s: df for s, df in bars.items()})
+    monkeypatch.setattr(run_daily, "_today_utc_date", lambda: "2026-12-01")
+    assert run_daily.run(dry_run=True) == 0
+    assert j.get_benchmark("shadow_rsi15") == before
+    errs = j.days[-1]["shadow_errors"]
+    assert set(errs) == {v.name for v in SHADOW_VARIANTS}
+    assert errs["shadow_rsi15"] == "RuntimeError: mid-step failure"
+    assert j.days[-1]["shadow_rsi15_value"] == j.days[-2]["shadow_rsi15_value"] > 0
+
+
+def test_healthy_run_records_no_shadow_errors():
+    j = replay_live(run_daily, synthetic_bars(), n_days=3)
+    assert all(d["shadow_errors"] == {} for d in j.days)

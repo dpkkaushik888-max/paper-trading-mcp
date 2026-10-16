@@ -10,6 +10,7 @@ Shadows never read or write the live journal cash/positions.
 
 from __future__ import annotations
 
+import copy
 from dataclasses import asdict, dataclass, field
 from typing import Any, Optional
 
@@ -130,5 +131,7 @@ def serialize(book: ShadowBook) -> dict[str, Any]:
 def deserialize(data: dict[str, Any], name: str) -> ShadowBook:
     if not data:
         return ShadowBook(name=name)
+    # Deep copy: journal.get_benchmark returns the stored dict itself, so a step that
+    # fails half-way must not leave a half-applied book in the journal.
     fields = ShadowBook.__dataclass_fields__
-    return ShadowBook(**{k: v for k, v in data.items() if k in fields})
+    return ShadowBook(**{k: copy.deepcopy(v) for k, v in data.items() if k in fields})

@@ -106,6 +106,8 @@ class DaySnapshot:
     shadow_btc200_value: float = 0.0
     shadow_rsi15_value: float = 0.0
     shadow_combo_value: float = 0.0
+    # Shadow series name -> short exception text when its step failed today (value carried).
+    shadow_errors: dict[str, str] = field(default_factory=dict)
 
 
 class Journal:
