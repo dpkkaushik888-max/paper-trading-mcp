@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-16T09:51:37+00:00",
+  "generated_at": "2026-10-16T09:16:07+00:00",
   "start_date": "2026-04-21",
   "starting_capital": 10000.0,
   "test_days": 90,
@@ -17,9 +17,7 @@
     "losses": 10,
     "portfolio_value": 10725.691270606838,
     "cash": 6188.416934740659,
-    "n_open": 3,
-    "invested_share_avg": 0.07516372034274257,
-    "days_fully_in_cash": 122
+    "n_open": 3
   },
   "bh_btc_metrics": {
     "value": 10822.32938740103,
@@ -1508,6 +1506,5 @@
       "wins": 1,
       "pnl": 152.68821799721218
     }
-  },
-  "shadows": []
+  }
 }

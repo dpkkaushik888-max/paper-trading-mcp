@@ -52,13 +52,14 @@ def main(argv=None) -> int:
     n = 0
     for d in days:                                 # chronological (journal appends in order)
         ts = pd.Timestamp(d["date"], tz="UTC")
-        c_hist = closes[closes.index <= ts]
+        # Bars before day D only: the live 00:30 UTC run on D never sees bar D (S33/S34 note).
+        c_hist = closes[closes.index < ts]
         if c_hist.empty:
             d["trend_timed_value"] = timer.cash + timer.shares * (
                 closes.iloc[0] if len(closes) else 0.0)
             continue
         close = float(c_hist.iloc[-1])
-        s_hist = sma[sma.index <= ts]
+        s_hist = sma[sma.index < ts]
         s = float(s_hist.iloc[-1]) if len(s_hist) and not pd.isna(s_hist.iloc[-1]) else None
         d["trend_timed_value"] = trend_step(timer, close, s, d["date"])
         n += 1
