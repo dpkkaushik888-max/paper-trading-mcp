@@ -50,6 +50,7 @@ active lines with `hypothesis.kind != "control"`. Tiers: < 8 trades or < 5 entry
 8–14 indicative, ≥ 15 usable. Seeds = hash(line id, purpose[, bucket]) — stable across days.
 Holm family includes guarded lines (their paired p enters the family); conservative relative to design §5, which
 uses each line's primary p — revisit in C5.
+- Pool-line total return and drawdown are measured from the book's starting capital (journal `benchmarks[<id>].starting_capital`, default 10,000), not from the first marked value; consistent with `scripts/pool_backtest.py` (fix 2026-10-16).
 
 ## Verdict rules (`pool/verdicts.py`; recommendations, in precedence order)
 1. LIVE (`live_s18`), NOT-STEPPED (status candidate), CONTROL (control line; shows `guard_effect` =

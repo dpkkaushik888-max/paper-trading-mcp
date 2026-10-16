@@ -21,6 +21,7 @@ from typing import Any, Optional
 
 import numpy as np
 
+from ..config import STARTING_CAPITAL
 from .registry import LINES, LIVE_ID, LineSpec
 
 SCHEMA_VERSION = 1
@@ -395,6 +396,9 @@ def _score_line(spec: Optional[LineSpec], jd: dict, baselines_dir, history, day_
     s.years_beating_s18 = _years(base)
     vals = [v for _, v, _ in path]
     if vals:
+        if spec is not None:   # pool line: measure from the book's starting capital, not the first marked value
+            cap = (jd.get("benchmarks", {}).get(spec.id) or {}).get("starting_capital") or STARTING_CAPITAL
+            vals = [float(cap)] + vals
         s.total_return = vals[-1] / vals[0] - 1.0
         s.max_dd = max_drawdown(vals)
         s.current_dd = 1.0 - vals[-1] / max(vals)
