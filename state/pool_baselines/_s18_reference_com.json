@@ -128,10 +128,10 @@
   "win_rate": 0.6183986371379898
  },
  "generated_from": {
-  "dirty": true,
-  "sha": "cb7dd92dabecf9c4ffa6f1ba6841119848ed79f2"
+  "dirty": false,
+  "sha": "7ee42949cee25283724cadf4fbdac22cdc24b853"
  },
- "git_sha": "cb7dd92",
+ "git_sha": "7ee4294",
  "line": "connors_live_params",
  "live_window_us": {
   "buckets": {
