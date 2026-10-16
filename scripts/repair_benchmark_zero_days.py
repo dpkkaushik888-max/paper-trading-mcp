@@ -6,10 +6,18 @@ Usage: python scripts/repair_benchmark_zero_days.py [state/journal.json ...]
 from __future__ import annotations
 import json
 import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+try:  # pool line ids from the registry (stdlib-only module)
+    from trading_engine.paper.pool.registry import LINES
+    _LINE_KEYS = tuple(f"{l.id}_value" for l in LINES)
+except ImportError:
+    _LINE_KEYS = ("shadow_atr_stop_value", "shadow_btc200_value", "shadow_rsi15_value", "shadow_combo_value")
 
 KEYS = ("bh_btc_value", "bh_basket_value", "trend_timed_value", "selector_value",
-        # Shadow series: leading 0.0 = not started yet; untouched (no previous positive value).
-        "shadow_atr_stop_value", "shadow_btc200_value", "shadow_rsi15_value", "shadow_combo_value")
+        # Pool/shadow series: leading 0.0 = not started yet; untouched (no previous positive value).
+        *_LINE_KEYS)
 
 
 def repair_days(days: list[dict]) -> list[tuple[str, str, float]]:

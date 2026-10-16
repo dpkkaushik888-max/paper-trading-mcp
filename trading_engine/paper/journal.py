@@ -108,6 +108,11 @@ class DaySnapshot:
     shadow_combo_value: float = 0.0
     # Shadow series name -> short exception text when its step failed today (value carried).
     shadow_errors: dict[str, str] = field(default_factory=dict)
+    # Strategy pool (S35, paper-only): shared day context, LineDay per line id (incl. the
+    # read-only live_s18), and line id -> short exception text. Empty on pre-pool rows.
+    context: dict = field(default_factory=dict)
+    lines: dict = field(default_factory=dict)
+    pool_errors: dict = field(default_factory=dict)
 
 
 class Journal:

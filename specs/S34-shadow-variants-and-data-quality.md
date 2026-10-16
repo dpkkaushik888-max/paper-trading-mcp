@@ -56,3 +56,11 @@ A shadow never promotes itself. Graduation needs three steps:
 1. An explicit owner decision.
 2. A new spec that changes the live rules.
 3. A **restart of the 90-day clock** per config.py. The frozen test's results are not carried over to a changed strategy.
+
+## Pool registry (C1 of S35)
+The four shadows now live in the strategy-pool registry (`trading_engine/paper/pool/registry.py`) as
+`connors`-family lines with unchanged ids and journal keys (`shadow_*_value`, `benchmarks[shadow_*]`,
+`shadow_errors`). They keep live data handling (`data_guard=False`) and carry a baseline waiver note
+("full-history numbers in this spec"). `paper/shadow.py` is a compatibility shim over `pool/book.step`;
+a parity test pins the new book to the pre-C1 step. Daily rows gain optional `context`, `lines`
+(incl. the read-only `live_s18`) and `pool_errors`. Full design: `specs/S35-strategy-pool.md` (C4).

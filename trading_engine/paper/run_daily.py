@@ -23,6 +23,7 @@ from __future__ import annotations
 import argparse
 import logging
 import sys
+import time
 from datetime import datetime, timezone
 from typing import Any
 
@@ -63,11 +64,15 @@ from .selector_track import (
     step as selector_step, serialize as selector_serialize,
     deserialize as selector_deserialize,
 )
-from .shadow import (
-    SHADOW_VARIANTS, SHADOW_VALUE_KEYS, step as shadow_step,
-    serialize as shadow_serialize, deserialize as shadow_deserialize,
-)
-from trading_engine.strategies.connors_swing import atr_wilder
+from .shadow import SHADOW_VALUE_KEYS
+from .pool import book as pool_book
+from .pool.book import step as pool_step
+from .pool.context import DayContext, build_context
+from .pool.families import make_strategy
+from .pool.live_adapter import live_line_day
+from .pool.registry import LIVE_ID, active_lines
+
+POOL_LINES = active_lines()
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger("s18.run_daily")
@@ -328,7 +333,11 @@ def run(dry_run: bool = False, as_of: str | None = None) -> int:
         selector_value = selector.value  # persisted state, starts at capital; cannot reach 0
 
     # ── 3e. Shadow variants (paper-only): own books, never touch live cash/positions ─
-    shadow_values, shadow_errors = _run_shadows(journal, bars_by_sym, snapshot, btc_close, sma, today)
+    live_args = ([d.__dict__ for d in decisions], [f.__dict__ for f in fills], portfolio,
+                 journal.cash, len(journal.open_positions),
+                 {s: snapshot[s][1].get("rsi_2") for s in snapshot})
+    shadow_values, shadow_errors, context, lines, pool_errors = _run_pool(
+        journal, bars_by_sym, stale_symbols, btc_close, sma, today, live_args)
 
     snap = DaySnapshot(
         date=today,
@@ -346,6 +355,9 @@ def run(dry_run: bool = False, as_of: str | None = None) -> int:
         stale_symbols=stale_symbols,
         **shadow_values,
         shadow_errors=shadow_errors,
+        context=context,
+        lines=lines,
+        pool_errors=pool_errors,
     )
     journal.append_day(snap)
 
@@ -370,35 +382,53 @@ def run(dry_run: bool = False, as_of: str | None = None) -> int:
     return 0
 
 
-def _run_shadows(journal, bars_by_sym, snapshot, btc_close, btc_sma, today
-                 ) -> tuple[dict[str, float], dict[str, str]]:
-    """Step every shadow book; a failure is logged and the value carried forward so a
-    shadow can never break or alter the live run."""
-    out: dict[str, float] = {}
+def _run_pool(journal, bars_by_sym, stale_symbols, btc_close, btc_sma, today, live_args
+              ) -> tuple[dict[str, float], dict[str, str], dict, dict, dict[str, str]]:
+    """Step every active pool line in its own book. A failing line is logged, its value carried
+    forward and its error recorded, so a line can never break or alter the live run."""
+    t0 = time.perf_counter()
     errors: dict[str, str] = {}
     try:
-        atr_today = {}
-        for sym, df in bars_by_sym.items():
-            atr = atr_wilder(df)
-            atr_today[sym] = float(atr.iloc[-1])
-    except Exception:  # noqa: BLE001
-        log.exception("Shadow ATR computation failed; ATR stops inactive today")
-        atr_today = {}
-    for variant in SHADOW_VARIANTS:
-        key = f"{variant.name}_value"
+        ctx = build_context(bars_by_sym, today, stale_symbols, BH_BTC_SYMBOL, btc_close, btc_sma)
+    except Exception as e:  # noqa: BLE001
+        log.exception("Pool context failed; lines run with an unknown context")
+        errors["_context"] = f"{type(e).__name__}: {e}"[:200]
+        ctx = DayContext(btc_close=btc_close, btc_sma200=btc_sma)
+    lines: dict[str, dict] = {}
+    try:
+        lines[LIVE_ID] = live_line_day(*live_args)   # read-only view of today's live decisions
+    except Exception as e:  # noqa: BLE001
+        log.exception("Live LineDay failed")
+        errors[LIVE_ID] = f"{type(e).__name__}: {e}"[:200]
+    snapshots: dict[tuple, dict] = {}   # indicators once per (family, indicator key)
+    prev_lines = journal.days[-1].get("lines", {}) if journal.days else {}
+    for spec in POOL_LINES:
         try:
-            book = shadow_deserialize(journal.get_benchmark(variant.name), variant.name)
-            out[key] = shadow_step(book, variant, snapshot, atr_today, btc_close, btc_sma, today)
-            journal.set_benchmark(variant.name, shadow_serialize(book))
+            strat = make_strategy(spec)
+            key = (spec.family, getattr(strat, "indicator_key", spec.id))
+            if key not in snapshots:
+                snap = {}
+                for sym, df in bars_by_sym.items():
+                    ind = strat.indicators(df)
+                    snap[sym] = (float(df["Close"].iloc[-1]), ind.loc[df.index[-1]])
+                snapshots[key] = snap
+            # Copies of rows: a line can never mutate another line's inputs.
+            snap = {s: (c, row.copy()) for s, (c, row) in snapshots[key].items()}
+            book = pool_book.deserialize(journal.get_benchmark(spec.id), spec.id)
+            lines[spec.id] = pool_step(book, spec, strat, snap, ctx, today)
+            journal.set_benchmark(spec.id, pool_book.serialize(book))
         except Exception as e:  # noqa: BLE001
-            log.exception("Shadow %s failed; carrying value forward", variant.name)
-            errors[variant.name] = f"{type(e).__name__}: {e}"[:200]
-            out[key] = journal.last_positive_value(key, default=0.0)
-    log.info("Shadows: %s", ", ".join(f"{k}=${v:.2f}" for k, v in out.items()))
-    # Only keys declared on DaySnapshot reach the journal row (an undeclared variant
-    # must not crash the live snapshot; its book is still persisted in benchmarks).
-    declared = DaySnapshot.__dataclass_fields__
-    return {k: v for k, v in out.items() if k in declared}, errors
+            log.exception("Pool line %s failed; carrying value forward", spec.id)
+            errors[spec.id] = f"{type(e).__name__}: {e}"[:200]
+            prev = (prev_lines.get(spec.id) or {}).get("value") or journal.last_positive_value(
+                f"{spec.id}_value", default=0.0)
+            lines[spec.id] = {"value": prev, "error": True}
+    log.info("Pool: %d lines in %.2fs: %s", len(POOL_LINES), time.perf_counter() - t0,
+             ", ".join(f"{k}=${v['value']:.2f}" for k, v in lines.items()))
+    # S34 compatibility: shadow_*_value / shadow_errors for the declared shadow keys only.
+    shadow_values = {f"{k}_value": v["value"] for k, v in lines.items() if f"{k}_value" in SHADOW_VALUE_KEYS}
+    shadow_errors = {k: v for k, v in errors.items() if f"{k}_value" in SHADOW_VALUE_KEYS}
+    return shadow_values, shadow_errors, ctx.to_dict(), lines, errors
 
 
 def _check_halt(journal: Journal) -> str | None:

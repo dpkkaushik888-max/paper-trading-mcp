@@ -29,10 +29,12 @@ def test_live_series_identical_to_master_golden():
 
 def test_no_override_shadow_reproduces_live_trades(monkeypatch):
     base = ShadowVariant("shadow_baseline")
-    monkeypatch.setattr(run_daily, "SHADOW_VARIANTS", (base,))
+    monkeypatch.setattr(run_daily, "POOL_LINES", (base.to_spec(),))
     j = replay_live(run_daily, synthetic_bars())
     book = j.get_benchmark("shadow_baseline")
-    assert book["closed_trades"] == [t.__dict__ for t in j.closed_trades]
+    live = [t.__dict__ for t in j.closed_trades]
+    # Pool books add per-trade context (entry_ctx/exit_ctx/mae/mfe); compare the live fields.
+    assert [{k: t[k] for k in live[0]} for t in book["closed_trades"]] == live
     assert book["cash"] == j.cash
     assert book["value"] == j.days[-1]["portfolio_value"]
 
@@ -40,7 +42,7 @@ def test_no_override_shadow_reproduces_live_trades(monkeypatch):
 def test_shadow_failure_never_affects_live(monkeypatch):
     def boom(*a, **k):
         raise RuntimeError("shadow bug")
-    monkeypatch.setattr(run_daily, "shadow_step", boom)
+    monkeypatch.setattr(run_daily, "pool_step", boom)
     j = replay_live(run_daily, synthetic_bars())
     assert live_signature(j) == json.loads(GOLDEN_PATH.read_text())
     assert all(j.days[-1][k] == 0.0 for k in SHADOW_VALUE_KEYS)
@@ -180,7 +182,7 @@ def test_failed_step_leaves_persisted_book_unchanged(monkeypatch):
         book.closed_trades.append({"symbol": "HALF"})
         book.cash = -1.0
         raise RuntimeError("mid-step failure")
-    monkeypatch.setattr(run_daily, "shadow_step", half_then_boom)
+    monkeypatch.setattr(run_daily, "pool_step", half_then_boom)
     monkeypatch.setattr(run_daily.Journal, "load", classmethod(lambda cls, *a, **k: j))
     monkeypatch.setattr(run_daily, "fetch_universe", lambda syms: {s: df for s, df in bars.items()})
     monkeypatch.setattr(run_daily, "_today_utc_date", lambda: "2026-12-01")

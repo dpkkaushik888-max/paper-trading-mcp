@@ -1,7 +1,7 @@
 yfinance>=0.2.36
 # pandas 3.0.x was yanked from PyPI for datetime segfaults — cap below it (pandas-ta needs >=2.3.2).
 pandas>=2.3.2,<3.0
-pandas-ta>=0.3.14b1
+pandas-ta==0.4.71b0  # pinned (S35 owner ruling): Connors pool families depend on its indicators
 scikit-learn>=1.4.0
 lightgbm>=4.0.0
 xgboost>=2.0.0
