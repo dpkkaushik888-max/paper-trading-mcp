@@ -2,14 +2,15 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, fields
+from datetime import date
 from types import MappingProxyType
 from typing import Mapping, Optional
 
 LIVE_ID = "live_s18"
 MAX_ACTIVE = 10
-# Lines registered on/before this date (the S34 shadows) are waived from the baseline rule by note.
-BASELINE_WAIVER_UNTIL = "2026-10-16"
+# journal.benchmarks keys written by run_daily for the live benchmarks (mirrored; a line id may never shadow one).
+LIVE_BENCHMARK_KEYS = ("bh_btc", "bh_basket", "trend_timed_btc", "regime_selector")
 HYPOTHESIS_KINDS = ("beats_live", "reduces_dd_in", "earns_when_live_idle")
 
 
@@ -39,6 +40,11 @@ class LineSpec:
     baseline: Optional[str] = None   # state/pool_baselines/<id>.json
     retired_on: Optional[str] = None
     note: str = ""
+    baseline_waiver: Optional[str] = None   # explicit reason an active line may run without a baseline
+
+    def __post_init__(self):
+        # Immutable params even when a plain dict is passed.
+        object.__setattr__(self, "params", MappingProxyType(dict(self.params)))
 
 
 def _p(**kw) -> Mapping:
@@ -46,7 +52,7 @@ def _p(**kw) -> Mapping:
 
 
 _S34 = dict(family="connors", registered_on="2026-10-16", baseline=None,
-            note="S34 shadow; full-history numbers in specs/S34",
+            baseline_waiver="S34 shadow registered before the pool; full-history numbers in specs/S34",
             # S34 shadows keep live data handling (no data guard) so their series is unchanged.
             book=BookParams(data_guard=False))
 BEATS_LIVE = Hypothesis("beats_live")
@@ -61,20 +67,41 @@ LINES: tuple[LineSpec, ...] = (
 )
 
 
+def _value_fields() -> set[str]:
+    from ..journal import DaySnapshot   # lazy: avoids an import cycle
+    return {f.name for f in fields(DaySnapshot) if f.name.endswith("_value")}
+
+
+def _is_iso_date(s) -> bool:
+    try:
+        return isinstance(s, str) and date.fromisoformat(s).isoformat() == s
+    except ValueError:
+        return False
+
+
 def validate(lines: tuple[LineSpec, ...]) -> None:
     ids = [l.id for l in lines]
     dupes = sorted({i for i in ids if ids.count(i) > 1})
     if dupes:
         raise ValueError(f"duplicate line ids: {dupes}")
-    if LIVE_ID in ids:
-        raise ValueError(f"{LIVE_ID} is the live line and cannot be registered")
+    value_fields = _value_fields()
+    for l in lines:
+        if l.id == LIVE_ID:
+            raise ValueError(f"{LIVE_ID} is the live line and cannot be registered")
+        if l.id in LIVE_BENCHMARK_KEYS:
+            raise ValueError(f"{l.id}: reserved live benchmark key")
+        # A line's id may not be, or write over, a DaySnapshot *_value field (S34 shadow_* keys are declared for them).
+        if l.id in value_fields or (f"{l.id}_value" in value_fields and not l.id.startswith("shadow_")):
+            raise ValueError(f"{l.id}: collides with a DaySnapshot *_value field")
+        if not _is_iso_date(l.registered_on):
+            raise ValueError(f"{l.id}: registered_on {l.registered_on!r} is not an ISO date")
     active = [l for l in lines if l.status == "active"]
     if len(active) > MAX_ACTIVE:
         raise ValueError(f"{len(active)} active lines > MAX_ACTIVE={MAX_ACTIVE}")
     for l in active:
         if l.hypothesis is None or l.hypothesis.kind not in HYPOTHESIS_KINDS:
             raise ValueError(f"{l.id}: active line needs a primary hypothesis")
-        if l.baseline is None and (l.registered_on > BASELINE_WAIVER_UNTIL or not l.note):
+        if l.baseline is None and not l.baseline_waiver:
             raise ValueError(f"{l.id}: active line registered {l.registered_on} has no baseline")
 
 

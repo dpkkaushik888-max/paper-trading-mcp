@@ -109,7 +109,7 @@ def test_failing_line_isolated(monkeypatch):
     ref = replay_live(run_daily, synthetic_bars(), n_days=10)
     good = ref.days[-1][f"{ok.id}_value"]
     bad = LineSpec("boom_line", "no_such_family", {}, registered_on="2026-10-16",
-                   hypothesis=Hypothesis("beats_live"), note="test")
+                   hypothesis=Hypothesis("beats_live"), baseline_waiver="test")
     monkeypatch.setattr(run_daily, "POOL_LINES", (bad, ok))
     j = replay_live(run_daily, synthetic_bars(), n_days=10)
     assert live_signature(j) == live_signature(ref)
@@ -178,13 +178,102 @@ def test_context_gap200_and_trend():
 # (h) registry validation.
 def test_registry_validation():
     hyp = Hypothesis("beats_live")
-    a = LineSpec("x", "connors", {}, registered_on="2026-10-16", hypothesis=hyp, note="waived")
+    a = LineSpec("x", "connors", {}, registered_on="2026-10-16", hypothesis=hyp, baseline_waiver="waived")
     with pytest.raises(ValueError, match="duplicate"):
         validate((a, a))
     with pytest.raises(ValueError, match="baseline"):
         validate((LineSpec("y", "connors", {}, registered_on="2026-10-17", hypothesis=hyp),))
     with pytest.raises(ValueError, match="hypothesis"):
-        validate((LineSpec("z", "connors", {}, registered_on="2026-10-16", note="n"),))
+        validate((LineSpec("z", "connors", {}, registered_on="2026-10-16", baseline_waiver="n"),))
+    with pytest.raises(ValueError, match="baseline"):   # a note is not a waiver
+        validate((LineSpec("w", "connors", {}, registered_on="2026-10-16", hypothesis=hyp, note="n"),))
     validate((LineSpec("y", "connors", {}, registered_on="2026-10-17", hypothesis=hyp, baseline="b.json"),))
     assert [l.id for l in LINES] == ["shadow_atr_stop", "shadow_btc200", "shadow_rsi15", "shadow_combo"]
     assert LINES[1].hypothesis == Hypothesis("reduces_dd_in", "below200")
+
+
+@pytest.mark.parametrize("bad_id", [LIVE_ID, "bh_btc", "bh_basket", "trend_timed_btc", "regime_selector",
+                                    "bh_btc_value", "portfolio_value", "selector_value", "selector", "trend_timed"])
+def test_registry_rejects_reserved_ids(bad_id):
+    l = LineSpec(bad_id, "connors", {}, registered_on="2026-10-16", hypothesis=Hypothesis("beats_live"), baseline="b")
+    with pytest.raises(ValueError):
+        validate((l,))
+
+
+@pytest.mark.parametrize("reg", ["", "2026-13-01", "16.10.2026", "2026-10-16T00:00", None])
+def test_registry_rejects_bad_registered_on(reg):
+    l = LineSpec("ok_id", "connors", {}, registered_on=reg, hypothesis=Hypothesis("beats_live"), baseline="b")
+    with pytest.raises(ValueError, match="ISO"):
+        validate((l,))
+
+
+def test_params_immutable_from_plain_dict():
+    l = LineSpec("p", "connors", {"rsi_threshold": 15}, registered_on="2026-10-16")
+    with pytest.raises(TypeError):
+        l.params["rsi_threshold"] = 5
+
+
+def test_run_pool_body_has_no_live_mutators():
+    import inspect
+    src = inspect.getsource(run_daily._run_pool)
+    pat = re.compile(r"add_position|close_position|append_day|journal\.cash\s*[-+]?=|journal\.open_positions"
+                     r"|journal\.closed_trades|journal\.save|set_benchmark\((?!spec\.id)")
+    assert [l for l in src.splitlines() if pat.search(l)] == []
+    assert "set_benchmark(spec.id" in src
+
+
+_SPEC = LineSpec("t_line", "connors", {"sl_pct": 0.5, "atr_stop_mult": 3.0}, registered_on="2026-10-16",
+                 hypothesis=Hypothesis("beats_live"), baseline="b", book=BookParams(data_guard=False))
+
+
+def _pos(sym, price=100.0, **kw):
+    return dict(symbol=sym, entry_date="2026-01-01", entry_price=price, shares=10.0, entry_cost=2.0, **kw)
+
+
+def test_step_cap_reached_blocks():
+    b = pool_book.Book(name="t", initialized=True, cash=STARTING_CAPITAL,
+                       open_positions=[_pos(f"S{i}USDT") for i in range(MAX_CONCURRENT - 1)])
+    snap = {s: (100.0, _row()) for s in ("AUSDT", "BUSDT", "CUSDT")}
+    day = pool_book.step(b, _SPEC, ConnorsStrategy(_SPEC.params), snap, DayContext(), "2026-01-03")
+    assert day["entries"] == 1 and day["blocked"]["cap"] == 2 and [s for s, _ in day["blocked_syms"]] == ["BUSDT", "CUSDT"]
+
+
+def test_step_cash_shortfall_continue():
+    b = pool_book.Book(name="t", initialized=True, cash=100.0)
+    snap = {s: (100.0, _row()) for s in ("AUSDT", "BUSDT")}
+    day = pool_book.step(b, _SPEC, ConnorsStrategy(_SPEC.params), snap, DayContext(), "2026-01-03")
+    assert day["entries"] == 0 and day["blocked"]["cash"] == 2 and b.cash == 100.0
+
+
+def test_step_atr_stop_and_catastrophe_stop():
+    # ATR stop: close 80 <= 100 - 3*5 with sl_pct=50% so only the ATR rule fires.
+    b = pool_book.Book(name="t", initialized=True, cash=0.0, open_positions=[_pos("AUSDT", entry_atr=5.0)])
+    pool_book.step(b, _SPEC, ConnorsStrategy(_SPEC.params), {"AUSDT": (80.0, _row(rsi=50, sma_5=200.0))},
+                   DayContext(), "2026-01-03")
+    t = b.closed_trades[0]
+    assert t["reason"] == "SL" and t["exit_price"] == pytest.approx(80.0 * (1 - SLIPPAGE_BPS - SL_SLIPPAGE_BPS))
+    # 25 % catastrophe stop applied by the book (family would not exit: no ATR, sl 50 %).
+    spec = LineSpec("t2", "connors", {"sl_pct": 0.5}, registered_on="2026-10-16", hypothesis=Hypothesis("beats_live"),
+                    baseline="b", book=BookParams(catastrophe_sl=0.25, data_guard=False))
+    b = pool_book.Book(name="t2", initialized=True, cash=0.0, open_positions=[_pos("AUSDT")])
+    pool_book.step(b, spec, ConnorsStrategy(spec.params), {"AUSDT": (75.0, _row(rsi=50, sma_5=200.0))},
+                   DayContext(), "2026-01-03")
+    assert [t["reason"] for t in b.closed_trades] == ["SL"]
+    b = pool_book.Book(name="t2", initialized=True, cash=0.0, open_positions=[_pos("AUSDT")])
+    pool_book.step(b, spec, ConnorsStrategy(spec.params), {"AUSDT": (75.1, _row(rsi=50, sma_5=200.0))},
+                   DayContext(), "2026-01-03")
+    assert b.closed_trades == []
+
+
+def test_failing_line_carries_positive_value_forward(monkeypatch):
+    ok = LINES[2]
+    j = replay_live(run_daily, synthetic_bars(), n_days=10)
+    prev = j.days[-1]["lines"][ok.id]["value"]
+    assert prev > 0
+    monkeypatch.setattr(run_daily, "make_strategy", lambda spec: (_ for _ in ()).throw(RuntimeError("x")))
+    monkeypatch.setattr(run_daily, "POOL_LINES", (ok,))
+    bars = synthetic_bars()
+    out = run_daily._run_pool(j, {s: df.iloc[:-1] for s, df in bars.items()}, [], 1.0, 2.0, "2030-01-01",
+                              ([], [], 1.0, 1.0, 0))
+    assert out[3][ok.id] == {"value": prev, "error": True} and ok.id in out[4]
+    assert out[0][f"{ok.id}_value"] == prev
