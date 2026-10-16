@@ -50,6 +50,7 @@ active lines with `hypothesis.kind != "control"`. Tiers: < 8 trades or < 5 entry
 8–14 indicative, ≥ 15 usable. Seeds = hash(line id, purpose[, bucket]) — stable across days.
 Holm family includes guarded lines (their paired p enters the family); conservative relative to design §5, which
 uses each line's primary p — revisit in C5.
+- Pool-line total return and drawdown are measured from the book's starting capital (journal `benchmarks[<id>].starting_capital`, default 10,000), not from the first marked value; consistent with `scripts/pool_backtest.py` (fix 2026-10-16). The base is prepended only when the path starts on the book's `init_date`; otherwise (re-initialised book, path starting earlier or later) returns are measured from the first marked value. The paired comparison includes the day-1 return from starting capital (paired against live's return over the same day, using the last live date before the path); its `n_days` counts that day, so the 3-common-day minimum is reached one day earlier. Note: on that first paired day the pool line is treated as having held cash until its entries filled, so its day-1 return is entry cost only while live shows its market move over the same bar (owner-pending D3 whether this is the intended baseline).
 
 ## Verdict rules (`pool/verdicts.py`; recommendations, in precedence order)
 1. LIVE (`live_s18`), NOT-STEPPED (status candidate), CONTROL (control line; shows `guard_effect` =
