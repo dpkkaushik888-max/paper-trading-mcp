@@ -57,7 +57,7 @@ def test_block_bootstrap_seeded_and_shapes():
     contiguous = (np.diff(idx, axis=1) % 50 == 1).mean()
     assert 0.7 < contiguous < 0.9   # P(continue block) = 1 - 1/5
     z = sc.block_bootstrap_test(np.full(30, 0.002), B, 1)
-    assert z["ci_lo"] == pytest.approx(0.002) == z["ci_hi"] and z["p_boot"] == 0.0
+    assert z["ci_lo"] == pytest.approx(0.002) == z["ci_hi"] and z["p_boot"] == pytest.approx(2 / (B + 1))
 
 
 def test_sign_test_excludes_ties():
@@ -118,7 +118,7 @@ def test_score_pool_end_to_end(tmp_path):
     assert (s.n_trades, s.n_entry_days, s.tier) == (20, 10, "usable")   # pre-start trade excluded
     assert s.ci_lo <= s.mean_pnl_pct <= s.ci_hi and s.mean_mae_pct == pytest.approx(-0.02)
     assert s.win_post["prior_p"] == 0.6 and s.paired["n_days"] == 54 and s.holm_adjusted_p is not None
-    assert s.years_beating_s18 == 5 and s.mean_exposure == pytest.approx(0.5) and s.signals_90d == 2 * 55   # LineDay rows in the trailing 90 journal days
+    assert s.years_beating_s18 == 5 and s.mean_exposure == pytest.approx(0.5) and s.signals_90d == 2 * 54 and s.lineday_rows_90d == 54   # LineDay rows in the trailing 90 journal days
     assert s.verdict in ("KEEP", "RETIRE-cand", "PROMOTE-cand") and s.auto_sentence.startswith("t_pos: 20 trades")
     ctrl = {l.id: l for l in rep.lines}["t_ctrl"]
     assert ctrl.verdict == "CONTROL" and ctrl.paired is None and ctrl.n_trades == 0
@@ -184,3 +184,69 @@ def test_scoring_failure_lands_in_pool_errors(monkeypatch, tmp_path):
     assert rcs == [0, 0, 0] and live_signature(j) == live_signature(ref)
     assert "scoring exploded" in j.days[-1]["pool_errors"]["_scoring"]
     assert not (tmp_path / "b" / "pool_report.json").exists()
+
+
+# ── C3 fix-ups ──────────────────────────────────────────────────────────────
+def test_trades_before_registered_on_excluded(tmp_path):
+    jd, dates = _synthetic_journal()
+    s = sc.score_pool(jd, tmp_path, {}, B=B, lines=(_LINE,)).lines[0]
+    assert s.n_trades == 20 and all(t >= "2026-01-06" for t in [s.start])
+    late = LineSpec("t_pos", "connors", {}, registered_on=dates[20], hypothesis=Hypothesis("beats_live"),
+                    baseline_waiver="t")
+    s2 = sc.score_pool(jd, tmp_path, {}, B=B, lines=(late,)).lines[0]
+    assert s2.start == dates[20] and s2.n_trades == sum(
+        1 for t in jd["benchmarks"]["t_pos"]["closed_trades"] if t["entry_date"] >= dates[20])
+
+
+def test_holm_with_ties():
+    adj = sc.holm_adjust({"a": 0.02, "b": 0.02, "c": 0.02, "d": 0.5})
+    assert adj == pytest.approx({"a": 0.08, "b": 0.08, "c": 0.08, "d": 0.5})
+    assert sc.holm_adjust({"b": 0.03, "a": 0.03}) == pytest.approx({"a": 0.06, "b": 0.06})
+
+
+def test_holm_family_excludes_control(tmp_path):
+    jd, _ = _synthetic_journal()
+    ld = [d["lines"].get("t_pos") for d in jd["days"]]
+    for d, row in zip(jd["days"], ld):
+        if row:
+            d["lines"]["t_ctrl"] = dict(row)
+    rep = sc.score_pool(jd, tmp_path, {}, B=B, lines=(_LINE, _CTRL))
+    ctrl = {l.id: l for l in rep.lines}["t_ctrl"]
+    assert ctrl.paired is not None and ctrl.holm_adjusted_p is None and [h["id"] for h in rep.holm] == ["t_pos"]
+
+
+def test_seed_stable_across_as_of(tmp_path):
+    jd, dates = _synthetic_journal()
+    a = sc.score_pool(jd, tmp_path, {}, B=B, lines=(_LINE,)).lines[0]
+    nxt = (date.fromisoformat(dates[-1]) + timedelta(days=1)).isoformat()
+    jd["days"].append(dict(jd["days"][-1], date=nxt))   # one more day, same value, no new trade
+    b = sc.score_pool(jd, tmp_path, {}, B=B, lines=(_LINE,)).lines[0]
+    assert (a.ci_lo, a.ci_hi, a.win_post["lo"]) == (b.ci_lo, b.ci_hi, b.win_post["lo"])
+
+
+@pytest.mark.parametrize("p,k", [(None, 10), (0.5, 10), (0.35, 11), (0.2, 21), (0.9, 10)])
+def test_streak_threshold_from_p_backtest(p, k):
+    assert sc.streak_threshold(p) == k
+    pp = 0.5 if p is None else p
+    assert (1 - pp) ** max(k, 1) < 0.01
+
+
+def test_streak_threshold_on_line_score(tmp_path):
+    jd, _ = _synthetic_journal()
+    (tmp_path / "t_pos.json").write_text(json.dumps(dict(full=dict(win_rate=0.35))))
+    s = sc.score_pool(jd, tmp_path, {}, B=B, lines=(_LINE,)).lines[0]
+    assert s.streak_threshold == 11 and s.primary_test_available
+
+
+def test_primary_test_flag_by_hypothesis(tmp_path):
+    jd, _ = _synthetic_journal()
+    dd = LineSpec("t_pos", "connors", {}, registered_on="2026-01-06", baseline_waiver="t",
+                  hypothesis=Hypothesis("reduces_dd_in", "below200"))
+    s = sc.score_pool(jd, tmp_path, {}, B=B, lines=(dd,)).lines[0]
+    assert not s.primary_test_available and s.verdict in ("KEEP", "DORMANT", "HARD-KILL")
+    assert "primary hypothesis test not built (C5)" in s.reasons
+
+
+def test_atomic_report_write_leaves_no_tmp(monkeypatch, tmp_path):
+    _replay_saving(monkeypatch, tmp_path, n_days=1)
+    assert sorted(p.name for p in tmp_path.iterdir()) == ["pool_report.json"]

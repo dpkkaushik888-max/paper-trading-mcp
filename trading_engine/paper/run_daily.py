@@ -22,6 +22,7 @@ from __future__ import annotations
 
 import argparse
 import logging
+import os
 import sys
 import time
 from pathlib import Path
@@ -445,7 +446,13 @@ def _write_pool_report(journal) -> None:
         out = Path(POOL_REPORT_PATH)
         report = score_pool(journal.to_dict(), out.parent / "pool_baselines",
                             load_context_history(out.parent / "pool_context_history.json"))
-        out.write_text(report.to_json())
+        tmp = out.with_name(f".{out.name}.{os.getpid()}.tmp")   # same dir -> os.replace is atomic
+        try:
+            tmp.write_text(report.to_json())
+            os.replace(tmp, out)
+        finally:
+            if tmp.exists():
+                tmp.unlink()
         log.info("Pool report: %d lines scored in %.2fs -> %s", len(report.lines), time.perf_counter() - t0, out)
     except Exception as e:  # noqa: BLE001
         log.exception("Pool scoring failed; live run continues")

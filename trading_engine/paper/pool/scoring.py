@@ -6,7 +6,8 @@ Unit = closed trade, net ``pnl_pct``. Methods (pure numpy, seeded, reproducible 
   baseline); mean analytic a/(a+b), 90 % credible interval from 20 000 seeded numpy Beta draws (no scipy);
 - line vs live: stationary block bootstrap (mean block 5 days) of the mean daily return difference, two-sided
   p = 2 min(P*(mean<=0), P*(mean>=0)); sign test on non-zero days; Holm across active lines at alpha 0.10.
-Seeds = sha256(line id | last journal date | purpose). Verdicts live in ``verdicts.py``.
+Seeds = sha256(line id | purpose [| dimension | bucket]) -- no date, so CIs do not re-jitter daily
+when no new trades arrive. Verdicts live in ``verdicts.py``.
 """
 
 from __future__ import annotations
@@ -88,7 +89,9 @@ def block_bootstrap_test(diff, B: int, seed: int, mean_block: float = MEAN_BLOCK
     idx = stationary_block_indices(len(d), B, mean_block, np.random.default_rng(seed))
     means = d[idx].mean(axis=1)
     lo, hi = _pct_ci(means)
-    p = min(1.0, 2.0 * min(float((means <= 0).mean()), float((means >= 0).mean())))
+    # (count + 1) / (B + 1): a bootstrap p is never exactly 0.
+    le, ge = int((means <= 0).sum()), int((means >= 0).sum())
+    p = min(1.0, 2.0 * min((le + 1) / (B + 1), (ge + 1) / (B + 1)))
     return dict(mean_diff=float(d.mean()), ci_lo=lo, ci_hi=hi, p_boot=p)
 
 
@@ -134,6 +137,23 @@ def max_drawdown(values) -> float:
     return float(np.max((peak - v) / peak))
 
 
+STREAK_FLOOR, STREAK_ALPHA, STREAK_DEFAULT_P = 10, 0.01, 0.5
+
+
+def streak_threshold(p_win: Optional[float]) -> int:
+    """HARD-KILL losing-streak threshold (S35 D2): max(10, smallest k with (1 - p)^k < 0.01), p = baseline
+    full-period win rate (0.5 without a baseline -> k = 7 -> floor 10)."""
+    p = STREAK_DEFAULT_P if p_win is None else min(max(float(p_win), 0.01), 0.99)
+    k = math.floor(math.log(STREAK_ALPHA) / math.log(1.0 - p)) + 1
+    while (1.0 - p) ** k >= STREAK_ALPHA:   # guard float edge cases
+        k += 1
+    return max(STREAK_FLOOR, k)
+
+
+# Primary hypothesis tests built so far (S35 D3); reduces_dd_in / earns_when_live_idle come in C5.
+PRIMARY_TESTS_BUILT = ("beats_live", "control")
+
+
 # ── data model ──────────────────────────────────────────────────────────────
 @dataclass
 class LineScore:
@@ -163,6 +183,8 @@ class LineScore:
     current_consec_losses: int = 0
     signals_90d: int = 0
     lineday_rows_90d: int = 0
+    streak_threshold: int = 10
+    primary_test_available: bool = True
     tier: str = "insufficient"
     ci_lo: Optional[float] = None
     ci_hi: Optional[float] = None
@@ -351,7 +373,7 @@ def _value_fields() -> set[str]:
 def _score_line(spec: Optional[LineSpec], jd: dict, baselines_dir, history, day_ctx, live_path, as_of, B):
     days = jd.get("days", [])
     lid = spec.id if spec else LIVE_ID
-    seed_key = f"{lid}|{as_of}"
+    seed_key = lid   # no as_of: seeds are stable day to day
     if spec is None:
         base = load_baseline(baselines_dir, LIVE_BASELINE)
         s = LineScore(LIVE_ID, family="connors", status="live", hypothesis=None)
@@ -361,6 +383,7 @@ def _score_line(spec: Optional[LineSpec], jd: dict, baselines_dir, history, day_
         s = LineScore(spec.id, family=spec.family, status=spec.status,
                       hypothesis=spec.hypothesis.kind if spec.hypothesis else None,
                       waived=bool(spec.baseline_waiver), registered_on=spec.registered_on)
+        s.primary_test_available = bool(spec.hypothesis) and spec.hypothesis.kind in PRIMARY_TESTS_BUILT
         # S34 shadows (declared DaySnapshot *_value field) count from their first journal day.
         is_s34 = f"{spec.id}_value" in _value_fields()
         path = _path(days, spec.id, None if is_s34 else spec.registered_on)
@@ -382,10 +405,12 @@ def _score_line(spec: Optional[LineSpec], jd: dict, baselines_dir, history, day_
     else:
         s.mean_exposure = _mean((ld or {}).get("exposure") for _, _, ld in path)
     trailing = days[-90:]
-    rows = [(d.get("lines") or {}).get(lid) for d in trailing]
+    rows = [(d.get("lines") or {}).get(lid) for d in trailing if not d.get("skipped")]
     s.lineday_rows_90d = sum(1 for r in rows if r)
     s.signals_90d = int(sum((r or {}).get("signals") or 0 for r in rows))
-    _trade_stats(s, trades, seed_key, B, ((base or {}).get("full") or {}).get("win_rate"))
+    p_backtest = ((base or {}).get("full") or {}).get("win_rate")
+    s.streak_threshold = streak_threshold(p_backtest)
+    _trade_stats(s, trades, seed_key, B, p_backtest)
     if spec is not None:
         s.paired = paired_vs_live(path, live_path, B, stable_seed(seed_key, "paired"))
         if spec.hypothesis and spec.hypothesis.kind == "control" and s.paired:
@@ -410,7 +435,9 @@ def score_pool(journal, baselines_dir, context_history: dict, B: int = B_VERDICT
         s, cond = _score_line(spec, jd, baselines_dir, context_history, day_ctx, live_path, as_of, B)
         scores.append(s)
         cond_table[spec.id] = cond
-    pv = {s.id: s.paired["p_boot"] for s in scores if s.status == "active" and s.paired}
+    # Holm family: active lines with a paired p, control excluded (it measures data handling, not a claim).
+    pv = {s.id: s.paired["p_boot"] for s in scores
+          if s.status == "active" and s.paired and s.hypothesis != "control"}
     adj = holm_adjust(pv)
     holm = []
     for s in scores:
@@ -429,7 +456,7 @@ def score_pool(journal, baselines_dir, context_history: dict, B: int = B_VERDICT
     unpaired = sorted(s.id for s in scores if s.status == "active" and not s.paired)
     if unpaired:
         notes.append(f"no paired test yet (<3 common days with live): {', '.join(unpaired)}")
-    params = dict(B=B, B_cell=min(B, B_CELL), prior_k=PRIOR_K, alpha=ALPHA, mean_block=MEAN_BLOCK,
+    params = dict(B=B, streak_floor=STREAK_FLOOR, streak_alpha=STREAK_ALPHA, dormant="rows>=30 and signals<5*rows/90", B_cell=min(B, B_CELL), prior_k=PRIOR_K, alpha=ALPHA, mean_block=MEAN_BLOCK,
                   ci_level=CI_LEVEL, beta_draws=BETA_DRAWS, bucket_prior_min_n=BUCKET_PRIOR_MIN_N,
                   tiers=dict(insufficient=f"<{MIN_TRADES} trades or <{MIN_ENTRY_DAYS} entry days",
                              indicative=f"{MIN_TRADES}-{USABLE_TRADES - 1}", usable=f">={USABLE_TRADES}"))

@@ -48,7 +48,7 @@ def test_retire_needs_all_three():
 def test_dormant_only_with_full_window():
     assert decide(_ls(lineday_rows_90d=90, signals_90d=4))[0] == "DORMANT"
     assert decide(_ls(lineday_rows_90d=90, signals_90d=5))[0] == "KEEP"
-    assert decide(_ls(lineday_rows_90d=40, signals_90d=0))[0] == "KEEP"
+    assert decide(_ls(lineday_rows_90d=29, signals_90d=0))[0] == "KEEP"     # < 30 rows: not evaluated
 
 
 def test_promote_and_its_failures():
@@ -56,7 +56,8 @@ def test_promote_and_its_failures():
     assert decide(_promo(paired=_paired(0.001, 0.0002, 0.002, 0.002, -0.0001)))[0] != "PROMOTE-cand"  # halves
     assert decide(_promo(years_beating_s18=3))[0] != "PROMOTE-cand"
     assert decide(_promo(years_beating_s18=None))[0] != "PROMOTE-cand"
-    assert decide(_promo(waived=True))[0] != "PROMOTE-cand"
+    # Years-beating-S18 is read from the baseline even for a waived line; only control never promotes.
+    assert decide(_promo(waived=True))[0] == "PROMOTE-cand"
     assert decide(_promo(days_active=89))[0] != "PROMOTE-cand"
     assert decide(_promo(n_trades=24))[0] != "PROMOTE-cand"
     # CI lower bound <= 0 and not Holm-significant: no promotion.
@@ -87,3 +88,43 @@ def test_auto_sentence_and_recommendation_wording():
     assert s.auto_sentence == ("connors_exit_sma10: 24 trades over 112 days, win 58 % (CI 41–73 %), vs live +1.8 pp, "
                                "not significant (p_adj 0.62) → KEEP")
     assert "recommendation" in k.auto_sentence and k.verdict == "HARD-KILL"
+
+
+# ── C3 fix-ups ──────────────────────────────────────────────────────────────
+def test_promote_rejects_uncorrected_ci_without_holm():
+    s = _promo(paired=_paired(0.001, 0.0002, 0.002, 0.001, 0.001), holm_adjusted_p=0.5, significant_positive=False)
+    assert decide(s)[0] == "KEEP"
+
+
+def test_control_never_promotes_and_precedes_hard_kill():
+    # pinned: CONTROL is returned before HARD-KILL (the live halt covers a control failure).
+    assert decide(_promo(hypothesis="control"))[0] == "CONTROL"
+    assert decide(_ls(hypothesis="control", max_dd=0.4, max_consec_losses=30))[0] == "CONTROL"
+
+
+@pytest.mark.parametrize("rows,signals,want", [
+    (29, 0, "KEEP"), (30, 0, "DORMANT"), (30, 1, "DORMANT"), (30, 2, "KEEP"),   # 5*30/90 = 1.67
+    (90, 4, "DORMANT"), (90, 5, "KEEP"), (63, 3, "DORMANT"), (63, 4, "KEEP")])  # 63 rows: 27 skipped days, 3.5
+def test_dormancy_pro_rated(rows, signals, want):
+    assert decide(_ls(lineday_rows_90d=rows, signals_90d=signals))[0] == want
+
+
+def test_streak_threshold_from_line_score():
+    assert decide(_ls(max_consec_losses=10, streak_threshold=11))[0] == "KEEP"
+    s = _ls(max_consec_losses=11, streak_threshold=11)
+    apply_verdicts([s])
+    assert s.verdict == "HARD-KILL" and "streak threshold 11" in s.reasons[0]
+    assert "11 straight losses >= streak threshold 11" in s.auto_sentence
+
+
+def test_hypothesis_guard_suppresses_retire_and_promote():
+    ret = dict(days_active=60, n_trades=15, significant_negative=True, holm_adjusted_p=0.02,
+               paired=_paired(-0.001, -0.002, -0.0005, -0.001, -0.001), hypothesis="reduces_dd_in",
+               primary_test_available=False)
+    v, _, reasons, _ = decide(_ls(**ret))
+    assert v == "KEEP" and "primary hypothesis test not built (C5)" in reasons
+    assert decide(_promo(hypothesis="earns_when_live_idle", primary_test_available=False))[0] == "KEEP"
+    # HARD-KILL, DORMANT, INCONCLUSIVE-180 still apply under the guard.
+    assert decide(_ls(primary_test_available=False, max_dd=0.3))[0] == "HARD-KILL"
+    assert decide(_ls(primary_test_available=False, lineday_rows_90d=90, signals_90d=0))[0] == "DORMANT"
+    assert decide(_ls(primary_test_available=False, days_active=200))[1] == "INCONCLUSIVE-180"

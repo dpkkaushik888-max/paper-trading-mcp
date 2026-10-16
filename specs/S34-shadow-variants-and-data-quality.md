@@ -115,7 +115,8 @@ line: value path = `days[].lines[<id>].value` (S34 shadows also `shadow_*_value`
 `benchmarks[<id>].closed_trades` (each with `entry_ctx`/`exit_ctx`/`mae_pct`/`mfe_pct`). A pool line counts
 from `registered_on`; S34 shadows from their first journal day with a value > 0.
 
-Methods (pure numpy, seed = sha256(line id | last journal date | purpose), so a day's report is reproducible):
+Methods (pure numpy, seed = sha256(line id | purpose [| dimension | bucket]); no date in the seed, so CIs do not
+re-jitter from day to day when no new trades arrive, and a day's report is reproducible):
 - Trade stats: n, distinct entry days, win rate, mean/median `pnl_pct`, profit factor (None + `no_losses`),
   expectancy, mean MAE/MFE, days active, current / max drawdown of the value path, mean exposure.
 - Trade-mean CI: cluster bootstrap over entry dates (all same-day trades travel together), B = 5000, 90 % percentile.
@@ -125,21 +126,37 @@ Methods (pure numpy, seed = sha256(line id | last journal date | purpose), so a 
 - Evidence tier: < 8 trades or < 5 entry days = insufficient (no CI); 8-14 indicative; >= 15 usable.
 - Paired vs live: common window = days both have a value > 0, neither skipped; d_t = r_line - r_live on that
   window. Stationary block bootstrap (mean block 5 days, B = 5000, vectorised (B, n) index array) of mean d:
-  90 % CI and p = 2 min(P*(mean <= 0), P*(mean >= 0)); sign test on non-zero days; half-window means;
-  cumulative return and MaxDD difference. Holm across ACTIVE lines with a paired p at alpha = 0.10.
-  (Hypothesis-specific restrictions of §4 — cond days, live-idle days — are not in C3.)
+  90 % CI and p = 2 min((#{mean <= 0} + 1)/(B + 1), (#{mean >= 0} + 1)/(B + 1)) (never exactly 0); sign test on
+  non-zero days; half-window means; cumulative return and MaxDD difference. Holm family = ACTIVE lines with a
+  paired p and `hypothesis.kind != "control"` (the control is excluded), alpha = 0.10; ties ordered by id.
+  (Hypothesis-specific restrictions of §4 — cond days, live-idle days — are not in C3; see the guard below.)
 - Condition table (exploratory, uncorrected, never drives a verdict): per dimension btc_trend /
   btc_vol20_bucket / basket_ret20_bucket / dow and bucket: n, entry days, win rate, mean, tier, cluster CI
   (B = 2000, non-insufficient cells), posterior mean with the baseline bucket win rate as prior when the
   bucket has backtest n >= 30, else the line's overall rate. Bucket = trade `entry_ctx`, else that day's
-  journal `context`, else context history, else "unknown".
+  journal `context`, else context history, else "unknown". The design's `symbol` dimension is NOT built.
 
 Verdicts (recommendations only; the owner rules monthly; text says "cand" / "recommend"), in order:
 LIVE (live_s18); NOT-STEPPED (status candidate); CONTROL (hypothesis control, with `guard_effect` = control
-minus live return over the common window); HARD-KILL (max DD > 25 % or >= 10 consecutive losing trades);
-RETIRE-cand (>= 60 days, >= 15 trades, Holm p_adj < 0.10 with mean d < 0); DORMANT (< 5 signals in the
-trailing 90 journal days, evaluated only once the line has 90 LineDay rows there); PROMOTE-cand (>= 90 days,
->= 25 trades, CI lower bound > 0 or Holm-significant positive, mean d > 0 in both halves, baseline
-`years_beating_s18` >= 4; baseline-waived and control lines never promote); KEEP with rule INCONCLUSIVE-180
-and flag "inconclusive 180d; owner rules monthly" at >= 180 days (§14.3); else KEEP. Report:
+minus live return over the common window; returned before HARD-KILL because the control runs the live rules and
+the live halt covers a kill-level failure there; a control never promotes); HARD-KILL (max DD > 25 % or
+>= `streak_threshold` consecutive losing trades, `streak_threshold` = max(10, smallest k with
+(1 - p_backtest)^k < 0.01), p_backtest = baseline `full.win_rate`, 0.5 without one -> k = 7 -> floor 10;
+recorded on the LineScore and in the auto-sentence when it fires); RETIRE-cand (>= 60 days, >= 15 trades, Holm
+p_adj < 0.10 with mean d < 0); DORMANT (rows >= 30 and signals < 5 * rows / 90, rows = LineDay rows in the
+trailing 90 journal days, skipped days have no row, i.e. 5-per-90 pro-rated); PROMOTE-cand (>= 90 days,
+>= 25 trades, Holm-significant positive (p_adj < 0.10, mean d > 0; an uncorrected CI lower bound > 0 is not
+enough), mean d > 0 in both halves, baseline `years_beating_s18` >= 4 read from the baseline whether or not the
+line has a `baseline_waiver`); KEEP with rule INCONCLUSIVE-180 and flag "inconclusive 180d; owner rules
+monthly" at >= 180 days (§14.3); else KEEP.
+Hypothesis guard: lines whose `hypothesis.kind` is reduces_dd_in or earns_when_live_idle have no primary test
+yet (`primary_test_available` = False): RETIRE-cand and PROMOTE-cand are suppressed and the reason "primary
+hypothesis test not built (C5)" is added; HARD-KILL, DORMANT and INCONCLUSIVE-180 still apply.
+Streak threshold, design consequence for the OWNER TO CONFIRM (S35 D2): the fixed 10 killed basket_sma50_band
+in the 120-day replay on 15 straight losses at only 13.6 % DD; trend families have low win rates by
+construction, so the threshold scales with the backtest win rate (p = 0.35 -> 11).
+DORMANT exceptions: the design's "waiting for condition" exemption for conditional hypotheses is not built; a
+DORMANT verdict is a review recommendation, and the owner applies that exemption when ruling. Lines with fewer
+than 30 LineDay rows in the window are not evaluated.
+Report:
 `schema_version` 1, sorted keys, floats rounded to 6 digits so the daily diff is readable.
