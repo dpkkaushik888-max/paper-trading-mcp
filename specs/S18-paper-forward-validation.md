@@ -132,6 +132,11 @@ Daily peeking = emotional tampering.
 - [ ] Compute live CAGR, Sharpe, MaxDD, WR, profit factor, trade count
 - [ ] Compute per-symbol realized slippage (modeled vs actual fill)
 - [ ] Compare live vs S20 backtest in side-by-side table
+- [ ] **Benchmark gate (updated 2026-10-16):** Connors must beat BOTH
+  buy-and-hold benchmarks on (a) Sharpe and (b) CAGR / Max DD ("Calmar").
+  CAGR alone no longer gates; it is shown for information.
+  *2026-10-16: changed because an active, low-exposure mean-reversion strategy
+  is judged on risk-adjusted return, not raw CAGR vs a bull-market buy-and-hold.*
 - [ ] **Decision gate:**
   - **PASS (deploy real capital €500):** live CAGR ≥ +6%, WR ≥ 55%,
     no early-termination trigger hit, slippage within 2× model
@@ -370,7 +375,7 @@ pushed to the remote**. The live GitHub Actions cron never actually stopped
   (4W/1L, 80% WR, Sharpe 3.57, max DD 2.0%) — on **TRXUSDT and NEARUSDT**
   during the crypto recovery.
 - Both passive benchmarks were **down ~16.7%** over the same window, so the
-  active strategy is beating BH on both CAGR and Sharpe (the S18 PASS gate).
+  active strategy is beating BH on both CAGR and Sharpe (the then-current S18 gate; since 2026-10-16: Sharpe and CAGR / Max DD).
 
 ### Decisions taken on reopen
 1. **Status → IN PROGRESS.** Let the run finish to day 90, then render the

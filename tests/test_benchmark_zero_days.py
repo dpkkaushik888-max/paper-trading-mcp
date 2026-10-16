@@ -53,3 +53,23 @@ def test_repair_script_idempotent():
     assert len(rp.repair_days(days)) == 1
     assert days[1]["bh_btc_value"] == 10.0
     assert rp.repair_days(days) == []
+
+
+def test_calmar_and_zero_dd_guard():
+    bd = _load("build_dashboard", "scripts/build_dashboard.py")
+    assert bd.calmar(16.0, 4.0) == 4.0
+    assert bd.calmar(16.0, 0.0) is None
+    assert bd.calmar(16.0, -1.0) is None
+
+    class J:
+        starting_capital = 10000.0
+        days = [{"bh_btc_value": v} for v in (10000.0, 10100.0, 9900.0, 10300.0)]
+
+    m = bd.compute_benchmark_metrics(J, "bh_btc_value")
+    assert m["calmar"] == m["cagr_pct"] / m["max_dd_pct"]
+
+    class Flat:
+        starting_capital = 10000.0
+        days = [{"bh_btc_value": v} for v in (10000.0, 10100.0, 10200.0)]
+
+    assert bd.compute_benchmark_metrics(Flat, "bh_btc_value")["calmar"] is None

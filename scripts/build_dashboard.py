@@ -40,7 +40,7 @@ def compute_benchmark_metrics(j: Journal, key: str) -> dict:
     days = j.days
     starting = j.starting_capital
     if not days:
-        return {"value": starting, "total_return_pct": 0.0, "cagr_pct": 0.0, "sharpe": 0.0, "max_dd_pct": 0.0}
+        return {"value": starting, "total_return_pct": 0.0, "cagr_pct": 0.0, "sharpe": 0.0, "max_dd_pct": 0.0, "calmar": None}
     # Defensively drop non-positive values (bad/missing days) so they cannot
     # produce a fake 100% drawdown or negative Sharpe.
     vals = [v for v in (d.get(key, starting) for d in days) if v and v > 0]
@@ -71,7 +71,13 @@ def compute_benchmark_metrics(j: Journal, key: str) -> dict:
         "cagr_pct": cagr * 100,
         "sharpe": sharpe,
         "max_dd_pct": max_dd * 100,
+        "calmar": calmar(cagr * 100, max_dd * 100),
     }
+
+
+def calmar(cagr_pct: float, max_dd_pct: float):
+    """Return per unit of drawdown (CAGR % / max DD %); None if there is no drawdown."""
+    return (cagr_pct / max_dd_pct) if max_dd_pct and max_dd_pct > 0 else None
 
 
 def compute_live_metrics(j: Journal) -> dict:
@@ -110,6 +116,7 @@ def compute_live_metrics(j: Journal) -> dict:
         "cagr_pct": cagr * 100,
         "sharpe": sharpe,
         "max_dd_pct": j.max_drawdown() * 100,
+        "calmar": calmar(cagr * 100, j.max_drawdown() * 100),
         "win_rate_pct": win_rate * 100,
         "profit_factor": pf if pf != float("inf") else None,
         "trades": len(closed),
@@ -184,7 +191,8 @@ def build_data_json(j: Journal) -> dict:
         "metrics": metrics,
         "bh_btc_metrics": bh_btc_metrics,
         "bh_basket_metrics": bh_basket_metrics,
-        "backtest_baseline": BACKTEST_BASELINE,
+        "backtest_baseline": {**BACKTEST_BASELINE,
+                              "calmar": calmar(BACKTEST_BASELINE["cagr_pct"], BACKTEST_BASELINE["max_dd_pct"])},
         "equity_curve": equity_curve,
         "open_positions": open_positions,
         "closed_trades": closed_trades,
@@ -254,7 +262,8 @@ INDEX_HTML = r"""<!doctype html>
     <tbody></tbody>
   </table>
   <div class="muted" style="margin-top:0.5rem;font-size:0.8rem">
-    S18 PASS gate: Connors must beat <em>both</em> benchmarks on CAGR and Sharpe to justify active management.
+    <div id="gate" style="font-weight:600;font-size:1rem;margin-bottom:0.25rem"></div>
+    S18 PASS gate: Connors must beat both benchmarks on Sharpe and on CAGR / Max DD (risk-adjusted). CAGR is shown for information.
   </div>
 </div>
 
@@ -372,11 +381,18 @@ INDEX_HTML = r"""<!doctype html>
     ['CAGR (ann.)', cn.cagr_pct, bh1.cagr_pct, bh2.cagr_pct, '%'],
     ['Sharpe',      cn.sharpe,   bh1.sharpe,   bh2.sharpe,   ''],
     ['Max DD',      cn.max_dd_pct, bh1.max_dd_pct, bh2.max_dd_pct, '%'],
+    ['CAGR / Max DD', cn.calmar, bh1.calmar, bh2.calmar, ''],
   ];
+  // Gate: beat BOTH benchmarks on Sharpe AND CAGR / Max DD (null calmar never beats).
+  const beatsBoth = (cnv, b1v, b2v) => cnv != null && cnv > (b1v ?? -Infinity) && cnv > (b2v ?? -Infinity);
+  const gatePass = beatsBoth(cn.sharpe, bh1.sharpe, bh2.sharpe) && beatsBoth(cn.calmar, bh1.calmar, bh2.calmar);
+  const gateEl = document.getElementById('gate');
+  gateEl.textContent = 'S18 gate: ' + (gatePass ? 'PASS' : 'FAIL');
+  gateEl.style.color = gatePass ? '#3fb950' : '#f85149';
   document.querySelector('#vsbh tbody').innerHTML = vsRows.map(([lab, cv, b1v, b2v, suf]) => {
     const verdict = lab === 'Max DD'
       ? (cv < b1v && cv < b2v ? '<span class="pos">Lower DD</span>' : '<span class="muted">—</span>')
-      : verdictOf(cv, b1v, b2v);
+      : verdictOf(cv, b1v, b2v) + (lab === 'CAGR (ann.)' ? ' <span class="muted">(info)</span>' : '');
     return `<tr><td>${lab}</td><td class="num ${cls(cv)}">${fmt(cv, suf)}</td><td class="num ${cls(b1v)}">${fmt(b1v, suf)}</td><td class="num ${cls(b2v)}">${fmt(b2v, suf)}</td><td>${verdict}</td></tr>`;
   }).join('');
 
@@ -385,6 +401,7 @@ INDEX_HTML = r"""<!doctype html>
     ['CAGR', b.cagr_pct, m.cagr_pct, '%'],
     ['Sharpe', b.sharpe, m.sharpe, ''],
     ['MaxDD', b.max_dd_pct, m.max_dd_pct, '%'],
+    ['CAGR / Max DD', b.calmar, m.calmar, ''],
     ['Win Rate', b.win_rate_pct, m.win_rate_pct, '%'],
     ['Trades (90d est)', Math.round(b.trades * 90 / b.holdout_days), m.trades, ''],
   ];
