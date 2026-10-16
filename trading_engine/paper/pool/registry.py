@@ -11,7 +11,8 @@ LIVE_ID = "live_s18"
 MAX_ACTIVE = 10
 # journal.benchmarks keys written by run_daily for the live benchmarks (mirrored; a line id may never shadow one).
 LIVE_BENCHMARK_KEYS = ("bh_btc", "bh_basket", "trend_timed_btc", "regime_selector")
-HYPOTHESIS_KINDS = ("beats_live", "reduces_dd_in", "earns_when_live_idle")
+# control: a measurement line (live rules + one isolated change); passes the §7 gate via its baseline_waiver.
+HYPOTHESIS_KINDS = ("beats_live", "reduces_dd_in", "earns_when_live_idle", "control")
 
 
 @dataclass(frozen=True)
@@ -24,7 +25,7 @@ class BookParams:
 
 @dataclass(frozen=True)
 class Hypothesis:
-    kind: str                     # beats_live | reduces_dd_in | earns_when_live_idle
+    kind: str                     # beats_live | reduces_dd_in | earns_when_live_idle | control
     cond: Optional[str] = None    # e.g. "below200" for reduces_dd_in
 
 
@@ -76,11 +77,12 @@ LINES: tuple[LineSpec, ...] = (
              baseline=_b("xsec_mom_top3"), status="active", hypothesis=BEATS_LIVE,
              book=BookParams(pos_size_pct=0.30, max_concurrent=3, catastrophe_sl=0.25)),
     LineSpec("basket_sma50_band", "basket_trend", _p(band=0.98), registered_on=_C2, baseline=_b("basket_sma50_band"),
-             status="active", hypothesis=Hypothesis("reduces_dd_in", "below_both"),
+             status="active", hypothesis=Hypothesis("reduces_dd_in", "below200"),
              book=BookParams(pos_size_pct=1 / 19, max_concurrent=19),
-             note="primary: lower MaxDD than bh_basket on below_both days; secondary: beats_live"),
+             note="primary: lower conditional MaxDD than S18 and bh_basket on below200 days; secondary: beats_live"),
     LineSpec("connors_guarded", "connors", _p(), registered_on=_C2, baseline=_b("connors_guarded"),
-             status="candidate", hypothesis=BEATS_LIVE,   # §7 gate failed on .com: 0/7 (identical to S18 there)
+             status="active", hypothesis=Hypothesis("control"),   # S35 §14.1/§14.2 owner ruling
+             baseline_waiver="control: identical to S18 on clean .com history by construction; measures data-guard effect on .us",
              note="control: live rules + data guard only"),
     LineSpec("connors_exit_sma10", "connors", _p(mr_exit_sma=10), registered_on=_C2,
              baseline=_b("connors_exit_sma10"), status="active", hypothesis=BEATS_LIVE,

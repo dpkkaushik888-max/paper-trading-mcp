@@ -70,17 +70,35 @@ New pure-pandas families (`pool/families/{breakout,xsec_momentum,basket_trend}.p
 Baselines: `state/pool_baselines/<id>.json` from `scripts/pool_backtest.py --line all --venue com`
 (binance.com daily bars 2020-01-01..2026-10-15, MATIC excluded, real `book.step`); S18 reference
 `state/pool_baselines/_s18_reference_com.json` (CAGR 8.6 %, MaxDD 24.8 %, Sharpe 0.415, 587 trades).
-Gate (design §7): active iff beats the S18 reference in >= 4/7 calendar years (2020–2026, chained from
-one full run) or the per-bucket evidence supports the primary hypothesis; otherwise `candidate` (not stepped).
+Gate (design §7): active iff beats the S18 reference in >= 4/7 calendar years or the evidence supports the
+primary hypothesis; otherwise `candidate` (not stepped). Per-year figures are **chained** (`years_method:
+"chained"`): one continuous 2020-01-01.. run sliced by calendar year, each year starting from the previous
+year's end value and open positions, so e.g. 2022 differs from a fresh-start 2022 run.
+Hypothesis evidence: `reduces_dd_in(below200)` (BTC close < SMA200, i.e. `btc_trend` in {below200_above50,
+below_both}, 1026 bar days on .com) compares the line's conditional MaxDD (path compounded from the masked
+days' daily returns) with the same statistic of the S18 reference run and, for the basket family, of the live
+`bh_basket` buy-and-hold path (`benchmarks.init_bh_basket`, not rebalanced); the line must be lower than every
+comparator. `earns_when_live_idle`: mean pnl of trades entered when the reference held nothing going into the
+bar (its previous-bar `n_open == 0`). `control` (owner ruling S35 §14.1/§14.2): exempt from the years rule,
+passes only through its `baseline_waiver`.
 
 | line | family | status | years beating S18 | gate |
 |---|---|---|---|---|
 | breakout_s21 | breakout | active | 5/7 | pass (years) |
-| xsec_mom_top3 | xsec_momentum | active | 4/7 | pass (years) |
-| basket_sma50_band | basket_trend | active | 5/7 | pass (years; below_both MaxDD also < bh_basket-eq) |
+| xsec_mom_top3 | xsec_momentum | active | 5/7 | pass (years; data guard now applied before ranking) |
+| basket_sma50_band | basket_trend | active | 5/7 | pass (years); below200 cond. MaxDD 0.323 < S18 0.392 and < bh_basket 0.971 |
 | connors_exit_sma10 | connors | active | 5/7 | pass (years) |
-| connors_guarded | connors | candidate | 0/7 | fail: identical to S18 on .com (no MATIC/TRX artefact in .com data) |
-| shadow_* (4) | connors | active (S34 waiver) | 6/7, 3/7, 4/7, 5/7 | baselines recorded; waiver kept |
+| connors_guarded | connors | active (control) | 0/7 | pass via control waiver: identical to S18 on clean .com history by construction; measures the data-guard effect on .us |
+| shadow_btc200 | connors | active (S34 waiver) | 3/7 | hypothesis only: below200 cond. MaxDD 0.159 < S18 0.392 |
+| shadow_atr_stop / rsi15 / combo | connors | active (S34 waiver) | 6/7, 4/7, 5/7 | pass (years); waiver kept |
+
+Active lines: 9 (MAX_ACTIVE 10). Each baseline also carries `live_window_us`: the same line on `.us` bars
+2026-04-20..last cached bar (return, MaxDD, trades, win rate, mean pnl, per-bucket trade stats); symbols with no
+`.us` bars or flagged stale/gap200 are listed (`flagged_symbols`; `skipped_symbols` when the line's data guard
+is on; MATIC is frozen on .us from 2025-01-10).
+Provenance: `generated_from = {sha: git rev-parse HEAD, dirty}`; baselines are regenerated as the last step
+before the commit that adds them, so `generated_from.sha` is the **parent** of the committing commit and
+`dirty` is true. `git_sha` (short) is kept for compatibility.
 
 Day context buckets frozen: `BTC_VOL20_TERCILES = (0.4330, 0.6134)`; basket_ret20 {<-10%, -10..0, 0..+10, >+10%}.
 `.us` parity of the reference vs the live journal (2026-04-20..2026-10-15): 30/31 closed trades.

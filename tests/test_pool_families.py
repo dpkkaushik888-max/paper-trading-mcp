@@ -10,7 +10,7 @@ from trading_engine.paper.pool.families import breakout as bo
 from trading_engine.paper.pool.families.basket_trend import BasketTrendStrategy
 from trading_engine.paper.pool.families.connors import ConnorsStrategy
 from trading_engine.paper.pool.families.xsec_momentum import XsecMomentumStrategy
-from trading_engine.paper.pool.registry import LINES, BookParams, Hypothesis, LineSpec, active_lines, validate
+from trading_engine.paper.pool.registry import LINES, MAX_ACTIVE, BookParams, Hypothesis, LineSpec, active_lines, validate
 
 SPECS = {l.id: l for l in LINES}
 
@@ -22,6 +22,14 @@ def _pos(sym="AUSDT", price=100.0, date="2026-01-01"):
 def test_breakout_constants_match_s21_file():
     from trading_engine.strategies import breakout_continuation as s21
     assert (bo.SL_PCT, bo.MAX_HOLD_DAYS) == (s21.SL_PCT, s21.MAX_HOLD_DAYS)
+    # S21 hard-codes the volume multiplier and ADX floor inline; parse them from its source.
+    import inspect
+    import re
+    src = inspect.getsource(s21)
+    vol = re.findall(r'r\["volume"\]\s*>\s*([0-9.]+)\s*\*\s*r\["vol_sma_20"\]', src)
+    adx = re.findall(r'r\["adx_14"\]\s*>=\s*([0-9.]+)', src)
+    assert vol and adx, "S21 entry literals not found; update this guard"
+    assert {float(v) for v in vol} == {bo.VOL_MULT} and {float(a) for a in adx} == {bo.ADX_MIN}
 
 
 BO_ROW = dict(prior_high_20=100.0, vol_sma_20=10.0, volume=16.0, adx_14=25.0, sma_50=90.0, sma_10=95.0)
@@ -66,6 +74,20 @@ def test_xsec_monday_only_rotation():
     assert [t["reason"] for t in b.closed_trades] == ["ROTATE"] and mon["entries"] == 3
     assert sorted(p["symbol"] for p in b.open_positions) == ["AUSDT", "BUSDT", "CUSDT"]
     assert b.open_positions[0]["entry_ctx"]["rank_today"] == 0 and b.open_positions[0]["symbol"] == "AUSDT"
+
+
+def test_xsec_data_guard_drops_flagged_before_ranking():
+    spec = SPECS["xsec_mom_top3"]
+    assert spec.book.data_guard
+    snap = {**_mom_snap(), "ZUSDT": (100.0, {"sma_100": 50.0, "ret_28": 2.0})}   # flagged; would be rank 1
+    ctx = DayContext(dow="Monday", data_flags={"stale": ["ZUSDT"], "gap200": ["BUSDT"]})
+    b = pool_book.Book(name=spec.id, initialized=True, cash=10_000.0)
+    day = pool_book.step(b, spec, make_strategy(spec), snap, ctx, "2026-01-12")
+    assert sorted(p["symbol"] for p in b.open_positions) == ["AUSDT", "CUSDT", "DUSDT"]   # rank 4 moves up
+    assert day["entries"] == 3 and day["blocked"]["data"] == 0
+    unguarded = XsecMomentumStrategy(spec.params)   # data_guard off: flagged symbols still rank
+    unguarded.prepare(snap, ctx, "2026-01-12")
+    assert unguarded._top == {"ZUSDT", "AUSDT", "BUSDT"}
 
 
 def test_xsec_exit_below_sma100_on_monday():
@@ -118,9 +140,11 @@ def test_ret20_bucket_boundaries(r, i):
 def test_registry_c2_lines_and_candidate_status():
     assert {"breakout_s21", "xsec_mom_top3", "basket_sma50_band", "connors_guarded", "connors_exit_sma10"} <= set(SPECS)
     assert SPECS["xsec_mom_top3"].book == BookParams(pos_size_pct=0.30, max_concurrent=3, catastrophe_sl=0.25)
-    assert SPECS["basket_sma50_band"].hypothesis == Hypothesis("reduces_dd_in", "below_both")
-    assert SPECS["connors_guarded"].status == "candidate"
-    assert "connors_guarded" not in {l.id for l in active_lines()}
+    assert SPECS["basket_sma50_band"].hypothesis == Hypothesis("reduces_dd_in", "below200")
+    g = SPECS["connors_guarded"]
+    assert g.status == "active" and g.hypothesis == Hypothesis("control") and g.baseline_waiver.startswith("control:")
+    assert "connors_guarded" in {l.id for l in active_lines()}
+    assert len(active_lines()) == 9 <= MAX_ACTIVE == 10
     c = LineSpec("cand", "connors", {}, registered_on="2026-10-16", status="candidate")   # no baseline needed
     validate((c,))
     assert active_lines((c,)) == ()

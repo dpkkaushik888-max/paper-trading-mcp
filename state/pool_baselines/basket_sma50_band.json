@@ -118,12 +118,17 @@
   }
  },
  "evidence": {
-  "bench_maxdd": 0.9963676402649876,
-  "cond": "below_both",
-  "cond_days": 726,
-  "idle_mean": 0.07946748973640433,
-  "idle_n": 646,
-  "line_maxdd": 0.43569061235584283
+  "comparators": {
+   "bh_basket": 0.9708946991369071,
+   "s18_reference": 0.3921290966691807
+  },
+  "cond": "below200",
+  "cond_days": 1026,
+  "dd_method": "max drawdown of the path compounded from the masked days' daily returns",
+  "idle_def": "reference n_open == 0 at the previous bar",
+  "idle_mean": 0.07272712378345489,
+  "idle_n": 600,
+  "line_maxdd": 0.3227141850942953
  },
  "family": "basket_trend",
  "full": {
@@ -140,12 +145,159 @@
   "passed": true,
   "status": "active"
  },
- "git_sha": "bcf47b3",
+ "generated_from": {
+  "dirty": true,
+  "sha": "cb7dd92dabecf9c4ffa6f1ba6841119848ed79f2"
+ },
+ "git_sha": "cb7dd92",
  "hypothesis": {
-  "cond": "below_both",
+  "cond": "below200",
   "kind": "reduces_dd_in"
  },
  "line": "basket_sma50_band",
+ "live_window_us": {
+  "buckets": {
+   "basket_ret20_bucket": {
+    "-10..0": {
+     "mean": -0.010014165001636943,
+     "n": 10,
+     "sd": 0.1468171456784572,
+     "wins": 2
+    },
+    "0..+10": {
+     "mean": -0.01644900593647619,
+     "n": 32,
+     "sd": 0.11889072538433097,
+     "wins": 5
+    },
+    "<-10%": {
+     "mean": -0.09793735225273725,
+     "n": 2,
+     "sd": 0.015666836358018205,
+     "wins": 0
+    },
+    ">+10%": {
+     "mean": -0.0699827406014837,
+     "n": 4,
+     "sd": 0.058664184794625526,
+     "wins": 0
+    }
+   },
+   "btc_trend": {
+    "above_both": {
+     "mean": 0.011130999089694504,
+     "n": 6,
+     "sd": 0.1571528939428871,
+     "wins": 2
+    },
+    "below200_above50": {
+     "mean": -0.028495020818604506,
+     "n": 34,
+     "sd": 0.10113845471408492,
+     "wins": 3
+    },
+    "below_both": {
+     "mean": -0.025033849200078832,
+     "n": 8,
+     "sd": 0.16766541823667608,
+     "wins": 2
+    }
+   },
+   "btc_vol20_bucket": {
+    "low": {
+     "mean": -0.017275384422032695,
+     "n": 45,
+     "sd": 0.12076227657805047,
+     "wins": 7
+    },
+    "mid": {
+     "mean": -0.10830773596784839,
+     "n": 3,
+     "sd": 0.02110354131254722,
+     "wins": 0
+    }
+   },
+   "dow": {
+    "Friday": {
+     "mean": 0.048067452437307756,
+     "n": 3,
+     "sd": 0.28632129026562564,
+     "wins": 1
+    },
+    "Monday": {
+     "mean": -0.04574071742185976,
+     "n": 14,
+     "sd": 0.03813551923453096,
+     "wins": 1
+    },
+    "Saturday": {
+     "mean": 0.04537070088150365,
+     "n": 4,
+     "sd": 0.23742273868709673,
+     "wins": 1
+    },
+    "Sunday": {
+     "mean": -0.06256431053066677,
+     "n": 4,
+     "sd": 0.021732285359810435,
+     "wins": 0
+    },
+    "Thursday": {
+     "mean": -0.06512857693322394,
+     "n": 6,
+     "sd": 0.05589877655298413,
+     "wins": 1
+    },
+    "Tuesday": {
+     "mean": -0.058387646108619816,
+     "n": 11,
+     "sd": 0.017294660295664167,
+     "wins": 0
+    },
+    "Wednesday": {
+     "mean": 0.08261036451498512,
+     "n": 6,
+     "sd": 0.1761649241004843,
+     "wins": 3
+    }
+   }
+  },
+  "data_guard": true,
+  "flagged_symbols": {
+   "MATICUSDT": [
+    "stale"
+   ],
+   "TRXUSDT": [
+    "gap200"
+   ]
+  },
+  "full": {
+   "cagr": 0.7761526825713301,
+   "maxdd": 0.18442586696330243,
+   "mean_pnl_pct": -0.022964906393646182,
+   "ret": 0.32514721657309664,
+   "sharpe": 1.4989448031365689,
+   "trades": 48,
+   "win_rate": 0.14583333333333334
+  },
+  "missing_symbols": [],
+  "note": "skipped = no .us bars, or (data_guard on) stale/gap200 at some point in the window: entries blocked as live; data_guard off trades flagged symbols at their frozen last bar as live",
+  "period": [
+   "2026-04-20",
+   "2026-10-15"
+  ],
+  "skipped_symbols": [
+   "MATICUSDT",
+   "TRXUSDT"
+  ],
+  "trades": {
+   "mean": -0.022964906393646182,
+   "n": 48,
+   "sd": 0.1190273347697912,
+   "wins": 7
+  },
+  "venue": "us"
+ },
  "n_years": 7,
  "oos_2023": {
   "cagr": 0.07982405619906374,
@@ -219,5 +371,6 @@
    "trades": 92
   }
  },
- "years_beating_s18": 5
+ "years_beating_s18": 5,
+ "years_method": "chained"
 }

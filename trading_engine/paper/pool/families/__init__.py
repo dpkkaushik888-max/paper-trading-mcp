@@ -14,7 +14,7 @@ def make_strategy(spec: LineSpec):
         return BreakoutStrategy(spec.params)
     if spec.family == "xsec_momentum":
         from .xsec_momentum import XsecMomentumStrategy
-        return XsecMomentumStrategy(spec.params)
+        return XsecMomentumStrategy(spec.params, data_guard=spec.book.data_guard)
     if spec.family == "basket_trend":
         from .basket_trend import BasketTrendStrategy
         return BasketTrendStrategy(spec.params)

@@ -118,12 +118,16 @@
   }
  },
  "evidence": {
-  "bench_maxdd": 0.9963676402649876,
-  "cond": "below_both",
-  "cond_days": 726,
-  "idle_mean": null,
-  "idle_n": 0,
-  "line_maxdd": 0.39472370254429767
+  "comparators": {
+   "s18_reference": 0.3921290966691807
+  },
+  "cond": "below200",
+  "cond_days": 1026,
+  "dd_method": "max drawdown of the path compounded from the masked days' daily returns",
+  "idle_def": "reference n_open == 0 at the previous bar",
+  "idle_mean": -0.003367058907679395,
+  "idle_n": 236,
+  "line_maxdd": 0.3829783066305881
  },
  "family": "connors",
  "full": {
@@ -140,12 +144,153 @@
   "passed": true,
   "status": "active"
  },
- "git_sha": "bcf47b3",
+ "generated_from": {
+  "dirty": true,
+  "sha": "cb7dd92dabecf9c4ffa6f1ba6841119848ed79f2"
+ },
+ "git_sha": "cb7dd92",
  "hypothesis": {
   "cond": null,
   "kind": "beats_live"
  },
  "line": "connors_exit_sma10",
+ "live_window_us": {
+  "buckets": {
+   "basket_ret20_bucket": {
+    "-10..0": {
+     "mean": -0.025220790730958922,
+     "n": 4,
+     "sd": 0.06719877646303815,
+     "wins": 2
+    },
+    "0..+10": {
+     "mean": 0.06749757535194141,
+     "n": 8,
+     "sd": 0.06374094886517602,
+     "wins": 8
+    },
+    "<-10%": {
+     "mean": 0.06521400914854493,
+     "n": 3,
+     "sd": 0.154008633255949,
+     "wins": 2
+    },
+    ">+10%": {
+     "mean": -0.0028025043266980162,
+     "n": 9,
+     "sd": 0.08441883362824458,
+     "wins": 5
+    }
+   },
+   "btc_trend": {
+    "above_both": {
+     "mean": 0.03027988611030877,
+     "n": 17,
+     "sd": 0.08154137287981088,
+     "wins": 13
+    },
+    "below200_above50": {
+     "mean": -0.04651273450388336,
+     "n": 3,
+     "sd": 0.06366656987319011,
+     "wins": 1
+    },
+    "below_both": {
+     "mean": 0.0585742670083623,
+     "n": 4,
+     "sd": 0.12644676395356824,
+     "wins": 3
+    }
+   },
+   "btc_vol20_bucket": {
+    "low": {
+     "mean": 0.024732319873863696,
+     "n": 23,
+     "sd": 0.09108809101773979,
+     "wins": 16
+    },
+    "mid": {
+     "mean": 0.040673571298183255,
+     "n": 1,
+     "sd": null,
+     "wins": 1
+    }
+   },
+   "dow": {
+    "Friday": {
+     "mean": 0.0870914745865339,
+     "n": 4,
+     "sd": 0.08873746464829256,
+     "wins": 4
+    },
+    "Monday": {
+     "mean": -0.11142037439472612,
+     "n": 1,
+     "sd": null,
+     "wins": 0
+    },
+    "Saturday": {
+     "mean": 0.15353120092018047,
+     "n": 2,
+     "sd": 0.025253911779439486,
+     "wins": 2
+    },
+    "Thursday": {
+     "mean": 0.03532579761033264,
+     "n": 9,
+     "sd": 0.05073483430238032,
+     "wins": 8
+    },
+    "Tuesday": {
+     "mean": -0.02383136164319444,
+     "n": 4,
+     "sd": 0.07554928285842274,
+     "wins": 2
+    },
+    "Wednesday": {
+     "mean": -0.03927443232873456,
+     "n": 4,
+     "sd": 0.0943597260592331,
+     "wins": 1
+    }
+   }
+  },
+  "data_guard": true,
+  "flagged_symbols": {
+   "MATICUSDT": [
+    "stale"
+   ],
+   "TRXUSDT": [
+    "gap200"
+   ]
+  },
+  "full": {
+   "cagr": 0.17884784575163581,
+   "maxdd": 0.04674376695371585,
+   "mean_pnl_pct": 0.025396538683210346,
+   "ret": 0.08397603232881279,
+   "sharpe": 1.457114502440836,
+   "trades": 24,
+   "win_rate": 0.7083333333333334
+  },
+  "missing_symbols": [],
+  "note": "skipped = no .us bars, or (data_guard on) stale/gap200 at some point in the window: entries blocked as live; data_guard off trades flagged symbols at their frozen last bar as live",
+  "period": [
+   "2026-04-20",
+   "2026-10-15"
+  ],
+  "skipped_symbols": [
+   "MATICUSDT",
+   "TRXUSDT"
+  ],
+  "trades": {
+   "mean": 0.025396538683210346,
+   "n": 24,
+   "sd": 0.08914531911766213,
+   "wins": 17
+  },
+  "venue": "us"
+ },
  "n_years": 7,
  "oos_2023": {
   "cagr": 0.04375326567358839,
@@ -219,5 +364,6 @@
    "trades": 31
   }
  },
- "years_beating_s18": 5
+ "years_beating_s18": 5,
+ "years_method": "chained"
 }

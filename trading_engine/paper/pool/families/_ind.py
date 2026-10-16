@@ -12,6 +12,7 @@ def rma(x: pd.Series, n: int) -> pd.Series:
     return x.ewm(alpha=1.0 / n, min_periods=n).mean()
 
 
+# Hand-written Wilder ADX: close to pandas-ta's adx() but not bit-identical (max gap 2.76 on SOL over 240 bars).
 def adx_wilder(df: pd.DataFrame, n: int = 14) -> pd.Series:
     h, l, c = df["High"], df["Low"], df["Close"]
     tr = pd.concat([h - l, (h - c.shift()).abs(), (l - c.shift()).abs()], axis=1).max(axis=1)

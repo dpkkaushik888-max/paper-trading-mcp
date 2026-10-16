@@ -118,12 +118,16 @@
   }
  },
  "evidence": {
-  "bench_maxdd": 0.9963676402649876,
-  "cond": "below_both",
-  "cond_days": 726,
-  "idle_mean": -0.008854186250959475,
-  "idle_n": 141,
-  "line_maxdd": 0.40467251088137446
+  "comparators": {
+   "s18_reference": 0.3921290966691807
+  },
+  "cond": "below200",
+  "cond_days": 1026,
+  "dd_method": "max drawdown of the path compounded from the masked days' daily returns",
+  "idle_def": "reference n_open == 0 at the previous bar",
+  "idle_mean": 0.0009017236263243514,
+  "idle_n": 416,
+  "line_maxdd": 0.3786212234999907
  },
  "family": "connors",
  "full": {
@@ -140,12 +144,156 @@
   "passed": true,
   "status": "active"
  },
- "git_sha": "bcf47b3",
+ "generated_from": {
+  "dirty": true,
+  "sha": "cb7dd92dabecf9c4ffa6f1ba6841119848ed79f2"
+ },
+ "git_sha": "cb7dd92",
  "hypothesis": {
   "cond": null,
   "kind": "beats_live"
  },
  "line": "shadow_rsi15",
+ "live_window_us": {
+  "buckets": {
+   "basket_ret20_bucket": {
+    "-10..0": {
+     "mean": -0.020242783477094583,
+     "n": 11,
+     "sd": 0.05682878744267076,
+     "wins": 6
+    },
+    "0..+10": {
+     "mean": 0.026999804278082577,
+     "n": 9,
+     "sd": 0.023005967161237068,
+     "wins": 8
+    },
+    "<-10%": {
+     "mean": 0.05268230426928438,
+     "n": 6,
+     "sd": 0.10702382181591094,
+     "wins": 5
+    },
+    ">+10%": {
+     "mean": 0.018155141026152684,
+     "n": 21,
+     "sd": 0.0393439802829268,
+     "wins": 17
+    }
+   },
+   "btc_trend": {
+    "above_both": {
+     "mean": 0.021560801228798037,
+     "n": 29,
+     "sd": 0.03545302645208868,
+     "wins": 25
+    },
+    "below200_above50": {
+     "mean": -0.026441244256939535,
+     "n": 5,
+     "sd": 0.061379185248916265,
+     "wins": 2
+    },
+    "below_both": {
+     "mean": 0.01727864562070539,
+     "n": 13,
+     "sd": 0.08577108880079506,
+     "wins": 9
+    }
+   },
+   "btc_vol20_bucket": {
+    "low": {
+     "mean": 0.018203451659079897,
+     "n": 35,
+     "sd": 0.060287133470779124,
+     "wins": 26
+    },
+    "mid": {
+     "mean": 0.006713216612651588,
+     "n": 12,
+     "sd": 0.04640590006747754,
+     "wins": 10
+    }
+   },
+   "dow": {
+    "Friday": {
+     "mean": 0.045877367562799934,
+     "n": 9,
+     "sd": 0.041159589817259895,
+     "wins": 9
+    },
+    "Monday": {
+     "mean": 0.008779586563269517,
+     "n": 5,
+     "sd": 0.011508418810358662,
+     "wins": 4
+    },
+    "Saturday": {
+     "mean": 0.08575264403334396,
+     "n": 2,
+     "sd": 0.12110726616688004,
+     "wins": 2
+    },
+    "Sunday": {
+     "mean": -0.004853225984358177,
+     "n": 3,
+     "sd": 0.10914056953190454,
+     "wins": 2
+    },
+    "Thursday": {
+     "mean": -0.005607714850009141,
+     "n": 11,
+     "sd": 0.05581664928231772,
+     "wins": 8
+    },
+    "Tuesday": {
+     "mean": -0.0016290050308664708,
+     "n": 7,
+     "sd": 0.06246285809979722,
+     "wins": 5
+    },
+    "Wednesday": {
+     "mean": 0.017702745499062093,
+     "n": 10,
+     "sd": 0.040359275617586295,
+     "wins": 6
+    }
+   }
+  },
+  "data_guard": false,
+  "flagged_symbols": {
+   "MATICUSDT": [
+    "stale"
+   ],
+   "TRXUSDT": [
+    "gap200"
+   ]
+  },
+  "full": {
+   "cagr": 0.22553236712848057,
+   "maxdd": 0.04425584814048711,
+   "mean_pnl_pct": 0.015269774625949263,
+   "ret": 0.10480541723409331,
+   "sharpe": 1.7739023201313844,
+   "trades": 47,
+   "win_rate": 0.7659574468085106
+  },
+  "missing_symbols": [],
+  "note": "skipped = no .us bars, or (data_guard on) stale/gap200 at some point in the window: entries blocked as live; data_guard off trades flagged symbols at their frozen last bar as live",
+  "period": [
+   "2026-04-20",
+   "2026-10-15"
+  ],
+  "skipped_symbols": [],
+  "trades": {
+   "mean": 0.015269774625949263,
+   "n": 47,
+   "sd": 0.05680682239284719,
+   "wins": 36
+  },
+  "venue": "us"
+ },
  "n_years": 7,
  "oos_2023": {
   "cagr": 0.03345007507222242,
@@ -219,5 +367,6 @@
    "trades": 45
   }
  },
- "years_beating_s18": 4
+ "years_beating_s18": 4,
+ "years_method": "chained"
 }
