@@ -17039,10 +17039,10 @@
       "decisions": [],
       "fills": [],
       "skipped": true,
-      "bh_btc_value": 0.0,
-      "bh_basket_value": 0.0,
-      "trend_timed_value": 0.0,
-      "selector_value": 0.0
+      "bh_btc_value": 10296.212202982108,
+      "bh_basket_value": 9376.26420463268,
+      "trend_timed_value": 10692.736492537435,
+      "selector_value": 10958.023734567065
     },
     {
       "date": "2026-09-01",

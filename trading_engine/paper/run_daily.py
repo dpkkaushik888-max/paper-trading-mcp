@@ -68,6 +68,14 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(mess
 log = logging.getLogger("s18.run_daily")
 
 
+def carry_forward_benchmarks(journal) -> dict[str, float]:
+    """Previous day's benchmark values, for days with no market data."""
+    keys = ("bh_btc_value", "bh_basket_value", "trend_timed_value", "selector_value")
+    out = {k: journal.last_positive_value(k) for k in keys}
+    log.warning("No market data today; carrying benchmarks forward: %s", out)
+    return out
+
+
 def _today_utc_date() -> str:
     return datetime.now(timezone.utc).date().isoformat()
 
@@ -105,6 +113,8 @@ def run(dry_run: bool = False, as_of: str | None = None) -> int:
             date=today, portfolio_value=journal.last_portfolio_value(),
             cash=journal.cash, n_open=len(journal.open_positions),
             closes={}, decisions=[], fills=[], skipped=True,
+            # Carry benchmark series forward — never record 0 (breaks Sharpe/max DD).
+            **carry_forward_benchmarks(journal),
         )
         journal.append_day(snap)
         if not dry_run:

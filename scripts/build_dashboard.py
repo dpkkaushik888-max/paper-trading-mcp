@@ -41,9 +41,13 @@ def compute_benchmark_metrics(j: Journal, key: str) -> dict:
     starting = j.starting_capital
     if not days:
         return {"value": starting, "total_return_pct": 0.0, "cagr_pct": 0.0, "sharpe": 0.0, "max_dd_pct": 0.0}
-    vals = [d.get(key, starting) for d in days]
+    # Defensively drop non-positive values (bad/missing days) so they cannot
+    # produce a fake 100% drawdown or negative Sharpe.
+    vals = [v for v in (d.get(key, starting) for d in days) if v and v > 0]
+    if not vals:
+        vals = [starting]
     current = vals[-1]
-    n_days = len(days)
+    n_days = len(vals)
     total_ret = (current / starting - 1.0)
     cagr = ((current / starting) ** (365 / max(n_days, 1)) - 1.0)
     rets = [(vals[i] / vals[i - 1] - 1.0) for i in range(1, len(vals)) if vals[i - 1] > 0]
