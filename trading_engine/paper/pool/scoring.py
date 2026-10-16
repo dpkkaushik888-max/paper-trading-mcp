@@ -405,7 +405,9 @@ def _score_line(spec: Optional[LineSpec], jd: dict, baselines_dir, history, day_
     else:
         s.mean_exposure = _mean((ld or {}).get("exposure") for _, _, ld in path)
     trailing = days[-90:]
-    rows = [(d.get("lines") or {}).get(lid) for d in trailing if not d.get("skipped")]
+    reg = None if spec is None else spec.registered_on
+    rows = [(d.get("lines") or {}).get(lid) for d in trailing
+            if not d.get("skipped") and not (reg and d.get("date", "") < reg)]
     s.lineday_rows_90d = sum(1 for r in rows if r)
     s.signals_90d = int(sum((r or {}).get("signals") or 0 for r in rows))
     p_backtest = ((base or {}).get("full") or {}).get("win_rate")

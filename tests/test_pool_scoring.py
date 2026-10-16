@@ -189,13 +189,27 @@ def test_scoring_failure_lands_in_pool_errors(monkeypatch, tmp_path):
 # ── C3 fix-ups ──────────────────────────────────────────────────────────────
 def test_trades_before_registered_on_excluded(tmp_path):
     jd, dates = _synthetic_journal()
+    trades = jd["benchmarks"]["t_pos"]["closed_trades"]
+    n_before = sum(1 for t in trades if t["entry_date"] < "2026-01-06")
+    n_after = sum(1 for t in trades if t["entry_date"] >= "2026-01-06")
+    assert n_before == 1 and n_after == 20
     s = sc.score_pool(jd, tmp_path, {}, B=B, lines=(_LINE,)).lines[0]
-    assert s.n_trades == 20 and all(t >= "2026-01-06" for t in [s.start])
+    assert s.n_trades == n_after and s.start == "2026-01-06"
     late = LineSpec("t_pos", "connors", {}, registered_on=dates[20], hypothesis=Hypothesis("beats_live"),
                     baseline_waiver="t")
     s2 = sc.score_pool(jd, tmp_path, {}, B=B, lines=(late,)).lines[0]
-    assert s2.start == dates[20] and s2.n_trades == sum(
-        1 for t in jd["benchmarks"]["t_pos"]["closed_trades"] if t["entry_date"] >= dates[20])
+    m = sum(1 for t in trades if t["entry_date"] >= dates[20])
+    assert 0 < m < n_after and s2.start == dates[20] and s2.n_trades == m
+
+
+def test_lineday_rows_90d_exclude_pre_registration(tmp_path):
+    jd, dates = _synthetic_journal()
+    for d in jd["days"][:5]:   # LineDay rows dated before registered_on
+        d["lines"]["t_pos"] = dict(value=0, exposure=0.1, signals=9)
+    s = sc.score_pool(jd, tmp_path, {}, B=B, lines=(_LINE,)).lines[0]
+    after = [d for d in jd["days"] if d["date"] >= "2026-01-06" and not d.get("skipped")]
+    assert s.lineday_rows_90d == sum(1 for d in after if d["lines"].get("t_pos"))
+    assert s.signals_90d == sum(d["lines"]["t_pos"]["signals"] for d in after if d["lines"].get("t_pos"))
 
 
 def test_holm_with_ties():

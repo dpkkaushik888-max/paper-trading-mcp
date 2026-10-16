@@ -48,6 +48,8 @@ baseline win rate (Beta(1,1) without one). Paired line − live daily returns: s
 **mean block 5** days, p = 2 min((#≤0 + 1)/(B + 1), (#≥0 + 1)/(B + 1)). **Holm** at family **α = 0.10** across
 active lines with `hypothesis.kind != "control"`. Tiers: < 8 trades or < 5 entry days insufficient,
 8–14 indicative, ≥ 15 usable. Seeds = hash(line id, purpose[, bucket]) — stable across days.
+Holm family includes guarded lines (their paired p enters the family); conservative relative to design §5, which
+uses each line's primary p — revisit in C5.
 
 ## Verdict rules (`pool/verdicts.py`; recommendations, in precedence order)
 1. LIVE (`live_s18`), NOT-STEPPED (status candidate), CONTROL (control line; shows `guard_effect` =
@@ -96,6 +98,13 @@ continues. Live sections are byte-identical to the pre-S35 page (tested). `data.
   never drives verdicts".
 - **Weekly triggering**: last 8 ISO weeks × lines: signals / entries / blocked, with cap · gate · cash · data.
 - **Pool errors and data flags**: today's `pool_errors`, `stale_symbols`, `data_flags`, control guard effect.
+**Deviations from design §6/§9 (deferred to C5):**
+- Heatmap cell shows posterior P(win) with n/w text instead of mean %/trade with 90 % CI and a CI-excludes-0 outline.
+- "Top 5" auto-sentences not built.
+- Lines table lacks Sharpe, paired mean difference with CI, and a last-error column.
+- Weekly table lacks the dormant flag.
+- The `symbol` dimension is not built.
+
 The pinned progress issue (`scripts/update_issue.py`) gets one line per pool line with verdict and tier.
 
 ## Risks (design §9)

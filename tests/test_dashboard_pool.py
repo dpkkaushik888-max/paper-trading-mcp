@@ -160,3 +160,32 @@ def test_issue_pool_lines(replay, tmp_path):
     assert ui.pool_lines(tmp_path / "bad.json") == "" and ui.pool_lines(tmp_path / "missing.json") == ""
     body = ui.build_body(Journal.load(ROOT / "state" / "journal.json"), out / "pool_report.json")
     assert "Strategy pool (S35" in body and body.index("Strategy pool") < body.index("### Links")
+
+
+def test_heatmap_cells_escaped():
+    DIM = sc.DIMENSIONS[0]
+    rep = {"live": {"id": "live_s18"}, "lines": [{"id": "x<b>"}],
+           "cond_table": {"live_s18": {DIM: {"Monday": {"n": "<svg/onload=1>", "tier": "usable", "post_mean": 0.6}}},
+                          "x<b>": {DIM: {"Monday": {"n": "<svg/onload=2>", "tier": "insufficient"}}}}}
+    html = pd_.render_pool_section(rep, None, {"days": []})
+    assert "<svg" not in html and "<b>" not in html and "&lt;svg/onload=1&gt;" in html
+
+
+def test_vs_live_dash_when_cum_ret_diff_none():
+    rep = {"live": {"id": "S18"}, "lines": [{"id": "shadow_x", "paired": {"cum_ret_diff": None}}]}
+    html = pd_.render_pool_section(rep, None, {"days": []})
+    assert "+0.0 pp" not in html and "pool-lines" in html
+
+
+def test_pool_available_agrees_with_render(tmp_path):
+    (tmp_path / "pool_report.json").write_text(json.dumps({"live": {}, "lines": [{"id": 3}]}))
+    assert bd.main(["--journal", str(FIXTURE), "--docs-dir", str(tmp_path / "d"),
+                    "--pool-report", str(tmp_path / "pool_report.json")]) == 0
+    html = (tmp_path / "d" / "index.html").read_text()
+    assert "pool report unavailable" in html
+    assert json.loads((tmp_path / "d" / "data.json").read_text())["pool"]["available"] is False
+
+
+def test_issue_body_no_report_has_no_extra_blank_line(tmp_path):
+    body = ui.build_body(Journal.load(ROOT / "state" / "journal.json"), tmp_path / "missing.json")
+    assert "\n\n\n### Links" not in body and "\n\n### Links" in body

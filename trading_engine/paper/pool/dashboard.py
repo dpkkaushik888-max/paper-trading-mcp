@@ -160,7 +160,7 @@ def _lines_table(rep: dict, days: list[dict]) -> str:
     head = ("Line", "Family", "Hypothesis", "Status", "Days", "Value", "Return", "vs live", "Trades / entry days",
             "Win % [90 % CI]", "P(win)", "PF", "Max DD", "Exposure", "Tier", "Holm p_adj", "Verdict")
     out = ['<div class="pool-wrap"><table id="pool-lines"><thead><tr>' +
-           "".join(f"<th>{h}</th>" for h in head) + "</tr></thead><tbody>"]
+           "".join(f"<th>{escape(h)}</th>" for h in head) + "</tr></thead><tbody>"]
     for s in [rep["live"]] + list(rep["lines"]):
         lid = s.get("id", "?")
         spec = specs.get(lid)
@@ -180,11 +180,11 @@ def _lines_table(rep: dict, days: list[dict]) -> str:
         sent = escape(s.get("auto_sentence") or "")
         reasons = "; ".join(escape(str(r)) for r in (s.get("reasons") or []))
         out.append(
-            f"<tr><td>{escape(lid)}{tag}</td><td>{_e(s.get('family'))}</td><td>{_e(hyp)}</td>"
+            f"<tr><td>{escape(str(lid))}{tag}</td><td>{_e(s.get('family'))}</td><td>{_e(hyp)}</td>"
             f"<td>{_e(s.get('status'))}</td><td class=\"num\">{_num(s.get('days_active'), '{:d}')}</td>"
             f"<td class=\"num\">{_num(_last_value(days, lid), '${:,.2f}')}</td>"
             f"<td class=\"num\">{_pct(s.get('total_return'), 1, sign=True)}</td>"
-            f"<td class=\"num\">{_num((paired.get('cum_ret_diff') or 0) * 100 if paired else None, '{:+.1f} pp')}</td>"
+            f"<td class=\"num\">{_num(paired["cum_ret_diff"] * 100 if _ok(paired.get("cum_ret_diff")) else None, '{:+.1f} pp')}</td>"
             f"<td class=\"num\">{_num(s.get('n_trades'), '{:d}')} / {_num(s.get('n_entry_days'), '{:d}')}</td>"
             f"<td class=\"num\">{win}</td><td class=\"num\">{_pct(wp.get('mean'), 0)}</td><td class=\"num\">{pf}</td>"
             f"<td class=\"num\">{_pct(s.get('max_dd'))}</td><td class=\"num\">{_pct(s.get('mean_exposure'), 0)}</td>"
@@ -201,10 +201,10 @@ def _heatmaps(rep: dict) -> str:
     out = [f'<h3>Condition × line</h3><div class="muted">{escape(HEATMAP_CAPTION)}</div>']
     for dim in DIMENSIONS:
         cols = _bucket_cols(dim, cond, ids)
-        out.append(f'<div class="pool-wrap"><table class="pool-heat" id="pool-heat-{dim}"><thead><tr><th>{dim}</th>' +
+        out.append(f'<div class="pool-wrap"><table class="pool-heat" id="pool-heat-{escape(dim)}"><thead><tr><th>{escape(dim)}</th>' +
                    "".join(f"<th>{escape(c)}</th>" for c in cols) + "</tr></thead><tbody>")
         if not cols:
-            out.append(f'<tr><td class="muted">no closed trades with a {dim} tag yet</td></tr>')
+            out.append(f'<tr><td class="muted">no closed trades with a {escape(dim)} tag yet</td></tr>')
         for lid in ids:
             if not cols:
                 break
@@ -215,13 +215,13 @@ def _heatmaps(rep: dict) -> str:
                 if not cell:
                     tds.append('<td class="heat empty">—</td>')
                 elif cell.get("tier") == "insufficient":
-                    txt = f"n&lt;{MIN_TRADES}" if (cell.get("n") or 0) < MIN_TRADES else "days&lt;5"
-                    tds.append(f'<td class="heat insuff" title="n={cell.get("n")}, insufficient">{txt}</td>')
+                    txt = f"n&lt;{MIN_TRADES}" if (cell.get("n") if _ok(cell.get("n")) else 0) < MIN_TRADES else "days&lt;5"
+                    tds.append(f'<td class="heat insuff" title="n={_e(cell.get("n"))}, insufficient">{txt}</td>')
                 else:
                     tds.append(f'<td class="heat"{_heat_style(cell.get("post_mean"))} title="P(win) '
                                f'{_pct(cell.get("post_mean"), 0)}, mean {_pct(cell.get("mean_pnl_pct"), 2, True)}/trade">'
-                               f'n={cell.get("n")} w={_pct(cell.get("win_rate"), 0).replace(" ", "")}</td>')
-            out.append(f"<tr><td>{escape(lid)}</td>{''.join(tds)}</tr>")
+                               f'n={_e(cell.get("n"))} w={_pct(cell.get("win_rate"), 0).replace(" ", "")}</td>')
+            out.append(f"<tr><td>{escape(str(lid))}</td>{''.join(tds)}</tr>")
         out.append("</tbody></table></div>")
     return "\n".join(out)
 
@@ -232,7 +232,7 @@ def _weekly(rep: dict, days: list[dict]) -> str:
     out = ['<h3>Weekly triggering (last 8 ISO weeks)</h3><div class="muted">signals / entries / blocked; '
            'second line: blocked by cap · gate · cash · data (from LineDay rows)</div>',
            '<div class="pool-wrap"><table id="pool-weekly"><thead><tr><th>Line</th>' +
-           "".join(f"<th>{w}</th>" for w in weeks) + "</tr></thead><tbody>"]
+           "".join(f"<th>{escape(str(w))}</th>" for w in weeks) + "</tr></thead><tbody>"]
     for lid in ids:
         tds = []
         for w in weeks:
@@ -241,9 +241,9 @@ def _weekly(rep: dict, days: list[dict]) -> str:
                 tds.append('<td class="num muted">—</td>')
                 continue
             blk = c["cap"] + c["gate"] + c["cash"] + c["data"]
-            tds.append(f'<td class="num">{c["signals"]} / {c["entries"]} / {blk}<div class="muted" '
-                       f'style="font-size:0.7rem">{c["cap"]} · {c["gate"]} · {c["cash"]} · {c["data"]}</div></td>')
-        out.append(f"<tr><td>{escape(lid)}</td>{''.join(tds)}</tr>")
+            tds.append(f'<td class="num">{escape(str(c["signals"]))} / {escape(str(c["entries"]))} / {escape(str(blk))}<div class="muted" '
+                       f'style="font-size:0.7rem">{escape(str(c["cap"]))} · {escape(str(c["gate"]))} · {escape(str(c["cash"]))} · {escape(str(c["data"]))}</div></td>')
+        out.append(f"<tr><td>{escape(str(lid))}</td>{''.join(tds)}</tr>")
     out.append("</tbody></table></div>")
     return "\n".join(out)
 
@@ -259,7 +259,7 @@ def _flags(rep: dict, days: list[dict]) -> str:
             ("Data flags: stale", escape(", ".join(map(str, df.get("stale") or []))) or "none"),
             ("Data flags: gap200", escape(", ".join(map(str, df.get("gap200") or []))) or "none")]
     for c in ctrl:
-        rows.append((f"{escape(c['id'])} guard effect (control − live, common window)",
+        rows.append((f"{escape(str(c['id']))} guard effect (control − live, common window)",
                      _pct(c.get("guard_effect"), 2, sign=True)))
     return ('<h3>Pool errors and data flags</h3><table id="pool-flags"><tbody>' +
             "".join(f"<tr><td>{k}</td><td>{v}</td></tr>" for k, v in rows) + "</tbody></table>")

@@ -93,6 +93,8 @@ def build_body(j: Journal, pool_report: Path | None = None) -> str:
     alpha_btc = total_ret - bh_btc_ret
     alpha_basket = total_ret - bh_basket_ret
 
+    _pool = pool_lines(pool_report)
+    pool_block = _pool + "\n" if _pool else ""
     body = f"""## S18 Paper-Forward — Day {n} of {TEST_DAYS}
 
 **Last update:** {datetime.now(timezone.utc).isoformat(timespec="seconds")}
@@ -119,8 +121,7 @@ def build_body(j: Journal, pool_report: Path | None = None) -> str:
 - **Entered:** {", ".join(enters) if enters else "_none_"}
 - **Exited:** {", ".join(exits_) if exits_ else "_none_"}
 
-{pool_lines(pool_report)}
-### Links
+{pool_block}### Links
 - 📊 [Full dashboard](https://dpkkaushik888-max.github.io/paper-trading-mcp/)
 - 📓 [Journal source](../blob/master/state/journal.json)
 - 📋 [S18 spec](../blob/master/specs/S18-paper-forward-validation.md)

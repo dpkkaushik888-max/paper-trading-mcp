@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -559,7 +560,12 @@ def build_pool(journal: Journal, journal_path: Path, report_path: Path | None, b
         jd = journal.to_dict()
         rep, why = pool_dash.load_report(report_path, jd, baselines or journal_path.parent / "pool_baselines",
                                          journal_path.parent / "pool_context_history.json", lines=lines, B=B)
-        return pool_dash.render_pool_section(rep, why, jd), pool_dash.pool_summary(rep, why)
+        html = pool_dash.render_pool_section(rep, why, jd)
+        summary = pool_dash.pool_summary(rep, why)
+        if rep is not None and 'class="unavail"' in html:   # render fell back: data.json must agree with the page
+            m = re.search(r"pool report unavailable: ([^<]*)", html)
+            summary = dict(available=False, reason=m.group(1) if m else "render failed")
+        return html, summary
     except Exception as e:  # noqa: BLE001
         why = f"{type(e).__name__}: {e}"
         return pool_dash.unavailable_box(why), {"available": False, "reason": why}
