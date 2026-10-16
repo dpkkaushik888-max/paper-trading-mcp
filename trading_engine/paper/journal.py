@@ -98,6 +98,9 @@ class DaySnapshot:
     bh_basket_value: float = 0.0    # Equal-weight 20-coin phantom portfolio
     trend_timed_value: float = 0.0  # Trend-timed BTC tracker (S29)
     selector_value: float = 0.0     # Regime selector: bull→BTC, bear→Connors (S32)
+    # Data quality: symbols whose latest bar is > STALE_BAR_DAYS older than the run date
+    # (informational only; does not alter signals, sizing, universe or benchmarks).
+    stale_symbols: list[str] = field(default_factory=list)
 
 
 class Journal:

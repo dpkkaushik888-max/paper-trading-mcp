@@ -85,6 +85,28 @@ def _latest_bar(df: pd.DataFrame) -> tuple[pd.Timestamp, pd.Series]:
     return df.index[-1], df.iloc[-1]
 
 
+# A healthy symbol's latest closed bar at the 00:30 UTC run is yesterday's (age 1).
+STALE_BAR_DAYS = 2
+
+
+def _bar_age_days(bar_date: pd.Timestamp, today: str) -> int:
+    """Whole days between a bar's open date and the run date."""
+    return (pd.Timestamp(today).date() - pd.Timestamp(bar_date).date()).days
+
+
+def _stale_symbols(latest_dates: dict[str, pd.Timestamp], today: str) -> list[str]:
+    """Symbols whose latest bar is older than STALE_BAR_DAYS (e.g. a delisted / frozen
+    pair such as MATICUSDT on binance.us). Logs a WARNING per symbol; no behaviour change."""
+    stale = []
+    for sym in sorted(latest_dates):
+        age = _bar_age_days(latest_dates[sym], today)
+        if age > STALE_BAR_DAYS:
+            log.warning("STALE DATA: %s latest bar %s is %d days old (as_of %s)",
+                        sym, pd.Timestamp(latest_dates[sym]).date(), age, today)
+            stale.append(sym)
+    return stale
+
+
 def run(dry_run: bool = False, as_of: str | None = None) -> int:
     """Execute one daily cron cycle. Returns 0 on success, non-zero on halt.
 
@@ -141,13 +163,16 @@ def run(dry_run: bool = False, as_of: str | None = None) -> int:
     # ── Pre-compute indicators + today snapshot ─────────────────────────
     snapshot: dict[str, tuple[float, pd.Series]] = {}
     todays_closes: dict[str, float] = {}
+    latest_dates: dict[str, pd.Timestamp] = {}
     for sym, df in bars_by_sym.items():
         ind = precompute_indicators(df)
         date, row = _latest_bar(df)
+        latest_dates[sym] = date
         close_today = float(row["Close"])
         ind_row = ind.loc[date]
         snapshot[sym] = (close_today, ind_row)
         todays_closes[sym] = close_today
+    stale_symbols = _stale_symbols(latest_dates, today)
 
     # ── 1. Evaluate exits on open positions ─────────────────────────────
     decisions: list[Decision] = []
@@ -307,6 +332,7 @@ def run(dry_run: bool = False, as_of: str | None = None) -> int:
         bh_basket_value=bh_basket_value,
         trend_timed_value=trend_timed_value,
         selector_value=selector_value,
+        stale_symbols=stale_symbols,
     )
     journal.append_day(snap)
 
