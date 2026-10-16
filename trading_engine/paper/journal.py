@@ -98,6 +98,21 @@ class DaySnapshot:
     bh_basket_value: float = 0.0    # Equal-weight 20-coin phantom portfolio
     trend_timed_value: float = 0.0  # Trend-timed BTC tracker (S29)
     selector_value: float = 0.0     # Regime selector: bull→BTC, bear→Connors (S32)
+    # Data quality: symbols whose latest bar is > STALE_BAR_DAYS older than the run date
+    # (informational only; does not alter signals, sizing, universe or benchmarks).
+    stale_symbols: list[str] = field(default_factory=list)
+    # Shadow variant books (paper-only, see paper/shadow.py); 0.0 = not started yet.
+    shadow_atr_stop_value: float = 0.0
+    shadow_btc200_value: float = 0.0
+    shadow_rsi15_value: float = 0.0
+    shadow_combo_value: float = 0.0
+    # Shadow series name -> short exception text when its step failed today (value carried).
+    shadow_errors: dict[str, str] = field(default_factory=dict)
+    # Strategy pool (S35, paper-only): shared day context, LineDay per line id (incl. the
+    # read-only live_s18), and line id -> short exception text. Empty on pre-pool rows.
+    context: dict = field(default_factory=dict)
+    lines: dict = field(default_factory=dict)
+    pool_errors: dict = field(default_factory=dict)
 
 
 class Journal:

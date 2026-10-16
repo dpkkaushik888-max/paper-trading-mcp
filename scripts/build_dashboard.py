@@ -9,7 +9,9 @@ GitHub Pages serves docs/ automatically (configured in repo settings).
 
 from __future__ import annotations
 
+import argparse
 import json
+import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -21,6 +23,10 @@ from trading_engine.paper.config import (
     JOURNAL_PATH, DOCS_DIR, TEST_DAYS, STARTING_CAPITAL,
 )
 from trading_engine.paper.journal import Journal
+from trading_engine.paper.shadow import SHADOW_VARIANTS
+from trading_engine.paper.pool import dashboard as pool_dash
+
+POOL_PLACEHOLDER = "<!--S35-POOL-->\n"
 
 
 # S20 backtest baselines for side-by-side comparison (from specs/S20)
@@ -128,8 +134,85 @@ def compute_live_metrics(j: Journal) -> dict:
     }
 
 
+def compute_utilisation(j: Journal) -> dict:
+    """Time-weighted capital use: mean over days of (portfolio_value - cash) / portfolio_value,
+    and the number of days with no open position. Skipped / non-positive days are ignored."""
+    days = [d for d in j.days if d.get("portfolio_value") and d["portfolio_value"] > 0
+            and not d.get("skipped")]
+    if not days:
+        return {"invested_share_avg": None, "days_fully_in_cash": 0}
+    shares = [(d["portfolio_value"] - d["cash"]) / d["portfolio_value"] for d in days]
+    return {
+        "invested_share_avg": sum(shares) / len(shares),
+        "days_fully_in_cash": sum(1 for d in days if d.get("n_open", 0) == 0),
+    }
+
+
+def series_metrics(vals: list[float]) -> dict:
+    """Return % / Sharpe / max DD % for a value series whose first element is the baseline.
+    Sharpe is None with fewer than 2 daily returns (rendered as an em dash)."""
+    import statistics
+    vals = [v for v in vals if v and v > 0]
+    if len(vals) < 2:
+        return {"return_pct": None, "sharpe": None, "max_dd_pct": None}
+    rets = [vals[i] / vals[i - 1] - 1.0 for i in range(1, len(vals))]
+    sharpe = None
+    if len(rets) >= 2:
+        sd = statistics.pstdev(rets)
+        sharpe = (statistics.mean(rets) / sd * (365 ** 0.5)) if sd > 0 else 0.0
+    peak, max_dd = vals[0], 0.0
+    for v in vals:
+        peak = max(peak, v)
+        max_dd = max(max_dd, (peak - v) / peak)
+    return {"return_pct": (vals[-1] / vals[0] - 1.0) * 100, "sharpe": sharpe, "max_dd_pct": max_dd * 100}
+
+
+def compute_shadow_rows(j: Journal) -> list[dict]:
+    """One row per shadow series with >= 1 day of data, plus Connors over the same window.
+    Both series are measured from their value just before the window (shadow: its
+    starting capital; Connors: previous day's portfolio value, or starting capital)."""
+    rows = []
+    days = j.days
+    last_errors = (days[-1].get("shadow_errors") or {}) if days else {}
+    for v in SHADOW_VARIANTS:
+        key = f"{v.name}_value"
+        idx = [i for i, d in enumerate(days) if (d.get(key) or 0) > 0]
+        error = last_errors.get(v.name)
+        if not idx:
+            if error:  # failing since its first run: still show it, flagged
+                rows.append({"name": v.name, "start_date": None, "days": 0, "value": None,
+                             "return_pct": None, "sharpe": None, "max_dd_pct": None,
+                             "closed_trades": None, "connors_return_pct": None,
+                             "connors_sharpe": None, "connors_max_dd_pct": None, "error": error})
+            continue
+        first = idx[0]
+        book = j.get_benchmark(v.name)
+        base = float(book.get("starting_capital") or STARTING_CAPITAL)
+        window = days[first:]
+        shadow_vals = [base] + [d[key] for d in window if (d.get(key) or 0) > 0]
+        connors_base = days[first - 1]["portfolio_value"] if first > 0 else j.starting_capital
+        connors_vals = [connors_base] + [d["portfolio_value"] for d in window]
+        sm, cm = series_metrics(shadow_vals), series_metrics(connors_vals)
+        rows.append({
+            "name": v.name,
+            "start_date": days[first]["date"],
+            "days": len(window),
+            "value": shadow_vals[-1],
+            "return_pct": sm["return_pct"],
+            "sharpe": sm["sharpe"],
+            "max_dd_pct": sm["max_dd_pct"],
+            "closed_trades": len(book.get("closed_trades") or []),
+            "connors_return_pct": cm["return_pct"],
+            "connors_sharpe": cm["sharpe"],
+            "connors_max_dd_pct": cm["max_dd_pct"],
+            "error": error,
+        })
+    return rows
+
+
 def build_data_json(j: Journal) -> dict:
     metrics = compute_live_metrics(j)
+    metrics.update(compute_utilisation(j))
     bh_btc_metrics = compute_benchmark_metrics(j, "bh_btc_value")
     bh_basket_metrics = compute_benchmark_metrics(j, "bh_basket_value")
 
@@ -197,6 +280,7 @@ def build_data_json(j: Journal) -> dict:
         "open_positions": open_positions,
         "closed_trades": closed_trades,
         "per_symbol": per_symbol,
+        "shadows": compute_shadow_rows(j),
     }
 
 
@@ -268,6 +352,18 @@ INDEX_HTML = r"""<!doctype html>
 </div>
 
 <div class="card">
+  <h2>Shadow variants (paper-only, not part of the S18 gate)</h2>
+  <table id="shadows">
+    <thead><tr><th>Series</th><th>Start</th><th class="num">Value</th><th class="num">Return</th><th class="num">Sharpe</th><th class="num">Max DD</th><th class="num">Closed trades</th><th class="num">Connors return</th><th class="num">Connors Sharpe</th><th class="num">Connors Max DD</th></tr></thead>
+    <tbody></tbody>
+  </table>
+  <div class="muted" style="margin-top:0.5rem;font-size:0.8rem">
+    Each shadow starts at $10,000 on its first run and differs from Connors in one rule (combo: all three). Connors columns cover the same window.
+  </div>
+</div>
+<!--S35-POOL-->
+
+<div class="card">
   <h2>S20 Backtest vs S18 Live</h2>
   <table id="compare">
     <thead><tr><th>Metric</th><th class="num">S20 Backtest</th><th class="num">S18 Live</th><th class="num">Delta</th></tr></thead>
@@ -319,6 +415,15 @@ INDEX_HTML = r"""<!doctype html>
     (typeof v === 'number' ? v.toFixed(dp) + suf : v);
   const cls = v => v > 0 ? 'pos' : v < 0 ? 'neg' : '';
 
+  const sh = d.shadows || [];
+  const shBody = document.querySelector('#shadows tbody');
+  shBody.innerHTML = sh.length === 0
+    ? '<tr><td colspan="10" class="muted">no shadow data yet; starts at next daily run</td></tr>'
+    : sh.map(r => `<tr><td>${r.name}${r.error ? ' <span class="neg" title="' + String(r.error).replace(/"/g, '&quot;') + '">⚠ error on last run</span>' : ''}</td><td>${r.start_date || '—'}</td><td class="num">${typeof r.value === 'number' ? '$' + r.value.toFixed(2) : '—'}</td>` +
+        `<td class="num ${cls(r.return_pct)}">${fmt(r.return_pct, '%')}</td><td class="num">${fmt(r.sharpe)}</td><td class="num">${fmt(r.max_dd_pct, '%')}</td>` +
+        `<td class="num">${r.closed_trades ?? '—'}</td><td class="num ${cls(r.connors_return_pct)}">${fmt(r.connors_return_pct, '%')}</td>` +
+        `<td class="num">${fmt(r.connors_sharpe)}</td><td class="num">${fmt(r.connors_max_dd_pct, '%')}</td></tr>`).join('');
+
   const kpis = [
     ['Portfolio', `$${m.portfolio_value.toFixed(2)}`, cls(m.portfolio_value - d.starting_capital)],
     ['Total Return', fmt(m.total_return_pct, '%'), cls(m.total_return_pct)],
@@ -328,6 +433,8 @@ INDEX_HTML = r"""<!doctype html>
     ['Win Rate', fmt(m.win_rate_pct, '%'), cls(m.win_rate_pct - 50)],
     ['Trades', m.trades, ''],
     ['Open', m.n_open + ' / 6', ''],
+    ['Avg invested share (time-weighted)', typeof m.invested_share_avg === 'number' ? fmt(m.invested_share_avg * 100, '%', 1) : '—', ''],
+    ['Days fully in cash (skipped days excluded)', m.days_fully_in_cash ?? '—', ''],
   ];
   document.getElementById('kpis').innerHTML = kpis.map(([l, v, c]) =>
     `<div class="kpi"><div class="kpi-label">${l}</div><div class="kpi-value ${c}">${v}</div></div>`
@@ -441,14 +548,46 @@ INDEX_HTML = r"""<!doctype html>
 """
 
 
-def main() -> int:
-    journal = Journal.load()
-    docs = Path(DOCS_DIR)
+def render_index(pool_html: str) -> str:
+    """INDEX_HTML with the server-rendered S35 pool block in place of the placeholder (live parts untouched)."""
+    return INDEX_HTML.replace(POOL_PLACEHOLDER, pool_html)
+
+
+def build_pool(journal: Journal, journal_path: Path, report_path: Path | None, baselines: Path | None = None,
+               lines=None, B: int | None = None) -> tuple[str, dict]:
+    """(pool HTML block, data.json ``pool`` aggregates). Never raises (S35 §9)."""
+    try:
+        jd = journal.to_dict()
+        rep, why = pool_dash.load_report(report_path, jd, baselines or journal_path.parent / "pool_baselines",
+                                         journal_path.parent / "pool_context_history.json", lines=lines, B=B)
+        html = pool_dash.render_pool_section(rep, why, jd)
+        summary = pool_dash.pool_summary(rep, why)
+        if rep is not None and 'class="unavail"' in html:   # render fell back: data.json must agree with the page
+            m = re.search(r"pool report unavailable: ([^<]*)", html)
+            summary = dict(available=False, reason=m.group(1) if m else "render failed")
+        return html, summary
+    except Exception as e:  # noqa: BLE001
+        why = f"{type(e).__name__}: {e}"
+        return pool_dash.unavailable_box(why), {"available": False, "reason": why}
+
+
+def main(argv: list[str] | None = None) -> int:
+    ap = argparse.ArgumentParser(description="Build the static paper-forward dashboard")
+    ap.add_argument("--journal", default=JOURNAL_PATH)
+    ap.add_argument("--docs-dir", default=DOCS_DIR)
+    ap.add_argument("--pool-report", default=None, help="default: <journal dir>/pool_report.json")
+    ap.add_argument("--baselines", default=None, help="default: <journal dir>/pool_baselines")
+    a = ap.parse_args(argv)
+    jp = Path(a.journal)
+    journal = Journal.load(jp)
+    docs = Path(a.docs_dir)
     docs.mkdir(parents=True, exist_ok=True)
 
     data = build_data_json(journal)
+    pool_html, data["pool"] = build_pool(journal, jp, Path(a.pool_report) if a.pool_report else jp.parent / "pool_report.json",
+                                         Path(a.baselines) if a.baselines else None)
     (docs / "data.json").write_text(json.dumps(data, indent=2))
-    (docs / "index.html").write_text(INDEX_HTML)
+    (docs / "index.html").write_text(render_index(pool_html))
     print(f"Dashboard written to {docs}/")
     print(f"  Days elapsed:   {data['metrics']['days_elapsed']}/{data['test_days']}")
     print(f"  Portfolio:      ${data['metrics']['portfolio_value']:.2f}")

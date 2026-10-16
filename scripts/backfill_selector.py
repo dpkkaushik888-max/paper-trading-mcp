@@ -49,9 +49,10 @@ def main(argv=None) -> int:
         cdr = (pf / prev_pf - 1.0) if prev_pf > 0 else 0.0
         prev_pf = pf
         ts = pd.Timestamp(d["date"], tz="UTC")
-        c_hist = closes[closes.index <= ts]
+        # Bars before day D only: the live 00:30 UTC run on D never sees bar D (S33/S34 note).
+        c_hist = closes[closes.index < ts]
         bc = float(c_hist.iloc[-1]) if len(c_hist) else None
-        s_hist = sma[sma.index <= ts]
+        s_hist = sma[sma.index < ts]
         sm = float(s_hist.iloc[-1]) if len(s_hist) and not pd.isna(s_hist.iloc[-1]) else None
         d["selector_value"] = step(sel, bc if bc else 0.0, sm, cdr, d["date"]) if bc else sel.value
 

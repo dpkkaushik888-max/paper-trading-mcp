@@ -41,7 +41,26 @@ def find_issue_number() -> int | None:
     return None
 
 
-def build_body(j: Journal) -> str:
+POOL_REPORT = REPO_ROOT / "state" / "pool_report.json"
+
+
+def pool_lines(report_path: Path | None = None) -> str:
+    """S35: one line per pool line with verdict and evidence tier from state/pool_report.json.
+    Missing or malformed report -> empty string (the issue update never fails on the pool)."""
+    try:
+        rep = json.loads(Path(report_path or POOL_REPORT).read_text())
+        rows = [f"- `{l['id']}`: {l.get('verdict') or '—'}"
+                f"{' (' + l['rule'] + ')' if l.get('rule') and l.get('rule') != l.get('verdict') else ''}"
+                f", tier {l.get('tier') or '—'}" for l in rep["lines"]]
+    except (OSError, ValueError, KeyError, TypeError):
+        return ""
+    if not rows:
+        return ""
+    return ("### Strategy pool (S35, paper-only; recommendations, the owner rules)\n"
+            + "\n".join(rows) + "\n")
+
+
+def build_body(j: Journal, pool_report: Path | None = None) -> str:
     n = j.days_elapsed()
     port = j.last_portfolio_value()
     start = j.starting_capital
@@ -74,6 +93,8 @@ def build_body(j: Journal) -> str:
     alpha_btc = total_ret - bh_btc_ret
     alpha_basket = total_ret - bh_basket_ret
 
+    _pool = pool_lines(pool_report)
+    pool_block = _pool + "\n" if _pool else ""
     body = f"""## S18 Paper-Forward — Day {n} of {TEST_DAYS}
 
 **Last update:** {datetime.now(timezone.utc).isoformat(timespec="seconds")}
@@ -100,7 +121,7 @@ def build_body(j: Journal) -> str:
 - **Entered:** {", ".join(enters) if enters else "_none_"}
 - **Exited:** {", ".join(exits_) if exits_ else "_none_"}
 
-### Links
+{pool_block}### Links
 - 📊 [Full dashboard](https://dpkkaushik888-max.github.io/paper-trading-mcp/)
 - 📓 [Journal source](../blob/master/state/journal.json)
 - 📋 [S18 spec](../blob/master/specs/S18-paper-forward-validation.md)

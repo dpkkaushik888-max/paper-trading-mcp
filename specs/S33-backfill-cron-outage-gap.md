@@ -15,7 +15,8 @@ missing trades. This spec backfills the 6 missed days faithfully.
 ## Design Decisions
 - **Reuse the real `run()` code path**, not a re-implementation, so the backfill is byte-for-byte
   what the live cron would have produced. Achieved via a new optional `as_of` parameter that
-  (a) uses the given date as "today" and (b) truncates each symbol's bars to `index <= as_of`.
+  (a) uses the given date as "today" and (b) truncates each symbol's bars to `index < as_of`
+  (bars opened before the as-of day, exactly what the 00:30 UTC live run sees; see note below).
 - **Baseline = current journal minus the 2026-06-29 day.** Today's green run left `cash`,
   `open_positions`, `closed_trades`, and every benchmark's internal state unchanged (flat day,
   zero trades, BTC still below its 200d SMA), so popping the last day yields the exact 2026-06-22
@@ -23,6 +24,13 @@ missing trades. This spec backfills the 6 missed days faithfully.
 - **Replay order:** 2026-06-23, 24, 25, 26, 27, 28, then re-run 29 so its portfolio/benchmark
   marks reflect any positions opened during the gap.
 - Binance daily klines for past dates are immutable, so the replay is deterministic.
+
+> **Note 2026-10-16 (S34): off-by-one corrected.** The original implementation filtered
+> `index <= as_of`. Bars are labelled by open time and the live 00:30 UTC run drops the
+> still-forming bar, so that rule gave the replay one bar of look-ahead (bar D on day D).
+> The journal rows **2026-06-23 .. 2026-06-29** were produced under the old rule. They are
+> deliberately **not rewritten** (frozen S18 history). The filter is now `index < as_of`, so
+> re-running `scripts/backfill_gap.py` today would produce **different rows** for that window.
 
 ## Research
 - `run_daily.run()` acts only on the latest bar; failed runs wrote nothing → a true gap.

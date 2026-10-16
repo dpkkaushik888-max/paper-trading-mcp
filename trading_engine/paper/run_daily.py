@@ -22,7 +22,10 @@ from __future__ import annotations
 
 import argparse
 import logging
+import os
 import sys
+import time
+from pathlib import Path
 from datetime import datetime, timezone
 from typing import Any
 
@@ -46,6 +49,7 @@ from .config import (
     MAX_DRAWDOWN_PCT,
     MAX_CONSECUTIVE_LOSSES,
     MAX_SKIPPED_DAYS,
+    JOURNAL_PATH,
 )
 from .data import fetch_universe
 from .journal import (
@@ -63,6 +67,17 @@ from .selector_track import (
     step as selector_step, serialize as selector_serialize,
     deserialize as selector_deserialize,
 )
+from .shadow import SHADOW_VALUE_KEYS
+from .pool import book as pool_book
+from .pool.book import step as pool_step
+from .pool.context import DayContext, build_context
+from .pool.families import make_strategy
+from .pool.live_adapter import live_line_day
+from .pool.registry import LIVE_ID, active_lines
+from .pool.scoring import load_context_history, score_pool
+
+POOL_LINES = active_lines()
+POOL_REPORT_PATH = str(Path(JOURNAL_PATH).parent / "pool_report.json")
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger("s18.run_daily")
@@ -72,6 +87,8 @@ def carry_forward_benchmarks(journal) -> dict[str, float]:
     """Previous day's benchmark values, for days with no market data."""
     keys = ("bh_btc_value", "bh_basket_value", "trend_timed_value", "selector_value")
     out = {k: journal.last_positive_value(k) for k in keys}
+    # Shadows: carry the last positive value; stay 0.0 (not started) before their first run.
+    out.update({k: journal.last_positive_value(k, default=0.0) for k in SHADOW_VALUE_KEYS})
     log.warning("No market data today; carrying benchmarks forward: %s", out)
     return out
 
@@ -85,13 +102,37 @@ def _latest_bar(df: pd.DataFrame) -> tuple[pd.Timestamp, pd.Series]:
     return df.index[-1], df.iloc[-1]
 
 
+# A healthy symbol's latest closed bar at the 00:30 UTC run is yesterday's (age 1).
+STALE_BAR_DAYS = 2
+
+
+def _bar_age_days(bar_date: pd.Timestamp, today: str) -> int:
+    """Whole days between a bar's open date and the run date."""
+    return (pd.Timestamp(today).date() - pd.Timestamp(bar_date).date()).days
+
+
+def _stale_symbols(latest_dates: dict[str, pd.Timestamp], today: str) -> list[str]:
+    """Symbols whose latest bar is older than STALE_BAR_DAYS (e.g. a delisted / frozen
+    pair such as MATICUSDT on binance.us). Logs a WARNING per symbol; no behaviour change."""
+    stale = []
+    for sym in sorted(latest_dates):
+        age = _bar_age_days(latest_dates[sym], today)
+        if age > STALE_BAR_DAYS:
+            log.warning("STALE DATA: %s latest bar %s is %d days old (as_of %s)",
+                        sym, pd.Timestamp(latest_dates[sym]).date(), age, today)
+            stale.append(sym)
+    return stale
+
+
 def run(dry_run: bool = False, as_of: str | None = None) -> int:
     """Execute one daily cron cycle. Returns 0 on success, non-zero on halt.
 
     ``as_of`` (YYYY-MM-DD) replays a historical day: it is used as "today" and
-    each symbol's bars are truncated to ``index <= as_of`` so the exact same
-    logic produces what the live cron would have on that date. Used for backfill
-    after a cron outage (S33); ``None`` = live mode (today's date, full bars).
+    each symbol's bars are truncated to ``index < as_of`` so the exact same
+    logic produces what the live cron would have on that date. Bars are labelled
+    by open time and the live 00:30 UTC run drops the still-forming bar, so on day
+    D the live run only ever sees bars opened before D. Used for backfill after a
+    cron outage (S33); ``None`` = live mode (today's date, full bars).
     """
     log.info("=" * 70)
     log.info("S18 Paper-Forward — daily run (dry_run=%s, as_of=%s)", dry_run, as_of or "live")
@@ -127,9 +168,11 @@ def run(dry_run: bool = False, as_of: str | None = None) -> int:
         return 0
 
     if as_of is not None:
-        # Backfill replay: keep only bars at or before the as-of date (S33).
+        # Backfill replay (S33): keep only bars opened strictly before the as-of
+        # date. Bar D is still forming at the live 00:30 UTC run on day D
+        # (data.py drops it), so `<=` would leak one day of future data.
         cutoff = pd.Timestamp(as_of, tz="UTC")
-        bars_by_sym = {s: df[df.index <= cutoff] for s, df in bars_by_sym.items()}
+        bars_by_sym = {s: df[df.index < cutoff] for s, df in bars_by_sym.items()}
         bars_by_sym = {s: df for s, df in bars_by_sym.items() if not df.empty}
 
     log.info("Fetched bars for %d/%d symbols", len(bars_by_sym), len(UNIVERSE))
@@ -137,13 +180,16 @@ def run(dry_run: bool = False, as_of: str | None = None) -> int:
     # ── Pre-compute indicators + today snapshot ─────────────────────────
     snapshot: dict[str, tuple[float, pd.Series]] = {}
     todays_closes: dict[str, float] = {}
+    latest_dates: dict[str, pd.Timestamp] = {}
     for sym, df in bars_by_sym.items():
         ind = precompute_indicators(df)
         date, row = _latest_bar(df)
+        latest_dates[sym] = date
         close_today = float(row["Close"])
         ind_row = ind.loc[date]
         snapshot[sym] = (close_today, ind_row)
         todays_closes[sym] = close_today
+    stale_symbols = _stale_symbols(latest_dates, today)
 
     # ── 1. Evaluate exits on open positions ─────────────────────────────
     decisions: list[Decision] = []
@@ -272,6 +318,7 @@ def run(dry_run: bool = False, as_of: str | None = None) -> int:
     prev_pf = journal.last_portfolio_value()
     connors_daily_ret = (portfolio / prev_pf - 1.0) if prev_pf > 0 else 0.0
     btc_df = bars_by_sym.get(BH_BTC_SYMBOL)
+    btc_close, sma = None, None
     if btc_df is not None and len(btc_df) >= 1:
         btc_close = float(btc_df["Close"].iloc[-1])
         sma = (float(btc_df["Close"].rolling(timer.ma_window).mean().iloc[-1])
@@ -290,6 +337,13 @@ def run(dry_run: bool = False, as_of: str | None = None) -> int:
         log.warning("BTC close missing; carrying trend_timed_value forward: $%.2f", trend_timed_value)
         selector_value = selector.value  # persisted state, starts at capital; cannot reach 0
 
+    # ── 3e. Shadow variants (paper-only): own books, never touch live cash/positions ─
+    live_args = ([d.__dict__ for d in decisions], [f.__dict__ for f in fills], portfolio,
+                 journal.cash, len(journal.open_positions),
+                 {s: snapshot[s][1].get("rsi_2") for s in snapshot})
+    shadow_values, shadow_errors, context, lines, pool_errors = _run_pool(
+        journal, bars_by_sym, stale_symbols, btc_close, sma, today, live_args)
+
     snap = DaySnapshot(
         date=today,
         portfolio_value=portfolio,
@@ -303,8 +357,16 @@ def run(dry_run: bool = False, as_of: str | None = None) -> int:
         bh_basket_value=bh_basket_value,
         trend_timed_value=trend_timed_value,
         selector_value=selector_value,
+        stale_symbols=stale_symbols,
+        **shadow_values,
+        shadow_errors=shadow_errors,
+        context=context,
+        lines=lines,
+        pool_errors=pool_errors,
     )
     journal.append_day(snap)
+    if not dry_run:
+        _write_pool_report(journal)
 
     log.info("Portfolio: $%.2f (%+.2f%%) | BH_BTC: $%.2f (%+.2f%%) | BH_BASKET: $%.2f (%+.2f%%)",
              portfolio, (portfolio / journal.starting_capital - 1) * 100,
@@ -325,6 +387,77 @@ def run(dry_run: bool = False, as_of: str | None = None) -> int:
         log.info("DRY RUN — journal NOT saved.")
 
     return 0
+
+
+def _run_pool(journal, bars_by_sym, stale_symbols, btc_close, btc_sma, today, live_args
+              ) -> tuple[dict[str, float], dict[str, str], dict, dict, dict[str, str]]:
+    """Step every active pool line in its own book. A failing line is logged, its value carried
+    forward and its error recorded, so a line can never break or alter the live run."""
+    t0 = time.perf_counter()
+    errors: dict[str, str] = {}
+    try:
+        ctx = build_context(bars_by_sym, today, stale_symbols, BH_BTC_SYMBOL, btc_close, btc_sma)
+    except Exception as e:  # noqa: BLE001
+        log.exception("Pool context failed; lines run with an unknown context")
+        errors["_context"] = f"{type(e).__name__}: {e}"[:200]
+        ctx = DayContext(btc_close=btc_close, btc_sma200=btc_sma)
+    lines: dict[str, dict] = {}
+    try:
+        lines[LIVE_ID] = live_line_day(*live_args)   # read-only view of today's live decisions
+    except Exception as e:  # noqa: BLE001
+        log.exception("Live LineDay failed")
+        errors[LIVE_ID] = f"{type(e).__name__}: {e}"[:200]
+    snapshots: dict[tuple, dict] = {}   # indicators once per (family, indicator key)
+    prev_lines = journal.days[-1].get("lines", {}) if journal.days else {}
+    for spec in POOL_LINES:
+        try:
+            strat = make_strategy(spec)
+            key = (spec.family, getattr(strat, "indicator_key", spec.id))
+            if key not in snapshots:
+                snap = {}
+                for sym, df in bars_by_sym.items():
+                    ind = strat.indicators(df)
+                    snap[sym] = (float(df["Close"].iloc[-1]), ind.loc[df.index[-1]])
+                snapshots[key] = snap
+            # Copies of rows: a line can never mutate another line's inputs.
+            snap = {s: (c, row.copy()) for s, (c, row) in snapshots[key].items()}
+            book = pool_book.deserialize(journal.get_benchmark(spec.id), spec.id)
+            lines[spec.id] = pool_step(book, spec, strat, snap, ctx, today)
+            journal.set_benchmark(spec.id, pool_book.serialize(book))
+        except Exception as e:  # noqa: BLE001
+            log.exception("Pool line %s failed; carrying value forward", spec.id)
+            errors[spec.id] = f"{type(e).__name__}: {e}"[:200]
+            prev = (prev_lines.get(spec.id) or {}).get("value") or journal.last_positive_value(
+                f"{spec.id}_value", default=0.0)
+            lines[spec.id] = {"value": prev, "error": True}
+    log.info("Pool: %d lines in %.2fs: %s", len(POOL_LINES), time.perf_counter() - t0,
+             ", ".join(f"{k}=${v['value']:.2f}" for k, v in lines.items()))
+    # S34 compatibility: shadow_*_value / shadow_errors for the declared shadow keys only.
+    shadow_values = {f"{k}_value": v["value"] for k, v in lines.items() if f"{k}_value" in SHADOW_VALUE_KEYS}
+    shadow_errors = {k: v for k, v in errors.items() if f"{k}_value" in SHADOW_VALUE_KEYS}
+    return shadow_values, shadow_errors, ctx.to_dict(), lines, errors
+
+
+def _write_pool_report(journal) -> None:
+    """S35 C3: regenerate state/pool_report.json from the journal (read-only). A scoring failure is
+    recorded in today's pool_errors["_scoring"] and never fails the live run."""
+    t0 = time.perf_counter()
+    try:
+        out = Path(POOL_REPORT_PATH)
+        report = score_pool(journal.to_dict(), out.parent / "pool_baselines",
+                            load_context_history(out.parent / "pool_context_history.json"))
+        tmp = out.with_name(f".{out.name}.{os.getpid()}.tmp")   # same dir -> os.replace is atomic
+        try:
+            tmp.write_text(report.to_json())
+            os.replace(tmp, out)
+        finally:
+            if tmp.exists():
+                tmp.unlink()
+        log.info("Pool report: %d lines scored in %.2fs -> %s", len(report.lines), time.perf_counter() - t0, out)
+    except Exception as e:  # noqa: BLE001
+        log.exception("Pool scoring failed; live run continues")
+        if journal.days:
+            journal.days[-1].setdefault("pool_errors", {})["_scoring"] = f"{type(e).__name__}: {e}"[:200]
 
 
 def _check_halt(journal: Journal) -> str | None:
