@@ -89,9 +89,11 @@ def run(dry_run: bool = False, as_of: str | None = None) -> int:
     """Execute one daily cron cycle. Returns 0 on success, non-zero on halt.
 
     ``as_of`` (YYYY-MM-DD) replays a historical day: it is used as "today" and
-    each symbol's bars are truncated to ``index <= as_of`` so the exact same
-    logic produces what the live cron would have on that date. Used for backfill
-    after a cron outage (S33); ``None`` = live mode (today's date, full bars).
+    each symbol's bars are truncated to ``index < as_of`` so the exact same
+    logic produces what the live cron would have on that date. Bars are labelled
+    by open time and the live 00:30 UTC run drops the still-forming bar, so on day
+    D the live run only ever sees bars opened before D. Used for backfill after a
+    cron outage (S33); ``None`` = live mode (today's date, full bars).
     """
     log.info("=" * 70)
     log.info("S18 Paper-Forward — daily run (dry_run=%s, as_of=%s)", dry_run, as_of or "live")
@@ -127,9 +129,11 @@ def run(dry_run: bool = False, as_of: str | None = None) -> int:
         return 0
 
     if as_of is not None:
-        # Backfill replay: keep only bars at or before the as-of date (S33).
+        # Backfill replay (S33): keep only bars opened strictly before the as-of
+        # date. Bar D is still forming at the live 00:30 UTC run on day D
+        # (data.py drops it), so `<=` would leak one day of future data.
         cutoff = pd.Timestamp(as_of, tz="UTC")
-        bars_by_sym = {s: df[df.index <= cutoff] for s, df in bars_by_sym.items()}
+        bars_by_sym = {s: df[df.index < cutoff] for s, df in bars_by_sym.items()}
         bars_by_sym = {s: df for s, df in bars_by_sym.items() if not df.empty}
 
     log.info("Fetched bars for %d/%d symbols", len(bars_by_sym), len(UNIVERSE))
