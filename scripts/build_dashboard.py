@@ -9,6 +9,7 @@ GitHub Pages serves docs/ automatically (configured in repo settings).
 
 from __future__ import annotations
 
+import argparse
 import json
 import sys
 from datetime import datetime, timezone
@@ -22,6 +23,9 @@ from trading_engine.paper.config import (
 )
 from trading_engine.paper.journal import Journal
 from trading_engine.paper.shadow import SHADOW_VARIANTS
+from trading_engine.paper.pool import dashboard as pool_dash
+
+POOL_PLACEHOLDER = "<!--S35-POOL-->\n"
 
 
 # S20 backtest baselines for side-by-side comparison (from specs/S20)
@@ -356,6 +360,7 @@ INDEX_HTML = r"""<!doctype html>
     Each shadow starts at $10,000 on its first run and differs from Connors in one rule (combo: all three). Connors columns cover the same window.
   </div>
 </div>
+<!--S35-POOL-->
 
 <div class="card">
   <h2>S20 Backtest vs S18 Live</h2>
@@ -542,14 +547,41 @@ INDEX_HTML = r"""<!doctype html>
 """
 
 
-def main() -> int:
-    journal = Journal.load()
-    docs = Path(DOCS_DIR)
+def render_index(pool_html: str) -> str:
+    """INDEX_HTML with the server-rendered S35 pool block in place of the placeholder (live parts untouched)."""
+    return INDEX_HTML.replace(POOL_PLACEHOLDER, pool_html)
+
+
+def build_pool(journal: Journal, journal_path: Path, report_path: Path | None, baselines: Path | None = None,
+               lines=None, B: int | None = None) -> tuple[str, dict]:
+    """(pool HTML block, data.json ``pool`` aggregates). Never raises (S35 §9)."""
+    try:
+        jd = journal.to_dict()
+        rep, why = pool_dash.load_report(report_path, jd, baselines or journal_path.parent / "pool_baselines",
+                                         journal_path.parent / "pool_context_history.json", lines=lines, B=B)
+        return pool_dash.render_pool_section(rep, why, jd), pool_dash.pool_summary(rep, why)
+    except Exception as e:  # noqa: BLE001
+        why = f"{type(e).__name__}: {e}"
+        return pool_dash.unavailable_box(why), {"available": False, "reason": why}
+
+
+def main(argv: list[str] | None = None) -> int:
+    ap = argparse.ArgumentParser(description="Build the static paper-forward dashboard")
+    ap.add_argument("--journal", default=JOURNAL_PATH)
+    ap.add_argument("--docs-dir", default=DOCS_DIR)
+    ap.add_argument("--pool-report", default=None, help="default: <journal dir>/pool_report.json")
+    ap.add_argument("--baselines", default=None, help="default: <journal dir>/pool_baselines")
+    a = ap.parse_args(argv)
+    jp = Path(a.journal)
+    journal = Journal.load(jp)
+    docs = Path(a.docs_dir)
     docs.mkdir(parents=True, exist_ok=True)
 
     data = build_data_json(journal)
+    pool_html, data["pool"] = build_pool(journal, jp, Path(a.pool_report) if a.pool_report else jp.parent / "pool_report.json",
+                                         Path(a.baselines) if a.baselines else None)
     (docs / "data.json").write_text(json.dumps(data, indent=2))
-    (docs / "index.html").write_text(INDEX_HTML)
+    (docs / "index.html").write_text(render_index(pool_html))
     print(f"Dashboard written to {docs}/")
     print(f"  Days elapsed:   {data['metrics']['days_elapsed']}/{data['test_days']}")
     print(f"  Portfolio:      ${data['metrics']['portfolio_value']:.2f}")
