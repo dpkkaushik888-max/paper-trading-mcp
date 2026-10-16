@@ -24,6 +24,7 @@ import argparse
 import logging
 import sys
 import time
+from pathlib import Path
 from datetime import datetime, timezone
 from typing import Any
 
@@ -47,6 +48,7 @@ from .config import (
     MAX_DRAWDOWN_PCT,
     MAX_CONSECUTIVE_LOSSES,
     MAX_SKIPPED_DAYS,
+    JOURNAL_PATH,
 )
 from .data import fetch_universe
 from .journal import (
@@ -71,8 +73,10 @@ from .pool.context import DayContext, build_context
 from .pool.families import make_strategy
 from .pool.live_adapter import live_line_day
 from .pool.registry import LIVE_ID, active_lines
+from .pool.scoring import load_context_history, score_pool
 
 POOL_LINES = active_lines()
+POOL_REPORT_PATH = str(Path(JOURNAL_PATH).parent / "pool_report.json")
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger("s18.run_daily")
@@ -360,6 +364,8 @@ def run(dry_run: bool = False, as_of: str | None = None) -> int:
         pool_errors=pool_errors,
     )
     journal.append_day(snap)
+    if not dry_run:
+        _write_pool_report(journal)
 
     log.info("Portfolio: $%.2f (%+.2f%%) | BH_BTC: $%.2f (%+.2f%%) | BH_BASKET: $%.2f (%+.2f%%)",
              portfolio, (portfolio / journal.starting_capital - 1) * 100,
@@ -429,6 +435,22 @@ def _run_pool(journal, bars_by_sym, stale_symbols, btc_close, btc_sma, today, li
     shadow_values = {f"{k}_value": v["value"] for k, v in lines.items() if f"{k}_value" in SHADOW_VALUE_KEYS}
     shadow_errors = {k: v for k, v in errors.items() if f"{k}_value" in SHADOW_VALUE_KEYS}
     return shadow_values, shadow_errors, ctx.to_dict(), lines, errors
+
+
+def _write_pool_report(journal) -> None:
+    """S35 C3: regenerate state/pool_report.json from the journal (read-only). A scoring failure is
+    recorded in today's pool_errors["_scoring"] and never fails the live run."""
+    t0 = time.perf_counter()
+    try:
+        out = Path(POOL_REPORT_PATH)
+        report = score_pool(journal.to_dict(), out.parent / "pool_baselines",
+                            load_context_history(out.parent / "pool_context_history.json"))
+        out.write_text(report.to_json())
+        log.info("Pool report: %d lines scored in %.2fs -> %s", len(report.lines), time.perf_counter() - t0, out)
+    except Exception as e:  # noqa: BLE001
+        log.exception("Pool scoring failed; live run continues")
+        if journal.days:
+            journal.days[-1].setdefault("pool_errors", {})["_scoring"] = f"{type(e).__name__}: {e}"[:200]
 
 
 def _check_halt(journal: Journal) -> str | None:

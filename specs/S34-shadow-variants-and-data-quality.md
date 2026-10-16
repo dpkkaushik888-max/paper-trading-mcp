@@ -103,3 +103,43 @@ before the commit that adds them, so `generated_from.sha` is the **parent** of t
 Day context buckets frozen: `BTC_VOL20_TERCILES = (0.4330, 0.6134)`; basket_ret20 {<-10%, -10..0, 0..+10, >+10%}.
 `.us` parity of the reference vs the live journal (2026-04-20..2026-10-15): 30/31 closed trades.
 `state/pool_context_history.json`: context for every journal day from `.us` bars (`scripts/pool_context_backfill.py`).
+
+### C3 scoring (S35 §4/§5; `paper/pool/scoring.py`, `paper/pool/verdicts.py`)
+Read-only over `state/journal.json`, `state/pool_baselines/*.json` and `state/pool_context_history.json`;
+nothing changes a line's status or a journal row. `run_daily` regenerates `state/pool_report.json` after the
+day is appended (non-dry runs only; skipped-bar days keep the previous report); a scoring exception is logged
+into that day's `pool_errors["_scoring"]` and never fails the live run. CLI: `scripts/pool_report.py --print`.
+
+Sources. Live: value path = `portfolio_value` of non-skipped days, trades = `journal.closed_trades`. Pool
+line: value path = `days[].lines[<id>].value` (S34 shadows also `shadow_*_value`), trades =
+`benchmarks[<id>].closed_trades` (each with `entry_ctx`/`exit_ctx`/`mae_pct`/`mfe_pct`). A pool line counts
+from `registered_on`; S34 shadows from their first journal day with a value > 0.
+
+Methods (pure numpy, seed = sha256(line id | last journal date | purpose), so a day's report is reproducible):
+- Trade stats: n, distinct entry days, win rate, mean/median `pnl_pct`, profit factor (None + `no_losses`),
+  expectancy, mean MAE/MFE, days active, current / max drawdown of the value path, mean exposure.
+- Trade-mean CI: cluster bootstrap over entry dates (all same-day trades travel together), B = 5000, 90 % percentile.
+- Win probability: Beta(a0 + wins, b0 + losses) with a0 = k p, b0 = k (1 - p), k = 10, p = baseline
+  `full.win_rate` (Beta(1,1) without a baseline). Mean analytic; 90 % credible interval from 20 000 seeded
+  `rng.beta` draws (no scipy). `disagrees` when the interval excludes p.
+- Evidence tier: < 8 trades or < 5 entry days = insufficient (no CI); 8-14 indicative; >= 15 usable.
+- Paired vs live: common window = days both have a value > 0, neither skipped; d_t = r_line - r_live on that
+  window. Stationary block bootstrap (mean block 5 days, B = 5000, vectorised (B, n) index array) of mean d:
+  90 % CI and p = 2 min(P*(mean <= 0), P*(mean >= 0)); sign test on non-zero days; half-window means;
+  cumulative return and MaxDD difference. Holm across ACTIVE lines with a paired p at alpha = 0.10.
+  (Hypothesis-specific restrictions of §4 — cond days, live-idle days — are not in C3.)
+- Condition table (exploratory, uncorrected, never drives a verdict): per dimension btc_trend /
+  btc_vol20_bucket / basket_ret20_bucket / dow and bucket: n, entry days, win rate, mean, tier, cluster CI
+  (B = 2000, non-insufficient cells), posterior mean with the baseline bucket win rate as prior when the
+  bucket has backtest n >= 30, else the line's overall rate. Bucket = trade `entry_ctx`, else that day's
+  journal `context`, else context history, else "unknown".
+
+Verdicts (recommendations only; the owner rules monthly; text says "cand" / "recommend"), in order:
+LIVE (live_s18); NOT-STEPPED (status candidate); CONTROL (hypothesis control, with `guard_effect` = control
+minus live return over the common window); HARD-KILL (max DD > 25 % or >= 10 consecutive losing trades);
+RETIRE-cand (>= 60 days, >= 15 trades, Holm p_adj < 0.10 with mean d < 0); DORMANT (< 5 signals in the
+trailing 90 journal days, evaluated only once the line has 90 LineDay rows there); PROMOTE-cand (>= 90 days,
+>= 25 trades, CI lower bound > 0 or Holm-significant positive, mean d > 0 in both halves, baseline
+`years_beating_s18` >= 4; baseline-waived and control lines never promote); KEEP with rule INCONCLUSIVE-180
+and flag "inconclusive 180d; owner rules monthly" at >= 180 days (§14.3); else KEEP. Report:
+`schema_version` 1, sorted keys, floats rounded to 6 digits so the daily diff is readable.

@@ -54,6 +54,7 @@ jobs:
           git config user.name  "S18 Paper Bot"
           git config user.email "bot@paper-forward.local"
           git add state/journal.json docs/
+          if [ -f state/pool_report.json ]; then git add state/pool_report.json; fi
           if git diff --cached --quiet; then
             echo "Nothing to commit."
           else
