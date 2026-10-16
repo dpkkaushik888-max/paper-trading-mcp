@@ -68,6 +68,14 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(mess
 log = logging.getLogger("s18.run_daily")
 
 
+def carry_forward_benchmarks(journal) -> dict[str, float]:
+    """Previous day's benchmark values, for days with no market data."""
+    keys = ("bh_btc_value", "bh_basket_value", "trend_timed_value", "selector_value")
+    out = {k: journal.last_positive_value(k) for k in keys}
+    log.warning("No market data today; carrying benchmarks forward: %s", out)
+    return out
+
+
 def _today_utc_date() -> str:
     return datetime.now(timezone.utc).date().isoformat()
 
@@ -105,6 +113,8 @@ def run(dry_run: bool = False, as_of: str | None = None) -> int:
             date=today, portfolio_value=journal.last_portfolio_value(),
             cash=journal.cash, n_open=len(journal.open_positions),
             closes={}, decisions=[], fills=[], skipped=True,
+            # Carry benchmark series forward — never record 0 (breaks Sharpe/max DD).
+            **carry_forward_benchmarks(journal),
         )
         journal.append_day(snap)
         if not dry_run:
@@ -251,6 +261,9 @@ def run(dry_run: bool = False, as_of: str | None = None) -> int:
     bh_basket = bench_deserialize(journal.get_benchmark("bh_basket"))
     bh_btc_value = mark_benchmark(bh_btc, todays_closes)
     bh_basket_value = mark_benchmark(bh_basket, todays_closes)
+    # Persist last-known closes so a later missing close uses them (not entry price).
+    journal.set_benchmark("bh_btc", bench_serialize(bh_btc))
+    journal.set_benchmark("bh_basket", bench_serialize(bh_basket))
 
     # ── 3c. Trend-timed BTC tracker (S29): invested in bull, cash in bear ─
     timer = trend_deserialize(journal.get_benchmark("trend_timed_btc"))
@@ -272,8 +285,10 @@ def run(dry_run: bool = False, as_of: str | None = None) -> int:
                  "INVESTED" if timer.invested else "CASH", trend_timed_value, timer.n_switches,
                  selector.mode.upper(), selector_value, selector.n_switches)
     else:
-        trend_timed_value = trend_value(timer, todays_closes.get(BH_BTC_SYMBOL, 0.0))
-        selector_value = selector.value
+        # BTC bars missing on a partial fetch: never mark trend-timed at ~0.
+        trend_timed_value = journal.last_positive_value("trend_timed_value")
+        log.warning("BTC close missing; carrying trend_timed_value forward: $%.2f", trend_timed_value)
+        selector_value = selector.value  # persisted state, starts at capital; cannot reach 0
 
     snap = DaySnapshot(
         date=today,

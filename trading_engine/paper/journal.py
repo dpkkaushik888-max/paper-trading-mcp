@@ -254,6 +254,17 @@ class Journal:
             return float(self._data["starting_capital"])
         return float(self._data["days"][-1]["portfolio_value"])
 
+    def last_positive_value(self, key: str, default: float | None = None) -> float:
+        """Most recent strictly-positive value of a per-day series (e.g. bh_btc_value).
+
+        Used to carry a benchmark forward on skipped days instead of recording 0.
+        """
+        for d in reversed(self._data["days"]):
+            v = d.get(key)
+            if v is not None and float(v) > 0:
+                return float(v)
+        return float(self._data["starting_capital"] if default is None else default)
+
     def max_drawdown(self) -> float:
         values = [d["portfolio_value"] for d in self._data["days"]]
         if not values:
