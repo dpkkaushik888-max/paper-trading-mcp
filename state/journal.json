@@ -2,7 +2,7 @@
   "version": 4,
   "start_date": "2026-04-21",
   "starting_capital": 10000.0,
-  "cash": 4724.940888047848,
+  "cash": 1718.9408880478477,
   "config": {
     "max_concurrent": 6,
     "pos_size_pct": 0.15,
@@ -24267,6 +24267,355 @@
         }
       },
       "pool_errors": {}
+    },
+    {
+      "date": "2026-10-18",
+      "portfolio_value": 10572.547843687367,
+      "cash": 1718.9408880478477,
+      "n_open": 6,
+      "closes": {
+        "BTCUSDT": 81490.38,
+        "ETHUSDT": 2402.93,
+        "SOLUSDT": 103.45,
+        "AVAXUSDT": 9.752,
+        "LINKUSDT": 11.987,
+        "MATICUSDT": 0.4492,
+        "DOGEUSDT": 0.07932,
+        "XRPUSDT": 1.2942,
+        "ADAUSDT": 0.21957,
+        "DOTUSDT": 1.116,
+        "ATOMUSDT": 1.694,
+        "NEARUSDT": 4.849,
+        "LTCUSDT": 58.8,
+        "TRXUSDT": 0.3337,
+        "BCHUSDT": 273.5,
+        "APTUSDT": 0.794,
+        "UNIUSDT": 7.176,
+        "ARBUSDT": 0.1804,
+        "OPUSDT": 0.128,
+        "SUIUSDT": 0.9766
+      },
+      "decisions": [
+        {
+          "symbol": "XRPUSDT",
+          "action": "hold",
+          "reason": "no_exit_signal"
+        },
+        {
+          "symbol": "LTCUSDT",
+          "action": "hold",
+          "reason": "no_exit_signal"
+        },
+        {
+          "symbol": "ADAUSDT",
+          "action": "hold",
+          "reason": "no_exit_signal"
+        },
+        {
+          "symbol": "ATOMUSDT",
+          "action": "hold",
+          "reason": "no_exit_signal"
+        },
+        {
+          "symbol": "BTCUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "ETHUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "SOLUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "MATICUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "DOGEUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "DOTUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "NEARUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "TRXUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "BCHUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "APTUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "UNIUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "ARBUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "OPUSDT",
+          "action": "hold",
+          "reason": "no_entry_signal"
+        },
+        {
+          "symbol": "AVAXUSDT",
+          "action": "enter",
+          "reason": "connors_signal"
+        },
+        {
+          "symbol": "LINKUSDT",
+          "action": "enter",
+          "reason": "connors_signal"
+        },
+        {
+          "symbol": "SUIUSDT",
+          "action": "blocked",
+          "reason": "max_concurrent"
+        }
+      ],
+      "fills": [
+        {
+          "symbol": "AVAXUSDT",
+          "side": "BUY",
+          "modeled_price": 9.752,
+          "fill_price": 9.756876,
+          "shares": 153.7377332662627,
+          "cost": 3.0
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "BUY",
+          "modeled_price": 11.987,
+          "fill_price": 11.992993499999999,
+          "shares": 125.0730270136476,
+          "cost": 3.0
+        }
+      ],
+      "skipped": false,
+      "bh_btc_value": 10723.41232449954,
+      "bh_basket_value": 12029.717171185364,
+      "trend_timed_value": 11136.388802621223,
+      "selector_value": 11412.683077120448,
+      "stale_symbols": [
+        "MATICUSDT"
+      ],
+      "shadow_atr_stop_value": 9899.6754641744,
+      "shadow_btc200_value": 9899.6754641744,
+      "shadow_rsi15_value": 9897.202333935464,
+      "shadow_combo_value": 9897.202333935464,
+      "shadow_errors": {},
+      "context": {
+        "bar_date": "2026-10-17",
+        "dow": "Saturday",
+        "btc_trend": "above_both",
+        "btc_vol20": 0.25208693996103104,
+        "btc_vol20_bucket": "low",
+        "basket_ret20": -0.14285898919430526,
+        "basket_ret20_bucket": "<-10%",
+        "data_flags": {
+          "stale": [
+            "MATICUSDT"
+          ],
+          "gap200": [
+            "TRXUSDT"
+          ]
+        },
+        "btc_close": 81490.38,
+        "btc_sma200": 72464.04045
+      },
+      "lines": {
+        "live_s18": {
+          "value": 10572.547843687367,
+          "n_open": 6,
+          "exposure": 0.8374146976242639,
+          "signals": 3,
+          "entries": 2,
+          "exits": 0,
+          "blocked": {
+            "cap": 1,
+            "gate": 0,
+            "cash": 0,
+            "data": 0
+          },
+          "blocked_syms": [
+            [
+              "SUIUSDT",
+              6.864444933344564
+            ]
+          ],
+          "n_fills": 2
+        },
+        "shadow_atr_stop": {
+          "value": 9899.6754641744,
+          "n_open": 6,
+          "exposure": 0.9008048290518486,
+          "signals": 4,
+          "entries": 4,
+          "exits": 0,
+          "blocked": {
+            "cap": 0,
+            "gate": 0,
+            "cash": 0,
+            "data": 0
+          },
+          "blocked_syms": []
+        },
+        "shadow_btc200": {
+          "value": 9899.6754641744,
+          "n_open": 6,
+          "exposure": 0.9008048290518486,
+          "signals": 4,
+          "entries": 4,
+          "exits": 0,
+          "blocked": {
+            "cap": 0,
+            "gate": 0,
+            "cash": 0,
+            "data": 0
+          },
+          "blocked_syms": []
+        },
+        "shadow_rsi15": {
+          "value": 9897.202333935464,
+          "n_open": 6,
+          "exposure": 0.8969225936839595,
+          "signals": 4,
+          "entries": 3,
+          "exits": 0,
+          "blocked": {
+            "cap": 1,
+            "gate": 0,
+            "cash": 0,
+            "data": 0
+          },
+          "blocked_syms": [
+            [
+              "SUIUSDT",
+              6.864444933344564
+            ]
+          ]
+        },
+        "shadow_combo": {
+          "value": 9897.202333935464,
+          "n_open": 6,
+          "exposure": 0.8969225936839595,
+          "signals": 4,
+          "entries": 3,
+          "exits": 0,
+          "blocked": {
+            "cap": 1,
+            "gate": 0,
+            "cash": 0,
+            "data": 0
+          },
+          "blocked_syms": [
+            [
+              "SUIUSDT",
+              6.864444933344564
+            ]
+          ]
+        },
+        "breakout_s21": {
+          "value": 10000.0,
+          "n_open": 0,
+          "exposure": 0.0,
+          "signals": 0,
+          "entries": 0,
+          "exits": 0,
+          "blocked": {
+            "cap": 0,
+            "gate": 0,
+            "cash": 0,
+            "data": 0
+          },
+          "blocked_syms": []
+        },
+        "xsec_mom_top3": {
+          "value": 10000.0,
+          "n_open": 0,
+          "exposure": 0.0,
+          "signals": 0,
+          "entries": 0,
+          "exits": 0,
+          "blocked": {
+            "cap": 0,
+            "gate": 0,
+            "cash": 0,
+            "data": 0
+          },
+          "blocked_syms": []
+        },
+        "basket_sma50_band": {
+          "value": 9682.772928432545,
+          "n_open": 12,
+          "exposure": 0.6233914645749411,
+          "signals": 0,
+          "entries": 0,
+          "exits": 1,
+          "blocked": {
+            "cap": 0,
+            "gate": 0,
+            "cash": 0,
+            "data": 0
+          },
+          "blocked_syms": []
+        },
+        "connors_guarded": {
+          "value": 9899.6754641744,
+          "n_open": 6,
+          "exposure": 0.9008048290518486,
+          "signals": 4,
+          "entries": 4,
+          "exits": 0,
+          "blocked": {
+            "cap": 0,
+            "gate": 0,
+            "cash": 0,
+            "data": 0
+          },
+          "blocked_syms": []
+        },
+        "connors_exit_sma10": {
+          "value": 9899.6754641744,
+          "n_open": 6,
+          "exposure": 0.9008048290518486,
+          "signals": 4,
+          "entries": 4,
+          "exits": 0,
+          "blocked": {
+            "cap": 0,
+            "gate": 0,
+            "cash": 0,
+            "data": 0
+          },
+          "blocked_syms": []
+        }
+      },
+      "pool_errors": {}
     }
   ],
   "open_positions": [
@@ -24296,6 +24645,20 @@
       "entry_date": "2026-10-17",
       "entry_price": 1.7358675,
       "shares": 864.1212534942904,
+      "entry_cost": 3.0
+    },
+    {
+      "symbol": "AVAXUSDT",
+      "entry_date": "2026-10-18",
+      "entry_price": 9.756876,
+      "shares": 153.7377332662627,
+      "entry_cost": 3.0
+    },
+    {
+      "symbol": "LINKUSDT",
+      "entry_date": "2026-10-18",
+      "entry_price": 11.992993499999999,
+      "shares": 125.0730270136476,
       "entry_cost": 3.0
     }
   ],
@@ -24700,7 +25063,7 @@
         }
       ],
       "last_closes": {
-        "BTCUSDT": 81600.49
+        "BTCUSDT": 81490.38
       }
     },
     "bh_basket": {
@@ -24831,26 +25194,26 @@
         }
       ],
       "last_closes": {
-        "BTCUSDT": 81600.49,
-        "ETHUSDT": 2423.57,
-        "SOLUSDT": 104.38,
-        "AVAXUSDT": 9.954,
-        "LINKUSDT": 12.354,
+        "BTCUSDT": 81490.38,
+        "ETHUSDT": 2402.93,
+        "SOLUSDT": 103.45,
+        "AVAXUSDT": 9.752,
+        "LINKUSDT": 11.987,
         "MATICUSDT": 0.4492,
-        "DOGEUSDT": 0.08096,
-        "XRPUSDT": 1.3123,
-        "ADAUSDT": 0.22596,
-        "DOTUSDT": 1.181,
-        "ATOMUSDT": 1.735,
-        "NEARUSDT": 5.083,
-        "LTCUSDT": 59.72,
-        "TRXUSDT": 0.3357,
-        "BCHUSDT": 275.0,
-        "APTUSDT": 0.847,
-        "UNIUSDT": 7.335,
-        "ARBUSDT": 0.1938,
-        "OPUSDT": 0.137,
-        "SUIUSDT": 1.0209
+        "DOGEUSDT": 0.07932,
+        "XRPUSDT": 1.2942,
+        "ADAUSDT": 0.21957,
+        "DOTUSDT": 1.116,
+        "ATOMUSDT": 1.694,
+        "NEARUSDT": 4.849,
+        "LTCUSDT": 58.8,
+        "TRXUSDT": 0.3337,
+        "BCHUSDT": 273.5,
+        "APTUSDT": 0.794,
+        "UNIUSDT": 7.176,
+        "ARBUSDT": 0.1804,
+        "OPUSDT": 0.128,
+        "SUIUSDT": 0.9766
       }
     },
     "trend_timed_btc": {
@@ -24871,7 +25234,7 @@
       "init_date": "2026-04-21",
       "mode": "bull",
       "shares": 0.14004945218221398,
-      "value": 11428.103922300232,
+      "value": 11412.683077120448,
       "ma_window": 200,
       "band_pct": 0.02,
       "n_switches": 1,
@@ -24881,7 +25244,7 @@
       "name": "shadow_atr_stop",
       "initialized": true,
       "init_date": "2026-10-16",
-      "cash": 6994.0,
+      "cash": 982.0,
       "starting_capital": 10000.0,
       "open_positions": [
         {
@@ -24891,7 +25254,7 @@
           "shares": 6635.02555679144,
           "entry_cost": 3.0,
           "entry_atr": 0.016149772046405154,
-          "min_close": 0.22607297999999998,
+          "min_close": 0.21957,
           "max_close": 0.22607297999999998,
           "entry_ctx": {
             "bar_date": "2026-10-16",
@@ -24917,7 +25280,7 @@
           "shares": 864.1212534942904,
           "entry_cost": 3.0,
           "entry_atr": 0.12140219601891998,
-          "min_close": 1.7358675,
+          "min_close": 1.694,
           "max_close": 1.7358675,
           "entry_ctx": {
             "bar_date": "2026-10-16",
@@ -24935,16 +25298,120 @@
             "rank_today": 1,
             "data_flags_symbol": []
           }
+        },
+        {
+          "symbol": "AVAXUSDT",
+          "entry_date": "2026-10-18",
+          "entry_price": 9.756876,
+          "shares": 153.7377332662627,
+          "entry_cost": 3.0,
+          "entry_atr": 0.6869257309570546,
+          "min_close": 9.756876,
+          "max_close": 9.756876,
+          "entry_ctx": {
+            "bar_date": "2026-10-17",
+            "dow": "Saturday",
+            "btc_trend": "above_both",
+            "btc_vol20": 0.25208693996103104,
+            "btc_vol20_bucket": "low",
+            "basket_ret20": -0.14285898919430526,
+            "basket_ret20_bucket": "<-10%",
+            "symbol": "AVAXUSDT",
+            "strength": 5.991318976240027,
+            "adx": 39.28606867780634,
+            "dist_sma200_pct": 0.193459956921872,
+            "n_signals_today": 4,
+            "rank_today": 0,
+            "data_flags_symbol": []
+          }
+        },
+        {
+          "symbol": "LINKUSDT",
+          "entry_date": "2026-10-18",
+          "entry_price": 11.992993499999999,
+          "shares": 125.0730270136476,
+          "entry_cost": 3.0,
+          "entry_atr": 0.7224915115652643,
+          "min_close": 11.992993499999999,
+          "max_close": 11.992993499999999,
+          "entry_ctx": {
+            "bar_date": "2026-10-17",
+            "dow": "Saturday",
+            "btc_trend": "above_both",
+            "btc_vol20": 0.25208693996103104,
+            "btc_vol20_bucket": "low",
+            "basket_ret20": -0.14285898919430526,
+            "basket_ret20_bucket": "<-10%",
+            "symbol": "LINKUSDT",
+            "strength": 5.4173541584326514,
+            "adx": 26.455137744468875,
+            "dist_sma200_pct": 0.21996148882728184,
+            "n_signals_today": 4,
+            "rank_today": 1,
+            "data_flags_symbol": []
+          }
+        },
+        {
+          "symbol": "SUIUSDT",
+          "entry_date": "2026-10-18",
+          "entry_price": 0.9770883,
+          "shares": 1535.173433148263,
+          "entry_cost": 3.0,
+          "entry_atr": 0.07829170695715242,
+          "min_close": 0.9770883,
+          "max_close": 0.9770883,
+          "entry_ctx": {
+            "bar_date": "2026-10-17",
+            "dow": "Saturday",
+            "btc_trend": "above_both",
+            "btc_vol20": 0.25208693996103104,
+            "btc_vol20_bucket": "low",
+            "basket_ret20": -0.14285898919430526,
+            "basket_ret20_bucket": "<-10%",
+            "symbol": "SUIUSDT",
+            "strength": 6.864444933344564,
+            "adx": 25.227397235120538,
+            "dist_sma200_pct": 0.1321533403508448,
+            "n_signals_today": 4,
+            "rank_today": 2,
+            "data_flags_symbol": []
+          }
+        },
+        {
+          "symbol": "XRPUSDT",
+          "entry_date": "2026-10-18",
+          "entry_price": 1.2948471,
+          "shares": 1158.437934486628,
+          "entry_cost": 3.0,
+          "entry_atr": 0.0649421019907785,
+          "min_close": 1.2948471,
+          "max_close": 1.2948471,
+          "entry_ctx": {
+            "bar_date": "2026-10-17",
+            "dow": "Saturday",
+            "btc_trend": "above_both",
+            "btc_vol20": 0.25208693996103104,
+            "btc_vol20_bucket": "low",
+            "basket_ret20": -0.14285898919430526,
+            "basket_ret20_bucket": "<-10%",
+            "symbol": "XRPUSDT",
+            "strength": 6.900735373728011,
+            "adx": 26.095023290667182,
+            "dist_sma200_pct": 0.01083669738671933,
+            "n_signals_today": 4,
+            "rank_today": 3,
+            "data_flags_symbol": []
+          }
         }
       ],
       "closed_trades": [],
-      "value": 9992.500749625187
+      "value": 9899.6754641744
     },
     "shadow_btc200": {
       "name": "shadow_btc200",
       "initialized": true,
       "init_date": "2026-10-16",
-      "cash": 6994.0,
+      "cash": 982.0,
       "starting_capital": 10000.0,
       "open_positions": [
         {
@@ -24954,7 +25421,7 @@
           "shares": 6635.02555679144,
           "entry_cost": 3.0,
           "entry_atr": 0.016149772046405154,
-          "min_close": 0.22607297999999998,
+          "min_close": 0.21957,
           "max_close": 0.22607297999999998,
           "entry_ctx": {
             "bar_date": "2026-10-16",
@@ -24980,7 +25447,7 @@
           "shares": 864.1212534942904,
           "entry_cost": 3.0,
           "entry_atr": 0.12140219601891998,
-          "min_close": 1.7358675,
+          "min_close": 1.694,
           "max_close": 1.7358675,
           "entry_ctx": {
             "bar_date": "2026-10-16",
@@ -24998,16 +25465,120 @@
             "rank_today": 1,
             "data_flags_symbol": []
           }
+        },
+        {
+          "symbol": "AVAXUSDT",
+          "entry_date": "2026-10-18",
+          "entry_price": 9.756876,
+          "shares": 153.7377332662627,
+          "entry_cost": 3.0,
+          "entry_atr": 0.6869257309570546,
+          "min_close": 9.756876,
+          "max_close": 9.756876,
+          "entry_ctx": {
+            "bar_date": "2026-10-17",
+            "dow": "Saturday",
+            "btc_trend": "above_both",
+            "btc_vol20": 0.25208693996103104,
+            "btc_vol20_bucket": "low",
+            "basket_ret20": -0.14285898919430526,
+            "basket_ret20_bucket": "<-10%",
+            "symbol": "AVAXUSDT",
+            "strength": 5.991318976240027,
+            "adx": 39.28606867780634,
+            "dist_sma200_pct": 0.193459956921872,
+            "n_signals_today": 4,
+            "rank_today": 0,
+            "data_flags_symbol": []
+          }
+        },
+        {
+          "symbol": "LINKUSDT",
+          "entry_date": "2026-10-18",
+          "entry_price": 11.992993499999999,
+          "shares": 125.0730270136476,
+          "entry_cost": 3.0,
+          "entry_atr": 0.7224915115652643,
+          "min_close": 11.992993499999999,
+          "max_close": 11.992993499999999,
+          "entry_ctx": {
+            "bar_date": "2026-10-17",
+            "dow": "Saturday",
+            "btc_trend": "above_both",
+            "btc_vol20": 0.25208693996103104,
+            "btc_vol20_bucket": "low",
+            "basket_ret20": -0.14285898919430526,
+            "basket_ret20_bucket": "<-10%",
+            "symbol": "LINKUSDT",
+            "strength": 5.4173541584326514,
+            "adx": 26.455137744468875,
+            "dist_sma200_pct": 0.21996148882728184,
+            "n_signals_today": 4,
+            "rank_today": 1,
+            "data_flags_symbol": []
+          }
+        },
+        {
+          "symbol": "SUIUSDT",
+          "entry_date": "2026-10-18",
+          "entry_price": 0.9770883,
+          "shares": 1535.173433148263,
+          "entry_cost": 3.0,
+          "entry_atr": 0.07829170695715242,
+          "min_close": 0.9770883,
+          "max_close": 0.9770883,
+          "entry_ctx": {
+            "bar_date": "2026-10-17",
+            "dow": "Saturday",
+            "btc_trend": "above_both",
+            "btc_vol20": 0.25208693996103104,
+            "btc_vol20_bucket": "low",
+            "basket_ret20": -0.14285898919430526,
+            "basket_ret20_bucket": "<-10%",
+            "symbol": "SUIUSDT",
+            "strength": 6.864444933344564,
+            "adx": 25.227397235120538,
+            "dist_sma200_pct": 0.1321533403508448,
+            "n_signals_today": 4,
+            "rank_today": 2,
+            "data_flags_symbol": []
+          }
+        },
+        {
+          "symbol": "XRPUSDT",
+          "entry_date": "2026-10-18",
+          "entry_price": 1.2948471,
+          "shares": 1158.437934486628,
+          "entry_cost": 3.0,
+          "entry_atr": 0.0649421019907785,
+          "min_close": 1.2948471,
+          "max_close": 1.2948471,
+          "entry_ctx": {
+            "bar_date": "2026-10-17",
+            "dow": "Saturday",
+            "btc_trend": "above_both",
+            "btc_vol20": 0.25208693996103104,
+            "btc_vol20_bucket": "low",
+            "basket_ret20": -0.14285898919430526,
+            "basket_ret20_bucket": "<-10%",
+            "symbol": "XRPUSDT",
+            "strength": 6.900735373728011,
+            "adx": 26.095023290667182,
+            "dist_sma200_pct": 0.01083669738671933,
+            "n_signals_today": 4,
+            "rank_today": 3,
+            "data_flags_symbol": []
+          }
         }
       ],
       "closed_trades": [],
-      "value": 9992.500749625187
+      "value": 9899.6754641744
     },
     "shadow_rsi15": {
       "name": "shadow_rsi15",
       "initialized": true,
       "init_date": "2026-10-16",
-      "cash": 5529.17794636713,
+      "cash": 1020.1779463671301,
       "starting_capital": 10000.0,
       "open_positions": [
         {
@@ -25017,7 +25588,7 @@
           "shares": 852.3310828951642,
           "entry_cost": 3.0,
           "entry_atr": 0.12651005725242664,
-          "min_close": 1.735,
+          "min_close": 1.694,
           "max_close": 1.7598794999999998,
           "entry_ctx": {
             "bar_date": "2026-10-15",
@@ -25043,7 +25614,7 @@
           "shares": 6635.02555679144,
           "entry_cost": 3.0,
           "entry_atr": 0.016149772046405154,
-          "min_close": 0.22607297999999998,
+          "min_close": 0.21957,
           "max_close": 0.22607297999999998,
           "entry_ctx": {
             "bar_date": "2026-10-16",
@@ -25069,7 +25640,7 @@
           "shares": 1142.4600890136353,
           "entry_cost": 2.9999999999999996,
           "entry_atr": 0.0667453406053867,
-          "min_close": 1.31295615,
+          "min_close": 1.2942,
           "max_close": 1.31295615,
           "entry_ctx": {
             "bar_date": "2026-10-16",
@@ -25085,6 +25656,84 @@
             "dist_sma200_pct": 0.024784430585945927,
             "n_signals_today": 2,
             "rank_today": 1,
+            "data_flags_symbol": []
+          }
+        },
+        {
+          "symbol": "AVAXUSDT",
+          "entry_date": "2026-10-18",
+          "entry_price": 9.756876,
+          "shares": 153.7377332662627,
+          "entry_cost": 3.0,
+          "entry_atr": 0.6869257309570546,
+          "min_close": 9.756876,
+          "max_close": 9.756876,
+          "entry_ctx": {
+            "bar_date": "2026-10-17",
+            "dow": "Saturday",
+            "btc_trend": "above_both",
+            "btc_vol20": 0.25208693996103104,
+            "btc_vol20_bucket": "low",
+            "basket_ret20": -0.14285898919430526,
+            "basket_ret20_bucket": "<-10%",
+            "symbol": "AVAXUSDT",
+            "strength": 5.991318976240027,
+            "adx": 39.28606867780634,
+            "dist_sma200_pct": 0.193459956921872,
+            "n_signals_today": 4,
+            "rank_today": 0,
+            "data_flags_symbol": []
+          }
+        },
+        {
+          "symbol": "LINKUSDT",
+          "entry_date": "2026-10-18",
+          "entry_price": 11.992993499999999,
+          "shares": 125.0730270136476,
+          "entry_cost": 3.0,
+          "entry_atr": 0.7224915115652643,
+          "min_close": 11.992993499999999,
+          "max_close": 11.992993499999999,
+          "entry_ctx": {
+            "bar_date": "2026-10-17",
+            "dow": "Saturday",
+            "btc_trend": "above_both",
+            "btc_vol20": 0.25208693996103104,
+            "btc_vol20_bucket": "low",
+            "basket_ret20": -0.14285898919430526,
+            "basket_ret20_bucket": "<-10%",
+            "symbol": "LINKUSDT",
+            "strength": 5.4173541584326514,
+            "adx": 26.455137744468875,
+            "dist_sma200_pct": 0.21996148882728184,
+            "n_signals_today": 4,
+            "rank_today": 1,
+            "data_flags_symbol": []
+          }
+        },
+        {
+          "symbol": "OPUSDT",
+          "entry_date": "2026-10-18",
+          "entry_price": 0.12806399999999998,
+          "shares": 11712.89355322339,
+          "entry_cost": 3.0,
+          "entry_atr": 0.01112851228588827,
+          "min_close": 0.12806399999999998,
+          "max_close": 0.12806399999999998,
+          "entry_ctx": {
+            "bar_date": "2026-10-17",
+            "dow": "Saturday",
+            "btc_trend": "above_both",
+            "btc_vol20": 0.25208693996103104,
+            "btc_vol20_bucket": "low",
+            "basket_ret20": -0.14285898919430526,
+            "basket_ret20_bucket": "<-10%",
+            "symbol": "OPUSDT",
+            "strength": 13.523998019618396,
+            "adx": 25.970457490206833,
+            "dist_sma200_pct": 0.1448504091945797,
+            "n_signals_today": 4,
+            "rank_today": 2,
             "data_flags_symbol": []
           }
         }
@@ -25132,13 +25781,13 @@
           }
         }
       ],
-      "value": 10006.473124815428
+      "value": 9897.202333935464
     },
     "shadow_combo": {
       "name": "shadow_combo",
       "initialized": true,
       "init_date": "2026-10-16",
-      "cash": 5529.17794636713,
+      "cash": 1020.1779463671301,
       "starting_capital": 10000.0,
       "open_positions": [
         {
@@ -25148,7 +25797,7 @@
           "shares": 852.3310828951642,
           "entry_cost": 3.0,
           "entry_atr": 0.12651005725242664,
-          "min_close": 1.735,
+          "min_close": 1.694,
           "max_close": 1.7598794999999998,
           "entry_ctx": {
             "bar_date": "2026-10-15",
@@ -25174,7 +25823,7 @@
           "shares": 6635.02555679144,
           "entry_cost": 3.0,
           "entry_atr": 0.016149772046405154,
-          "min_close": 0.22607297999999998,
+          "min_close": 0.21957,
           "max_close": 0.22607297999999998,
           "entry_ctx": {
             "bar_date": "2026-10-16",
@@ -25200,7 +25849,7 @@
           "shares": 1142.4600890136353,
           "entry_cost": 2.9999999999999996,
           "entry_atr": 0.0667453406053867,
-          "min_close": 1.31295615,
+          "min_close": 1.2942,
           "max_close": 1.31295615,
           "entry_ctx": {
             "bar_date": "2026-10-16",
@@ -25216,6 +25865,84 @@
             "dist_sma200_pct": 0.024784430585945927,
             "n_signals_today": 2,
             "rank_today": 1,
+            "data_flags_symbol": []
+          }
+        },
+        {
+          "symbol": "AVAXUSDT",
+          "entry_date": "2026-10-18",
+          "entry_price": 9.756876,
+          "shares": 153.7377332662627,
+          "entry_cost": 3.0,
+          "entry_atr": 0.6869257309570546,
+          "min_close": 9.756876,
+          "max_close": 9.756876,
+          "entry_ctx": {
+            "bar_date": "2026-10-17",
+            "dow": "Saturday",
+            "btc_trend": "above_both",
+            "btc_vol20": 0.25208693996103104,
+            "btc_vol20_bucket": "low",
+            "basket_ret20": -0.14285898919430526,
+            "basket_ret20_bucket": "<-10%",
+            "symbol": "AVAXUSDT",
+            "strength": 5.991318976240027,
+            "adx": 39.28606867780634,
+            "dist_sma200_pct": 0.193459956921872,
+            "n_signals_today": 4,
+            "rank_today": 0,
+            "data_flags_symbol": []
+          }
+        },
+        {
+          "symbol": "LINKUSDT",
+          "entry_date": "2026-10-18",
+          "entry_price": 11.992993499999999,
+          "shares": 125.0730270136476,
+          "entry_cost": 3.0,
+          "entry_atr": 0.7224915115652643,
+          "min_close": 11.992993499999999,
+          "max_close": 11.992993499999999,
+          "entry_ctx": {
+            "bar_date": "2026-10-17",
+            "dow": "Saturday",
+            "btc_trend": "above_both",
+            "btc_vol20": 0.25208693996103104,
+            "btc_vol20_bucket": "low",
+            "basket_ret20": -0.14285898919430526,
+            "basket_ret20_bucket": "<-10%",
+            "symbol": "LINKUSDT",
+            "strength": 5.4173541584326514,
+            "adx": 26.455137744468875,
+            "dist_sma200_pct": 0.21996148882728184,
+            "n_signals_today": 4,
+            "rank_today": 1,
+            "data_flags_symbol": []
+          }
+        },
+        {
+          "symbol": "OPUSDT",
+          "entry_date": "2026-10-18",
+          "entry_price": 0.12806399999999998,
+          "shares": 11712.89355322339,
+          "entry_cost": 3.0,
+          "entry_atr": 0.01112851228588827,
+          "min_close": 0.12806399999999998,
+          "max_close": 0.12806399999999998,
+          "entry_ctx": {
+            "bar_date": "2026-10-17",
+            "dow": "Saturday",
+            "btc_trend": "above_both",
+            "btc_vol20": 0.25208693996103104,
+            "btc_vol20_bucket": "low",
+            "basket_ret20": -0.14285898919430526,
+            "basket_ret20_bucket": "<-10%",
+            "symbol": "OPUSDT",
+            "strength": 13.523998019618396,
+            "adx": 25.970457490206833,
+            "dist_sma200_pct": 0.1448504091945797,
+            "n_signals_today": 4,
+            "rank_today": 2,
             "data_flags_symbol": []
           }
         }
@@ -25263,7 +25990,7 @@
           }
         }
       ],
-      "value": 10006.473124815428
+      "value": 9897.202333935464
     },
     "breakout_s21": {
       "name": "breakout_s21",
@@ -25289,7 +26016,7 @@
       "name": "basket_sma50_band",
       "initialized": true,
       "init_date": "2026-10-16",
-      "cash": 3144.2105263157882,
+      "cash": 3646.61493143039,
       "starting_capital": 10000.0,
       "open_positions": [
         {
@@ -25299,7 +26026,7 @@
           "shares": 2287.5837671427125,
           "entry_cost": 1.0526315789473684,
           "entry_atr": null,
-          "min_close": 0.22596,
+          "min_close": 0.21957,
           "max_close": 0.23007497999999998,
           "entry_ctx": {
             "bar_date": "2026-10-15",
@@ -25325,7 +26052,7 @@
           "shares": 629.2497166173902,
           "entry_cost": 1.0526315789473684,
           "entry_atr": null,
-          "min_close": 0.8364179999999999,
+          "min_close": 0.794,
           "max_close": 0.847,
           "entry_ctx": {
             "bar_date": "2026-10-15",
@@ -25351,7 +26078,7 @@
           "shares": 2696.3237472687756,
           "entry_cost": 1.0526315789473684,
           "entry_atr": null,
-          "min_close": 0.1938,
+          "min_close": 0.1804,
           "max_close": 0.19519755,
           "entry_ctx": {
             "bar_date": "2026-10-15",
@@ -25377,7 +26104,7 @@
           "shares": 299.0635378579523,
           "entry_cost": 1.0526315789473684,
           "entry_atr": null,
-          "min_close": 1.735,
+          "min_close": 1.694,
           "max_close": 1.7598794999999998,
           "entry_ctx": {
             "bar_date": "2026-10-15",
@@ -25403,7 +26130,7 @@
           "shares": 52.39047536023684,
           "entry_cost": 1.0526315789473684,
           "entry_atr": null,
-          "min_close": 9.954,
+          "min_close": 9.752,
           "max_close": 10.0460205,
           "entry_ctx": {
             "bar_date": "2026-10-15",
@@ -25429,7 +26156,7 @@
           "shares": 1.89432035683161,
           "entry_cost": 1.0526315789473684,
           "entry_atr": null,
-          "min_close": 275.0,
+          "min_close": 273.5,
           "max_close": 277.83885,
           "entry_ctx": {
             "bar_date": "2026-10-15",
@@ -25455,7 +26182,7 @@
           "shares": 0.006396394194944219,
           "entry_cost": 1.0526315789473684,
           "entry_atr": null,
-          "min_close": 81600.49,
+          "min_close": 81490.38,
           "max_close": 82283.20104,
           "entry_ctx": {
             "bar_date": "2026-10-15",
@@ -25481,7 +26208,7 @@
           "shares": 459.03382468772963,
           "entry_cost": 1.0526315789473684,
           "entry_atr": null,
-          "min_close": 1.1465729999999998,
+          "min_close": 1.116,
           "max_close": 1.181,
           "entry_ctx": {
             "bar_date": "2026-10-15",
@@ -25507,7 +26234,7 @@
           "shares": 8.618164532964256,
           "entry_cost": 1.0526315789473684,
           "entry_atr": null,
-          "min_close": 59.72,
+          "min_close": 58.8,
           "max_close": 61.070519999999995,
           "entry_ctx": {
             "bar_date": "2026-10-15",
@@ -25533,7 +26260,7 @@
           "shares": 100.10518802895112,
           "entry_cost": 1.0526315789473684,
           "entry_atr": null,
-          "min_close": 5.083,
+          "min_close": 4.849,
           "max_close": 5.2576275,
           "entry_ctx": {
             "bar_date": "2026-10-15",
@@ -25559,7 +26286,7 @@
           "shares": 3839.8011904535624,
           "entry_cost": 1.0526315789473684,
           "entry_atr": null,
-          "min_close": 0.137,
+          "min_close": 0.128,
           "max_close": 0.1370685,
           "entry_ctx": {
             "bar_date": "2026-10-15",
@@ -25585,7 +26312,7 @@
           "shares": 506.89223655052814,
           "entry_cost": 1.0526315789473684,
           "entry_atr": null,
-          "min_close": 1.0209,
+          "min_close": 0.9766,
           "max_close": 1.0383189,
           "entry_ctx": {
             "bar_date": "2026-10-15",
@@ -25603,16 +26330,22 @@
             "rank_today": 11,
             "data_flags_symbol": []
           }
-        },
+        }
+      ],
+      "closed_trades": [
         {
           "symbol": "UNIUSDT",
           "entry_date": "2026-10-16",
+          "exit_date": "2026-10-18",
           "entry_price": 7.4987474999999995,
+          "exit_price": 7.1724120000000005,
           "shares": 70.18715985218654,
-          "entry_cost": 1.0526315789473684,
-          "entry_atr": null,
-          "min_close": 7.335,
-          "max_close": 7.4987474999999995,
+          "pnl": -24.964015938030002,
+          "pnl_pct": -0.047431630282257005,
+          "hold_days": 2,
+          "reason": "TREND_EXIT",
+          "mae_pct": -0.043040187711347655,
+          "mfe_pct": 0.0,
           "entry_ctx": {
             "bar_date": "2026-10-15",
             "dow": "Thursday",
@@ -25628,17 +26361,27 @@
             "n_signals_today": 13,
             "rank_today": 12,
             "data_flags_symbol": []
+          },
+          "exit_ctx": {
+            "bar_date": "2026-10-17",
+            "dow": "Saturday",
+            "btc_trend": "above_both",
+            "btc_vol20": 0.25208693996103104,
+            "btc_vol20_bucket": "low",
+            "basket_ret20": -0.14285898919430526,
+            "basket_ret20_bucket": "<-10%",
+            "reason": "TREND_EXIT",
+            "hold_days": 2
           }
         }
       ],
-      "closed_trades": [],
-      "value": 9923.884303641971
+      "value": 9682.772928432545
     },
     "connors_guarded": {
       "name": "connors_guarded",
       "initialized": true,
       "init_date": "2026-10-16",
-      "cash": 6994.0,
+      "cash": 982.0,
       "starting_capital": 10000.0,
       "open_positions": [
         {
@@ -25648,7 +26391,7 @@
           "shares": 6635.02555679144,
           "entry_cost": 3.0,
           "entry_atr": 0.016149772046405154,
-          "min_close": 0.22607297999999998,
+          "min_close": 0.21957,
           "max_close": 0.22607297999999998,
           "entry_ctx": {
             "bar_date": "2026-10-16",
@@ -25674,7 +26417,7 @@
           "shares": 864.1212534942904,
           "entry_cost": 3.0,
           "entry_atr": 0.12140219601891998,
-          "min_close": 1.7358675,
+          "min_close": 1.694,
           "max_close": 1.7358675,
           "entry_ctx": {
             "bar_date": "2026-10-16",
@@ -25692,16 +26435,120 @@
             "rank_today": 1,
             "data_flags_symbol": []
           }
+        },
+        {
+          "symbol": "AVAXUSDT",
+          "entry_date": "2026-10-18",
+          "entry_price": 9.756876,
+          "shares": 153.7377332662627,
+          "entry_cost": 3.0,
+          "entry_atr": 0.6869257309570546,
+          "min_close": 9.756876,
+          "max_close": 9.756876,
+          "entry_ctx": {
+            "bar_date": "2026-10-17",
+            "dow": "Saturday",
+            "btc_trend": "above_both",
+            "btc_vol20": 0.25208693996103104,
+            "btc_vol20_bucket": "low",
+            "basket_ret20": -0.14285898919430526,
+            "basket_ret20_bucket": "<-10%",
+            "symbol": "AVAXUSDT",
+            "strength": 5.991318976240027,
+            "adx": 39.28606867780634,
+            "dist_sma200_pct": 0.193459956921872,
+            "n_signals_today": 4,
+            "rank_today": 0,
+            "data_flags_symbol": []
+          }
+        },
+        {
+          "symbol": "LINKUSDT",
+          "entry_date": "2026-10-18",
+          "entry_price": 11.992993499999999,
+          "shares": 125.0730270136476,
+          "entry_cost": 3.0,
+          "entry_atr": 0.7224915115652643,
+          "min_close": 11.992993499999999,
+          "max_close": 11.992993499999999,
+          "entry_ctx": {
+            "bar_date": "2026-10-17",
+            "dow": "Saturday",
+            "btc_trend": "above_both",
+            "btc_vol20": 0.25208693996103104,
+            "btc_vol20_bucket": "low",
+            "basket_ret20": -0.14285898919430526,
+            "basket_ret20_bucket": "<-10%",
+            "symbol": "LINKUSDT",
+            "strength": 5.4173541584326514,
+            "adx": 26.455137744468875,
+            "dist_sma200_pct": 0.21996148882728184,
+            "n_signals_today": 4,
+            "rank_today": 1,
+            "data_flags_symbol": []
+          }
+        },
+        {
+          "symbol": "SUIUSDT",
+          "entry_date": "2026-10-18",
+          "entry_price": 0.9770883,
+          "shares": 1535.173433148263,
+          "entry_cost": 3.0,
+          "entry_atr": 0.07829170695715242,
+          "min_close": 0.9770883,
+          "max_close": 0.9770883,
+          "entry_ctx": {
+            "bar_date": "2026-10-17",
+            "dow": "Saturday",
+            "btc_trend": "above_both",
+            "btc_vol20": 0.25208693996103104,
+            "btc_vol20_bucket": "low",
+            "basket_ret20": -0.14285898919430526,
+            "basket_ret20_bucket": "<-10%",
+            "symbol": "SUIUSDT",
+            "strength": 6.864444933344564,
+            "adx": 25.227397235120538,
+            "dist_sma200_pct": 0.1321533403508448,
+            "n_signals_today": 4,
+            "rank_today": 2,
+            "data_flags_symbol": []
+          }
+        },
+        {
+          "symbol": "XRPUSDT",
+          "entry_date": "2026-10-18",
+          "entry_price": 1.2948471,
+          "shares": 1158.437934486628,
+          "entry_cost": 3.0,
+          "entry_atr": 0.0649421019907785,
+          "min_close": 1.2948471,
+          "max_close": 1.2948471,
+          "entry_ctx": {
+            "bar_date": "2026-10-17",
+            "dow": "Saturday",
+            "btc_trend": "above_both",
+            "btc_vol20": 0.25208693996103104,
+            "btc_vol20_bucket": "low",
+            "basket_ret20": -0.14285898919430526,
+            "basket_ret20_bucket": "<-10%",
+            "symbol": "XRPUSDT",
+            "strength": 6.900735373728011,
+            "adx": 26.095023290667182,
+            "dist_sma200_pct": 0.01083669738671933,
+            "n_signals_today": 4,
+            "rank_today": 3,
+            "data_flags_symbol": []
+          }
         }
       ],
       "closed_trades": [],
-      "value": 9992.500749625187
+      "value": 9899.6754641744
     },
     "connors_exit_sma10": {
       "name": "connors_exit_sma10",
       "initialized": true,
       "init_date": "2026-10-16",
-      "cash": 6994.0,
+      "cash": 982.0,
       "starting_capital": 10000.0,
       "open_positions": [
         {
@@ -25711,7 +26558,7 @@
           "shares": 6635.02555679144,
           "entry_cost": 3.0,
           "entry_atr": 0.016149772046405154,
-          "min_close": 0.22607297999999998,
+          "min_close": 0.21957,
           "max_close": 0.22607297999999998,
           "entry_ctx": {
             "bar_date": "2026-10-16",
@@ -25737,7 +26584,7 @@
           "shares": 864.1212534942904,
           "entry_cost": 3.0,
           "entry_atr": 0.12140219601891998,
-          "min_close": 1.7358675,
+          "min_close": 1.694,
           "max_close": 1.7358675,
           "entry_ctx": {
             "bar_date": "2026-10-16",
@@ -25755,10 +26602,114 @@
             "rank_today": 1,
             "data_flags_symbol": []
           }
+        },
+        {
+          "symbol": "AVAXUSDT",
+          "entry_date": "2026-10-18",
+          "entry_price": 9.756876,
+          "shares": 153.7377332662627,
+          "entry_cost": 3.0,
+          "entry_atr": 0.6869257309570546,
+          "min_close": 9.756876,
+          "max_close": 9.756876,
+          "entry_ctx": {
+            "bar_date": "2026-10-17",
+            "dow": "Saturday",
+            "btc_trend": "above_both",
+            "btc_vol20": 0.25208693996103104,
+            "btc_vol20_bucket": "low",
+            "basket_ret20": -0.14285898919430526,
+            "basket_ret20_bucket": "<-10%",
+            "symbol": "AVAXUSDT",
+            "strength": 5.991318976240027,
+            "adx": 39.28606867780634,
+            "dist_sma200_pct": 0.193459956921872,
+            "n_signals_today": 4,
+            "rank_today": 0,
+            "data_flags_symbol": []
+          }
+        },
+        {
+          "symbol": "LINKUSDT",
+          "entry_date": "2026-10-18",
+          "entry_price": 11.992993499999999,
+          "shares": 125.0730270136476,
+          "entry_cost": 3.0,
+          "entry_atr": 0.7224915115652643,
+          "min_close": 11.992993499999999,
+          "max_close": 11.992993499999999,
+          "entry_ctx": {
+            "bar_date": "2026-10-17",
+            "dow": "Saturday",
+            "btc_trend": "above_both",
+            "btc_vol20": 0.25208693996103104,
+            "btc_vol20_bucket": "low",
+            "basket_ret20": -0.14285898919430526,
+            "basket_ret20_bucket": "<-10%",
+            "symbol": "LINKUSDT",
+            "strength": 5.4173541584326514,
+            "adx": 26.455137744468875,
+            "dist_sma200_pct": 0.21996148882728184,
+            "n_signals_today": 4,
+            "rank_today": 1,
+            "data_flags_symbol": []
+          }
+        },
+        {
+          "symbol": "SUIUSDT",
+          "entry_date": "2026-10-18",
+          "entry_price": 0.9770883,
+          "shares": 1535.173433148263,
+          "entry_cost": 3.0,
+          "entry_atr": 0.07829170695715242,
+          "min_close": 0.9770883,
+          "max_close": 0.9770883,
+          "entry_ctx": {
+            "bar_date": "2026-10-17",
+            "dow": "Saturday",
+            "btc_trend": "above_both",
+            "btc_vol20": 0.25208693996103104,
+            "btc_vol20_bucket": "low",
+            "basket_ret20": -0.14285898919430526,
+            "basket_ret20_bucket": "<-10%",
+            "symbol": "SUIUSDT",
+            "strength": 6.864444933344564,
+            "adx": 25.227397235120538,
+            "dist_sma200_pct": 0.1321533403508448,
+            "n_signals_today": 4,
+            "rank_today": 2,
+            "data_flags_symbol": []
+          }
+        },
+        {
+          "symbol": "XRPUSDT",
+          "entry_date": "2026-10-18",
+          "entry_price": 1.2948471,
+          "shares": 1158.437934486628,
+          "entry_cost": 3.0,
+          "entry_atr": 0.0649421019907785,
+          "min_close": 1.2948471,
+          "max_close": 1.2948471,
+          "entry_ctx": {
+            "bar_date": "2026-10-17",
+            "dow": "Saturday",
+            "btc_trend": "above_both",
+            "btc_vol20": 0.25208693996103104,
+            "btc_vol20_bucket": "low",
+            "basket_ret20": -0.14285898919430526,
+            "basket_ret20_bucket": "<-10%",
+            "symbol": "XRPUSDT",
+            "strength": 6.900735373728011,
+            "adx": 26.095023290667182,
+            "dist_sma200_pct": 0.01083669738671933,
+            "n_signals_today": 4,
+            "rank_today": 3,
+            "data_flags_symbol": []
+          }
         }
       ],
       "closed_trades": [],
-      "value": 9992.500749625187
+      "value": 9899.6754641744
     }
   }
 }
