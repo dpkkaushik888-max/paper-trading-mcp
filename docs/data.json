@@ -1,41 +1,41 @@
 {
-  "generated_at": "2026-10-26T05:08:10+00:00",
+  "generated_at": "2026-10-27T05:22:53+00:00",
   "start_date": "2026-04-21",
   "starting_capital": 10000.0,
   "test_days": 90,
   "metrics": {
-    "days_elapsed": 180,
-    "total_return_pct": 4.830970916680899,
-    "cagr_pct": 10.039440124354426,
-    "sharpe": 0.997712402140362,
+    "days_elapsed": 181,
+    "total_return_pct": 5.258527045167427,
+    "cagr_pct": 10.887727181730922,
+    "sharpe": 1.0750265618080592,
     "max_dd_pct": 4.626095657896377,
-    "calmar": 2.170175644167215,
-    "win_rate_pct": 63.1578947368421,
-    "profit_factor": 1.5691580850965734,
-    "trades": 38,
-    "wins": 24,
+    "calmar": 2.353545621813167,
+    "win_rate_pct": 64.1025641025641,
+    "profit_factor": 1.6167079200874606,
+    "trades": 39,
+    "wins": 25,
     "losses": 14,
-    "portfolio_value": 10483.09709166809,
-    "cash": 1598.092614208057,
+    "portfolio_value": 10525.852704516743,
+    "cash": 1649.5635550798302,
     "n_open": 6,
-    "invested_share_avg": 0.09989268066203012,
+    "invested_share_avg": 0.10402263559098716,
     "days_fully_in_cash": 122
   },
   "bh_btc_metrics": {
-    "value": 10544.612857667827,
-    "total_return_pct": 5.446128576678277,
-    "cagr_pct": 11.352768401068403,
-    "sharpe": 0.4861603663836238,
+    "value": 10546.698577299314,
+    "total_return_pct": 5.466985772993138,
+    "cagr_pct": 11.331026973436288,
+    "sharpe": 0.48589773215599774,
     "max_dd_pct": 28.631308852599496,
-    "calmar": 0.3965158721703937
+    "calmar": 0.39575651367427866
   },
   "bh_basket_metrics": {
-    "value": 11475.526856308705,
-    "total_return_pct": 14.755268563087043,
-    "cagr_pct": 32.19213545621506,
-    "sharpe": 0.7556369142526052,
+    "value": 11486.54739642413,
+    "total_return_pct": 14.865473964241293,
+    "cagr_pct": 32.244200093255174,
+    "sharpe": 0.7572617285916613,
     "max_dd_pct": 32.10147017821779,
-    "calmar": 1.0028243341346652
+    "calmar": 1.0044462111624481
   },
   "backtest_baseline": {
     "cagr_pct": 13.39,
@@ -1133,6 +1133,12 @@
       "connors": 10483.09709166809,
       "bh_btc": 10544.612857667827,
       "bh_basket": 11475.526856308705
+    },
+    {
+      "date": "2026-10-27",
+      "connors": 10525.852704516743,
+      "bh_btc": 10546.698577299314,
+      "bh_basket": 11486.54739642413
     }
   ],
   "open_positions": [
@@ -1140,55 +1146,55 @@
       "symbol": "AVAXUSDT",
       "entry_date": "2026-10-24",
       "entry_price": 9.0355155,
-      "current_price": 8.93,
+      "current_price": 8.909,
       "shares": 166.01155739260255,
-      "unrealized_pnl": -17.51679248405932,
-      "unrealized_pct": -1.1677861656039568
+      "unrealized_pnl": -21.00303518930381,
+      "unrealized_pct": -1.4002023459535828
     },
     {
       "symbol": "LTCUSDT",
       "entry_date": "2026-10-24",
       "entry_price": 57.2286,
-      "current_price": 56.5,
+      "current_price": 56.71,
       "shares": 26.210670888332057,
-      "unrealized_pnl": -19.09709480923874,
-      "unrealized_pct": -1.2731396539492512
+      "unrealized_pnl": -13.592853922688986,
+      "unrealized_pct": -0.9061902615125961
     },
     {
       "symbol": "LINKUSDT",
       "entry_date": "2026-10-25",
       "entry_price": 11.638816499999999,
-      "current_price": 11.456,
+      "current_price": 11.403,
       "shares": 128.87908319544346,
-      "unrealized_pnl": -23.561222912999725,
-      "unrealized_pct": -1.570748194199978
+      "unrealized_pnl": -30.391814322358105,
+      "unrealized_pct": -2.0261209548238734
     },
     {
       "symbol": "SOLUSDT",
       "entry_date": "2026-10-25",
       "entry_price": 102.441195,
-      "current_price": 101.44,
+      "current_price": 100.95,
       "shares": 14.642546877747767,
-      "unrealized_pnl": -14.660044721266612,
-      "unrealized_pct": -0.9773363147511094
+      "unrealized_pnl": -21.834892691362942,
+      "unrealized_pct": -1.4556595127575345
     },
     {
       "symbol": "SUIUSDT",
       "entry_date": "2026-10-25",
       "entry_price": 0.9409702499999999,
-      "current_price": 0.9157,
+      "current_price": 0.9183,
       "shares": 1594.0992820973886,
-      "unrealized_pnl": -40.28328738342144,
-      "unrealized_pct": -2.685552492228094
+      "unrealized_pnl": -36.138629249968155,
+      "unrealized_pct": -2.4092419499978757
     },
     {
-      "symbol": "UNIUSDT",
-      "entry_date": "2026-10-25",
-      "entry_price": 6.8764365,
-      "current_price": 6.877,
-      "shares": 218.13623960608086,
-      "unrealized_pnl": 0.1229197710180617,
-      "unrealized_pct": 0.008194651401205455
+      "symbol": "ETHUSDT",
+      "entry_date": "2026-10-27",
+      "entry_price": 2325.68226,
+      "current_price": 2324.52,
+      "shares": 0.6449720264022653,
+      "unrealized_pnl": -0.7496251874063357,
+      "unrealized_pct": -0.04997501249375258
     }
   ],
   "closed_trades": [
@@ -1609,6 +1615,17 @@
       "pnl_pct": -7.9633189865280505,
       "hold_days": 6,
       "reason": "SL"
+    },
+    {
+      "symbol": "UNIUSDT",
+      "entry_date": "2026-10-25",
+      "exit_date": "2026-10-27",
+      "entry_price": 6.8764365,
+      "exit_price": 7.140428000000001,
+      "pnl": 51.47094087177311,
+      "pnl_pct": 3.431396058118207,
+      "hold_days": 2,
+      "reason": "MR_EXIT"
     }
   ],
   "per_symbol": {
@@ -1623,9 +1640,9 @@
       "pnl": 420.92125982157427
     },
     "UNIUSDT": {
-      "trades": 4,
-      "wins": 1,
-      "pnl": -309.4141711156319
+      "trades": 5,
+      "wins": 2,
+      "pnl": -257.9432302438588
     },
     "ETHUSDT": {
       "trades": 2,
@@ -1697,63 +1714,63 @@
     {
       "name": "shadow_atr_stop",
       "start_date": "2026-10-16",
-      "days": 11,
-      "value": 9881.82261166227,
-      "return_pct": -1.1817738833773017,
-      "sharpe": -2.887763722902542,
+      "days": 12,
+      "value": 9924.835974817575,
+      "return_pct": -0.7516402518242482,
+      "sharpe": -1.6870087797935989,
       "max_dd_pct": 2.3511320841187646,
-      "closed_trades": 5,
-      "connors_return_pct": -1.8006674404348777,
-      "connors_sharpe": -5.0290127755385,
+      "closed_trades": 6,
+      "connors_return_pct": -1.4001586396292565,
+      "connors_sharpe": -3.595543398327868,
       "connors_max_dd_pct": 2.30897632465085,
       "error": null
     },
     {
       "name": "shadow_btc200",
       "start_date": "2026-10-16",
-      "days": 11,
-      "value": 9871.978076312565,
-      "return_pct": -1.280219236874347,
-      "sharpe": -3.1269577595847178,
+      "days": 12,
+      "value": 9914.733689161218,
+      "return_pct": -0.8526631083878189,
+      "sharpe": -1.9172078951495912,
       "max_dd_pct": 2.4484124917757497,
-      "closed_trades": 6,
-      "connors_return_pct": -1.8006674404348777,
-      "connors_sharpe": -5.0290127755385,
+      "closed_trades": 7,
+      "connors_return_pct": -1.4001586396292565,
+      "connors_sharpe": -3.595543398327868,
       "connors_max_dd_pct": 2.30897632465085,
       "error": null
     },
     {
       "name": "shadow_rsi15",
       "start_date": "2026-10-16",
-      "days": 11,
-      "value": 9790.501806137776,
-      "return_pct": -2.0949819386222424,
-      "sharpe": -3.791744378331592,
+      "days": 12,
+      "value": 9865.509654227913,
+      "return_pct": -1.3449034577208696,
+      "sharpe": -2.193308000293074,
       "max_dd_pct": 3.5012525596949393,
-      "closed_trades": 8,
-      "connors_return_pct": -1.8006674404348777,
-      "connors_sharpe": -5.0290127755385,
+      "closed_trades": 9,
+      "connors_return_pct": -1.4001586396292565,
+      "connors_sharpe": -3.595543398327868,
       "connors_max_dd_pct": 2.30897632465085,
       "error": null
     },
     {
       "name": "shadow_combo",
       "start_date": "2026-10-16",
-      "days": 11,
-      "value": 9800.34634148748,
-      "return_pct": -1.996536585125197,
-      "sharpe": -3.624661293112046,
+      "days": 12,
+      "value": 9875.611939884271,
+      "return_pct": -1.2438806011572878,
+      "sharpe": -2.03124776318896,
       "max_dd_pct": 3.4042212379926404,
-      "closed_trades": 7,
-      "connors_return_pct": -1.8006674404348777,
-      "connors_sharpe": -5.0290127755385,
+      "closed_trades": 8,
+      "connors_return_pct": -1.4001586396292565,
+      "connors_sharpe": -3.595543398327868,
       "connors_max_dd_pct": 2.30897632465085,
       "error": null
     }
   ],
   "pool": {
     "available": true,
-    "as_of": "2026-10-26",
+    "as_of": "2026-10-27",
     "lines": [
       {
         "id": "shadow_atr_stop",
@@ -1773,14 +1790,14 @@
         "id": "shadow_rsi15",
         "verdict": "KEEP",
         "rule": "KEEP",
-        "tier": "insufficient",
+        "tier": "indicative",
         "holm_adjusted_p": 1.0
       },
       {
         "id": "shadow_combo",
         "verdict": "KEEP",
         "rule": "KEEP",
-        "tier": "insufficient",
+        "tier": "indicative",
         "holm_adjusted_p": 1.0
       },
       {
@@ -1802,7 +1819,7 @@
         "verdict": "KEEP",
         "rule": "KEEP",
         "tier": "insufficient",
-        "holm_adjusted_p": 0.223955
+        "holm_adjusted_p": 0.118376
       },
       {
         "id": "connors_guarded",
