@@ -1,41 +1,41 @@
 {
-  "generated_at": "2026-11-03T07:06:00+00:00",
+  "generated_at": "2026-11-04T06:50:04+00:00",
   "start_date": "2026-04-21",
   "starting_capital": 10000.0,
   "test_days": 90,
   "metrics": {
-    "days_elapsed": 188,
-    "total_return_pct": 6.279234117351473,
-    "cagr_pct": 12.550989752448615,
-    "sharpe": 1.230556805356134,
+    "days_elapsed": 189,
+    "total_return_pct": 6.706888147474821,
+    "cagr_pct": 13.356322023567646,
+    "sharpe": 1.3033430247497766,
     "max_dd_pct": 4.626095657896377,
-    "calmar": 2.7130847869574586,
-    "win_rate_pct": 58.69565217391305,
-    "profit_factor": 1.6122082223781469,
-    "trades": 46,
-    "wins": 27,
+    "calmar": 2.8871694429339065,
+    "win_rate_pct": 59.57446808510638,
+    "profit_factor": 1.618158909854562,
+    "trades": 47,
+    "wins": 28,
     "losses": 19,
-    "portfolio_value": 10627.923411735148,
-    "cash": 6187.768727821514,
+    "portfolio_value": 10670.688814747482,
+    "cash": 6194.54134666433,
     "n_open": 3,
-    "invested_share_avg": 0.11219565255525885,
+    "invested_share_avg": 0.1138301472165987,
     "days_fully_in_cash": 123
   },
   "bh_btc_metrics": {
-    "value": 10108.2605720892,
-    "total_return_pct": 1.0826057208920048,
-    "cagr_pct": 2.1125770006105604,
-    "sharpe": 0.24929463602019936,
+    "value": 10189.895770056737,
+    "total_return_pct": 1.8989577005673608,
+    "cagr_pct": 3.6997104051079033,
+    "sharpe": 0.29127662198528614,
     "max_dd_pct": 28.631308852599496,
-    "calmar": 0.07378555453006316
+    "calmar": 0.12921904563130018
   },
   "bh_basket_metrics": {
-    "value": 10783.947724153139,
-    "total_return_pct": 7.8394772415313785,
-    "cagr_pct": 15.781107473665035,
-    "sharpe": 0.5033344724549168,
+    "value": 10863.852968848545,
+    "total_return_pct": 8.638529688485441,
+    "cagr_pct": 17.352589411614527,
+    "sharpe": 0.5293142095597573,
     "max_dd_pct": 32.10147017821779,
-    "calmar": 0.49160077049596274
+    "calmar": 0.5405543520367798
   },
   "backtest_baseline": {
     "cagr_pct": 13.39,
@@ -1181,34 +1181,40 @@
       "connors": 10627.923411735148,
       "bh_btc": 10108.2605720892,
       "bh_basket": 10783.947724153139
+    },
+    {
+      "date": "2026-11-04",
+      "connors": 10670.688814747482,
+      "bh_btc": 10189.895770056737,
+      "bh_basket": 10863.852968848545
     }
   ],
   "open_positions": [
     {
-      "symbol": "ETHUSDT",
-      "entry_date": "2026-10-30",
-      "entry_price": 2254.516695,
-      "current_price": 2253.98,
-      "shares": 0.6653310677745946,
-      "unrealized_pnl": -0.3570798574191406,
-      "unrealized_pct": -0.023805323827941205
-    },
-    {
       "symbol": "SOLUSDT",
       "entry_date": "2026-10-30",
       "entry_price": 95.70782999999999,
-      "current_price": 91.96,
+      "current_price": 92.84,
       "shares": 15.672698879496068,
-      "unrealized_pnl": -58.738611041541645,
-      "unrealized_pct": -3.9159074027694474
+      "unrealized_pnl": -44.94663602758495,
+      "unrealized_pct": -2.9964424018389946
     },
     {
       "symbol": "LTCUSDT",
       "entry_date": "2026-11-03",
       "entry_price": 53.776875,
-      "current_price": 53.75,
+      "current_price": 54.56,
       "shares": 27.893030229071513,
-      "unrealized_pnl": -0.7496251874062098,
+      "unrealized_pnl": 21.84372929814178,
+      "unrealized_pct": 1.4562486198761215
+    },
+    {
+      "symbol": "NEARUSDT",
+      "entry_date": "2026-11-04",
+      "entry_price": 3.8619299999999996,
+      "current_price": 3.86,
+      "shares": 388.4068328530036,
+      "unrealized_pnl": -0.7496251874062058,
       "unrealized_pct": -0.04997501249375258
     }
   ],
@@ -1718,6 +1724,17 @@
       "pnl_pct": 4.950530201565895,
       "hold_days": 3,
       "reason": "MR_EXIT"
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry_date": "2026-10-30",
+      "exit_date": "2026-11-04",
+      "entry_price": 2254.516695,
+      "exit_price": 2273.752555,
+      "pnl": 6.772618842815973,
+      "pnl_pct": 0.4515079228543982,
+      "hold_days": 5,
+      "reason": "MR_EXIT"
     }
   ],
   "per_symbol": {
@@ -1737,9 +1754,9 @@
       "pnl": -257.9432302438588
     },
     "ETHUSDT": {
-      "trades": 3,
-      "wins": 2,
-      "pnl": 20.738841214861168
+      "trades": 4,
+      "wins": 3,
+      "pnl": 27.51146005767714
     },
     "SOLUSDT": {
       "trades": 3,
@@ -1811,63 +1828,63 @@
     {
       "name": "shadow_atr_stop",
       "start_date": "2026-10-16",
-      "days": 19,
-      "value": 10015.147419354354,
-      "return_pct": 0.15147419354355485,
-      "sharpe": 0.3083364701799928,
+      "days": 20,
+      "value": 10057.912822366688,
+      "return_pct": 0.5791282236668804,
+      "sharpe": 0.9776515491394675,
       "max_dd_pct": 2.3511320841187646,
-      "closed_trades": 13,
-      "connors_return_pct": -0.4440218000022922,
-      "connors_sharpe": -0.7466773951446204,
+      "closed_trades": 14,
+      "connors_return_pct": -0.04342129084649038,
+      "connors_sharpe": -0.022186871871648695,
       "connors_max_dd_pct": 2.30897632465085,
       "error": null
     },
     {
       "name": "shadow_btc200",
       "start_date": "2026-10-16",
-      "days": 19,
-      "value": 10016.804396379623,
-      "return_pct": 0.1680439637962161,
-      "sharpe": 0.333668832902219,
+      "days": 20,
+      "value": 10059.569799391957,
+      "return_pct": 0.5956979939195639,
+      "sharpe": 0.9958782169497714,
       "max_dd_pct": 2.4484124917757497,
-      "closed_trades": 14,
-      "connors_return_pct": -0.4440218000022922,
-      "connors_sharpe": -0.7466773951446204,
+      "closed_trades": 15,
+      "connors_return_pct": -0.04342129084649038,
+      "connors_sharpe": -0.022186871871648695,
       "connors_max_dd_pct": 2.30897632465085,
       "error": null
     },
     {
       "name": "shadow_rsi15",
       "start_date": "2026-10-16",
-      "days": 19,
-      "value": 9876.539851654496,
-      "return_pct": -1.2346014834550445,
-      "sharpe": -0.8660324619450931,
+      "days": 20,
+      "value": 9947.480251126213,
+      "return_pct": -0.5251974887378719,
+      "sharpe": -0.2854933687404833,
       "max_dd_pct": 3.5012525596949393,
-      "closed_trades": 17,
-      "connors_return_pct": -0.4440218000022922,
-      "connors_sharpe": -0.7466773951446204,
+      "closed_trades": 19,
+      "connors_return_pct": -0.04342129084649038,
+      "connors_sharpe": -0.022186871871648695,
       "connors_max_dd_pct": 2.30897632465085,
       "error": null
     },
     {
       "name": "shadow_combo",
       "start_date": "2026-10-16",
-      "days": 19,
-      "value": 9887.520799558915,
-      "return_pct": -1.1247920044108461,
-      "sharpe": -0.8559131553726087,
+      "days": 20,
+      "value": 9958.39540372644,
+      "return_pct": -0.4160459627356117,
+      "sharpe": -0.23403417801543397,
       "max_dd_pct": 3.4042212379926404,
-      "closed_trades": 16,
-      "connors_return_pct": -0.4440218000022922,
-      "connors_sharpe": -0.7466773951446204,
+      "closed_trades": 18,
+      "connors_return_pct": -0.04342129084649038,
+      "connors_sharpe": -0.022186871871648695,
       "connors_max_dd_pct": 2.30897632465085,
       "error": null
     }
   ],
   "pool": {
     "available": true,
-    "as_of": "2026-11-03",
+    "as_of": "2026-11-04",
     "lines": [
       {
         "id": "shadow_atr_stop",
@@ -1880,7 +1897,7 @@
         "id": "shadow_btc200",
         "verdict": "KEEP",
         "rule": "KEEP",
-        "tier": "indicative",
+        "tier": "usable",
         "holm_adjusted_p": 1.0
       },
       {
@@ -1909,20 +1926,20 @@
         "verdict": "KEEP",
         "rule": "KEEP",
         "tier": "insufficient",
-        "holm_adjusted_p": 0.086783
+        "holm_adjusted_p": 0.09798
       },
       {
         "id": "basket_sma50_band",
         "verdict": "KEEP",
         "rule": "KEEP",
         "tier": "insufficient",
-        "holm_adjusted_p": 0.015997
+        "holm_adjusted_p": 0.009598
       },
       {
         "id": "connors_guarded",
         "verdict": "CONTROL",
         "rule": "CONTROL",
-        "tier": "indicative",
+        "tier": "usable",
         "holm_adjusted_p": null
       },
       {
