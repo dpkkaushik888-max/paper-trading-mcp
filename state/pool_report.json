@@ -1,5 +1,5 @@
 {
- "as_of": "2026-11-04",
+ "as_of": "2026-11-05",
  "cond_table": {
   "basket_sma50_band": {
    "basket_ret20_bucket": {
@@ -60,26 +60,32 @@
   "connors_exit_sma10": {
    "basket_ret20_bucket": {
     "<-10%": {
-     "ci": null,
-     "mean_pnl_pct": -0.026215,
-     "n": 12,
-     "n_entry_days": 4,
-     "post_mean": 0.509881,
+     "ci": [
+      -0.033828,
+      0.015399
+     ],
+     "mean_pnl_pct": -0.011985,
+     "n": 15,
+     "n_entry_days": 7,
+     "post_mean": 0.568696,
      "prior_p": 0.521739,
-     "tier": "insufficient",
-     "win_rate": 0.5
+     "tier": "usable",
+     "win_rate": 0.6
     }
    },
    "btc_trend": {
     "above200_below50": {
-     "ci": null,
-     "mean_pnl_pct": -0.046536,
-     "n": 6,
-     "n_entry_days": 2,
-     "post_mean": 0.489583,
+     "ci": [
+      -0.040039,
+      0.042936
+     ],
+     "mean_pnl_pct": -0.016045,
+     "n": 9,
+     "n_entry_days": 5,
+     "post_mean": 0.570175,
      "prior_p": 0.583333,
-     "tier": "insufficient",
-     "win_rate": 0.333333
+     "tier": "indicative",
+     "win_rate": 0.555556
     },
     "above_both": {
      "ci": null,
@@ -94,14 +100,17 @@
    },
    "btc_vol20_bucket": {
     "low": {
-     "ci": null,
-     "mean_pnl_pct": -0.026215,
-     "n": 12,
-     "n_entry_days": 4,
-     "post_mean": 0.563338,
+     "ci": [
+      -0.033935,
+      0.017484
+     ],
+     "mean_pnl_pct": -0.011985,
+     "n": 15,
+     "n_entry_days": 7,
+     "post_mean": 0.615738,
      "prior_p": 0.639344,
-     "tier": "insufficient",
-     "win_rate": 0.5
+     "tier": "usable",
+     "win_rate": 0.6
     }
    },
    "dow": {
@@ -115,6 +124,16 @@
      "tier": "insufficient",
      "win_rate": 0.5
     },
+    "Monday": {
+     "ci": null,
+     "mean_pnl_pct": 0.039934,
+     "n": 2,
+     "n_entry_days": 2,
+     "post_mean": 0.628713,
+     "prior_p": 0.554455,
+     "tier": "insufficient",
+     "win_rate": 1.0
+    },
     "Saturday": {
      "ci": null,
      "mean_pnl_pct": -0.022876,
@@ -124,6 +143,16 @@
      "prior_p": 0.659091,
      "tier": "insufficient",
      "win_rate": 0.5
+    },
+    "Thursday": {
+     "ci": null,
+     "mean_pnl_pct": 0.054943,
+     "n": 1,
+     "n_entry_days": 1,
+     "post_mean": 0.675325,
+     "prior_p": 0.642857,
+     "tier": "insufficient",
+     "win_rate": 1.0
     }
    }
   },
@@ -131,28 +160,31 @@
    "basket_ret20_bucket": {
     "<-10%": {
      "ci": [
-      -0.001996,
-      0.01101
+      -0.000138,
+      0.012839
      ],
-     "mean_pnl_pct": 0.004108,
-     "n": 15,
-     "n_entry_days": 6,
-     "post_mean": 0.508916,
+     "mean_pnl_pct": 0.005748,
+     "n": 17,
+     "n_entry_days": 7,
+     "post_mean": 0.508255,
      "prior_p": 0.572289,
      "tier": "usable",
-     "win_rate": 0.466667
+     "win_rate": 0.470588
     }
    },
    "btc_trend": {
     "above200_below50": {
-     "ci": null,
-     "mean_pnl_pct": 0.006478,
-     "n": 9,
-     "n_entry_days": 4,
-     "post_mean": 0.519151,
+     "ci": [
+      0.0002,
+      0.020299
+     ],
+     "mean_pnl_pct": 0.008582,
+     "n": 11,
+     "n_entry_days": 5,
+     "post_mean": 0.517327,
      "prior_p": 0.586387,
-     "tier": "insufficient",
-     "win_rate": 0.444444
+     "tier": "indicative",
+     "win_rate": 0.454545
     },
     "above_both": {
      "ci": null,
@@ -168,16 +200,16 @@
    "btc_vol20_bucket": {
     "low": {
      "ci": [
-      -0.002243,
-      0.011299
+      -0.000363,
+      0.01309
      ],
-     "mean_pnl_pct": 0.004108,
-     "n": 15,
-     "n_entry_days": 6,
-     "post_mean": 0.53285,
+     "mean_pnl_pct": 0.005748,
+     "n": 17,
+     "n_entry_days": 7,
+     "post_mean": 0.530416,
      "prior_p": 0.632124,
      "tier": "usable",
-     "win_rate": 0.466667
+     "win_rate": 0.470588
     }
    },
    "dow": {
@@ -193,10 +225,10 @@
     },
     "Monday": {
      "ci": null,
-     "mean_pnl_pct": 0.007072,
-     "n": 1,
-     "n_entry_days": 1,
-     "post_mean": 0.662338,
+     "mean_pnl_pct": 0.024502,
+     "n": 2,
+     "n_entry_days": 2,
+     "post_mean": 0.690476,
      "prior_p": 0.628571,
      "tier": "insufficient",
      "win_rate": 1.0
@@ -213,13 +245,13 @@
     },
     "Thursday": {
      "ci": null,
-     "mean_pnl_pct": 0.02701,
-     "n": 2,
+     "mean_pnl_pct": 0.016063,
+     "n": 3,
      "n_entry_days": 1,
-     "post_mean": 0.727723,
+     "post_mean": 0.671744,
      "prior_p": 0.673267,
      "tier": "insufficient",
-     "win_rate": 1.0
+     "win_rate": 0.666667
     }
    }
   },
@@ -250,13 +282,13 @@
     },
     "<-10%": {
      "ci": [
-      -0.004278,
-      0.054518
+      -0.001563,
+      0.05096
      ],
-     "mean_pnl_pct": 0.020906,
-     "n": 18,
-     "n_entry_days": 11,
-     "post_mean": 0.525818,
+     "mean_pnl_pct": 0.020621,
+     "n": 20,
+     "n_entry_days": 12,
+     "post_mean": 0.524096,
      "prior_p": 0.572289,
      "tier": "usable",
      "win_rate": 0.5
@@ -277,14 +309,17 @@
    },
    "btc_trend": {
     "above200_below50": {
-     "ci": null,
-     "mean_pnl_pct": 0.006478,
-     "n": 9,
-     "n_entry_days": 4,
-     "post_mean": 0.519151,
+     "ci": [
+      0.001451,
+      0.020299
+     ],
+     "mean_pnl_pct": 0.008582,
+     "n": 11,
+     "n_entry_days": 5,
+     "post_mean": 0.517327,
      "prior_p": 0.586387,
-     "tier": "insufficient",
-     "win_rate": 0.444444
+     "tier": "indicative",
+     "win_rate": 0.454545
     },
     "above_both": {
      "ci": [
@@ -326,16 +361,16 @@
    "btc_vol20_bucket": {
     "low": {
      "ci": [
-      -0.005115,
-      0.023674
+      -0.004609,
+      0.024043
      ],
-     "mean_pnl_pct": 0.009312,
-     "n": 46,
-     "n_entry_days": 26,
-     "post_mean": 0.595022,
+     "mean_pnl_pct": 0.009676,
+     "n": 48,
+     "n_entry_days": 27,
+     "post_mean": 0.591746,
      "prior_p": 0.632124,
      "tier": "usable",
-     "win_rate": 0.586957
+     "win_rate": 0.583333
     },
     "mid": {
      "ci": null,
@@ -364,13 +399,13 @@
     },
     "Monday": {
      "ci": null,
-     "mean_pnl_pct": -0.024936,
-     "n": 4,
-     "n_entry_days": 4,
-     "post_mean": 0.520408,
+     "mean_pnl_pct": -0.011563,
+     "n": 5,
+     "n_entry_days": 5,
+     "post_mean": 0.552381,
      "prior_p": 0.628571,
      "tier": "insufficient",
-     "win_rate": 0.25
+     "win_rate": 0.4
     },
     "Saturday": {
      "ci": null,
@@ -384,16 +419,16 @@
     },
     "Thursday": {
      "ci": [
-      -0.0404,
-      0.027097
+      -0.038274,
+      0.024359
      ],
-     "mean_pnl_pct": 0.006477,
-     "n": 13,
+     "mean_pnl_pct": 0.005598,
+     "n": 14,
      "n_entry_days": 6,
-     "post_mean": 0.770986,
+     "post_mean": 0.738861,
      "prior_p": 0.673267,
      "tier": "indicative",
-     "win_rate": 0.846154
+     "win_rate": 0.785714
     },
     "Tuesday": {
      "ci": null,
@@ -421,27 +456,30 @@
    "basket_ret20_bucket": {
     "<-10%": {
      "ci": [
-      -0.001681,
-      0.012287
+      -0.000335,
+      0.013663
      ],
-     "mean_pnl_pct": 0.004322,
-     "n": 14,
-     "n_entry_days": 6,
-     "post_mean": 0.536765,
+     "mean_pnl_pct": 0.006038,
+     "n": 16,
+     "n_entry_days": 7,
+     "post_mean": 0.533937,
      "prior_p": 0.588235,
-     "tier": "indicative",
+     "tier": "usable",
      "win_rate": 0.5
     }
    },
    "btc_trend": {
     "above200_below50": {
-     "ci": null,
-     "mean_pnl_pct": 0.008133,
-     "n": 8,
-     "n_entry_days": 4,
-     "post_mean": 0.533491,
+     "ci": [
+      0.002446,
+      0.020885
+     ],
+     "mean_pnl_pct": 0.010116,
+     "n": 10,
+     "n_entry_days": 5,
+     "post_mean": 0.530142,
      "prior_p": 0.560284,
-     "tier": "insufficient",
+     "tier": "indicative",
      "win_rate": 0.5
     },
     "above_both": {
@@ -458,15 +496,15 @@
    "btc_vol20_bucket": {
     "low": {
      "ci": [
-      -0.001681,
-      0.011913
+      -6.5e-05,
+      0.013577
      ],
-     "mean_pnl_pct": 0.004322,
-     "n": 14,
-     "n_entry_days": 6,
-     "post_mean": 0.555473,
+     "mean_pnl_pct": 0.006038,
+     "n": 16,
+     "n_entry_days": 7,
+     "post_mean": 0.551206,
      "prior_p": 0.633136,
-     "tier": "indicative",
+     "tier": "usable",
      "win_rate": 0.5
     }
    },
@@ -483,10 +521,10 @@
     },
     "Monday": {
      "ci": null,
-     "mean_pnl_pct": 0.007072,
-     "n": 1,
-     "n_entry_days": 1,
-     "post_mean": 0.665622,
+     "mean_pnl_pct": 0.024502,
+     "n": 2,
+     "n_entry_days": 2,
+     "post_mean": 0.693487,
      "prior_p": 0.632184,
      "tier": "insufficient",
      "win_rate": 1.0
@@ -503,13 +541,13 @@
     },
     "Thursday": {
      "ci": null,
-     "mean_pnl_pct": 0.02701,
-     "n": 2,
+     "mean_pnl_pct": 0.016063,
+     "n": 3,
      "n_entry_days": 1,
-     "post_mean": 0.747807,
+     "post_mean": 0.690283,
      "prior_p": 0.697368,
      "tier": "insufficient",
-     "win_rate": 1.0
+     "win_rate": 0.666667
     }
    }
   },
@@ -517,28 +555,31 @@
    "basket_ret20_bucket": {
     "<-10%": {
      "ci": [
-      -0.002088,
-      0.011018
+      -0.000191,
+      0.012804
      ],
-     "mean_pnl_pct": 0.004108,
-     "n": 15,
-     "n_entry_days": 6,
-     "post_mean": 0.511933,
+     "mean_pnl_pct": 0.005748,
+     "n": 17,
+     "n_entry_days": 7,
+     "post_mean": 0.511049,
      "prior_p": 0.579832,
      "tier": "usable",
-     "win_rate": 0.466667
+     "win_rate": 0.470588
     }
    },
    "btc_trend": {
     "above200_below50": {
-     "ci": null,
-     "mean_pnl_pct": 0.006478,
-     "n": 9,
-     "n_entry_days": 4,
-     "post_mean": 0.519151,
+     "ci": [
+      0.001451,
+      0.020299
+     ],
+     "mean_pnl_pct": 0.008582,
+     "n": 11,
+     "n_entry_days": 5,
+     "post_mean": 0.517327,
      "prior_p": 0.586387,
-     "tier": "insufficient",
-     "win_rate": 0.444444
+     "tier": "indicative",
+     "win_rate": 0.454545
     },
     "above_both": {
      "ci": null,
@@ -554,16 +595,16 @@
    "btc_vol20_bucket": {
     "low": {
      "ci": [
-      -0.002088,
-      0.010985
+      -8.6e-05,
+      0.01315
      ],
-     "mean_pnl_pct": 0.004108,
-     "n": 15,
-     "n_entry_days": 6,
-     "post_mean": 0.54988,
+     "mean_pnl_pct": 0.005748,
+     "n": 17,
+     "n_entry_days": 7,
+     "post_mean": 0.546185,
      "prior_p": 0.674699,
      "tier": "usable",
-     "win_rate": 0.466667
+     "win_rate": 0.470588
     }
    },
    "dow": {
@@ -579,10 +620,10 @@
     },
     "Monday": {
      "ci": null,
-     "mean_pnl_pct": 0.007072,
-     "n": 1,
-     "n_entry_days": 1,
-     "post_mean": 0.672304,
+     "mean_pnl_pct": 0.024502,
+     "n": 2,
+     "n_entry_days": 2,
+     "post_mean": 0.699612,
      "prior_p": 0.639535,
      "tier": "insufficient",
      "win_rate": 1.0
@@ -599,13 +640,13 @@
     },
     "Thursday": {
      "ci": null,
-     "mean_pnl_pct": 0.02701,
-     "n": 2,
+     "mean_pnl_pct": 0.016063,
+     "n": 3,
      "n_entry_days": 1,
-     "post_mean": 0.760536,
+     "post_mean": 0.702034,
      "prior_p": 0.712644,
      "tier": "insufficient",
-     "win_rate": 1.0
+     "win_rate": 0.666667
     }
    }
   },
@@ -623,31 +664,31 @@
     },
     "<-10%": {
      "ci": [
-      -0.008247,
-      0.022224
+      -0.006953,
+      0.019951
      ],
-     "mean_pnl_pct": 0.006168,
-     "n": 14,
+     "mean_pnl_pct": 0.007654,
+     "n": 16,
      "n_entry_days": 7,
-     "post_mean": 0.606481,
+     "post_mean": 0.598291,
      "prior_p": 0.555556,
-     "tier": "indicative",
-     "win_rate": 0.642857
+     "tier": "usable",
+     "win_rate": 0.625
     }
    },
    "btc_trend": {
     "above200_below50": {
      "ci": [
-      -0.02413,
-      0.031181
+      -0.02391,
+      0.026637
      ],
-     "mean_pnl_pct": 0.001913,
-     "n": 10,
+     "mean_pnl_pct": 0.004602,
+     "n": 12,
      "n_entry_days": 5,
-     "post_mean": 0.568362,
+     "post_mean": 0.562147,
      "prior_p": 0.536723,
      "tier": "indicative",
-     "win_rate": 0.6
+     "win_rate": 0.583333
     },
     "above_both": {
      "ci": null,
@@ -663,16 +704,16 @@
    "btc_vol20_bucket": {
     "low": {
      "ci": [
-      -0.014858,
-      0.022757
+      -0.012893,
+      0.021655
      ],
-     "mean_pnl_pct": 0.002307,
-     "n": 18,
+     "mean_pnl_pct": 0.003881,
+     "n": 20,
      "n_entry_days": 9,
-     "post_mean": 0.616071,
+     "post_mean": 0.608333,
      "prior_p": 0.625,
      "tier": "usable",
-     "win_rate": 0.611111
+     "win_rate": 0.6
     }
    },
    "dow": {
@@ -688,10 +729,10 @@
     },
     "Monday": {
      "ci": null,
-     "mean_pnl_pct": 0.035201,
-     "n": 3,
+     "mean_pnl_pct": 0.036884,
+     "n": 4,
      "n_entry_days": 3,
-     "post_mean": 0.741259,
+     "post_mean": 0.75974,
      "prior_p": 0.663636,
      "tier": "insufficient",
      "win_rate": 1.0
@@ -708,13 +749,13 @@
     },
     "Thursday": {
      "ci": null,
-     "mean_pnl_pct": 0.001474,
-     "n": 8,
+     "mean_pnl_pct": 0.000663,
+     "n": 9,
      "n_entry_days": 3,
-     "post_mean": 0.648148,
+     "post_mean": 0.614035,
      "prior_p": 0.666667,
      "tier": "insufficient",
-     "win_rate": 0.625
+     "win_rate": 0.555556
     }
    }
   },
@@ -732,28 +773,31 @@
     },
     "<-10%": {
      "ci": [
-      -0.009275,
-      0.021376
+      -0.007135,
+      0.020223
      ],
-     "mean_pnl_pct": 0.005956,
-     "n": 15,
-     "n_entry_days": 6,
-     "post_mean": 0.592432,
+     "mean_pnl_pct": 0.007379,
+     "n": 17,
+     "n_entry_days": 7,
+     "post_mean": 0.585586,
      "prior_p": 0.581081,
      "tier": "usable",
-     "win_rate": 0.6
+     "win_rate": 0.588235
     }
    },
    "btc_trend": {
     "above200_below50": {
-     "ci": null,
-     "mean_pnl_pct": 0.000362,
-     "n": 11,
-     "n_entry_days": 4,
-     "post_mean": 0.55246,
+     "ci": [
+      -0.023155,
+      0.026929
+     ],
+     "mean_pnl_pct": 0.003083,
+     "n": 13,
+     "n_entry_days": 5,
+     "post_mean": 0.547898,
      "prior_p": 0.560166,
-     "tier": "insufficient",
-     "win_rate": 0.545455
+     "tier": "indicative",
+     "win_rate": 0.538462
     },
     "above_both": {
      "ci": null,
@@ -769,16 +813,16 @@
    "btc_vol20_bucket": {
     "low": {
      "ci": [
-      -0.017375,
-      0.021247
+      -0.013182,
+      0.020431
      ],
-     "mean_pnl_pct": 0.001803,
-     "n": 19,
-     "n_entry_days": 8,
-     "post_mean": 0.590822,
+     "mean_pnl_pct": 0.00335,
+     "n": 21,
+     "n_entry_days": 9,
+     "post_mean": 0.584962,
      "prior_p": 0.613383,
      "tier": "usable",
-     "win_rate": 0.578947
+     "win_rate": 0.571429
     }
    },
    "dow": {
@@ -794,10 +838,10 @@
     },
     "Monday": {
      "ci": null,
-     "mean_pnl_pct": 0.042108,
-     "n": 2,
-     "n_entry_days": 2,
-     "post_mean": 0.699367,
+     "mean_pnl_pct": 0.042049,
+     "n": 3,
+     "n_entry_days": 3,
+     "post_mean": 0.722493,
      "prior_p": 0.639241,
      "tier": "insufficient",
      "win_rate": 1.0
@@ -814,13 +858,13 @@
     },
     "Thursday": {
      "ci": null,
-     "mean_pnl_pct": 0.002756,
-     "n": 9,
+     "mean_pnl_pct": 0.001897,
+     "n": 10,
      "n_entry_days": 3,
-     "post_mean": 0.65587,
+     "post_mean": 0.623077,
      "prior_p": 0.646154,
      "tier": "insufficient",
-     "win_rate": 0.666667
+     "win_rate": 0.6
     }
    }
   },
@@ -898,105 +942,105 @@
  "holm": [
   {
    "id": "basket_sma50_band",
-   "mean_diff": -0.003341,
-   "p_adj": 0.009598,
-   "p_boot": 0.0012,
+   "mean_diff": -0.003822,
+   "p_adj": 0.006399,
+   "p_boot": 0.0008,
    "significant": true
   },
   {
    "id": "xsec_mom_top3",
-   "mean_diff": -0.007983,
-   "p_adj": 0.09798,
-   "p_boot": 0.013997,
-   "significant": true
+   "mean_diff": -0.007119,
+   "p_adj": 0.193161,
+   "p_boot": 0.027594,
+   "significant": false
   },
   {
    "id": "shadow_btc200",
-   "mean_diff": 0.000322,
+   "mean_diff": 0.000345,
    "p_adj": 1.0,
-   "p_boot": 0.353529,
+   "p_boot": 0.275145,
    "significant": false
   },
   {
    "id": "shadow_atr_stop",
-   "mean_diff": 0.000313,
+   "mean_diff": 0.000337,
    "p_adj": 1.0,
-   "p_boot": 0.394721,
-   "significant": false
-  },
-  {
-   "id": "connors_exit_sma10",
-   "mean_diff": -0.002063,
-   "p_adj": 1.0,
-   "p_boot": 0.445111,
-   "significant": false
-  },
-  {
-   "id": "shadow_combo",
-   "mean_diff": -0.000135,
-   "p_adj": 1.0,
-   "p_boot": 0.867027,
-   "significant": false
-  },
-  {
-   "id": "shadow_rsi15",
-   "mean_diff": -0.00018,
-   "p_adj": 1.0,
-   "p_boot": 0.868626,
+   "p_boot": 0.304339,
    "significant": false
   },
   {
    "id": "breakout_s21",
-   "mean_diff": 6e-06,
+   "mean_diff": -0.000634,
    "p_adj": 1.0,
-   "p_boot": 0.977405,
+   "p_boot": 0.533893,
+   "significant": false
+  },
+  {
+   "id": "connors_exit_sma10",
+   "mean_diff": -0.001258,
+   "p_adj": 1.0,
+   "p_boot": 0.60028,
+   "significant": false
+  },
+  {
+   "id": "shadow_rsi15",
+   "mean_diff": -0.000138,
+   "p_adj": 1.0,
+   "p_boot": 0.877824,
+   "significant": false
+  },
+  {
+   "id": "shadow_combo",
+   "mean_diff": -9.7e-05,
+   "p_adj": 1.0,
+   "p_boot": 0.897021,
    "significant": false
   }
  ],
  "lines": [
   {
-   "auto_sentence": "shadow_atr_stop: 14 trades over 20 days, win 50 % (CI 39\u201372 %), vs live +0.6 pp, not significant (p_adj 1.00) \u2192 KEEP",
-   "ci_hi": 0.01191,
-   "ci_lo": -0.001686,
+   "auto_sentence": "shadow_atr_stop: 16 trades over 21 days, win 50 % (CI 40\u201371 %), vs live +0.7 pp, not significant (p_adj 1.00) \u2192 KEEP",
+   "ci_hi": 0.013508,
+   "ci_lo": 0.000201,
    "current_consec_losses": 0,
-   "current_dd": 0.006111,
-   "days_active": 20,
-   "expectancy": 0.004322,
+   "current_dd": 0.0,
+   "days_active": 21,
+   "expectancy": 0.006038,
    "family": "connors",
    "flags": [],
    "guard_effect": null,
    "holm_adjusted_p": 1.0,
    "hypothesis": "beats_live",
    "id": "shadow_atr_stop",
-   "lineday_rows_90d": 20,
+   "lineday_rows_90d": 21,
    "max_consec_losses": 4,
    "max_dd": 0.023511,
-   "mean_exposure": 0.446395,
-   "mean_mae_pct": -0.016069,
-   "mean_mfe_pct": 0.016386,
-   "mean_pnl_pct": 0.004322,
+   "mean_exposure": 0.432418,
+   "mean_mae_pct": -0.016508,
+   "mean_mfe_pct": 0.017692,
+   "mean_pnl_pct": 0.006038,
    "median_pnl_pct": 0.000148,
-   "n_entry_days": 6,
-   "n_trades": 14,
+   "n_entry_days": 7,
+   "n_trades": 16,
    "no_losses": false,
    "paired": {
-    "ci_hi": 0.000906,
-    "ci_lo": -0.000241,
-    "cum_ret_diff": 0.006225,
-    "end": "2026-11-04",
+    "ci_hi": 0.000901,
+    "ci_lo": -0.00016,
+    "cum_ret_diff": 0.007133,
+    "end": "2026-11-05",
     "half1_mean": 0.000684,
-    "half2_mean": -5.8e-05,
+    "half2_mean": 2.2e-05,
     "maxdd_diff": 0.000422,
-    "mean_diff": 0.000313,
-    "n_days": 21,
+    "mean_diff": 0.000337,
+    "n_days": 22,
     "n_neg": 10,
-    "n_pos": 10,
-    "p_boot": 0.394721,
+    "n_pos": 11,
+    "p_boot": 0.304339,
     "p_sign": 1.0,
     "start": "2026-10-15"
    },
    "primary_test_available": true,
-   "profit_factor": 1.444775,
+   "profit_factor": 1.680937,
    "reasons": [
     "no rule fired"
    ],
@@ -1008,65 +1052,65 @@
    "start": "2026-10-16",
    "status": "active",
    "streak_threshold": 10,
-   "tier": "indicative",
-   "total_return": 0.005791,
+   "tier": "usable",
+   "total_return": 0.020137,
    "verdict": "KEEP",
    "waived": true,
    "win_post": {
-    "a": 13.390658,
-    "b": 10.609342,
+    "a": 14.390658,
+    "b": 11.609342,
     "disagrees": false,
-    "hi": 0.716789,
-    "lo": 0.394114,
-    "mean": 0.557944,
+    "hi": 0.705887,
+    "lo": 0.395938,
+    "mean": 0.553487,
     "prior_p": 0.639066
    },
    "win_rate": 0.5,
    "years_beating_s18": 6
   },
   {
-   "auto_sentence": "shadow_btc200: 15 trades over 20 days, win 47 % (CI 38\u201370 %), vs live +0.6 pp, not significant (p_adj 1.00), primary hypothesis test not built (C5) \u2192 KEEP",
-   "ci_hi": 0.011299,
-   "ci_lo": -0.001996,
+   "auto_sentence": "shadow_btc200: 17 trades over 21 days, win 47 % (CI 38\u201369 %), vs live +0.7 pp, not significant (p_adj 1.00), primary hypothesis test not built (C5) \u2192 KEEP",
+   "ci_hi": 0.012932,
+   "ci_lo": -0.000127,
    "current_consec_losses": 0,
-   "current_dd": 0.005947,
-   "days_active": 20,
-   "expectancy": 0.004108,
+   "current_dd": 0.0,
+   "days_active": 21,
+   "expectancy": 0.005748,
    "family": "connors",
    "flags": [],
    "guard_effect": null,
    "holm_adjusted_p": 1.0,
    "hypothesis": "reduces_dd_in",
    "id": "shadow_btc200",
-   "lineday_rows_90d": 20,
+   "lineday_rows_90d": 21,
    "max_consec_losses": 3,
    "max_dd": 0.024484,
-   "mean_exposure": 0.456167,
-   "mean_mae_pct": -0.015098,
-   "mean_mfe_pct": 0.015293,
-   "mean_pnl_pct": 0.004108,
+   "mean_exposure": 0.441723,
+   "mean_mae_pct": -0.015625,
+   "mean_mfe_pct": 0.016651,
+   "mean_pnl_pct": 0.005748,
    "median_pnl_pct": -0.004219,
-   "n_entry_days": 6,
-   "n_trades": 15,
+   "n_entry_days": 7,
+   "n_trades": 17,
    "no_losses": false,
    "paired": {
-    "ci_hi": 0.000906,
-    "ci_lo": -0.000232,
-    "cum_ret_diff": 0.006391,
-    "end": "2026-11-04",
+    "ci_hi": 0.00089,
+    "ci_lo": -0.000144,
+    "cum_ret_diff": 0.007299,
+    "end": "2026-11-05",
     "half1_mean": 0.000587,
-    "half2_mean": 5.7e-05,
+    "half2_mean": 0.000126,
     "maxdd_diff": 0.001394,
-    "mean_diff": 0.000322,
-    "n_days": 21,
+    "mean_diff": 0.000345,
+    "n_days": 22,
     "n_neg": 10,
-    "n_pos": 10,
-    "p_boot": 0.353529,
+    "n_pos": 11,
+    "p_boot": 0.275145,
     "p_sign": 1.0,
     "start": "2026-10-15"
    },
    "primary_test_available": false,
-   "profit_factor": 1.456602,
+   "profit_factor": 1.694128,
    "reasons": [
     "no rule fired",
     "primary hypothesis test not built (C5)"
@@ -1080,64 +1124,64 @@
    "status": "active",
    "streak_threshold": 10,
    "tier": "usable",
-   "total_return": 0.005957,
+   "total_return": 0.020303,
    "verdict": "KEEP",
    "waived": true,
    "win_post": {
-    "a": 13.422764,
-    "b": 11.577236,
+    "a": 14.422764,
+    "b": 12.577236,
     "disagrees": false,
-    "hi": 0.696541,
-    "lo": 0.375515,
-    "mean": 0.536911,
+    "hi": 0.687056,
+    "lo": 0.37782,
+    "mean": 0.534176,
     "prior_p": 0.642276
    },
-   "win_rate": 0.466667,
+   "win_rate": 0.470588,
    "years_beating_s18": 3
   },
   {
-   "auto_sentence": "shadow_rsi15: 19 trades over 20 days, win 58 % (CI 44\u201374 %), vs live -0.5 pp, not significant (p_adj 1.00) \u2192 KEEP",
-   "ci_hi": 0.021505,
-   "ci_lo": -0.016589,
+   "auto_sentence": "shadow_rsi15: 21 trades over 21 days, win 57 % (CI 44\u201373 %), vs live -0.4 pp, not significant (p_adj 1.00) \u2192 KEEP",
+   "ci_hi": 0.020431,
+   "ci_lo": -0.014075,
    "current_consec_losses": 0,
-   "current_dd": 0.020372,
-   "days_active": 20,
-   "expectancy": 0.001803,
+   "current_dd": 0.006525,
+   "days_active": 21,
+   "expectancy": 0.00335,
    "family": "connors",
    "flags": [],
    "guard_effect": null,
    "holm_adjusted_p": 1.0,
    "hypothesis": "beats_live",
    "id": "shadow_rsi15",
-   "lineday_rows_90d": 20,
+   "lineday_rows_90d": 21,
    "max_consec_losses": 3,
    "max_dd": 0.035013,
-   "mean_exposure": 0.643801,
-   "mean_mae_pct": -0.023324,
-   "mean_mfe_pct": 0.020108,
-   "mean_pnl_pct": 0.001803,
+   "mean_exposure": 0.620157,
+   "mean_mae_pct": -0.022968,
+   "mean_mfe_pct": 0.020749,
+   "mean_pnl_pct": 0.00335,
    "median_pnl_pct": 0.004515,
-   "n_entry_days": 8,
-   "n_trades": 19,
+   "n_entry_days": 9,
+   "n_trades": 21,
    "no_losses": false,
    "paired": {
-    "ci_hi": 0.001928,
-    "ci_lo": -0.002262,
-    "cum_ret_diff": -0.004818,
-    "end": "2026-11-04",
+    "ci_hi": 0.00187,
+    "ci_lo": -0.00216,
+    "cum_ret_diff": -0.004196,
+    "end": "2026-11-05",
     "half1_mean": -8.1e-05,
-    "half2_mean": -0.000279,
+    "half2_mean": -0.00019,
     "maxdd_diff": 0.011923,
-    "mean_diff": -0.00018,
-    "n_days": 21,
+    "mean_diff": -0.000138,
+    "n_days": 22,
     "n_neg": 10,
-    "n_pos": 10,
-    "p_boot": 0.868626,
+    "n_pos": 11,
+    "p_boot": 0.877824,
     "p_sign": 1.0,
     "start": "2026-10-15"
    },
    "primary_test_available": true,
-   "profit_factor": 1.12121,
+   "profit_factor": 1.243936,
    "reasons": [
     "no rule fired"
    ],
@@ -1150,64 +1194,64 @@
    "status": "active",
    "streak_threshold": 10,
    "tier": "usable",
-   "total_return": -0.005252,
+   "total_return": 0.008808,
    "verdict": "KEEP",
    "waived": true,
    "win_post": {
-    "a": 17.135553,
-    "b": 11.864447,
+    "a": 18.135553,
+    "b": 12.864447,
     "disagrees": false,
-    "hi": 0.735581,
-    "lo": 0.437254,
-    "mean": 0.590881,
+    "hi": 0.725635,
+    "lo": 0.435505,
+    "mean": 0.585018,
     "prior_p": 0.613555
    },
-   "win_rate": 0.578947,
+   "win_rate": 0.571429,
    "years_beating_s18": 4
   },
   {
-   "auto_sentence": "shadow_combo: 18 trades over 20 days, win 61 % (CI 47\u201376 %), vs live -0.4 pp, not significant (p_adj 1.00) \u2192 KEEP",
-   "ci_hi": 0.022599,
-   "ci_lo": -0.014588,
+   "auto_sentence": "shadow_combo: 20 trades over 21 days, win 60 % (CI 47\u201375 %), vs live -0.3 pp, not significant (p_adj 1.00) \u2192 KEEP",
+   "ci_hi": 0.021269,
+   "ci_lo": -0.012747,
    "current_consec_losses": 0,
-   "current_dd": 0.018464,
-   "days_active": 20,
-   "expectancy": 0.002307,
+   "current_dd": 0.004606,
+   "days_active": 21,
+   "expectancy": 0.003881,
    "family": "connors",
    "flags": [],
    "guard_effect": null,
    "holm_adjusted_p": 1.0,
    "hypothesis": "beats_live",
    "id": "shadow_combo",
-   "lineday_rows_90d": 20,
+   "lineday_rows_90d": 21,
    "max_consec_losses": 3,
    "max_dd": 0.034042,
-   "mean_exposure": 0.62388,
-   "mean_mae_pct": -0.024537,
-   "mean_mfe_pct": 0.020324,
-   "mean_pnl_pct": 0.002307,
+   "mean_exposure": 0.601176,
+   "mean_mae_pct": -0.024041,
+   "mean_mfe_pct": 0.020975,
+   "mean_pnl_pct": 0.003881,
    "median_pnl_pct": 0.005794,
    "n_entry_days": 9,
-   "n_trades": 18,
+   "n_trades": 20,
    "no_losses": false,
    "paired": {
-    "ci_hi": 0.001793,
-    "ci_lo": -0.002016,
-    "cum_ret_diff": -0.003726,
-    "end": "2026-11-04",
+    "ci_hi": 0.001774,
+    "ci_lo": -0.001845,
+    "cum_ret_diff": -0.003104,
+    "end": "2026-11-05",
     "half1_mean": 1.7e-05,
-    "half2_mean": -0.000287,
+    "half2_mean": -0.0002,
     "maxdd_diff": 0.010952,
-    "mean_diff": -0.000135,
-    "n_days": 21,
+    "mean_diff": -9.7e-05,
+    "n_days": 22,
     "n_neg": 11,
-    "n_pos": 9,
-    "p_boot": 0.867027,
-    "p_sign": 0.823803,
+    "n_pos": 10,
+    "p_boot": 0.897021,
+    "p_sign": 1.0,
     "start": "2026-10-15"
    },
    "primary_test_available": true,
-   "profit_factor": 1.151884,
+   "profit_factor": 1.277994,
    "reasons": [
     "no rule fired"
    ],
@@ -1220,28 +1264,28 @@
    "status": "active",
    "streak_threshold": 10,
    "tier": "usable",
-   "total_return": -0.00416,
+   "total_return": 0.0099,
    "verdict": "KEEP",
    "waived": true,
    "win_post": {
-    "a": 17.336283,
-    "b": 10.663717,
+    "a": 18.336283,
+    "b": 11.663717,
     "disagrees": false,
-    "hi": 0.761756,
-    "lo": 0.46854,
-    "mean": 0.619153,
+    "hi": 0.751061,
+    "lo": 0.465127,
+    "mean": 0.611209,
     "prior_p": 0.633628
    },
-   "win_rate": 0.611111,
+   "win_rate": 0.6,
    "years_beating_s18": 5
   },
   {
-   "auto_sentence": "breakout_s21: 0 trades over 20 days, no closed trades, insufficient (n=0), vs live +0.0 pp, not significant (p_adj 1.00), primary hypothesis test not built (C5) \u2192 KEEP",
+   "auto_sentence": "breakout_s21: 0 trades over 21 days, no closed trades, insufficient (n=0), vs live -1.3 pp, not significant (p_adj 1.00), primary hypothesis test not built (C5) \u2192 KEEP",
    "ci_hi": null,
    "ci_lo": null,
    "current_consec_losses": 0,
    "current_dd": 0.0,
-   "days_active": 20,
+   "days_active": 21,
    "expectancy": null,
    "family": "breakout",
    "flags": [],
@@ -1249,7 +1293,7 @@
    "holm_adjusted_p": 1.0,
    "hypothesis": "earns_when_live_idle",
    "id": "breakout_s21",
-   "lineday_rows_90d": 20,
+   "lineday_rows_90d": 21,
    "max_consec_losses": 0,
    "max_dd": 0.0,
    "mean_exposure": 0.0,
@@ -1261,18 +1305,18 @@
    "n_trades": 0,
    "no_losses": false,
    "paired": {
-    "ci_hi": 0.001524,
-    "ci_lo": -0.00148,
-    "cum_ret_diff": 0.000434,
-    "end": "2026-11-04",
+    "ci_hi": 0.001043,
+    "ci_lo": -0.002293,
+    "cum_ret_diff": -0.013004,
+    "end": "2026-11-05",
     "half1_mean": 0.000928,
-    "half2_mean": -0.000915,
+    "half2_mean": -0.002054,
     "maxdd_diff": -0.02309,
-    "mean_diff": 6e-06,
-    "n_days": 21,
-    "n_neg": 10,
+    "mean_diff": -0.000634,
+    "n_days": 22,
+    "n_neg": 11,
     "n_pos": 10,
-    "p_boot": 0.977405,
+    "p_boot": 0.533893,
     "p_sign": 1.0,
     "start": "2026-10-15"
    },
@@ -1307,23 +1351,23 @@
    "years_beating_s18": 5
   },
   {
-   "auto_sentence": "xsec_mom_top3: 4 trades over 20 days, win 0 % (CI 12\u201351 %), insufficient (n=4), vs live -15.3 pp, significant (p_adj 0.10) \u2192 KEEP",
+   "auto_sentence": "xsec_mom_top3: 4 trades over 21 days, win 0 % (CI 12\u201351 %), insufficient (n=4), vs live -14.7 pp, not significant (p_adj 0.19) \u2192 KEEP",
    "ci_hi": null,
    "ci_lo": null,
    "current_consec_losses": 4,
-   "current_dd": 0.179648,
-   "days_active": 20,
+   "current_dd": 0.16029,
+   "days_active": 21,
    "expectancy": -0.11748,
    "family": "xsec_momentum",
    "flags": [],
    "guard_effect": null,
-   "holm_adjusted_p": 0.09798,
+   "holm_adjusted_p": 0.193161,
    "hypothesis": "beats_live",
    "id": "xsec_mom_top3",
-   "lineday_rows_90d": 20,
+   "lineday_rows_90d": 21,
    "max_consec_losses": 4,
    "max_dd": 0.180634,
-   "mean_exposure": 0.711966,
+   "mean_exposure": 0.711505,
    "mean_mae_pct": -0.117008,
    "mean_mfe_pct": 0.02766,
    "mean_pnl_pct": -0.11748,
@@ -1332,19 +1376,19 @@
    "n_trades": 4,
    "no_losses": false,
    "paired": {
-    "ci_hi": -0.002751,
-    "ci_lo": -0.013556,
-    "cum_ret_diff": -0.15349,
-    "end": "2026-11-04",
+    "ci_hi": -0.001675,
+    "ci_lo": -0.012725,
+    "cum_ret_diff": -0.146963,
+    "end": "2026-11-05",
     "half1_mean": -0.005679,
-    "half2_mean": -0.010286,
+    "half2_mean": -0.008428,
     "maxdd_diff": 0.157545,
-    "mean_diff": -0.007983,
-    "n_days": 21,
+    "mean_diff": -0.007119,
+    "n_days": 22,
     "n_neg": 13,
-    "n_pos": 7,
-    "p_boot": 0.013997,
-    "p_sign": 0.263176,
+    "n_pos": 8,
+    "p_boot": 0.027594,
+    "p_sign": 0.38331,
     "start": "2026-10-15"
    },
    "primary_test_available": true,
@@ -1355,13 +1399,13 @@
    "registered_on": "2026-10-16",
    "rule": "KEEP",
    "signals_90d": 7,
-   "significant_negative": true,
+   "significant_negative": false,
    "significant_positive": false,
    "start": "2026-10-16",
    "status": "active",
    "streak_threshold": 10,
    "tier": "insufficient",
-   "total_return": -0.153924,
+   "total_return": -0.133959,
    "verdict": "KEEP",
    "waived": false,
    "win_post": {
@@ -1377,23 +1421,23 @@
    "years_beating_s18": 5
   },
   {
-   "auto_sentence": "basket_sma50_band: 13 trades over 20 days, win 0 % (CI 3\u201325 %), insufficient (n=13), vs live -6.5 pp, significant (p_adj 0.01), primary hypothesis test not built (C5) \u2192 KEEP",
+   "auto_sentence": "basket_sma50_band: 13 trades over 21 days, win 0 % (CI 3\u201325 %), insufficient (n=13), vs live -7.9 pp, significant (p_adj 0.01), primary hypothesis test not built (C5) \u2192 KEEP",
    "ci_hi": null,
    "ci_lo": null,
    "current_consec_losses": 13,
    "current_dd": 0.065787,
-   "days_active": 20,
+   "days_active": 21,
    "expectancy": -0.09615,
    "family": "basket_trend",
    "flags": [],
    "guard_effect": null,
-   "holm_adjusted_p": 0.009598,
+   "holm_adjusted_p": 0.006399,
    "hypothesis": "reduces_dd_in",
    "id": "basket_sma50_band",
-   "lineday_rows_90d": 20,
+   "lineday_rows_90d": 21,
    "max_consec_losses": 13,
    "max_dd": 0.067936,
-   "mean_exposure": 0.312492,
+   "mean_exposure": 0.297611,
    "mean_mae_pct": -0.096463,
    "mean_mfe_pct": 0.011578,
    "mean_pnl_pct": -0.09615,
@@ -1402,19 +1446,19 @@
    "n_trades": 13,
    "no_losses": false,
    "paired": {
-    "ci_hi": -0.001717,
-    "ci_lo": -0.00514,
-    "cum_ret_diff": -0.065353,
-    "end": "2026-11-04",
+    "ci_hi": -0.00206,
+    "ci_lo": -0.00563,
+    "cum_ret_diff": -0.078791,
+    "end": "2026-11-05",
     "half1_mean": -0.005286,
-    "half2_mean": -0.001395,
+    "half2_mean": -0.002491,
     "maxdd_diff": 0.044847,
-    "mean_diff": -0.003341,
-    "n_days": 21,
-    "n_neg": 16,
+    "mean_diff": -0.003822,
+    "n_days": 22,
+    "n_neg": 17,
     "n_pos": 4,
-    "p_boot": 0.0012,
-    "p_sign": 0.011818,
+    "p_boot": 0.0008,
+    "p_sign": 0.007197,
     "start": "2026-10-15"
    },
    "primary_test_available": false,
@@ -1448,50 +1492,50 @@
    "years_beating_s18": 5
   },
   {
-   "auto_sentence": "connors_guarded: 15 trades over 20 days, win 47 % (CI 36\u201369 %), vs live +0.6 pp, not significant (p_adj n/a) \u2192 CONTROL",
-   "ci_hi": 0.01101,
-   "ci_lo": -0.002088,
+   "auto_sentence": "connors_guarded: 17 trades over 21 days, win 47 % (CI 37\u201368 %), vs live +0.7 pp, not significant (p_adj n/a) \u2192 CONTROL",
+   "ci_hi": 0.012626,
+   "ci_lo": -0.000127,
    "current_consec_losses": 0,
-   "current_dd": 0.005947,
-   "days_active": 20,
-   "expectancy": 0.004108,
+   "current_dd": 0.0,
+   "days_active": 21,
+   "expectancy": 0.005748,
    "family": "connors",
    "flags": [],
-   "guard_effect": 0.006391,
+   "guard_effect": 0.007299,
    "holm_adjusted_p": null,
    "hypothesis": "control",
    "id": "connors_guarded",
-   "lineday_rows_90d": 20,
+   "lineday_rows_90d": 21,
    "max_consec_losses": 3,
    "max_dd": 0.024484,
-   "mean_exposure": 0.456167,
-   "mean_mae_pct": -0.015098,
-   "mean_mfe_pct": 0.015293,
-   "mean_pnl_pct": 0.004108,
+   "mean_exposure": 0.441723,
+   "mean_mae_pct": -0.015625,
+   "mean_mfe_pct": 0.016651,
+   "mean_pnl_pct": 0.005748,
    "median_pnl_pct": -0.004219,
-   "n_entry_days": 6,
-   "n_trades": 15,
+   "n_entry_days": 7,
+   "n_trades": 17,
    "no_losses": false,
    "paired": {
-    "ci_hi": 0.000894,
-    "ci_lo": -0.000205,
-    "cum_ret_diff": 0.006391,
-    "end": "2026-11-04",
+    "ci_hi": 0.000899,
+    "ci_lo": -0.000126,
+    "cum_ret_diff": 0.007299,
+    "end": "2026-11-05",
     "half1_mean": 0.000587,
-    "half2_mean": 5.7e-05,
+    "half2_mean": 0.000126,
     "maxdd_diff": 0.001394,
-    "mean_diff": 0.000322,
-    "n_days": 21,
+    "mean_diff": 0.000345,
+    "n_days": 22,
     "n_neg": 10,
-    "n_pos": 10,
-    "p_boot": 0.321136,
+    "n_pos": 11,
+    "p_boot": 0.24915,
     "p_sign": 1.0,
     "start": "2026-10-15"
    },
    "primary_test_available": true,
-   "profit_factor": 1.456602,
+   "profit_factor": 1.694128,
    "reasons": [
-    "control line; guard_effect (control - live return, common window) +0.64 pp"
+    "control line; guard_effect (control - live return, common window) +0.73 pp"
    ],
    "registered_on": "2026-10-16",
    "rule": "CONTROL",
@@ -1502,64 +1546,64 @@
    "status": "active",
    "streak_threshold": 10,
    "tier": "usable",
-   "total_return": 0.005957,
+   "total_return": 0.020303,
    "verdict": "CONTROL",
    "waived": true,
    "win_post": {
-    "a": 13.183986,
-    "b": 11.816014,
+    "a": 14.183986,
+    "b": 12.816014,
     "disagrees": false,
-    "hi": 0.68871,
-    "lo": 0.363715,
-    "mean": 0.527359,
+    "hi": 0.679185,
+    "lo": 0.367007,
+    "mean": 0.525333,
     "prior_p": 0.618399
    },
-   "win_rate": 0.466667,
+   "win_rate": 0.470588,
    "years_beating_s18": 0
   },
   {
-   "auto_sentence": "connors_exit_sma10: 12 trades over 20 days, win 50 % (CI 36\u201371 %), insufficient (n=12), vs live -4.2 pp, not significant (p_adj 1.00) \u2192 KEEP",
-   "ci_hi": null,
-   "ci_lo": null,
-   "current_consec_losses": 4,
-   "current_dd": 0.058348,
-   "days_active": 20,
-   "expectancy": -0.026215,
+   "auto_sentence": "connors_exit_sma10: 15 trades over 21 days, win 60 % (CI 43\u201375 %), vs live -2.9 pp, not significant (p_adj 1.00) \u2192 KEEP",
+   "ci_hi": 0.016295,
+   "ci_lo": -0.034141,
+   "current_consec_losses": 0,
+   "current_dd": 0.031716,
+   "days_active": 21,
+   "expectancy": -0.011985,
    "family": "connors",
    "flags": [],
    "guard_effect": null,
    "holm_adjusted_p": 1.0,
    "hypothesis": "beats_live",
    "id": "connors_exit_sma10",
-   "lineday_rows_90d": 20,
+   "lineday_rows_90d": 21,
    "max_consec_losses": 4,
    "max_dd": 0.066033,
-   "mean_exposure": 0.604887,
-   "mean_mae_pct": -0.04302,
-   "mean_mfe_pct": 0.020067,
-   "mean_pnl_pct": -0.026215,
-   "median_pnl_pct": -0.032657,
-   "n_entry_days": 4,
-   "n_trades": 12,
+   "mean_exposure": 0.591168,
+   "mean_mae_pct": -0.036723,
+   "mean_mfe_pct": 0.025966,
+   "mean_pnl_pct": -0.011985,
+   "median_pnl_pct": 0.026895,
+   "n_entry_days": 7,
+   "n_trades": 15,
    "no_losses": false,
    "paired": {
-    "ci_hi": 0.001104,
-    "ci_lo": -0.005578,
-    "cum_ret_diff": -0.042429,
-    "end": "2026-11-04",
+    "ci_hi": 0.002159,
+    "ci_lo": -0.00499,
+    "cum_ret_diff": -0.028798,
+    "end": "2026-11-05",
     "half1_mean": 2e-05,
-    "half2_mean": -0.004146,
+    "half2_mean": -0.002421,
     "maxdd_diff": 0.042943,
-    "mean_diff": -0.002063,
-    "n_days": 21,
+    "mean_diff": -0.001258,
+    "n_days": 22,
     "n_neg": 8,
-    "n_pos": 12,
-    "p_boot": 0.445111,
-    "p_sign": 0.503445,
+    "n_pos": 13,
+    "p_boot": 0.60028,
+    "p_sign": 0.38331,
     "start": "2026-10-15"
    },
    "primary_test_available": true,
-   "profit_factor": 0.381224,
+   "profit_factor": 0.646392,
    "reasons": [
     "no rule fired"
    ],
@@ -1571,51 +1615,51 @@
    "start": "2026-10-16",
    "status": "active",
    "streak_threshold": 10,
-   "tier": "insufficient",
-   "total_return": -0.042863,
+   "tier": "usable",
+   "total_return": -0.015794,
    "verdict": "KEEP",
    "waived": false,
    "win_post": {
-    "a": 11.831843,
+    "a": 14.831843,
     "b": 10.168157,
     "disagrees": false,
-    "hi": 0.705246,
-    "lo": 0.361364,
-    "mean": 0.537811,
+    "hi": 0.746365,
+    "lo": 0.429089,
+    "mean": 0.593274,
     "prior_p": 0.583184
    },
-   "win_rate": 0.5,
+   "win_rate": 0.6,
    "years_beating_s18": 5
   }
  ],
  "live": {
-  "auto_sentence": "live_s18: 47 trades over 188 days, win 60 % (CI 49\u201370 %) \u2192 LIVE",
-  "ci_hi": 0.024837,
-  "ci_lo": -0.004353,
+  "auto_sentence": "live_s18: 49 trades over 189 days, win 59 % (CI 49\u201370 %) \u2192 LIVE",
+  "ci_hi": 0.024382,
+  "ci_lo": -0.003328,
   "current_consec_losses": 0,
-  "current_dd": 0.018503,
-  "days_active": 188,
-  "expectancy": 0.009979,
+  "current_dd": 0.005308,
+  "days_active": 189,
+  "expectancy": 0.010309,
   "family": "connors",
   "flags": [],
   "guard_effect": null,
   "holm_adjusted_p": null,
   "hypothesis": null,
   "id": "live_s18",
-  "lineday_rows_90d": 20,
+  "lineday_rows_90d": 21,
   "max_consec_losses": 4,
   "max_dd": 0.046261,
-  "mean_exposure": 0.11383,
+  "mean_exposure": 0.113991,
   "mean_mae_pct": null,
   "mean_mfe_pct": null,
-  "mean_pnl_pct": 0.009979,
+  "mean_pnl_pct": 0.010309,
   "median_pnl_pct": 0.007072,
-  "n_entry_days": 27,
-  "n_trades": 47,
+  "n_entry_days": 28,
+  "n_trades": 49,
   "no_losses": false,
   "paired": null,
   "primary_test_available": true,
-  "profit_factor": 1.618159,
+  "profit_factor": 1.66066,
   "reasons": [
    "frozen S18 live line; reference for every paired test"
   ],
@@ -1628,26 +1672,26 @@
   "status": "live",
   "streak_threshold": 10,
   "tier": "usable",
-  "total_return": 0.067069,
+  "total_return": 0.081414,
   "verdict": "LIVE",
   "waived": false,
   "win_post": {
-   "a": 34.183986,
-   "b": 22.816014,
+   "a": 35.183986,
+   "b": 23.816014,
    "disagrees": false,
-   "hi": 0.702373,
-   "lo": 0.492428,
-   "mean": 0.599719,
+   "hi": 0.697714,
+   "lo": 0.491437,
+   "mean": 0.596339,
    "prior_p": 0.618399
   },
-  "win_rate": 0.595745,
+  "win_rate": 0.591837,
   "years_beating_s18": 0
  },
  "notes": [
   "Backtest priors come from .com 2020-2025 history in which 2021 dominates the returns; the prior is capped at k=10 pseudo-trades so 15+ live trades outweigh it. The 20-coin universe is today's survivors (optimistic for every line equally). Baselines are .com, live is .us (~2 pp/100 d).",
   "Condition table is exploratory and uncorrected; it never drives a verdict.",
   "Verdicts are recommendations only; the owner rules monthly (S35 \u00a75).",
-  "insufficient n (<8 trades or <5 entry days): basket_sma50_band, breakout_s21, connors_exit_sma10, xsec_mom_top3"
+  "insufficient n (<8 trades or <5 entry days): basket_sma50_band, breakout_s21, xsec_mom_top3"
  ],
  "params": {
   "B": 5000,
