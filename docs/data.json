@@ -1,41 +1,41 @@
 {
-  "generated_at": "2026-11-08T06:28:33+00:00",
+  "generated_at": "2026-11-09T07:00:05+00:00",
   "start_date": "2026-04-21",
   "starting_capital": 10000.0,
   "test_days": 90,
   "metrics": {
-    "days_elapsed": 193,
-    "total_return_pct": 7.077211356276103,
-    "cagr_pct": 13.805386730491787,
-    "sharpe": 1.317333212635642,
+    "days_elapsed": 194,
+    "total_return_pct": 6.403250694120133,
+    "cagr_pct": 12.386490260748428,
+    "sharpe": 1.1929746230587155,
     "max_dd_pct": 4.626095657896377,
-    "calmar": 2.9842415184232283,
-    "win_rate_pct": 59.183673469387756,
-    "profit_factor": 1.6606596309310684,
-    "trades": 49,
+    "calmar": 2.677525753192257,
+    "win_rate_pct": 57.99999999999999,
+    "profit_factor": 1.5064913999615246,
+    "trades": 50,
     "wins": 29,
-    "losses": 20,
-    "portfolio_value": 10707.72113562761,
-    "cash": 9254.691173924522,
-    "n_open": 1,
-    "invested_share_avg": 0.11431369081746316,
-    "days_fully_in_cash": 123
+    "losses": 21,
+    "portfolio_value": 10640.325069412012,
+    "cash": 10640.325069412012,
+    "n_open": 0,
+    "invested_share_avg": 0.1137213919013105,
+    "days_fully_in_cash": 124
   },
   "bh_btc_metrics": {
-    "value": 9981.87122606686,
-    "total_return_pct": -0.18128773933140385,
-    "cagr_pct": -0.34257289372353616,
-    "sharpe": 0.18619275305188454,
+    "value": 9846.563948219544,
+    "total_return_pct": -1.5343605178045672,
+    "cagr_pct": -2.8672790537723203,
+    "sharpe": 0.11693483957456297,
     "max_dd_pct": 28.631308852599496,
-    "calmar": -0.011964974968038644
+    "calmar": -0.10014488225228285
   },
   "bh_basket_metrics": {
-    "value": 10578.438853503547,
-    "total_return_pct": 5.784388535035467,
-    "cagr_pct": 11.220768024470873,
-    "sharpe": 0.4287341023746353,
+    "value": 10221.223425923612,
+    "total_return_pct": 2.212234259236112,
+    "cagr_pct": 4.202738595642352,
+    "sharpe": 0.30575634987374956,
     "max_dd_pct": 32.10147017821779,
-    "calmar": 0.34954062733502594
+    "calmar": 0.13092043985244292
   },
   "backtest_baseline": {
     "cagr_pct": 13.39,
@@ -1211,19 +1211,15 @@
       "connors": 10707.72113562761,
       "bh_btc": 9981.87122606686,
       "bh_basket": 10578.438853503547
-    }
-  ],
-  "open_positions": [
+    },
     {
-      "symbol": "NEARUSDT",
-      "entry_date": "2026-11-04",
-      "entry_price": 3.8619299999999996,
-      "current_price": 3.741,
-      "shares": 388.4068328530036,
-      "unrealized_pnl": -46.97003829691354,
-      "unrealized_pct": -3.1313358864609064
+      "date": "2026-11-09",
+      "connors": 10640.325069412012,
+      "bh_btc": 9846.563948219544,
+      "bh_basket": 10221.223425923612
     }
   ],
+  "open_positions": [],
   "closed_trades": [
     {
       "symbol": "TRXUSDT",
@@ -1763,6 +1759,17 @@
       "pnl_pct": 4.193117450577058,
       "hold_days": 2,
       "reason": "MR_EXIT"
+    },
+    {
+      "symbol": "NEARUSDT",
+      "entry_date": "2026-11-04",
+      "exit_date": "2026-11-09",
+      "entry_price": 3.8619299999999996,
+      "exit_price": 3.5746300000000004,
+      "pnl": -117.36610451251022,
+      "pnl_pct": -7.824406967500681,
+      "hold_days": 5,
+      "reason": "SL"
     }
   ],
   "per_symbol": {
@@ -1772,9 +1779,9 @@
       "pnl": 76.9893903993759
     },
     "NEARUSDT": {
-      "trades": 5,
+      "trades": 6,
       "wins": 4,
-      "pnl": 420.92125982157427
+      "pnl": 303.55515530906405
     },
     "UNIUSDT": {
       "trades": 5,
@@ -1856,63 +1863,63 @@
     {
       "name": "shadow_atr_stop",
       "start_date": "2026-10-16",
-      "days": 24,
-      "value": 10094.945143246816,
-      "return_pct": 0.9494514324681624,
-      "sharpe": 1.1778484285664355,
+      "days": 25,
+      "value": 10032.411643157482,
+      "return_pct": 0.32411643157481684,
+      "sharpe": 0.4309009890587707,
       "max_dd_pct": 2.3511320841187646,
       "closed_trades": 16,
-      "connors_return_pct": 0.3034751617725151,
-      "connors_sharpe": 0.4438198997073463,
+      "connors_return_pct": -0.32785054871546926,
+      "connors_sharpe": -0.3390486231797594,
       "connors_max_dd_pct": 2.30897632465085,
       "error": null
     },
     {
       "name": "shadow_btc200",
       "start_date": "2026-10-16",
-      "days": 24,
-      "value": 10096.602120272084,
-      "return_pct": 0.9660212027208459,
-      "sharpe": 1.1909100571594324,
+      "days": 25,
+      "value": 10029.206054056487,
+      "return_pct": 0.29206054056487574,
+      "sharpe": 0.3924617895460778,
       "max_dd_pct": 2.4484124917757497,
-      "closed_trades": 17,
-      "connors_return_pct": 0.3034751617725151,
-      "connors_sharpe": 0.4438198997073463,
+      "closed_trades": 18,
+      "connors_return_pct": -0.32785054871546926,
+      "connors_sharpe": -0.3390486231797594,
       "connors_max_dd_pct": 2.30897632465085,
       "error": null
     },
     {
       "name": "shadow_rsi15",
       "start_date": "2026-10-16",
-      "days": 24,
-      "value": 9955.683889476108,
-      "return_pct": -0.4431611052389206,
-      "sharpe": -0.17944011115519276,
+      "days": 25,
+      "value": 9948.184639101297,
+      "return_pct": -0.5181536089870264,
+      "sharpe": -0.2246209743536172,
       "max_dd_pct": 3.5012525596949393,
       "closed_trades": 22,
-      "connors_return_pct": 0.3034751617725151,
-      "connors_sharpe": 0.4438198997073463,
+      "connors_return_pct": -0.32785054871546926,
+      "connors_sharpe": -0.3390486231797594,
       "connors_max_dd_pct": 2.30897632465085,
       "error": null
     },
     {
       "name": "shadow_combo",
       "start_date": "2026-10-16",
-      "days": 24,
-      "value": 9997.61783302637,
-      "return_pct": -0.0238216697363014,
-      "sharpe": 0.09015079498517829,
+      "days": 25,
+      "value": 9927.237972117733,
+      "return_pct": -0.7276202788226716,
+      "sharpe": -0.39607520681873515,
       "max_dd_pct": 3.4042212379926404,
-      "closed_trades": 20,
-      "connors_return_pct": 0.3034751617725151,
-      "connors_sharpe": 0.4438198997073463,
+      "closed_trades": 21,
+      "connors_return_pct": -0.32785054871546926,
+      "connors_sharpe": -0.3390486231797594,
       "connors_max_dd_pct": 2.30897632465085,
       "error": null
     }
   ],
   "pool": {
     "available": true,
-    "as_of": "2026-11-08",
+    "as_of": "2026-11-09",
     "lines": [
       {
         "id": "shadow_atr_stop",
@@ -1954,14 +1961,14 @@
         "verdict": "KEEP",
         "rule": "KEEP",
         "tier": "insufficient",
-        "holm_adjusted_p": 0.025595
+        "holm_adjusted_p": 0.012797
       },
       {
         "id": "basket_sma50_band",
         "verdict": "KEEP",
         "rule": "KEEP",
         "tier": "insufficient",
-        "holm_adjusted_p": 0.025595
+        "holm_adjusted_p": 0.069986
       },
       {
         "id": "connors_guarded",
